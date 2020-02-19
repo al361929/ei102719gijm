@@ -1,5 +1,5 @@
 public class main {
     public static void main(String []args){
-        System.out.println("Treball Fonaments 2");
+        System.out.println("Treball Diseño 2");
     }
 }
