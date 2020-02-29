@@ -13,6 +13,6 @@ public class MajorsACasaApplication {
 	public static void main(String[] args) {
 		// Auto-configura l'aplicació
 		new SpringApplicationBuilder(MajorsACasaApplication.class).run(args);
-		System.out.println("La apicacion funciona");
+		System.out.println("Accedo a la base de datos");
 	}
 }

@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/MajorsACasaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/MajorsACasaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/MajorsACasaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/MajorsACasaApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/majorsacasa/MajorsACasaApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +40,13 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
@@ -51,23 +61,19 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="MajorsACasaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="MajorsACasaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ei102719gijm" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="majorsacasa.MajorsACasaApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <envs>
-        <env name="DB" value="ei102719gijm" />
         <env name="USER" value="ei102719gijm" />
         <env name="PASS" value="ei102719gijm" />
+        <env name="DB" value="ei102719gijm" />
       </envs>
-      <option name="MAIN_CLASS_NAME" value="majorsacasa.MajorsACasaApplication" />
-      <module name="ei102719gijm" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.MajorsACasaApplication" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -93,58 +99,99 @@
       <updated>1582138582768</updated>
       <workItem from="1582135691010" duration="70000" />
       <workItem from="1582733038879" duration="1385000" />
-      <workItem from="1583004299194" duration="73000" />
+      <workItem from="1583004299194" duration="1318000" />
     </task>
+    <task id="LOCAL-00001" summary="hola">
+      <created>1583004478200</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583004478200</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="hola" />
+    <option name="LAST_COMMIT_MESSAGE" value="hola" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="341" y="9" width="697" height="720" key="#MajorsACasaApplication" timestamp="1583004555243">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="341" y="9" width="697" height="720" key="#MajorsACasaApplication/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004555243" />
     <state x="554" y="178" key="#Project_Structure" timestamp="1582138606980">
       <screen x="0" y="0" width="1920" height="1046" />
     </state>
     <state x="554" y="178" key="#Project_Structure/0.0.1920.1046@0.0.1920.1046" timestamp="1582138606980" />
-    <state x="99" y="33" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583004372141">
+    <state x="132" y="13" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583005633986">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="99" y="33" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004372141" />
+    <state x="132" y="13" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583005633986" />
     <state x="99" y="33" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1582734092447" />
-    <state x="374" y="162" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1583004368938">
+    <state x="374" y="162" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1583004577492">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="374" y="162" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004368938" />
+    <state x="374" y="162" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004577492" />
     <state x="430" y="225" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1582733892236">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="430" y="225" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1582733892236" />
-    <state x="361" y="207" key="EnvironmentVariablesDialog" timestamp="1582734051980">
+    <state x="234" y="0" key="CommitChangelistDialog2" timestamp="1583004476841">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="234" y="0" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004476841" />
+    <state x="361" y="207" key="EnvironmentVariablesDialog" timestamp="1583004614175">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="361" y="207" key="EnvironmentVariablesDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004614175" />
     <state x="361" y="207" key="EnvironmentVariablesDialog/0.0.1366.738@0.0.1366.738" timestamp="1582734051980" />
-    <state width="1323" height="192" key="GridCell.Tab.0.bottom" timestamp="1583004454280">
+    <state width="1323" height="192" key="GridCell.Tab.0.bottom" timestamp="1583005777953">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004454280" />
+    <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583005777953" />
     <state width="1874" height="273" key="GridCell.Tab.0.bottom/0.0.1920.1046@0.0.1920.1046" timestamp="1582138767490" />
-    <state width="1323" height="192" key="GridCell.Tab.0.center" timestamp="1583004454280">
+    <state width="1323" height="192" key="GridCell.Tab.0.center" timestamp="1583005777953">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004454280" />
+    <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583005777953" />
     <state width="1874" height="273" key="GridCell.Tab.0.center/0.0.1920.1046@0.0.1920.1046" timestamp="1582138767489" />
-    <state width="1323" height="192" key="GridCell.Tab.0.left" timestamp="1583004454280">
+    <state width="1323" height="192" key="GridCell.Tab.0.left" timestamp="1583005777953">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004454280" />
+    <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583005777953" />
     <state width="1874" height="273" key="GridCell.Tab.0.left/0.0.1920.1046@0.0.1920.1046" timestamp="1582138767489" />
-    <state width="1323" height="192" key="GridCell.Tab.0.right" timestamp="1583004454280">
+    <state width="1323" height="192" key="GridCell.Tab.0.right" timestamp="1583005777953">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004454280" />
+    <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583005777953" />
     <state width="1874" height="273" key="GridCell.Tab.0.right/0.0.1920.1046@0.0.1920.1046" timestamp="1582138767490" />
+    <state width="1323" height="192" key="GridCell.Tab.1.bottom" timestamp="1583005777953">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="192" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583005777953" />
+    <state width="1323" height="192" key="GridCell.Tab.1.center" timestamp="1583005777953">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="192" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583005777953" />
+    <state width="1323" height="192" key="GridCell.Tab.1.left" timestamp="1583005777953">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="192" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583005777953" />
+    <state width="1323" height="192" key="GridCell.Tab.1.right" timestamp="1583005777953">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="192" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583005777953" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1582734487674">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1582734487674" />
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1583004481622">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004481622" />
   </component>
 </project>
