@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +18,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="1Y2RDSccxRDMAVU2swsPPtmhDvO" />
   <component name="ProjectLevelVcsManager">
@@ -45,13 +51,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="MajorsACasaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="DB" value="ei102719gijm" />
         <env name="USER" value="ei102719gijm" />
         <env name="PASS" value="ei102719gijm" />
       </envs>
-      <option name="MAIN_CLASS_NAME" value="main" />
+      <option name="MAIN_CLASS_NAME" value="majorsacasa.MajorsACasaApplication" />
       <module name="ei102719gijm" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -59,7 +65,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.main" />
+        <item itemvalue="Application.MajorsACasaApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -87,6 +93,7 @@
       <updated>1582138582768</updated>
       <workItem from="1582135691010" duration="70000" />
       <workItem from="1582733038879" duration="1385000" />
+      <workItem from="1583004299194" duration="73000" />
     </task>
     <servers />
   </component>
@@ -98,10 +105,15 @@
       <screen x="0" y="0" width="1920" height="1046" />
     </state>
     <state x="554" y="178" key="#Project_Structure/0.0.1920.1046@0.0.1920.1046" timestamp="1582138606980" />
-    <state x="99" y="33" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582734092447">
+    <state x="99" y="33" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583004372141">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="99" y="33" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004372141" />
     <state x="99" y="33" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1582734092447" />
+    <state x="374" y="162" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1583004368938">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="374" y="162" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004368938" />
     <state x="430" y="225" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1582733892236">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -110,21 +122,25 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="361" y="207" key="EnvironmentVariablesDialog/0.0.1366.738@0.0.1366.738" timestamp="1582734051980" />
-    <state width="1874" height="273" key="GridCell.Tab.0.bottom" timestamp="1582138767490">
-      <screen x="0" y="0" width="1920" height="1046" />
+    <state width="1323" height="192" key="GridCell.Tab.0.bottom" timestamp="1583004454280">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004454280" />
     <state width="1874" height="273" key="GridCell.Tab.0.bottom/0.0.1920.1046@0.0.1920.1046" timestamp="1582138767490" />
-    <state width="1874" height="273" key="GridCell.Tab.0.center" timestamp="1582138767489">
-      <screen x="0" y="0" width="1920" height="1046" />
+    <state width="1323" height="192" key="GridCell.Tab.0.center" timestamp="1583004454280">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004454280" />
     <state width="1874" height="273" key="GridCell.Tab.0.center/0.0.1920.1046@0.0.1920.1046" timestamp="1582138767489" />
-    <state width="1874" height="273" key="GridCell.Tab.0.left" timestamp="1582138767489">
-      <screen x="0" y="0" width="1920" height="1046" />
+    <state width="1323" height="192" key="GridCell.Tab.0.left" timestamp="1583004454280">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004454280" />
     <state width="1874" height="273" key="GridCell.Tab.0.left/0.0.1920.1046@0.0.1920.1046" timestamp="1582138767489" />
-    <state width="1874" height="273" key="GridCell.Tab.0.right" timestamp="1582138767490">
-      <screen x="0" y="0" width="1920" height="1046" />
+    <state width="1323" height="192" key="GridCell.Tab.0.right" timestamp="1583004454280">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004454280" />
     <state width="1874" height="273" key="GridCell.Tab.0.right/0.0.1920.1046@0.0.1920.1046" timestamp="1582138767490" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1582734487674">
       <screen x="0" y="0" width="1366" height="738" />
