@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/ei102719gijm.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/MajorsACasaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/MajorsACasaApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/ei102719gijm.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/MajorsACasaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/MajorsACasaApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/majorsacasa/MajorsACasaApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/ei102719gijm.kotlin_module" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -40,6 +43,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -100,6 +104,7 @@
       <workItem from="1582135691010" duration="70000" />
       <workItem from="1582733038879" duration="1385000" />
       <workItem from="1583004299194" duration="1318000" />
+      <workItem from="1583171899974" duration="1633000" />
     </task>
     <task id="LOCAL-00001" summary="hola">
       <created>1583004478200</created>
