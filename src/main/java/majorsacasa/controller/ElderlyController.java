@@ -25,7 +25,7 @@ public class ElderlyController {
     }
 
     @RequestMapping(value = "/add")
-    public String addNadador(Model model) {
+    public String addElderly(Model model) {
         model.addAttribute("elderly", new Elderly());
         return "elderly/add";
     }
