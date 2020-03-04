@@ -32,6 +32,10 @@ public class VolunteerDao {
         }
     }
 
+    public Volunteer getVolunteer(String volunteer) {
+        return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE dni=?", new VolunteerRowMapper(), volunteer);
+    }
+
     //añadir
     public void addVolunteer(Volunteer volunteer) {
         jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?,?,?,?,?,?,?,?)", volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getDni(),
