@@ -40,7 +40,7 @@ public class VolunteerDao {
     //añadir
     public void addVolunteer(Volunteer volunteer) {
         jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?,?,?,?,?,?,?,?)", volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getDni(),
-                volunteer.getTelefono(), volunteer.getUsuario(), volunteer.getContraseña(), volunteer.getRealaseDate(), volunteer.getDataDown(), volunteer.getBirthday());
+                volunteer.getTelefono(), volunteer.getUsuario(), volunteer.getContraseña(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday());
     }
 
     //eliminar
@@ -50,8 +50,8 @@ public class VolunteerDao {
 
     //editar
     public void updateVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, address=?, dni=?, phonenumber=?, user_name=?, password=?, releasedate=?, datedown=?, birthday=?",
+        jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, address=?, dni=?, phonenumber=?, user_name=?, password=?, releaseDate=?, dateDown=?, birthday=?",
                 volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getDni(), volunteer.getTelefono(), volunteer.getUsuario(),
-                volunteer.getContraseña(), volunteer.getRealaseDate(), volunteer.getDataDown(), volunteer.getBirthday());
+                volunteer.getContraseña(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday());
     }
 }

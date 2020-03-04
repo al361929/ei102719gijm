@@ -11,7 +11,7 @@ public class Elderly {
     String telefono;
     String usuario;
     String contraseña;
-    LocalDate realaseDate;
+    LocalDate releaseDate;
     LocalDate dataDown;
     LocalDate birthday;
     String cuentaBancaria;
@@ -84,19 +84,19 @@ public class Elderly {
         this.contraseña = contraseña;
     }
 
-    public LocalDate getRealaseDate() {
-        return realaseDate;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRealaseDate(LocalDate realaseDate) {
-        this.realaseDate = realaseDate;
+    public void setRealaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
-    public LocalDate getDataDown() {
+    public LocalDate getDateDown() {
         return dataDown;
     }
 
-    public void setDataDown(LocalDate dataDown) {
+    public void setDateDown(LocalDate dataDown) {
         this.dataDown = dataDown;
     }
 

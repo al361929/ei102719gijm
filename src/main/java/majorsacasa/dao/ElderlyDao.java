@@ -1,7 +1,6 @@
 package majorsacasa.dao;
 
 import majorsacasa.model.Elderly;
-import majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,22 +25,27 @@ public class ElderlyDao {
             return jdbcTemplate.query(
                     "SELECT * FROM elderlyPeople",
                     new ElderlyRowMapper());
-        }
-        catch(EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Elderly>();
         }
     }
 
     public void addElderly(Elderly elderly) {
+        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getDni(),
+                elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(), elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria());
     }
 
-    public Object getElderly(String dni) {
-        return null;
+    public Elderly getElderly(String elderly) {
+        return jdbcTemplate.queryForObject("SELECT FROM elderlyPeople WHERE dni=?", new ElderlyRowMapper(), elderly);
     }
 
     public void updateElderly(Elderly elderly) {
+        jdbcTemplate.update("UPDATE ElderlyPeople SET name=?, surname=?, address=?, dni=?, allergies=?, phonenumber=?, user_name=?, password=?, releasedate=?, datedown=?, birthday?=, bankaccount=?",
+                elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getDni(), elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(),
+                elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria());
     }
 
-    public void deleteElderly(String dni) {
+    public void deleteElderly(String elderly) {
+        jdbcTemplate.update("DELETE FROM ElderlyPeople WHERE dni=?", elderly);
     }
 }

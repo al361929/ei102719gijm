@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container">
-<h1>Listar de Voluntarios</h1>
+<h1>Lista de Voluntarios</h1>
 
 <table class="table table-striped">
     <thead>
@@ -33,7 +33,7 @@
 
         </td>
         <td>
-            <a th:href="@{/volunteer/delete/{nom}(nom=${voluntario.dni})}" class="btn btn btn-danger" role="button"
+            <a th:href="@{/volunteer/delete/{dni}(dni=${voluntario.dni})}" class="btn btn btn-danger" role="button"
                aria-pressed="true">Borrar</a>
 
         </td>

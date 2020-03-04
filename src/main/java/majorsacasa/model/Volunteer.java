@@ -10,7 +10,7 @@ public class Volunteer {
     String telefono;
     String usuario;
     String contraseña;
-    LocalDate realaseDate;
+    LocalDate releaseDate;
     LocalDate dataDown;
     LocalDate birthday;
 
@@ -73,12 +73,12 @@ public class Volunteer {
         this.contraseña = contraseña;
     }
 
-    public LocalDate getRealaseDate() {
-        return realaseDate;
+    public LocalDate getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRealaseDate(LocalDate realaseDate) {
-        this.realaseDate = realaseDate;
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public LocalDate getDataDown() {

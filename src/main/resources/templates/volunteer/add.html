@@ -7,7 +7,7 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>Nuevo Voluntario</h2>
+<h2>Añadir Voluntario</h2>
 <form action="#" th:action="@{/volunteer/add}"
       th:object="${volunteer}" method="post">
     <table>
@@ -39,6 +39,7 @@
             <td><label>Contraseña</label></td>
             <td><input type="text" th:field="*{contraseña}"/></td>
         </tr>
+
         <tr>
             <td><label>Fecha de alta</label></td>
             <td><input type="date" th:field="*{releaseDate}"/></td>
@@ -51,8 +52,9 @@
             <td><label>Cumpleaños</label></td>
             <td><input type="date" th:field="*{birthday}"/></td>
         </tr>
+
         <tr>
-            <td colspan="2"><input type="submit" value="Modifica voluntario"/></td>
+            <td colspan="2"><input type="submit" value="Añadir voluntario"/></td>
         </tr>
     </table>
 </form>
