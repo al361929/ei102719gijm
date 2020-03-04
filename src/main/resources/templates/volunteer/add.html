@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Modificar Voluntario</title>
+    <title>Añadir voluntario</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2 th:text="${volunteer.nom}"></h2>
-<form action="#" th:action="@{/volunteer/update}"
+<h2>Nuevo Voluntario</h2>
+<form action="#" th:action="@{/volunteer/add}"
       th:object="${volunteer}" method="post">
     <table>
         <tr>
