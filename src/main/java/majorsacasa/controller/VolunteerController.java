@@ -43,17 +43,17 @@ public class VolunteerController {
     }
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
-    public String editElderly(Model model, @PathVariable String dni) {
+    public String editVolunteer(Model model, @PathVariable String dni) {
         model.addAttribute("volunteer", volunteerDao.getVolunteer(dni));
         return "volunteer/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer elderly,
+    public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "volunteer/update";
-        volunteerDao.updateVolunteer(elderly);
+        volunteerDao.updateVolunteer(volunteer);
         return "redirect:list";
     }
 
