@@ -28,12 +28,12 @@
         <td th:text="${voluntario.direccion}"></td>
         <td th:text="${voluntario.dni}"></td>
         <td>
-            <a th:href="@{/voluntario/update/{nom}(nom=${voluntario.dni})}" class="btn btn btn-warning" role="button"
+            <a th:href="@{/volunteer/update/{nom}(nom=${voluntario.dni})}" class="btn btn btn-warning" role="button"
                aria-pressed="true">Editar</a>
 
         </td>
         <td>
-            <a th:href="@{/voluntario/delete/{nom}(nom=${voluntario.dni})}" class="btn btn btn-danger" role="button"
+            <a th:href="@{/volunteer/delete/{nom}(nom=${voluntario.dni})}" class="btn btn btn-danger" role="button"
                aria-pressed="true">Borrar</a>
 
         </td>
