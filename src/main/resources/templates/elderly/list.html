@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Gestionar Voluntarios</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
 </head>
 <body>
+<div class="container">
+    <h1>Lista de Personas Mayores</h1>
 
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Dirección</th>
+            <th>Alergias</th>
+            <th>Telefono</th>
+            <th>Cumpleaños</th>
+            <th>Cuenta Bancaria</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="elderly: ${elderlys}">
+            <td th:text="${elderly.dni}"></td>
+            <td th:text="${elderly.nombre}"></td>
+            <td th:text="${elderly.apellidos}"></td>
+            <td th:text="${elderly.direccion}"></td>
+            <td th:text="${elderly.alergias}"></td>
+            <td th:text="${elderly.telefono}"></td>
+            <td th:text="${elderly.birthday}"></td>
+            <td th:text="${elderly.cuentaBancaria}"></td>
+            <td>
+                <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni})}" class="btn btn btn-warning" role="button"
+                   aria-pressed="true">Editar</a>
+
+            </td>
+            <td>
+                <a th:href="@{/voluntario/delete/{dni}(dni=${elderly.dni})}" class="btn btn btn-danger" role="button"
+                   aria-pressed="true">Borrar</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Persona Mayor</a>
+</div>
 </body>
 </html>
