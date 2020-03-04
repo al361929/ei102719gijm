@@ -12,6 +12,10 @@
       th:object="${volunteer}" method="post">
     <table>
         <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" required/></td>
+        </tr>
+        <tr>
             <td><label>Nombre</label></td>
             <td><input type="text" th:field="*{nombre}"/></td>
         </tr>
@@ -24,22 +28,17 @@
             <td><input type="text" th:field="*{direccion}"/></td>
         </tr>
         <tr>
-            <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}"/></td>
-        </tr>
-        <tr>
             <td><label>Telefono</label></td>
-            <td><input type="text" th:field="*{telefono}"/></td>
+            <td><input type="tel" th:field="*{telefono}"/></td>
         </tr>
         <tr>
             <td><label>Usuario</label></td>
-            <td><input type="text" th:field="*{usuario}"/></td>
+            <td><input type="text" th:field="*{usuario}" required/></td>
         </tr>
         <tr>
             <td><label>Contraseña</label></td>
-            <td><input type="text" th:field="*{contraseña}"/></td>
+            <td><input type="password" th:field="*{contraseña}"/></td>
         </tr>
-
         <tr>
             <td><label>Fecha de alta</label></td>
             <td><input type="date" th:field="*{releaseDate}"/></td>

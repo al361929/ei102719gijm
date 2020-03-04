@@ -23,7 +23,7 @@ public class ElderlyDao {
     public List<Elderly> getElderlys() {
         try {
             return jdbcTemplate.query(
-                    "SELECT * FROM elderlyPeople",
+                    "SELECT * FROM ElderlyPeople",
                     new ElderlyRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Elderly>();
@@ -31,18 +31,18 @@ public class ElderlyDao {
     }
 
     public void addElderly(Elderly elderly) {
-        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getDni(),
+        jdbcTemplate.update("INSERT INTO ElderlyPeople VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getDni(),
                 elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(), elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria());
     }
 
     public Elderly getElderly(String elderly) {
-        return jdbcTemplate.queryForObject("SELECT FROM elderlyPeople WHERE dni=?", new ElderlyRowMapper(), elderly);
+        return jdbcTemplate.queryForObject("SELECT * FROM ElderlyPeople WHERE dni=?", new ElderlyRowMapper(), elderly);
     }
 
     public void updateElderly(Elderly elderly) {
-        jdbcTemplate.update("UPDATE ElderlyPeople SET name=?, surname=?, address=?, dni=?, allergies=?, phonenumber=?, user_name=?, password=?, releasedate=?, datedown=?, birthday?=, bankaccount=?",
-                elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getDni(), elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(),
-                elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria());
+        jdbcTemplate.update("UPDATE ElderlyPeople SET name=?, surname=?, address=?, dni=?, allergies=?, phonenumber=?, user_name=?, password=?, releasedate=?, datedown=?, birthday?=, bankaccount=? WHERE dni=?",
+                elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(),
+                elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria(), elderly.getDni());
     }
 
     public void deleteElderly(String elderly) {

@@ -1,5 +1,6 @@
 package majorsacasa.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Volunteer {
@@ -10,9 +11,9 @@ public class Volunteer {
     String telefono;
     String usuario;
     String contraseña;
-    LocalDate releaseDate;
-    LocalDate dataDown;
-    LocalDate birthday;
+    Date releaseDate;
+    Date dataDown;
+    Date birthday;
 
     public Volunteer() {
     }
@@ -73,27 +74,27 @@ public class Volunteer {
         this.contraseña = contraseña;
     }
 
-    public LocalDate getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public LocalDate getDataDown() {
+    public Date getDataDown() {
         return dataDown;
     }
 
-    public void setDataDown(LocalDate dataDown) {
+    public void setDataDown(Date dataDown) {
         this.dataDown = dataDown;
     }
 
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 }

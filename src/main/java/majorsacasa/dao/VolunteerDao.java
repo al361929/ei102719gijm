@@ -50,8 +50,8 @@ public class VolunteerDao {
 
     //editar
     public void updateVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, address=?, dni=?, phonenumber=?, user_name=?, password=?, releaseDate=?, dateDown=?, birthday=?",
-                volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getDni(), volunteer.getTelefono(), volunteer.getUsuario(),
-                volunteer.getContraseña(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday());
+        jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, address=?, phonenumber=?, user_name=?, password=?, releaseDate=?, dateDown=?, birthday=? WHERE dni=?",
+                volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getTelefono(), volunteer.getUsuario(),
+                volunteer.getContraseña(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getDni());
     }
 }
