@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modificar Voluntario</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2 th:text="${volunteer.nom}"></h2>
+<form action="#" th:action="@{/volunteer/update}"
+      th:object="${volunteer}" method="post">
+    <table>
+        <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{nom}"/></td>
+        </tr>
+        <tr>
+            <td><label>Apellidos</label></td>
+            <td><input type="text" th:field="*{apellidos}"/></td>
+        </tr>
+        <tr>
+            <td><label>Direccion</label></td>
+            <td><input type="text" th:field="*{direccion}"/></td>
+        </tr>
+        <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}"/></td>
+        </tr>
+        <tr>
+            <td><label>Telefono</label></td>
+            <td><input type="text" th:field="*{telefono}"/></td>
+        </tr>
+        <tr>
+            <td><label>Usuario</label></td>
+            <td><input type="text" th:field="*{usuario}"/></td>
+        </tr>
+        <tr>
+            <td><label>Contraseña</label></td>
+            <td><input type="text" th:field="*{contraseña}"/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de alta</label></td>
+            <td><input type="date" th:field="*{releaseDate}"/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de baja</label></td>
+            <td><input type="date" th:field="*{dataDown}"/></td>
+        </tr>
+        <tr>
+            <td><label>Cumpleaños</label></td>
+            <td><input type="date" th:field="*{birthday}"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Modifica voluntario"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
