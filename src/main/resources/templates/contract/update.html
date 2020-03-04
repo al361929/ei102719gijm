@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modificar Contrato</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2 th:text="${contract.nif}"></h2>
+<form action="#" th:action="@{/contract/update}"
+      th:object="${contract}" method="post">
+    <table>
+        <tr>
+            <td><label>Firma</label></td>
+            <td><input type="text" th:field="*{firma}"/></td>
+        </tr>
+        <tr>
+            <td><label>Datos</label></td>
+            <td><input type="text" th:field="*{data}"/></td>
+        </tr>
+        <tr>
+            <td><label>Precio</label></td>
+            <td><input type="text" th:field="*{price}"/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de alta</label></td>
+            <td><input type="date" th:field="*{realasedate}"/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de baja</label></td>
+            <td><input type="date" th:field="*{datedown}"/></td>
+        </tr>
+        <tr>
+            <td><label>Cantidad</label></td>
+            <td><input type="number" th:field="*{quantity}"/></td>
+        </tr>
+        <tr>
+            <td><label>Descripció</label></td>
+            <td><input type="text" th:field="*{description}"/></td>
+        </tr>
+        <tr>
+            <td><label>NIF</label></td>
+            <td><input type="text" th:field="*{nif}"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Modifica contrato"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

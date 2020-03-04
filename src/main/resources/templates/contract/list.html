@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Contratos</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Lista de Contratos</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Firma</th>
+            <th>Datos</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Descripcón</th>
+            <th>NIF</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contrato: ${contract}">
+            <td th:text="${contrato.firma}"></td>
+            <td th:text="${contrato.data}"></td>
+            <td th:text="${contrato.price}"></td>
+            <td th:text="${contarto.quantity}"></td>
+            <td th:text="${contrato.description}"></td>
+            <td th:text="${contrato.nif}"></td>
+            <td>
+                <a th:href="@{/contract/update/{nif}(nif=${contrato.nif})}" class="btn btn btn-warning" role="button"
+                   aria-pressed="true">Editar</a>
+
+            </td>
+            <td>
+                <a th:href="@{/contract/delete/{nif}(nom=${contrato.nif})}" class="btn btn btn-danger" role="button"
+                   aria-pressed="true">Borrar</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Contrato</a>
+</div>
+</body>
+</html>
