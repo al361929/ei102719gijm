@@ -1,6 +1,5 @@
 package majorsacasa.controller;
 
-import majorsacasa.dao.VolunteerDao;
 import majorsacasa.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -15,7 +14,7 @@ public class ElderlyController {
     private ElderlyDao elderlyDao;
 
     @Autowired
-    public void setVolunteerDao(VolunteerDao volunteerDao) {
+    public void setElderlyDao(ElderlyDao elderlyDao) {
         this.elderlyDao = elderlyDao;
     }
 
