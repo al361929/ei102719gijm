@@ -8,14 +8,15 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-}
+
 public final class ElderlyRowMapper implements RowMapper<Elderly> {
     @Override
     public Elderly mapRow(ResultSet rs, int i) throws SQLException {
         Elderly elderly = new Elderly();
-        volunteer.setNombre(rs.getString("name"));
-        volunteer.setApellidos(rs.getString("surname"));
-        volunteer.setDireccion(rs.getString("address"));
-        volunteer.setDni(rs.getString("dni"));
-        return Elderly;    }
+        elderly.setNombre(rs.getString("name"));
+        elderly.setApellidos(rs.getString("surname"));
+        elderly.setDireccion(rs.getString("address"));
+        elderly.setDni(rs.getString("dni"));
+        return elderly;
+    }
 }
