@@ -20,15 +20,33 @@ public class VolunteerDao {
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
     public List<Volunteer> getVolunteers() {
         try {
             return jdbcTemplate.query(
                     "SELECT * FROM Volunteer",
                     new VolunteerRowMapper());
-
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Volunteer>();
         }
+    }
+
+    //añadir
+    public void addVolunteer(Volunteer volunteer) {
+        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?,?,?,?,?,?,?,?)", volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getDni(),
+                volunteer.getTelefono(), volunteer.getUsuario(), volunteer.getContraseña(), volunteer.getRealaseDate(), volunteer.getDataDown(), volunteer.getBirthday());
+    }
+
+    //eliminar
+    public void removeVolunteer(String volunteer) {
+        jdbcTemplate.update("DELETE FROM Volunteer WHERE dni=?", volunteer);
+    }
+
+    //editar
+    public void updateVolunteer(Volunteer volunteer) {
+        jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, address=?, dni=?, phonenumber=?, user_name=?, password=?, releasedate=?, datedown=?, birthday=?",
+                volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getDni(), volunteer.getTelefono(), volunteer.getUsuario(),
+                volunteer.getContraseña(), volunteer.getRealaseDate(), volunteer.getDataDown(), volunteer.getBirthday());
     }
 }
