@@ -3,14 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/CompanyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ElderlyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ElderlyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/ElderlyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/ElderlyDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/ElderlyRowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/ElderlyRowMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/elderly/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/elderly/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/VolunteerRowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/VolunteerRowMapper.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583333435354</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Elderly listado funcional">
+      <created>1583337852301</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1583337852301</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,7 +193,8 @@
     <MESSAGE value="hola" />
     <MESSAGE value="Algunos errores corregidos" />
     <MESSAGE value="ElderlyController" />
-    <option name="LAST_COMMIT_MESSAGE" value="ElderlyController" />
+    <MESSAGE value="Elderly listado funcional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Elderly listado funcional" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
