@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class VolunteerController {
     private VolunteerDao volunteerDao;
     @Autowired
-    public void setNadadorDao(VolunteerDao volunteerDao) {
-        this.volunteerDao=volunteerDao;
+    public void setVolunteerDao(VolunteerDao volunteerDao) {
+        this.volunteerDao = volunteerDao;
     }
+
     @RequestMapping("/list")
     public String listVolunteers(Model model) {
         model.addAttribute("volunteers", volunteerDao.getVolunteers());
-        return "nadador/list";
+        return "volunteer/list";
     }
     //----
 }

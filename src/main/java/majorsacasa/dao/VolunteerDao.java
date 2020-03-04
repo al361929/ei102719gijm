@@ -20,11 +20,10 @@ public class VolunteerDao {
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
-    /* Obté tots els nadadors. Torna una llista buida si no n'hi ha cap. */
     public List<Volunteer> getVolunteers() {
         try {
             return jdbcTemplate.query(
-                    "SELECT * FROM Nadador",
+                    "SELECT * FROM Volunteer",
                     new VolunteerRowMapper());
 
         }
