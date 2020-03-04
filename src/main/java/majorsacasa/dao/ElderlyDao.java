@@ -24,7 +24,7 @@ public class ElderlyDao {
     public List<Elderly> getElderlys() {
         try {
             return jdbcTemplate.query(
-                    "SELECT * FROM Elderly",
+                    "SELECT * FROM elderlyPeople",
                     new ElderlyRowMapper());
         }
         catch(EmptyResultDataAccessException e) {

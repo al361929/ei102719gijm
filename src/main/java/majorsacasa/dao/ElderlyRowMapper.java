@@ -21,7 +21,7 @@ public final class ElderlyRowMapper implements RowMapper<Elderly> {
 
         elderly.setAlergias(rs.getString("allergies"));
         elderly.setCuentaBancaria(rs.getString("bankaccount"));
-        elderly.setBirthday(rs.getDate("brithday").toLocalDate());
+        elderly.setBirthday(rs.getDate("birthday").toLocalDate());
         elderly.setDataDown(rs.getDate("dateDown").toLocalDate());
         elderly.setRealaseDate(rs.getDate("realasedate").toLocalDate());
         elderly.setContraseña(rs.getString("password"));
