@@ -1,5 +1,6 @@
 package majorsacasa.controller;
 
+import majorsacasa.dao.ElderlyDao;
 import majorsacasa.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public class ElderlyController {
 
-    private ElderlyDao elderlyDao;
+    private EldgiterlyDao elderlyDao;
 
     @Autowired
     public void setElderlyDao(ElderlyDao elderlyDao) {
