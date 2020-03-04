@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Modificar Voluntario</title>
+    <title>Añadir persona mayor</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2 th:text="${volunteer.nombre}"></h2>
-<form action="#" th:action="@{/volunteer/update}"
-      th:object="${volunteer}" method="post">
+<h2 th:text="${elderly.nombre}"></h2>
+<form action="#" th:action="@{/elderly/update}"
+      th:object="${elderly}" method="post">
     <table>
         <tr>
             <td><label>Nombre</label></td>
@@ -26,6 +26,10 @@
         <tr>
             <td><label>DNI</label></td>
             <td><input type="text" th:field="*{dni}"/></td>
+        </tr>
+        <tr>
+            <td><label>Alergias</label></td>
+            <td><input type="text" th:field="*{alergias}"/></td>
         </tr>
         <tr>
             <td><label>Telefono</label></td>
@@ -50,6 +54,10 @@
         <tr>
             <td><label>Cumpleaños</label></td>
             <td><input type="date" th:field="*{birthday}"/></td>
+        </tr>
+        <tr>
+            <td><label>Cuenta Bancaria</label></td>
+            <td><input type="text" th:field="*{cuentaBancaria}"/></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Modifica voluntario"/></td>
