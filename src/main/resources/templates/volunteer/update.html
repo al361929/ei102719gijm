@@ -7,7 +7,7 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2 th:text="${volunteer.nombre}"></h2>
+<h2 th:text="${volunteer.nom}"></h2>
 <form action="#" th:action="@{/volunteer/update}"
       th:object="${volunteer}" method="post">
     <table>
