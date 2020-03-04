@@ -17,6 +17,16 @@ public final class ElderlyRowMapper implements RowMapper<Elderly> {
         elderly.setApellidos(rs.getString("surname"));
         elderly.setDireccion(rs.getString("address"));
         elderly.setDni(rs.getString("dni"));
+        elderly.setTelefono(rs.getString("phonenumber"));
+
+        elderly.setAlergias(rs.getString("allergies"));
+        elderly.setCuentaBancaria(rs.getString("bankaccount"));
+        elderly.setBirthday(rs.getDate("brithday").toLocalDate());
+        elderly.setDataDown(rs.getDate("dateDown").toLocalDate());
+        elderly.setRealaseDate(rs.getDate("realasedate").toLocalDate());
+        elderly.setContraseña(rs.getString("password"));
+        elderly.setUsuario(rs.getString("user_Name"));
+
         return elderly;
     }
 }
