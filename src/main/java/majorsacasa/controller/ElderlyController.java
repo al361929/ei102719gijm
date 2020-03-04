@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public class ElderlyController {
 
-    private EldgiterlyDao elderlyDao;
+    private ElderlyDao elderlyDao;
 
     @Autowired
     public void setElderlyDao(ElderlyDao elderlyDao) {
