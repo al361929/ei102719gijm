@@ -10,9 +10,9 @@ public final class VolunteerRowMapper implements RowMapper<Volunteer> {
     @Override
     public Volunteer mapRow(ResultSet rs, int i) throws SQLException {
         Volunteer volunteer = new Volunteer();
-        volunteer.setNombre(rs.getString("nombre"));
-        volunteer.setApellidos(rs.getString("apellidos"));
-        volunteer.setDireccion(rs.getString("direccion"));
+        volunteer.setNombre(rs.getString("name"));
+        volunteer.setApellidos(rs.getString("surname"));
+        volunteer.setDireccion(rs.getString("address"));
         volunteer.setDni(rs.getString("dni"));
         return volunteer;    }
 }
