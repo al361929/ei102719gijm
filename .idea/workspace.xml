@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/CompanyDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/CompanyRowMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/company/add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/company/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/company/update.html" afterDir="false" />
+    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="Retoques">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/CompanyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/VolunteerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/VolunteerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/model/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/model/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/contract/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/contract/update.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583407593984</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Retoques">
+      <created>1583447291487</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1583447291487</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,12 +253,13 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="430" y="225" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1582733892236" />
-    <state x="329" y="0" key="CommitChangelistDialog2" timestamp="1583407593297">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="263" y="0" key="CommitChangelistDialog2" timestamp="1583447538507">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="234" y="0" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004476841" />
     <state x="1585" y="0" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583359410751" />
     <state x="234" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1583333433744" />
+    <state x="263" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583447538507" />
     <state x="329" y="0" key="CommitChangelistDialog2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583407593297" />
     <state x="546" y="404" key="EnvironmentVariablesDialog" timestamp="1583261124044">
       <screen x="0" y="0" width="1920" height="1046" />
