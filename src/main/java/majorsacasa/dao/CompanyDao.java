@@ -1,0 +1,50 @@
+package majorsacasa.dao;
+
+import majorsacasa.model.Company;
+import majorsacasa.model.Elderly;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.ColumnMapRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
+public class CompanyDao {
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public List<Company> getCompanies() {
+        try {
+            return jdbcTemplate.query("Select * From Company", new CompanyRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Company>();
+        }
+    }
+
+    public Company getCompany(String nif) {
+        return jdbcTemplate.queryForObject("SELECT * FROM Company WHERE nif=?", new CompanyRowMapper(), nif);
+    }
+
+    public void addCompany(Company company) {
+        jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?,?)", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
+                company.getNif(), company.getNumeroTelf(), company.getNombreUsuario(), company.getContraseña(), company.getFechaAlta(), company.getCuentaBancaria());
+    }
+
+    public void deleteCompany(String nif) {
+        jdbcTemplate.update("DELETE FROM Company WHERE nif=?", nif);
+    }
+
+    public void updateCompany(Company company) {
+        jdbcTemplate.update("UPDATE Contract SET name=?, responsiblename=?, address=?, nif=?, phonenumber=?, user_name=?, password=?, " +
+                        "releaseDate=?, bankaccount=? WHERE nif=?", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
+                company.getNif(), company.getNumeroTelf(), company.getNombreUsuario(), company.getContraseña(), company.getFechaAlta(), company.getCuentaBancaria());
+    }
+}

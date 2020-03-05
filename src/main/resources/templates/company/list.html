@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar empresas contratadas</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Lista de Empresas</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Nombre del responsable</th>
+            <th>Dirección</th>
+            <th>NIF</th>
+            <th>Número de teléfono</th>
+            <th>Nombre de usuario</th>
+            <th>Contraseña</th>
+            <th>Fecha de alta</th>
+            <th>Cuneta bancaria</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="empresa: ${companies}">
+            <td th:text="${empresa.name}"></td>
+            <td th:text="${empresa.responsiblename}"></td>
+            <td th:text="${empresa.address}"></td>
+            <td th:text="${empresa.nif}"></td>
+            <td th:text="${empresa.phonenumber}"></td>
+            <td th:text="${empresa.user_name}"></td>
+            <td th:text="${empresa.password}"></td>
+            <td th:text="${empresa.releasedate}"></td>
+            <td th:text="${empresa.bankaccount}"></td>
+            <td>
+                <a th:href="@{/company/update/{nif}(nif=${empresa.nif})}" class="btn btn btn-warning" role="button"
+                   aria-pressed="true">Editar</a>
+
+            </td>
+            <td>
+                <a th:href="@{/company/delete/{nif}(nif=${empresa.nif})}" class="btn btn btn-danger" role="button"
+                   aria-pressed="true">Borrar</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Empresa</a>
+</div>
+</body>
+</html>

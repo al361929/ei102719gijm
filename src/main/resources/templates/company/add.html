@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Añadir empresa</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Añadir Empresa</h2>
+<form action="#" th:action="@{/company/add}"
+      th:object="${company}" method="post">
+    <table>
+        <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{name}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Nombre del responsable</label></td>
+            <td><input type="text" th:field="*{responsiblename}"/></td>
+        </tr>
+        <tr>
+            <td><label>Dirección</label></td>
+            <td><input type="text" th:field="*{address}"/></td>
+        </tr>
+        <tr>
+            <td><label>NIF</label></td>
+            <td><input type="number" th:field="*{nif}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Teléfono</label></td>
+            <td><input type="number" th:field="*{phonenumber}"/></td>
+        </tr>
+        <tr>
+            <td><label>Contraseña</label></td>
+            <td><input type="password" th:field="*{password}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de alta</label></td>
+            <td><input type="date" th:field="*{releasedate}"/></td>
+        </tr>
+        <tr>
+            <td><label>Cuenta bancaria</label></td>
+            <td><input type="number" th:field="*{bankaccount}" required/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Añadir contrato"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
