@@ -89,7 +89,7 @@ public class Elderly {
         return releaseDate;
     }
 
-    public void setRealaseDate(Date releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
