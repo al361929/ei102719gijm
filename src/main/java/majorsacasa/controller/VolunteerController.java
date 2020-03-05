@@ -59,7 +59,7 @@ public class VolunteerController {
 
     @RequestMapping(value = "/delete/{dni}")
     public String processDelete(@PathVariable String dni) {
-        volunteerDao.removeVolunteer(dni);
+        volunteerDao.deleteVolunteer(dni);
         return "redirect:../list";
     }
 }

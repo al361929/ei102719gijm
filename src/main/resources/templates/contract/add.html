@@ -7,7 +7,7 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>Nuevo Contracto</h2>
+<h2>Añadir Contrato</h2>
 <form action="#" th:action="@{/contract/add}"
       th:object="${contract}" method="post">
     <table>
@@ -17,27 +17,27 @@
         </tr>
         <tr>
             <td><label>Datos</label></td>
-            <td><input type="text" th:field="*{data}"/></td>
+            <td><input type="text" th:field="*{datos}"/></td>
         </tr>
         <tr>
             <td><label>Precio</label></td>
-            <td><input type="text" th:field="*{price}"/></td>
+            <td><input type="text" th:field="*{precio}"/></td>
         </tr>
         <tr>
             <td><label>Fecha de alta</label></td>
-            <td><input type="date" th:field="*{realasedate}"/></td>
+            <td><input type="date" th:field="*{releaseDate}"/></td>
         </tr>
         <tr>
             <td><label>Fecha de baja</label></td>
-            <td><input type="text" th:field="*{datedown}"/></td>
+            <td><input type="date" th:field="*{dateDown}"/></td>
         </tr>
         <tr>
             <td><label>Cantidad</label></td>
-            <td><input type="number" th:field="*{quantity}"/></td>
+            <td><input type="number" th:field="*{cantidad}"/></td>
         </tr>
         <tr>
             <td><label>Descripción</label></td>
-            <td><input type="number" th:field="*{description}"/></td>
+            <td><input type="text" th:field="*{descripcion}"/></td>
         </tr>
         <tr>
             <td><label>NIF</label></td>
@@ -45,7 +45,7 @@
         </tr>
 
         <tr>
-            <td colspan="2"><input type="submit" value="Modifica contrato"/></td>
+            <td colspan="2"><input type="submit" value="Añadir contrato"/></td>
         </tr>
     </table>
 </form>

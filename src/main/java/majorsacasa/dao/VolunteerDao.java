@@ -44,7 +44,7 @@ public class VolunteerDao {
     }
 
     //eliminar
-    public void removeVolunteer(String volunteer) {
+    public void deleteVolunteer(String volunteer) {
         jdbcTemplate.update("DELETE FROM Volunteer WHERE dni=?", volunteer);
     }
 

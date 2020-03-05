@@ -24,12 +24,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="contrato: ${contract}">
+        <tr th:each="contrato: ${contracts}">
             <td th:text="${contrato.firma}"></td>
-            <td th:text="${contrato.data}"></td>
-            <td th:text="${contrato.price}"></td>
-            <td th:text="${contarto.quantity}"></td>
-            <td th:text="${contrato.description}"></td>
+            <td th:text="${contrato.datos}"></td>
+            <td th:text="${contrato.precio}"></td>
+            <td th:text="${contrato.cantidad}"></td>
+            <td th:text="${contrato.descripcion}"></td>
             <td th:text="${contrato.nif}"></td>
             <td>
                 <a th:href="@{/contract/update/{nif}(nif=${contrato.nif})}" class="btn btn btn-warning" role="button"
