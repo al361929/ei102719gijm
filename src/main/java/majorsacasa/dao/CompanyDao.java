@@ -34,7 +34,7 @@ public class CompanyDao {
     }
 
     public void addCompany(Company company) {
-        jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?,?)", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
+        jdbcTemplate.update("INSERT INTO Company VALUES(?,?,?,?,?,?,?,?)", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
                 company.getNif(), company.getNumeroTelf(), company.getNombreUsuario(), company.getContraseña(), company.getFechaAlta(), company.getCuentaBancaria());
     }
 
@@ -43,8 +43,7 @@ public class CompanyDao {
     }
 
     public void updateCompany(Company company) {
-        jdbcTemplate.update("UPDATE Contract SET name=?, responsiblename=?, address=?, nif=?, phonenumber=?, user_name=?, password=?, " +
-                        "releaseDate=?, bankaccount=? WHERE nif=?", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
+        jdbcTemplate.update("UPDATE Company SET name=?, responsiblename=?, address=?, nif=?, phonenumber=?, user_name=?, password=?, releaseDate=?, bankaccount=? WHERE nif=?", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
                 company.getNif(), company.getNumeroTelf(), company.getNombreUsuario(), company.getContraseña(), company.getFechaAlta(), company.getCuentaBancaria());
     }
 }

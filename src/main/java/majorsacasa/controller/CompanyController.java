@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/companyController")
+@RequestMapping("/company")
 public class CompanyController {
 
     private CompanyDao companyDao;
@@ -26,7 +26,7 @@ public class CompanyController {
     @RequestMapping("/list")
     public String listCompanies(Model model) {
         model.addAttribute("companies", companyDao.getCompanies());
-        return "companies/list";
+        return "company/list";
     }
 
     @RequestMapping(value = "/add")
