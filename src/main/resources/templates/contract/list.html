@@ -12,12 +12,12 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>NIF</th>
             <th>Firma</th>
             <th>Datos</th>
             <th>Precio</th>
             <th>Cantidad</th>
             <th>Descripcón</th>
-            <th>NIF</th>
 
             <th></th>
             <th></th>
@@ -25,12 +25,12 @@
         </thead>
         <tbody>
         <tr th:each="contrato: ${contracts}">
+            <td th:text="${contrato.nif}"></td>
             <td th:text="${contrato.firma}"></td>
             <td th:text="${contrato.datos}"></td>
             <td th:text="${contrato.precio}"></td>
             <td th:text="${contrato.cantidad}"></td>
             <td th:text="${contrato.descripcion}"></td>
-            <td th:text="${contrato.nif}"></td>
             <td>
                 <a th:href="@{/contract/update/{nif}(nif=${contrato.nif})}" class="btn btn btn-warning" role="button"
                    aria-pressed="true">Editar</a>

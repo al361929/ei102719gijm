@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Contract {
     String firma;
     String datos;
-    String precio; //Integer???
+    Double precio; //Integer???
     Date releaseDate;
     Date dateDown;
     Integer cantidad;
@@ -31,11 +31,11 @@ public class Contract {
         this.datos = datos;
     }
 
-    public String getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(String precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

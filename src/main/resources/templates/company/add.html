@@ -12,39 +12,44 @@
       th:object="${company}" method="post">
     <table>
         <tr>
+            <td><label>NIF</label></td>
+            <td><input type="text" th:field="*{nif}" required/></td>
+        </tr>
+        <tr>
             <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{name}" required/></td>
+            <td><input type="text" th:field="*{nombre}" required/></td>
         </tr>
         <tr>
             <td><label>Nombre del responsable</label></td>
-            <td><input type="text" th:field="*{responsiblename}"/></td>
+            <td><input type="text" th:field="*{nombreResponsable}"/></td>
         </tr>
         <tr>
             <td><label>Dirección</label></td>
-            <td><input type="text" th:field="*{address}"/></td>
-        </tr>
-        <tr>
-            <td><label>NIF</label></td>
-            <td><input type="number" th:field="*{nif}" required/></td>
+            <td><input type="text" th:field="*{direccion}"/></td>
         </tr>
         <tr>
             <td><label>Teléfono</label></td>
-            <td><input type="number" th:field="*{phonenumber}"/></td>
+            <td><input type="number" th:field="*{numeroTelf}"/></td>
+        </tr>
+        <tr>
+            <td><label>Usuario</label></td>
+            <td><input type="text" th:field="*{nombreUsuario}" required/></td>
         </tr>
         <tr>
             <td><label>Contraseña</label></td>
-            <td><input type="password" th:field="*{password}" required/></td>
+            <td><input type="password" th:field="*{contraseña}" required/></td>
         </tr>
         <tr>
             <td><label>Fecha de alta</label></td>
-            <td><input type="date" th:field="*{releasedate}"/></td>
+            <td><input type="date" th:field="*{fechaAlta}"/></td>
         </tr>
         <tr>
             <td><label>Cuenta bancaria</label></td>
-            <td><input type="number" th:field="*{bankaccount}" required/></td>
+            <td><input type="text" th:field="*{cuentaBancaria}" placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="35"
+                       required/>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Añadir contrato"/></td>
+            <td colspan="2"><input type="submit" value="Añadir compañia"/></td>
         </tr>
     </table>
 </form>

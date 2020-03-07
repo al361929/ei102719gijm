@@ -1,7 +1,6 @@
 package majorsacasa.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Elderly {
     String nombre;
@@ -19,6 +18,24 @@ public class Elderly {
 
 
     public Elderly() {
+    }
+
+    @Override
+    public String toString() {
+        return "Elderly{" +
+                "nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", dni='" + dni + '\'' +
+                ", alergias='" + alergias + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", dataDown=" + dataDown +
+                ", birthday=" + birthday +
+                ", cuentaBancaria='" + cuentaBancaria + '\'' +
+                '}';
     }
 
     public String getNombre() {

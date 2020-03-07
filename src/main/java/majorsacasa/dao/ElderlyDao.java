@@ -33,6 +33,8 @@ public class ElderlyDao {
     public void addElderly(Elderly elderly) {
         jdbcTemplate.update("INSERT INTO ElderlyPeople VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getDni(),
                 elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(), elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria());
+        elderly.toString();
+
     }
 
     public Elderly getElderly(String elderly) {

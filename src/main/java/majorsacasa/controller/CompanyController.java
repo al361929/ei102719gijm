@@ -1,6 +1,5 @@
 package majorsacasa.controller;
 
-
 import majorsacasa.dao.CompanyDao;
 import majorsacasa.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;

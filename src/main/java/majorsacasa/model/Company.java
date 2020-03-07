@@ -1,7 +1,6 @@
 package majorsacasa.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Company {
 
@@ -16,7 +15,6 @@ public class Company {
     int cuentaBancaria;
 
     public Company() {
-
     }
 
     public String getNombre() {
@@ -90,6 +88,7 @@ public class Company {
     public void setCuentaBancaria(int cuentaBancaria) {
         this.cuentaBancaria = cuentaBancaria;
     }
+
 
 }
 

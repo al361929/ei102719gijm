@@ -12,13 +12,12 @@ public final class ContractRowMapper implements RowMapper<Contract> {
         Contract contract = new Contract();
         contract.setFirma(rs.getString("firma"));
         contract.setDatos(rs.getString("data"));
-        contract.setPrecio(rs.getString("price"));
+        contract.setPrecio(rs.getDouble("price"));
         contract.setReleaseDate(rs.getDate("releaseDate"));
         contract.setDateDown(rs.getDate("dateDown"));
         contract.setCantidad(rs.getInt("quantity"));
         contract.setDescripcion(rs.getString("description"));
         contract.setNif(rs.getString("nif"));
-
         return contract;
     }
 }

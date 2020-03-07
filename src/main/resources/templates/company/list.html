@@ -12,10 +12,10 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Nombre del responsable</th>
-            <th>Dirección</th>
             <th>NIF</th>
+            <th>Nombre</th>
+            <th>Responsable de la empresa</th>
+            <th>Dirección</th>
             <th>Número de teléfono</th>
             <th>Nombre de usuario</th>
             <th>Contraseña</th>
@@ -27,15 +27,15 @@
         </thead>
         <tbody>
         <tr th:each="empresa: ${companies}">
-            <td th:text="${empresa.name}"></td>
-            <td th:text="${empresa.responsiblename}"></td>
-            <td th:text="${empresa.address}"></td>
             <td th:text="${empresa.nif}"></td>
-            <td th:text="${empresa.phonenumber}"></td>
-            <td th:text="${empresa.user_name}"></td>
-            <td th:text="${empresa.password}"></td>
-            <td th:text="${empresa.releasedate}"></td>
-            <td th:text="${empresa.bankaccount}"></td>
+            <td th:text="${empresa.nombre}"></td>
+            <td th:text="${empresa.nombreResponsable}"></td>
+            <td th:text="${empresa.direccion}"></td>
+            <td th:text="${empresa.numeroTelf}"></td>
+            <td th:text="${empresa.nombreUsuario}"></td>
+            <td th:text="${empresa.contraseña}"></td>
+            <td th:text="${empresa.fechaAlta}"></td>
+            <td th:text="${empresa.cuentaBancaria}"></td>
             <td>
                 <a th:href="@{/company/update/{nif}(nif=${empresa.nif})}" class="btn btn btn-warning" role="button"
                    aria-pressed="true">Editar</a>

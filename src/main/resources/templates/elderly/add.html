@@ -11,7 +11,6 @@
 <form action="#" th:action="@{/elderly/add}"
       th:object="${elderly}" method="post">
     <table>
-
         <tr>
             <td><label>DNI</label></td>
             <td><input type="text" th:field="*{dni}" required/></td>
@@ -42,7 +41,7 @@
         </tr>
         <tr>
             <td><label>Contraseña</label></td>
-            <td><input type="password" th:field="*{contraseña}"/></td>
+            <td><input type="password" th:field="*{contraseña}" required/></td>
         </tr>
         <tr>
             <td><label>Fecha de alta</label></td>
@@ -58,11 +57,13 @@
         </tr>
         <tr>
             <td><label>Cuenta Bancaria</label></td>
-            <td><input type="text" th:field="*{cuentaBancaria}" placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="35"/>
+            <td><input type="text" th:field="*{cuentaBancaria}" placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="35"
+                       required/>
             </td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Añadir persona mayor"/></td>
+            <td colspan="2"><input type="submit" value="Añadir persona mayor" class="btn btn btn-success" role="button"
+                                   aria-pressed="true"/></td>
         </tr>
     </table>
 </form>
