@@ -12,7 +12,7 @@ public class Elderly {
     String usuario;
     String contraseña;
     Date releaseDate;
-    Date dataDown;
+    Date dataDown = null;
     Date birthday;
     String cuentaBancaria;
 
