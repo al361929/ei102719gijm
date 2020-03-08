@@ -10,7 +10,7 @@ public class Company {
     String nif;
     int numeroTelf;
     String nombreUsuario;
-    String contraseña;
+    String password;
     Date fechaAlta;
     int cuentaBancaria;
 
@@ -65,12 +65,12 @@ public class Company {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getFechaAlta() {

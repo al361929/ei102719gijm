@@ -3,14 +3,16 @@ package majorsacasa.model;
 import java.sql.Date;
 
 public class Contract {
+    Integer ncontract;
     String firma;
     String datos;
-    Double precio; //Integer???
+    Double precio;
     Date releaseDate;
     Date dateDown;
     Integer cantidad;
     String descripcion;
     String nif;
+    String dnielderly;
 
     public Contract() {
     }
@@ -77,5 +79,21 @@ public class Contract {
 
     public void setNif(String nif) {
         this.nif = nif;
+    }
+
+    public Integer getNcontract() {
+        return ncontract;
+    }
+
+    public void setNcontract(Integer ncontract) {
+        this.ncontract = ncontract;
+    }
+
+    public String getDnielderly() {
+        return dnielderly;
+    }
+
+    public void setDnielderly(String dnielderly) {
+        this.dnielderly = dnielderly;
     }
 }

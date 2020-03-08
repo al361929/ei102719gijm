@@ -12,6 +12,10 @@
       th:object="${contract}" method="post">
     <table>
         <tr>
+            <td><label>Num Contrato</label></td>
+            <td><input type="number" th:field="*{ncontract}"/></td>
+        </tr>
+        <tr>
             <td><label>NIF</label></td>
             <td><input type="text" th:field="*{nif}"/></td>
         </tr>
@@ -42,6 +46,10 @@
         <tr>
             <td><label>Descripción</label></td>
             <td><input type="text" th:field="*{descripcion}"/></td>
+        </tr>
+        <tr>
+            <td><label>DNI Persona Mayor</label></td>
+            <td><input type="text" th:field="*{dnielderly}"/></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Añadir contrato"/></td>

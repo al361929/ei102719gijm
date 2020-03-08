@@ -26,8 +26,8 @@ public class ContractDao {
     }
 
     public void addContract(Contract contract) {
-        jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?,?)", contract.getFirma(), contract.getDatos(), contract.getPrecio(),
-                contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getNif());
+        jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?,?,?,?)", contract.getNcontract(), contract.getFirma(), contract.getDatos(), contract.getPrecio(),
+                contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getNif(), contract.getDnielderly());
     }
 
     public void deleteContract(String nif) {
@@ -35,7 +35,8 @@ public class ContractDao {
     }
 
     public void updateContract(Contract contract) {
-        jdbcTemplate.update("UPDATE Contract SET firma=?, data=?, price=?, releaseDate=?, dateDown=?, quantity=?, description=? WHERE nif=?", contract.getFirma(), contract.getDatos(),
-                contract.getPrecio(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getNif());
+        jdbcTemplate.update("UPDATE Contract SET ncontract=?, firma=?, data=?, price=?, releaseDate=?, dateDown=?, quantity=?, description=?, dnielderly=?, WHERE nif=?", contract.getNcontract(),
+                contract.getFirma(), contract.getDatos(), contract.getPrecio(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(),
+                contract.getDnielderly(), contract.getNif());
     }
 }
