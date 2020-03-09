@@ -15,11 +15,11 @@ public class CompanyRowMapper implements RowMapper<Company> {
         company.setNombreResponsable(rs.getString("responsiblename"));
         company.setDireccion(rs.getString("address"));
         company.setNif(rs.getString("nif"));
-        company.setNumeroTelf(rs.getInt("phonenumber"));
+        company.setNumeroTelf(rs.getString("phonenumber"));
         company.setNombreUsuario(rs.getString("user_name"));
         company.setPassword(rs.getString("password"));
         company.setFechaAlta(rs.getDate("releasedate"));
-        company.setCuentaBancaria(rs.getInt("bankaccount"));
+        company.setCuentaBancaria(rs.getString("bankaccount"));
 
         return company;
     }

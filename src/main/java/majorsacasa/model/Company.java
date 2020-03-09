@@ -8,11 +8,11 @@ public class Company {
     String nombreResponsable;
     String direccion;
     String nif;
-    int numeroTelf;
+    String numeroTelf;
     String nombreUsuario;
     String password;
     Date fechaAlta;
-    int cuentaBancaria;
+    String cuentaBancaria;
 
     public Company() {
     }
@@ -49,11 +49,11 @@ public class Company {
         this.nif = nif;
     }
 
-    public int getNumeroTelf() {
+    public String getNumeroTelf() {
         return numeroTelf;
     }
 
-    public void setNumeroTelf(int numeroTelf) {
+    public void setNumeroTelf(String numeroTelf) {
         this.numeroTelf = numeroTelf;
     }
 
@@ -81,11 +81,11 @@ public class Company {
         this.fechaAlta = fechaAlta;
     }
 
-    public int getCuentaBancaria() {
+    public String getCuentaBancaria() {
         return cuentaBancaria;
     }
 
-    public void setCuentaBancaria(int cuentaBancaria) {
+    public void setCuentaBancaria(String cuentaBancaria) {
         this.cuentaBancaria = cuentaBancaria;
     }
 
