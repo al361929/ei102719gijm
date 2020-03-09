@@ -45,11 +45,12 @@
         </tr>
         <tr>
             <td><label>Cuenta bancaria</label></td>
-            <td><input type="text" th:field="*{cuentaBancaria}" placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="35"
-                       required/>
+            <td><input type="text" th:field="*{cuentaBancaria}" placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="32"
+                       MAXLENGTH="29" required/>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Añadir compañia"/></td>
+            <td colspan="2"><input type="submit" value="Añadir compañia" class="btn btn btn-success" role="button"
+                                   aria-pressed="true"/></td>
         </tr>
     </table>
 </form>

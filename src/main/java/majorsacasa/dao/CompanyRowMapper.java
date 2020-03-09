@@ -15,7 +15,7 @@ public class CompanyRowMapper implements RowMapper<Company> {
         company.setNombreResponsable(rs.getString("responsiblename"));
         company.setDireccion(rs.getString("address"));
         company.setNif(rs.getString("nif"));
-        company.setNumeroTelf(rs.getString("phonenumber"));
+        company.setNumeroTelf(rs.getString("phoneNumber"));
         company.setNombreUsuario(rs.getString("user_name"));
         company.setPassword(rs.getString("password"));
         company.setFechaAlta(rs.getDate("releasedate"));

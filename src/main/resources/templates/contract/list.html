@@ -25,19 +25,22 @@
         </thead>
         <tbody>
         <tr th:each="contrato: ${contracts}">
-            <td th:text="${contrato.nif}"></td>
+            <td th:text="${contrato.nifcompany}"></td>
+            <td th:text="${contrato.dnielderly}"></td>
             <td th:text="${contrato.firma}"></td>
             <td th:text="${contrato.datos}"></td>
             <td th:text="${contrato.precio}"></td>
             <td th:text="${contrato.cantidad}"></td>
             <td th:text="${contrato.descripcion}"></td>
             <td>
-                <a th:href="@{/contract/update/{nif}(nif=${contrato.nif})}" class="btn btn btn-warning" role="button"
+                <a th:href="@{/contract/update/{nif}(nif=${contrato.nifcompany})}" class="btn btn btn-warning"
+                   role="button"
                    aria-pressed="true">Editar</a>
 
             </td>
             <td>
-                <a th:href="@{/contract/delete/{nif}(nom=${contrato.nif})}" class="btn btn btn-danger" role="button"
+                <a th:href="@{/contract/delete/{nif}(nif=${contrato.nifcompany})}" class="btn btn btn-danger"
+                   role="button"
                    aria-pressed="true">Borrar</a>
 
             </td>

@@ -16,8 +16,12 @@
             <td><input type="number" th:field="*{ncontract}"/></td>
         </tr>
         <tr>
-            <td><label>NIF</label></td>
-            <td><input type="text" th:field="*{nif}"/></td>
+            <td><label>NIF Empresa</label></td>
+            <td><input type="text" th:field="*{nifcompany}"/></td>
+        </tr>
+        <tr>
+            <td><label>DNI Persona Mayor</label></td>
+            <td><input type="text" th:field="*{dnielderly}"/></td>
         </tr>
         <tr>
             <td><label>Firma</label></td>
@@ -48,11 +52,8 @@
             <td><input type="text" th:field="*{descripcion}"/></td>
         </tr>
         <tr>
-            <td><label>DNI Persona Mayor</label></td>
-            <td><input type="text" th:field="*{dnielderly}"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Añadir contrato"/></td>
+            <td colspan="2"><input type="submit" value="Añadir contrato" class="btn btn btn-success" role="button"
+                                   aria-pressed="true"/></td>
         </tr>
     </table>
 </form>

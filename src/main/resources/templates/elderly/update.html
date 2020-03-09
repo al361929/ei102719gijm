@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Actualizar persona mayor</title>
+    <title>Modificar persona mayor</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
+<h1>Modificar persona mayor</h1>
 <h2 th:text="${elderly.nombre}"></h2>
 <form action="#" th:action="@{/elderly/update}"
       th:object="${elderly}" method="post">
@@ -49,7 +50,7 @@
         </tr>
         <tr>
             <td><label>Fecha de baja</label></td>
-            <td><input type="text" th:field="*{dateDown}" placeholder="dd/mm/yyyy"/></td>
+            <td><input type="text" th:field="*{dateDown}" placeholder="yyyy-mm-dd"/></td>
         </tr>
         <tr>
             <td><label>Cumpleaños</label></td>
@@ -62,7 +63,9 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Modifica persona mayor"/></td>
+            <td colspan="2"><input type="submit" value="Modifica persona mayor" class="btn btn btn-warning"
+                                   role="button"
+                                   aria-pressed="true"/></td>
         </tr>
     </table>
 </form>

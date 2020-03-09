@@ -50,7 +50,6 @@ public class VolunteerDao {
 
     //editar
     public void updateVolunteer(Volunteer volunteer) {
-        System.out.println(volunteer.toString());
         jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, address=?, phonenumber=?, user_name=?, password=?, releaseDate=?, dateDown=?, birthday=? WHERE dni=?",
                 volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getTelefono(), volunteer.getUsuario(),
                 volunteer.getContraseña(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getDni());

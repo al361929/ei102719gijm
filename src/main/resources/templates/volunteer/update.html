@@ -7,6 +7,7 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
+<h1>Modificar Voluntario</h1>
 <h2 th:text="${volunteer.nombre}"></h2>
 <form action="#" th:action="@{/volunteer/update}"
       th:object="${volunteer}" method="post">
@@ -33,11 +34,11 @@
         </tr>
         <tr>
             <td><label>Usuario</label></td>
-            <td><input type="text" th:field="*{usuario}"/></td>
+            <td><input type="text" th:field="*{usuario}" required/></td>
         </tr>
         <tr>
             <td><label>Contraseña</label></td>
-            <td><input type="password" th:field="*{contraseña}"/></td>
+            <td><input type="password" th:field="*{contraseña}" required/></td>
         </tr>
         <tr>
             <td><label>Fecha de alta</label></td>
@@ -45,14 +46,15 @@
         </tr>
         <tr>
             <td><label>Fecha de baja</label></td>
-            <td><input type="text" th:field="*{dataDown}" placeholder="dd/mm/yyyy"/></td>
+            <td><input type="text" th:field="*{dataDown}" placeholder="yyyy-mm-dd"/></td>
         </tr>
         <tr>
             <td><label>Cumpleaños</label></td>
             <td><input type="date" th:field="*{birthday}"/></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Modifica voluntario"/></td>
+            <td colspan="2"><input type="submit" value="Modifica voluntario" class="btn btn btn-warning" role="button"
+                                   aria-pressed="true"/></td>
         </tr>
     </table>
 </form>

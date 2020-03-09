@@ -47,18 +47,18 @@
             <td><label>Fecha de alta</label></td>
             <td><input type="date" th:field="*{releaseDate}"/></td>
         </tr>
-        <tr>
+        <!--<tr>
             <td><label>Fecha de baja</label></td>
             <td><input type="date" th:field="*{dateDown}"/></td>
         </tr>
-        <tr>
+        <tr>-->
             <td><label>Cumpleaños</label></td>
             <td><input type="date" th:field="*{birthday}"/></td>
         </tr>
         <tr>
             <td><label>Cuenta Bancaria</label></td>
-            <td><input type="text" th:field="*{cuentaBancaria}" placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="35"
-                       required/>
+            <td><input type="text" th:field="*{cuentaBancaria}" placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="32"
+                       maxlength="29" required/>
             </td>
         </tr>
         <tr>

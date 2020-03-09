@@ -21,22 +21,22 @@ public class ContractDao {
         return jdbcTemplate.query("SELECT * FROM Contract", new ContractRowMapper());
     }
 
-    public Contract getContract(String nif) {
-        return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE nif=?", new ContractRowMapper(), nif);
+    public Contract getContract(String nifcompany) {
+        return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE nifcompany=?", new ContractRowMapper(), nifcompany);
     }
 
     public void addContract(Contract contract) {
         jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?,?,?,?)", contract.getNcontract(), contract.getFirma(), contract.getDatos(), contract.getPrecio(),
-                contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getNif(), contract.getDnielderly());
+                contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getNifcompany(), contract.getDnielderly());
     }
 
-    public void deleteContract(String nif) {
-        jdbcTemplate.update("DELETE FROM Contract WHERE nif=?", nif);
+    public void deleteContract(String nifcompany) {
+        jdbcTemplate.update("DELETE FROM Contract WHERE nifcompany=?", nifcompany);
     }
 
     public void updateContract(Contract contract) {
-        jdbcTemplate.update("UPDATE Contract SET ncontract=?, firma=?, data=?, price=?, releaseDate=?, dateDown=?, quantity=?, description=?, dnielderly=?, WHERE nif=?", contract.getNcontract(),
+        jdbcTemplate.update("UPDATE Contract SET ncontract=?, firma=?, data=?, price=?, releaseDate=?, dateDown=?, quantity=?, description=?, WHERE nifcompany=?", contract.getNcontract(),
                 contract.getFirma(), contract.getDatos(), contract.getPrecio(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(),
-                contract.getDnielderly(), contract.getNif());
+                contract.getNifcompany());
     }
 }

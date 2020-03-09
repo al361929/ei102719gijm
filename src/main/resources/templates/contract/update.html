@@ -7,7 +7,8 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2 th:text="${contract.nif}"></h2>
+<h1>Modificar Contrato</h1>
+<h2 th:text="${contract.ncontract}"></h2>
 <form action="#" th:action="@{/contract/update}"
       th:object="${contract}" method="post">
     <table>
@@ -16,8 +17,12 @@
             <td><input type="number" th:field="*{ncontract}"/></td>
         </tr>
         <tr>
-            <td><label>NIF</label></td>
-            <td><input type="text" th:field="*{nif}"/></td>
+            <td><label>NIF Empresa</label></td>
+            <td><input type="text" th:field="*{nifcompany}"/></td>
+        </tr>
+        <tr>
+            <td><label>DNI Persona Mayor</label></td>
+            <td><input type="text" th:field="*{dnielderly}"/></td>
         </tr>
         <tr>
             <td><label>Firma</label></td>
@@ -48,11 +53,8 @@
             <td><input type="text" th:field="*{descripcion}"/></td>
         </tr>
         <tr>
-            <td><label>DNI Persona Mayor</label></td>
-            <td><input type="text" th:field="*{dnielderly}"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Modificar contrato"/></td>
+            <td colspan="2"><input type="submit" value="Modificar contrato" class="btn btn btn-warning" role="button"
+                                   aria-pressed="true"/></td>
         </tr>
     </table>
 </form>

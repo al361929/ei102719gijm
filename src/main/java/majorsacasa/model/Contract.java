@@ -11,7 +11,7 @@ public class Contract {
     Date dateDown;
     Integer cantidad;
     String descripcion;
-    String nif;
+    String nifcompany;
     String dnielderly;
 
     public Contract() {
@@ -73,12 +73,12 @@ public class Contract {
         this.descripcion = descripcion;
     }
 
-    public String getNif() {
-        return nif;
+    public String getNifcompany() {
+        return nifcompany;
     }
 
-    public void setNif(String nif) {
-        this.nif = nif;
+    public void setNifcompany(String nif) {
+        this.nifcompany = nif;
     }
 
     public Integer getNcontract() {

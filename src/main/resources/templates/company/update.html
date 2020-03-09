@@ -7,6 +7,7 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
+<h1>Modificar Empresa</h1>
 <h2 th:text="${company.nombre}"></h2>
 <form action="#" th:action="@{/company/update}"
       th:object="${company}" method="post">
@@ -49,7 +50,8 @@
                        required/>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Modifica empresa"/></td>
+            <td colspan="2"><input type="submit" value="Modifica empresa" class="btn btn btn-warning" role="button"
+                                   aria-pressed="true"/></td>
         </tr>
     </table>
 </form>
