@@ -15,27 +15,10 @@ public class Elderly {
     Date dataDown = null;
     Date birthday;
     String cuentaBancaria;
-
+    String email;
+    String socialWorker;
 
     public Elderly() {
-    }
-
-    @Override
-    public String toString() {
-        return "Elderly{" +
-                "nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", dni='" + dni + '\'' +
-                ", alergias='" + alergias + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", usuario='" + usuario + '\'' +
-                ", contraseña='" + contraseña + '\'' +
-                ", releaseDate=" + releaseDate +
-                ", dataDown=" + dataDown +
-                ", birthday=" + birthday +
-                ", cuentaBancaria='" + cuentaBancaria + '\'' +
-                '}';
     }
 
     public String getNombre() {
@@ -132,5 +115,21 @@ public class Elderly {
 
     public void setCuentaBancaria(String cuentaBancaria) {
         this.cuentaBancaria = cuentaBancaria;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSocialWorker() {
+        return socialWorker;
+    }
+
+    public void setSocialWorker(String socialWorker) {
+        this.socialWorker = socialWorker;
     }
 }

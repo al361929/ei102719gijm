@@ -13,6 +13,7 @@ public class Company {
     String password;
     Date fechaAlta;
     String cuentaBancaria;
+    String email;
 
     public Company() {
     }
@@ -89,6 +90,12 @@ public class Company {
         this.cuentaBancaria = cuentaBancaria;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
 

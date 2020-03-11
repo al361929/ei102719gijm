@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Modificar Voluntario</title>
+    <title>Añadir voluntario</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1>Modificar Voluntario</h1>
-<h2 th:text="${volunteer.nombre}"></h2>
-<form action="#" th:action="@{/volunteer/update}"
+<h2>Añadir Voluntario</h2>
+<form action="#" th:action="@{/volunteer/add}"
       th:object="${volunteer}" method="post">
     <table>
         <tr>
             <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" readonly style="background-color: rgb(170, 170, 170)"/></td>
+            <td><input type="text" th:field="*{dni}" required/></td>
         </tr>
         <tr>
             <td><label>Nombre</label></td>
@@ -38,22 +37,23 @@
         </tr>
         <tr>
             <td><label>Contraseña</label></td>
-            <td><input type="password" th:field="*{contraseña}" required/></td>
+            <td><input type="password" th:field="*{contraseña}"/></td>
         </tr>
         <tr>
             <td><label>Fecha de alta</label></td>
             <td><input type="date" th:field="*{releaseDate}"/></td>
         </tr>
-        <tr>
+        <!--<tr>
             <td><label>Fecha de baja</label></td>
-            <td><input type="text" th:field="*{dataDown}" placeholder="yyyy-mm-dd"/></td>
-        </tr>
+            <td><input type="date" th:field="*{dataDown}"/></td>
+        </tr>-->
         <tr>
             <td><label>Cumpleaños</label></td>
             <td><input type="date" th:field="*{birthday}"/></td>
         </tr>
+
         <tr>
-            <td colspan="2"><input type="submit" value="Modifica voluntario" class="btn btn btn-warning" role="button"
+            <td colspan="2"><input type="submit" value="Añadir voluntario" class="btn btn btn-success" role="button"
                                    aria-pressed="true"/></td>
         </tr>
     </table>

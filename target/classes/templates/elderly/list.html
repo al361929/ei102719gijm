@@ -20,6 +20,8 @@
             <th>Telefono</th>
             <th>Cumpleaños</th>
             <th>Cuenta Bancaria</th>
+            <th>Trabajador Social</th>
+            <th>Email</th>
             <th></th>
             <th></th>
         </tr>
@@ -34,6 +36,8 @@
             <td th:text="${elderly.telefono}"></td>
             <td th:text="${elderly.birthday}"></td>
             <td th:text="${elderly.cuentaBancaria}"></td>
+            <td th:text="${elderly.socialWorker}"></td>
+            <td th:text="${elderly.email}"></td>
             <td>
                 <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni})}" class="btn btn btn-warning" role="button"
                    aria-pressed="true">Editar</a>

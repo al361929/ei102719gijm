@@ -14,6 +14,7 @@ public class Volunteer {
     Date releaseDate;
     Date dataDown;
     Date birthday;
+    String email;
 
     public Volunteer() {
     }
@@ -98,4 +99,11 @@ public class Volunteer {
         this.birthday = birthday;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

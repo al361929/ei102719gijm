@@ -20,7 +20,7 @@ public class CompanyRowMapper implements RowMapper<Company> {
         company.setPassword(rs.getString("password"));
         company.setFechaAlta(rs.getDate("releasedate"));
         company.setCuentaBancaria(rs.getString("bankaccount"));
-
+        company.setEmail(rs.getString("email"));
         return company;
     }
 }

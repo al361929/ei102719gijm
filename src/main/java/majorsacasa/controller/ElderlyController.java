@@ -38,7 +38,6 @@ public class ElderlyController {
     public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/add";
-        System.out.println(elderly.toString());
         elderlyDao.addElderly(elderly);
         return "redirect:list";
     }

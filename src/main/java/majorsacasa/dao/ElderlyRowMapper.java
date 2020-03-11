@@ -21,7 +21,8 @@ public final class ElderlyRowMapper implements RowMapper<Elderly> {
         elderly.setReleaseDate(rs.getDate("releasedate"));
         elderly.setContraseña(rs.getString("password"));
         elderly.setUsuario(rs.getString("user_name"));
-
+        elderly.setSocialWorker(rs.getString("socialWorker"));
+        elderly.setEmail(rs.getString("email"));
         return elderly;
     }
 }

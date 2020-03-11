@@ -34,8 +34,8 @@ public class CompanyDao {
     }
 
     public void addCompany(Company company) {
-        jdbcTemplate.update("INSERT INTO Company VALUES(?,?,?,?,?,?,?,?,?)", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
-                company.getNif(), company.getNumeroTelf(), company.getNombreUsuario(), company.getPassword(), company.getFechaAlta(), company.getCuentaBancaria());
+        jdbcTemplate.update("INSERT INTO Company VALUES(?,?,?,?,?,?,?,?,?,?)", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
+                company.getNif(), company.getNumeroTelf(), company.getNombreUsuario(), company.getPassword(), company.getFechaAlta(), company.getCuentaBancaria(), company.getEmail());
     }
 
     public void deleteCompany(String nif) {
@@ -43,7 +43,7 @@ public class CompanyDao {
     }
 
     public void updateCompany(Company company) {
-        jdbcTemplate.update("UPDATE Company SET name=?, responsiblename=?, address=?, phonenumber=?, user_name=?, password=?, releaseDate=?, bankaccount=? WHERE nif=?", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
-                company.getNumeroTelf(), company.getNombreUsuario(), company.getPassword(), company.getFechaAlta(), company.getCuentaBancaria(), company.getNif());
+        jdbcTemplate.update("UPDATE Company SET name=?, responsiblename=?, address=?, phonenumber=?, user_name=?, password=?, releaseDate=?, bankaccount=?, email=? WHERE nif=?", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
+                company.getNumeroTelf(), company.getNombreUsuario(), company.getPassword(), company.getFechaAlta(), company.getCuentaBancaria(), company.getEmail(), company.getNif());
     }
 }
