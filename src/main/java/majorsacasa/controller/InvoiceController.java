@@ -42,9 +42,9 @@ public class InvoiceController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/update/{numberInvoice}", method = RequestMethod.GET)
-    public String editInvoice(Model model, @PathVariable Integer numberInvoice) {
-        model.addAttribute("invoice", invoiceDao.getInvoice(numberInvoice));
+    @RequestMapping(value = "/update/{invoiceNumber}", method = RequestMethod.GET)
+    public String editInvoice(Model model, @PathVariable Integer invoiceNumber) {
+        model.addAttribute("invoice", invoiceDao.getInvoice(invoiceNumber));
         return "invoice/update";
     }
 
@@ -57,9 +57,9 @@ public class InvoiceController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/delete/{numberInvoice}")
-    public String processDelete(@PathVariable Integer numberInvoice) {
-        invoiceDao.deleteInvoice(numberInvoice);
+    @RequestMapping(value = "/delete/{invoiceNumber}")
+    public String processDelete(@PathVariable Integer invoiceNumber) {
+        invoiceDao.deleteInvoice(invoiceNumber);
         return "redirect:../list";
     }
 

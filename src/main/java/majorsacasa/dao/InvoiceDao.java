@@ -31,18 +31,18 @@ public class InvoiceDao {
     }
 
     public void addInvoice(Invoice invoice) {
-        jdbcTemplate.update("INSERT INTO Invoice VALUES(?,?,?", invoice.getInvoiceNumber(), invoice.getDateInvoice(), invoice.getTotalPrice());
+        jdbcTemplate.update("INSERT INTO Invoice VALUES(?,?,?,?)", invoice.getInvoiceNumber(), invoice.getDniElderly(), invoice.getDateInvoice(), invoice.getTotalPrice());
     }
 
     public Invoice getInvoice(Integer invoiceNumber) {
-        return jdbcTemplate.queryForObject("SELECT * FROM Invoice WHERE dni=?", new InvoiceRowMapper(), invoiceNumber);
+        return jdbcTemplate.queryForObject("SELECT * FROM Invoice WHERE invoicenumber=?", new InvoiceRowMapper(), invoiceNumber);
     }
 
     public void updateInvoice(Invoice invoice) {
-        jdbcTemplate.update("UPDATE Invoice SET dateInvoice=?, totalPprice=? WHERE invoiceNumber=?", invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getInvoiceNumber());
+        jdbcTemplate.update("UPDATE Invoice SET dateinvoice=?, totalprice=?, dnielderly=? WHERE invoicenumber=?", invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getDniElderly(), invoice.getInvoiceNumber());
     }
 
     public void deleteInvoice(Integer invoice) {
-        jdbcTemplate.update("DELETE FROM Invoice WHERE invoiceNumber=?", invoice);
+        jdbcTemplate.update("DELETE FROM Invoice WHERE invoicenumber=?", invoice);
     }
 }

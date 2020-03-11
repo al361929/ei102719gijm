@@ -35,7 +35,7 @@ public class ContractDao {
     }
 
     public void updateContract(Contract contract) {
-        jdbcTemplate.update("UPDATE Contract SET ncontract=?, firma=?, data=?, price=?, releaseDate=?, dateDown=?, quantity=?, description=?, WHERE nifcompany=?", contract.getNcontract(),
+        jdbcTemplate.update("UPDATE Contract SET ncontract=?, firma=?, data=?, price=?, releaseDate=?, dateDown=?, quantity=?, description=? WHERE nifcompany=?", contract.getNcontract(),
                 contract.getFirma(), contract.getDatos(), contract.getPrecio(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(),
                 contract.getNifcompany());
     }

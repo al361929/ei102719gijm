@@ -7,6 +7,7 @@ public class Invoice {
     Integer invoiceNumber;
     Date dateInvoice;
     Integer totalPrice;
+    String dniElderly;
 
     public Invoice() {
 
@@ -34,5 +35,23 @@ public class Invoice {
 
     public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getDniElderly() {
+        return dniElderly;
+    }
+
+    public void setDniElderly(String dniElderly) {
+        this.dniElderly = dniElderly;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "invoiceNumber=" + invoiceNumber +
+                ", dateInvoice=" + dateInvoice +
+                ", totalPrice=" + totalPrice +
+                ", dniElderly='" + dniElderly + '\'' +
+                '}';
     }
 }

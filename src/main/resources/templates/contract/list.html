@@ -14,10 +14,11 @@
         <tr>
             <th>NIF</th>
             <th>Firma</th>
+            <th>DNI Persona mayor</th>
             <th>Datos</th>
             <th>Precio</th>
             <th>Cantidad</th>
-            <th>Descripcón</th>
+            <th>Descripción</th>
 
             <th></th>
             <th></th>
@@ -26,8 +27,8 @@
         <tbody>
         <tr th:each="contrato: ${contracts}">
             <td th:text="${contrato.nifcompany}"></td>
-            <td th:text="${contrato.dnielderly}"></td>
             <td th:text="${contrato.firma}"></td>
+            <td th:text="${contrato.dnielderly}"></td>
             <td th:text="${contrato.datos}"></td>
             <td th:text="${contrato.precio}"></td>
             <td th:text="${contrato.cantidad}"></td>

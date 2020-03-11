@@ -11,6 +11,7 @@ public class Request {
     String comments;
     Date dateAccept;
     Date dateReject;
+    Date dateRequest;
 
     public Request() {
 
@@ -70,5 +71,13 @@ public class Request {
 
     public void setDateReject(Date dateReject) {
         this.dateReject = dateReject;
+    }
+
+    public Date getDateRequest() {
+        return dateRequest;
+    }
+
+    public void setDateRequest(Date dateRequest) {
+        this.dateRequest = dateRequest;
     }
 }

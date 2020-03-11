@@ -1,45 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gestionar Voluntarios</title>
+    <title>Gestionar solicitudes</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
 </head>
 <body>
 <div class="container">
-    <h1>Lista de Voluntarios</h1>
+    <h1>Lista de solicitudes</h1>
 
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>Tipo de servicio</th>
+            <th>Fecha de solicitud</th>
+            <th>Estado</th>
+            <th>Fecha de aceptación</th>
+            <th>Fecha de rechazo</th>
+            <th>Comentarios</th>
             <th>DNI</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Dirección</th>
-            <th></th>
-            <th></th>
+            <th>NIF</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="voluntario: ${volunteers}">
-            <td th:text="${voluntario.dni}"></td>
-            <td th:text="${voluntario.nombre}"></td>
-            <td th:text="${voluntario.apellidos}"></td>
-            <td th:text="${voluntario.direccion}"></td>
+        <tr th:each="request: ${requests}">
+            <td th:text="${request.serviceType}"></td>
+            <td th:text="${request.dateRequest}"></td>
+            <td th:text="${request.state}"></td>
+            <td th:text="${request.dateAccept}"></td>
+            <td th:text="${request.dateReject}"></td>
+            <td th:text="${request.comments}"></td>
+            <td th:text="${request.dni}"></td>
+            <td th:text="${request.nif}"></td>
             <td>
-                <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.dni})}" class="btn btn btn-warning" role="button"
+                <a th:href="@{/request/update/{serviceType}(serviceType=${request.serviceType})/{dni}(dni=${request.dni})"
+                   class="btn btn btn-warning" role="button"
                    aria-pressed="true">Editar</a>
 
             </td>
             <td>
-                <a th:href="@{/volunteer/delete/{dni}(dni=${voluntario.dni})}" class="btn btn btn-danger" role="button"
+                <a th:href="@{/request/delete/{serviceType}(serviceType=${request.serviceType})/{dni}(dni=${request.dni})"
+                   class="btn btn btn-danger" role="button"
                    aria-pressed="true">Borrar</a>
 
             </td>
         </tr>
         </tbody>
     </table>
-    <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Voluntario</a>
+    <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Solicitud</a>
 </div>
 </body>
 </html>

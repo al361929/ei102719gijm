@@ -13,10 +13,11 @@ public final class RequestRowMapper implements RowMapper<Request> {
         request.setDni(rs.getString("dni"));
         request.setNif(rs.getString("nif"));
         request.setState(rs.getString("state"));
-        request.setServiceType(rs.getString("serviceType"));
+        request.setServiceType(rs.getString("servicetype"));
         request.setComments(rs.getString("comments"));
-        request.setDateAccept(rs.getDate("dateAccept"));
-        request.setDateReject(rs.getDate("dateReject"));
+        request.setDateAccept(rs.getDate("dateaccept"));
+        request.setDateReject(rs.getDate("datereject"));
+        request.setDateRequest(rs.getDate("daterequest"));
         return request;
     }
 }

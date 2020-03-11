@@ -1,59 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Añadir voluntario</title>
+    <title>Añadir factura</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h2>Añadir Voluntario</h2>
-<form action="#" th:action="@{/volunteer/add}"
-      th:object="${volunteer}" method="post">
+<h2>Añadir factura</h2>
+<form action="#" th:action="@{/invoice/add}"
+      th:object="${invoice}" method="post">
     <table>
         <tr>
-            <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" required/></td>
+            <td><label>Número de factura</label></td>
+            <td><input type="number" th:field="*{invoiceNumber}"/></td>
         </tr>
         <tr>
-            <td><label>Nombre</label></td>
-            <td><input type="text" th:field="*{nombre}"/></td>
+            <td><label>Persona mayor (DNI)</label></td>
+            <td><input type="text" th:field="*{dniElderly}"/></td>
         </tr>
         <tr>
-            <td><label>Apellidos</label></td>
-            <td><input type="text" th:field="*{apellidos}"/></td>
+            <td><label>Fecha</label></td>
+            <td><input type="date" th:field="*{dateInvoice}"/></td>
         </tr>
         <tr>
-            <td><label>Direccion</label></td>
-            <td><input type="text" th:field="*{direccion}"/></td>
-        </tr>
-        <tr>
-            <td><label>Telefono</label></td>
-            <td><input type="tel" th:field="*{telefono}"/></td>
-        </tr>
-        <tr>
-            <td><label>Usuario</label></td>
-            <td><input type="text" th:field="*{usuario}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Contraseña</label></td>
-            <td><input type="password" th:field="*{contraseña}"/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de alta</label></td>
-            <td><input type="date" th:field="*{releaseDate}"/></td>
-        </tr>
-        <!--<tr>
-            <td><label>Fecha de baja</label></td>
-            <td><input type="date" th:field="*{dataDown}"/></td>
-        </tr>-->
-        <tr>
-            <td><label>Cumpleaños</label></td>
-            <td><input type="date" th:field="*{birthday}"/></td>
+            <td><label>Precio Total</label></td>
+            <td><input type="number" th:field="*{totalPrice}"/></td>
         </tr>
 
         <tr>
-            <td colspan="2"><input type="submit" value="Añadir voluntario" class="btn btn btn-success" role="button"
+            <td colspan="2"><input type="submit" value="Añadir factura" class="btn btn btn-success" role="button"
                                    aria-pressed="true"/></td>
         </tr>
     </table>
