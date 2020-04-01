@@ -9,9 +9,9 @@ public class Request {
     String state;
     String serviceType;
     String comments;
+    Date dateRequest;
     Date dateAccept;
     Date dateReject;
-    Date dateRequest;
 
     public Request() {
 
