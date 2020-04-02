@@ -80,4 +80,18 @@ public class Request {
     public void setDateRequest(Date dateRequest) {
         this.dateRequest = dateRequest;
     }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "dni='" + dni + '\'' +
+                ", nif='" + nif + '\'' +
+                ", state='" + state + '\'' +
+                ", serviceType='" + serviceType + '\'' +
+                ", comments='" + comments + '\'' +
+                ", dateRequest=" + dateRequest +
+                ", dateAccept=" + dateAccept +
+                ", dateReject=" + dateReject +
+                '}';
+    }
 }

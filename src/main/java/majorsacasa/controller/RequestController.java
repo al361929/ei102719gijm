@@ -1,10 +1,9 @@
 package majorsacasa.controller;
 
-
 import majorsacasa.dao.RequestDao;
 import majorsacasa.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Repository
+@Controller
 @RequestMapping("/request")
 public class RequestController {
 
@@ -24,13 +23,13 @@ public class RequestController {
     }
 
     @RequestMapping("/list")
-    public String listSocialWorkers(Model model) {
-        model.addAttribute("requests", requestDao.getRequests());
+    public String listRequests(Model model) {
+        model.addAttribute("solicitudes", requestDao.getRequests());
         return "request/list";
     }
 
     @RequestMapping(value = "/add")
-    public String addSocialWorker(Model model) {
+    public String addRequest(Model model) {
         model.addAttribute("request", new Request());
         return "request/add";
     }
@@ -44,7 +43,7 @@ public class RequestController {
     }
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
-    public String editSocialWorker(Model model, @PathVariable String dni) {
+    public String editRequest(Model model, @PathVariable String dni) {
         model.addAttribute("request", requestDao.getRequest(dni));
         return "request/update";
     }

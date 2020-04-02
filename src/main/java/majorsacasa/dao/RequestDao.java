@@ -41,8 +41,8 @@ public class RequestDao {
     }
 
     public void updateRequest(Request request) {
-        jdbcTemplate.update("UPDATE Request SET state=?, serviceType=?, comments=?, dateAccept=?, dateReject=?, email=? WHERE dni=? AND nif=?",
-                request.getState(), request.getServiceType(), request.getComments(), request.getDateAccept(), request.getDateReject(), request.getDni(), request.getNif());
+        jdbcTemplate.update("UPDATE Request SET state=?, serviceType=?, comments=?, dateRequest=?, dateAccept=?, dateReject=?, email=? WHERE dni=? AND nif=?",
+                request.getState(), request.getServiceType(), request.getComments(), request.getDateRequest(), request.getDateAccept(), request.getDateReject(), request.getDni(), request.getNif());
     }
 
     public void deleteRequest(String dniRequest) {

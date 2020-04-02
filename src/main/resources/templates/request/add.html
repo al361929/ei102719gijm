@@ -12,36 +12,36 @@
       th:object="${request}" method="post">
     <table>
         <tr>
-            <td><label>Tipo de servicio</label></td>
-            <td><input type="text" th:field="*{serviceType}"/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de solicitud</label></td>
-            <td><input type="date" th:field="*{dateRequest}"/></td>
-        </tr>
-        <tr>
-            <td><label>Estado</label></td>
-            <td><input type="text" th:field="*{state}"/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de aceptación</label></td>
-            <td><input type="date" th:field="*{dateaccept}"/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de rechazo</label></td>
-            <td><input type="date" th:field="*{datereject}"/></td>
-        </tr>
-        <tr>
-            <td><label>comentarios</label></td>
-            <td><input type="number" th:field="*{comments}"/></td>
-        </tr>
-        <tr>
             <td><label>DNI</label></td>
             <td><input type="number" th:field="*{dni}"/></td>
         </tr>
         <tr>
             <td><label>NIF</label></td>
             <td><input type="number" th:field="*{nif}"/></td>
+        </tr>
+        <tr>
+            <td><label>Tipo de servicio</label></td>
+            <td><input type="text" th:field="*{serviceType}"/></td>
+        </tr>
+        <tr>
+            <td><label>Estado</label></td>
+            <td><input type="text" th:field="*{state}"/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de solicitud</label></td>
+            <td><input type="date" th:field="*{dateRequest}"/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de aceptación</label></td>
+            <td><input type="date" th:field="*{dateAccept}"/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de rechazo</label></td>
+            <td><input type="date" th:field="*{dateReject}"/></td>
+        </tr>
+        <tr>
+            <td><label>comentarios</label></td>
+            <td><input type="number" th:field="*{comments}"/></td>
         </tr>
 
         <tr>
