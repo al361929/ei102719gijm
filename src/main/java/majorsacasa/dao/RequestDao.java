@@ -1,7 +1,6 @@
 package majorsacasa.dao;
 
 import majorsacasa.model.Request;
-import majorsacasa.model.SocialWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

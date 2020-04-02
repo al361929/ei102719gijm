@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>Modificar Facturas</h1>
+<h2>Factura Nº</h2>
 <h2 th:text="${invoice.invoiceNumber}"></h2>
 <form action="#" th:action="@{/invoice/update}"
       th:object="${invoice}" method="post">
