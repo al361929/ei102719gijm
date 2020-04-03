@@ -7,10 +7,10 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1>Modificar Voluntario</h1>
-<h2 th:text="${volunteer.nombre}"></h2>
+<h1>Modificar Trabajador Social </h1>
+<h2 th:text="${socialWorker.nombre}"></h2>
 <form action="#" th:action="@{/volunteer/update}"
-      th:object="${volunteer}" method="post">
+      th:object="${socialWorker}" method="post">
     <table>
         <tr>
             <td><label>DNI</label></td>
@@ -25,10 +25,6 @@
             <td><input type="text" th:field="*{apellidos}"/></td>
         </tr>
         <tr>
-            <td><label>Direccion</label></td>
-            <td><input type="text" th:field="*{direccion}"/></td>
-        </tr>
-        <tr>
             <td><label>Telefono</label></td>
             <td><input type="tel" th:field="*{telefono}"/></td>
         </tr>
@@ -41,16 +37,8 @@
             <td><input type="password" th:field="*{contraseña}" required/></td>
         </tr>
         <tr>
-            <td><label>Fecha de alta</label></td>
-            <td><input type="date" th:field="*{releaseDate}"/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de baja</label></td>
-            <td><input type="text" th:field="*{dataDown}" placeholder="yyyy-mm-dd"/></td>
-        </tr>
-        <tr>
-            <td><label>Cumpleaños</label></td>
-            <td><input type="date" th:field="*{birthday}"/></td>
+            <td><label>Email</label></td>
+            <td><input type="text" th:field="*{email}"/></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Modifica voluntario" class="btn btn btn-warning" role="button"

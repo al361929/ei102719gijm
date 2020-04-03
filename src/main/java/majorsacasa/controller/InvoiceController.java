@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Date;
+
 @Controller
 @RequestMapping("/invoice")
 public class InvoiceController {
@@ -38,7 +40,11 @@ public class InvoiceController {
     public String processAddSubmit(@ModelAttribute("invoice") Invoice invoice, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "invoice/add";
+        System.out.println(invoice.toString());
+        invoice.setDateInvoice(new Date());
+        System.out.println(invoice.toString());
         invoiceDao.addInvoice(invoice);
+        System.out.println(invoice.toString());
         return "redirect:list";
     }
 
