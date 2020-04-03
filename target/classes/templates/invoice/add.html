@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Añadir factura</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Añadir factura</h2>
+<form action="#" th:action="@{/invoice/add}"
+      th:object="${invoice}" method="POST">
+    <table>
+        <tr>
+            <td><label>Número de factura</label></td>
+            <td><input type="number" th:field="*{invoiceNumber}"/></td>
+        </tr>
+        <tr>
+            <td><label>Persona mayor (DNI)</label></td>
+            <td><input type="text" th:field="*{dniElderly}"/></td>
+        </tr>
+  <!--      <tr>
+            <td><label>Fecha de alta</label></td>
+            <td><input type="date" th:field="*{dateInvoice}"/></td>
+        <tr>-->
+        <tr>
+            <td><label>Precio Total</label></td>
+            <td><input type="number" th:field="*{totalPrice}"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Añadir factura" class="btn btn btn-success" role="button"
+                                   aria-pressed="true"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

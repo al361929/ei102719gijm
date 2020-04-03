@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modificar Empresa</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h1>Modificar Empresa</h1>
+<h2 th:text="${company.nombre}"></h2>
+<form action="#" th:action="@{/company/update}"
+      th:object="${company}" method="post">
+    <table>
+        <tr>
+            <td><label>NIF</label></td>
+            <td><input type="text" th:field="*{nif}" readonly style="background-color: rgb(170, 170, 170)"/></td>
+        </tr>
+        <tr>
+            <td><label>Nombre</label></td>
+            <td><input type="text" th:field="*{nombre}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Nombre del responsable</label></td>
+            <td><input type="text" th:field="*{nombreResponsable}"/></td>
+        </tr>
+        <tr>
+            <td><label>Dirección</label></td>
+            <td><input type="text" th:field="*{direccion}"/></td>
+        </tr>
+        <tr>
+            <td><label>Teléfono</label></td>
+            <td><input type="tel" th:field="*{numeroTelf}"/></td>
+        </tr>
+        <tr>
+            <td><label>Usuario</label></td>
+            <td><input type="text" th:field="*{nombreUsuario}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Contraseña</label></td>
+            <td><input type="password" th:field="*{password}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de alta</label></td>
+            <td><input type="date" th:field="*{fechaAlta}"/></td>
+        </tr>
+        <tr>
+            <td><label>Email</label></td>
+            <td><input type="text" th:field="*{email}"/></td>
+        </tr>
+        <tr>
+            <td><label>Cuenta bancaria</label></td>
+            <td><input type="text" th:field="*{cuentaBancaria}" placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="35"
+                       required/>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Modifica empresa" class="btn btn btn-warning" role="button"
+                                   aria-pressed="true"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
