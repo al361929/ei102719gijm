@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Request {
 
+    int id;
     String dni;
     String nif;
     String state;
@@ -15,6 +16,14 @@ public class Request {
 
     public Request() {
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDni() {
@@ -94,4 +103,5 @@ public class Request {
                 ", dateReject=" + dateReject +
                 '}';
     }
+
 }

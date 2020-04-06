@@ -11,18 +11,22 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>Identificador</th>
+            <th>DNI</th>
+            <th>NIF</th>
             <th>Tipo de servicio</th>
-            <th>Fecha de solicitud</th>
             <th>Estado</th>
+            <th>Fecha de solicitud</th>
             <th>Fecha de aceptación</th>
             <th>Fecha de rechazo</th>
             <th>Comentarios</th>
-            <th>DNI</th>
-            <th>NIF</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="request: ${solicitudes}">
+            <td th:text="${request.id}"></td>
             <td th:text="${request.dni}"></td>
             <td th:text="${request.nif}"></td>
             <td th:text="${request.serviceType}"></td>
@@ -32,11 +36,11 @@
             <td th:text="${request.dateReject}"></td>
             <td th:text="${request.comments}"></td>
             <td>
-                <a th:href="@{/request/update/{serviceType}(serviceType=${request.serviceType})/{dni}(dni=${request.dni})}"
+                <a th:href="@{/request/update/{id}(id=${request.id})}"
                    class="btn btn btn-warning" role="button">Editar</a>
             </td>
             <td>
-                <a th:href="@{/request/delete/{serviceType}(serviceType=${request.serviceType})/{dni}(dni=${request.dni})}"
+                <a th:href="@{/request/delete/{id}(id=${request.id})}"
                    class="btn btn btn-danger" role="button">Borrar</a>
             </td>
         </tr>

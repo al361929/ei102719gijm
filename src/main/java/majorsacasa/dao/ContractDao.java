@@ -21,22 +21,22 @@ public class ContractDao {
         return jdbcTemplate.query("SELECT * FROM Contract", new ContractRowMapper());
     }
 
-    public Contract getContract(String nifcompany) {
-        return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE nifcompany=?", new ContractRowMapper(), nifcompany);
+    public Contract getContract(Integer ncontract) {
+        return jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE ncontract=?", new ContractRowMapper(), ncontract);
     }
 
     public void addContract(Contract contract) {
-        jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?,?,?,?)", contract.getNcontract(), contract.getFirma(), contract.getDatos(), contract.getPrecio(),
+        jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?,?,?)", contract.getNcontract(), contract.getFirma(), contract.getPrecio(),
                 contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getNifcompany(), contract.getDnielderly());
     }
 
-    public void deleteContract(String nifcompany) {
-        jdbcTemplate.update("DELETE FROM Contract WHERE nifcompany=?", nifcompany);
+    public void deleteContract(Integer ncontract) {
+        jdbcTemplate.update("DELETE FROM Contract WHERE nifcompany=?", ncontract);
     }
 
     public void updateContract(Contract contract) {
-        jdbcTemplate.update("UPDATE Contract SET ncontract=?, firma=?, data=?, price=?, releaseDate=?, dateDown=?, quantity=?, description=? WHERE nifcompany=?", contract.getNcontract(),
-                contract.getFirma(), contract.getDatos(), contract.getPrecio(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(),
-                contract.getNifcompany());
+        jdbcTemplate.update("UPDATE Contract SET nifcompany=?, firma=?, price=?, releaseDate=?, dateDown=?, quantity=?, description=? WHERE ncontract=?", contract.getNifcompany(),
+                contract.getFirma(), contract.getPrecio(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(),
+                contract.getNcontract());
     }
 }

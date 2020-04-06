@@ -1,9 +1,12 @@
 package majorsacasa.model;
 
-import java.sql.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 
 public class Volunteer {
+
     String nombre;
     String apellidos;
     String direccion;
@@ -11,9 +14,12 @@ public class Volunteer {
     String telefono;
     String usuario;
     String contraseña;
-    Date releaseDate;
-    Date dataDown;
-    Date birthday;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    LocalDate releaseDate;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    LocalDate dataDown;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    LocalDate birthday;
     String email;
 
     public Volunteer() {
@@ -75,27 +81,27 @@ public class Volunteer {
         this.contraseña = contraseña;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public Date getDataDown() {
+    public LocalDate getDataDown() {
         return dataDown;
     }
 
-    public void setDataDown(Date dataDown) {
+    public void setDataDown(LocalDate dataDown) {
         this.dataDown = dataDown;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
@@ -105,5 +111,22 @@ public class Volunteer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Volunteer{" +
+                "nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", dataDown=" + dataDown +
+                ", birthday=" + birthday +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

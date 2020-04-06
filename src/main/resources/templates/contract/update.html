@@ -18,19 +18,11 @@
         </tr>
         <tr>
             <td><label>NIF Empresa</label></td>
-            <td><input type="text" th:field="*{nifcompany}"/></td>
+            <td><input type="text" th:field="*{nifcompany}" required/></td>
         </tr>
         <tr>
             <td><label>DNI Persona Mayor</label></td>
-            <td><input type="text" th:field="*{dnielderly}"/></td>
-        </tr>
-        <tr>
-            <td><label>Firma</label></td>
-            <td><input type="text" th:field="*{firma}"/></td>
-        </tr>
-        <tr>
-            <td><label>Datos</label></td>
-            <td><input type="text" th:field="*{datos}"/></td>
+            <td><input type="text" th:field="*{dnielderly}" required/></td>
         </tr>
         <tr>
             <td><label>Precio</label></td>
@@ -38,11 +30,11 @@
         </tr>
         <tr>
             <td><label>Fecha de alta</label></td>
-            <td><input type="date" th:field="*{releaseDate}"/></td>
+            <td><input type="date" th:field="*{releaseDate}" required/></td>
         </tr>
         <tr>
             <td><label>Fecha de baja</label></td>
-            <td><input type="date" th:field="*{dateDown}"/></td>
+            <td><input type="date" th:field="*{dateDown}" required/></td>
         </tr>
         <tr>
             <td><label>Cantidad</label></td>
@@ -51,6 +43,10 @@
         <tr>
             <td><label>Descripción</label></td>
             <td><input type="text" th:field="*{descripcion}"/></td>
+        </tr>
+        <tr>
+            <td><label>Firma</label></td>
+            <td><input type="text" th:field="*{firma}"/></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Modificar contrato" class="btn btn btn-warning" role="button"

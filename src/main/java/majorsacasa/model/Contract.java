@@ -5,7 +5,6 @@ import java.sql.Date;
 public class Contract {
     Integer ncontract;
     String firma;
-    String datos;
     Double precio;
     Date releaseDate;
     Date dateDown;
@@ -23,14 +22,6 @@ public class Contract {
 
     public void setFirma(String firma) {
         this.firma = firma;
-    }
-
-    public String getDatos() {
-        return datos;
-    }
-
-    public void setDatos(String datos) {
-        this.datos = datos;
     }
 
     public Double getPrecio() {

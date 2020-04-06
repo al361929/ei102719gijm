@@ -9,20 +9,20 @@
 <body>
 <h2>Añadir factura</h2>
 <form action="#" th:action="@{/invoice/add}"
-      th:object="${invoice}" method="POST">
+      th:object="${factura}" method="POST">
     <table>
         <tr>
             <td><label>Número de factura</label></td>
             <td><input type="number" th:field="*{invoiceNumber}"/></td>
         </tr>
         <tr>
-            <td><label>Persona mayor (DNI)</label></td>
+            <td><label>DNI Persona mayor</label></td>
             <td><input type="text" th:field="*{dniElderly}"/></td>
         </tr>
-  <!--      <tr>
-            <td><label>Fecha de alta</label></td>
-            <td><input type="date" th:field="*{dateInvoice}"/></td>
-        <tr>-->
+        <tr>
+              <td><label>Fecha de facturación</label></td>
+              <td><input type="date" th:field="*{dateInvoice}"/></td>
+        </tr>
         <tr>
             <td><label>Precio Total</label></td>
             <td><input type="number" th:field="*{totalPrice}"/></td>

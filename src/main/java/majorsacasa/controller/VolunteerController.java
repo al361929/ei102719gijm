@@ -52,8 +52,12 @@ public class VolunteerController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                       BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.toString());
+            System.out.println(volunteer.toString());
             return "volunteer/update";
+        }
+        System.out.println(volunteer.toString());
         volunteerDao.updateVolunteer(volunteer);
         return "redirect:list";
     }

@@ -3,6 +3,7 @@ package majorsacasa.dao;
 import majorsacasa.model.Volunteer;
 import org.springframework.jdbc.core.RowMapper;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -15,9 +16,10 @@ public final class VolunteerRowMapper implements RowMapper<Volunteer> {
         volunteer.setDireccion(rs.getString("address"));
         volunteer.setDni(rs.getString("dni"));
         volunteer.setTelefono(rs.getString("phonenumber"));
-        volunteer.setBirthday(rs.getDate("birthday"));
-        volunteer.setDataDown(rs.getDate("datedown"));
-        volunteer.setReleaseDate(rs.getDate("releasedate"));
+        volunteer.setBirthday(rs.getDate("birthday").toLocalDate());
+        Date date = rs.getDate("datedown");
+        volunteer.setDataDown(date != null ? date.toLocalDate() : null);
+        volunteer.setReleaseDate(rs.getDate("releasedate").toLocalDate());
         volunteer.setContraseña(rs.getString("password"));
         volunteer.setUsuario(rs.getString("user_name"));
         volunteer.setEmail(rs.getString("email"));

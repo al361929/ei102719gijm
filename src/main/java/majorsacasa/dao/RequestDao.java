@@ -30,22 +30,22 @@ public class RequestDao {
     }
 
     public void addRequest(Request request) {
-        jdbcTemplate.update("INSERT INTO Request VALUES(?,?,?,?,?,?,?", request.getDni(), request.getNif(), request.getState(),
-                request.getServiceType(), request.getComments(), request.getDateAccept(), request.getDateReject());
+        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?,?,?", request.getServiceType(), request.getDateRequest(), request.getState(),
+                request.getDateAccept(), request.getDateReject(), request.getComments(), request.getDni(), request.getNif());
 
     }
 
-    public Request getRequest(String dniRequest) {
-        return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE dni=?", new RequestRowMapper(), dniRequest);
+    public Request getRequest(int idRequest) {
+        return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE id=?", new RequestRowMapper(), idRequest);
     }
 
     public void updateRequest(Request request) {
-        jdbcTemplate.update("UPDATE Request SET state=?, serviceType=?, comments=?, dateRequest=?, dateAccept=?, dateReject=?, email=? WHERE dni=? AND nif=?",
-                request.getState(), request.getServiceType(), request.getComments(), request.getDateRequest(), request.getDateAccept(), request.getDateReject(), request.getDni(), request.getNif());
+        jdbcTemplate.update("UPDATE Request SET state=?, serviceType=?, comments=?, dateRequest=?, dateAccept=?, dateReject=?, dni=?, nif=? WHERE id=? ",
+                request.getState(), request.getServiceType(), request.getComments(), request.getDateRequest(), request.getDateAccept(), request.getDateReject(), request.getDni(), request.getNif(), request.getId());
     }
 
-    public void deleteRequest(String dniRequest) {
-        jdbcTemplate.update("DELETE FROM Request WHERE dni=?", dniRequest);
+    public void deleteRequest(int idRequest) {
+        jdbcTemplate.update("DELETE FROM Request WHERE id=?", idRequest);
     }
 
 }

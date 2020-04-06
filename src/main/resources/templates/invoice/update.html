@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Modificar Facturas</title>
+    <title>Modificar Voluntario</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1>Modificar Facturas</h1>
-<h2>Factura Nº</h2>
+<h1>Modificar Factura</h1>
 <h2 th:text="${invoice.invoiceNumber}"></h2>
 <form action="#" th:action="@{/invoice/update}"
       th:object="${invoice}" method="post">
     <table>
         <tr>
             <td><label>Número de factura</label></td>
-            <td><input type="number" th:field="*{invoiceNumber}" required/></td>
+            <td><input type="number" th:field="*{invoiceNumber}" readonly style="background-color: rgb(170, 170, 170)"/>
+            </td>
         </tr>
         <tr>
-            <td><label>Fecha</label></td>
+            <td><label>DNI Persona mayor</label></td>
+            <td><input type="text" th:field="*{dniElderly}" required/></td>
+        </tr>
+        <tr>
+            <td><label>Fecha de facturación</label></td>
             <td><input type="date" th:field="*{dateInvoice}"/></td>
         </tr>
         <tr>
@@ -26,11 +30,7 @@
             <td><input type="number" th:field="*{totalPrice}"/></td>
         </tr>
         <tr>
-            <td><label>Persona mayor (DNI)</label></td>
-            <td><input type="text" th:field="*{dniElderly}"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Modifica factura" class="btn btn btn-warning" role="button"
+            <td colspan="2"><input type="submit" value="Modifica Factura" class="btn btn btn-warning" role="button"
                                    aria-pressed="true"/></td>
         </tr>
     </table>

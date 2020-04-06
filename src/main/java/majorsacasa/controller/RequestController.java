@@ -42,9 +42,9 @@ public class RequestController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
-    public String editRequest(Model model, @PathVariable String dni) {
-        model.addAttribute("request", requestDao.getRequest(dni));
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String editRequest(Model model, @PathVariable int id) {
+        model.addAttribute("request", requestDao.getRequest(id));
         return "request/update";
     }
 
@@ -57,9 +57,9 @@ public class RequestController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/delete/{dni}")
-    public String processDelete(@PathVariable String dni) {
-        requestDao.deleteRequest(dni);
+    @RequestMapping(value = "/delete/{id}")
+    public String processDelete(@PathVariable int id) {
+        requestDao.deleteRequest(id);
         return "redirect:../list";
     }
 }

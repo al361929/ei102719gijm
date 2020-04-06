@@ -12,10 +12,10 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>Nº Contrato</th>
             <th>NIF</th>
             <th>Firma</th>
             <th>DNI Persona mayor</th>
-            <th>Datos</th>
             <th>Precio</th>
             <th>Cantidad</th>
             <th>Descripción</th>
@@ -26,21 +26,21 @@
         </thead>
         <tbody>
         <tr th:each="contrato: ${contracts}">
+            <td th:text="${contrato.ncontract}"></td>
             <td th:text="${contrato.nifcompany}"></td>
             <td th:text="${contrato.firma}"></td>
             <td th:text="${contrato.dnielderly}"></td>
-            <td th:text="${contrato.datos}"></td>
             <td th:text="${contrato.precio}"></td>
             <td th:text="${contrato.cantidad}"></td>
             <td th:text="${contrato.descripcion}"></td>
             <td>
-                <a th:href="@{/contract/update/{nif}(nif=${contrato.nifcompany})}" class="btn btn btn-warning"
+                <a th:href="@{/contract/update/{ncontract}(ncontract=${contrato.ncontract})}" class="btn btn btn-warning"
                    role="button"
                    aria-pressed="true">Editar</a>
 
             </td>
             <td>
-                <a th:href="@{/contract/delete/{nif}(nif=${contrato.nifcompany})}" class="btn btn btn-danger"
+                <a th:href="@{/contract/delete/{ncontract}(ncontract=${contrato.ncontract})}" class="btn btn btn-danger"
                    role="button"
                    aria-pressed="true">Borrar</a>
 

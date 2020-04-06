@@ -12,12 +12,12 @@
       th:object="${request}" method="post">
     <table>
         <tr>
-            <td><label>DNI</label></td>
-            <td><input type="number" th:field="*{dni}"/></td>
+            <td><label>DNI Persona mayor</label></td>
+            <td><input type="text" th:field="*{nif}"/></td>
         </tr>
         <tr>
-            <td><label>NIF</label></td>
-            <td><input type="number" th:field="*{nif}"/></td>
+            <td><label>NIF Empresa</label></td>
+            <td><input type="text" th:field="*{dni}"/></td>
         </tr>
         <tr>
             <td><label>Tipo de servicio</label></td>
@@ -40,10 +40,9 @@
             <td><input type="date" th:field="*{dateReject}"/></td>
         </tr>
         <tr>
-            <td><label>comentarios</label></td>
-            <td><input type="number" th:field="*{comments}"/></td>
+            <td><label>Comentarios</label></td>
+            <td><input type="text" th:field="*{comments}"/></td>
         </tr>
-
         <tr>
             <td colspan="2"><input type="submit" value="Añadir solicitud" class="btn btn btn-success" role="button"
                                    aria-pressed="true"/></td>

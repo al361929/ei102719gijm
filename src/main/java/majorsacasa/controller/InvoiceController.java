@@ -3,6 +3,7 @@ package majorsacasa.controller;
 import majorsacasa.dao.InvoiceDao;
 import majorsacasa.model.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jmx.export.naming.IdentityNamingStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,19 +33,17 @@ public class InvoiceController {
 
     @RequestMapping(value = "/add")
     public String addInvoice(Model model) {
-        model.addAttribute("invoice", new Invoice());
+        model.addAttribute("factura", new Invoice());
         return "invoice/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("invoice") Invoice invoice, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+    public String processAddSubmit(@ModelAttribute("factura") Invoice invoice, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "invoice/add";
-        System.out.println(invoice.toString());
-        invoice.setDateInvoice(new Date());
-        System.out.println(invoice.toString());
+        }
+        //invoice.setDateInvoice(new Date());
         invoiceDao.addInvoice(invoice);
-        System.out.println(invoice.toString());
         return "redirect:list";
     }
 
@@ -57,8 +56,10 @@ public class InvoiceController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("invoice") Invoice invoice,
                                       BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
+            System.out.println(invoice.toString());
             return "invoice/update";
+        }
         invoiceDao.updateInvoice(invoice);
         return "redirect:list";
     }

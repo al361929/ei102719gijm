@@ -1,16 +1,18 @@
 package majorsacasa.model;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class Invoice {
 
     Integer invoiceNumber;
-    Date dateInvoice;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    LocalDate dateInvoice;
     Integer totalPrice;
     String dniElderly;
 
     public Invoice() {
-
     }
 
     public Integer getInvoiceNumber() {
@@ -21,11 +23,11 @@ public class Invoice {
         this.invoiceNumber = invoiceNumber;
     }
 
-    public Date getDateInvoice() {
+    public LocalDate getDateInvoice() {
         return dateInvoice;
     }
 
-    public void setDateInvoice(Date dateInvoice) {
+    public void setDateInvoice(LocalDate dateInvoice) {
         this.dateInvoice = dateInvoice;
     }
 
