@@ -34,7 +34,8 @@
             <td th:text="${contrato.cantidad}"></td>
             <td th:text="${contrato.descripcion}"></td>
             <td>
-                <a th:href="@{/contract/update/{ncontract}(ncontract=${contrato.ncontract})}" class="btn btn btn-warning"
+                <a th:href="@{/contract/update/{ncontract}(ncontract=${contrato.ncontract})}"
+                   class="btn btn btn-warning"
                    role="button"
                    aria-pressed="true">Editar</a>
 
