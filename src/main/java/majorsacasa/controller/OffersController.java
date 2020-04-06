@@ -1,9 +1,7 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.OffersDao;
-import majorsacasa.dao.SocialWorkerDao;
 import majorsacasa.model.Offers;
-import majorsacasa.model.SocialWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
