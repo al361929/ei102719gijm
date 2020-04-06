@@ -1,6 +1,8 @@
 package majorsacasa.model;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class Request {
 
@@ -10,9 +12,12 @@ public class Request {
     String state;
     String serviceType;
     String comments;
-    Date dateRequest;
-    Date dateAccept;
-    Date dateReject;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate dateRequest;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate dateAccept;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate dateReject;
 
     public Request() {
 
@@ -66,27 +71,27 @@ public class Request {
         this.comments = comments;
     }
 
-    public Date getDateAccept() {
+    public LocalDate getDateAccept() {
         return dateAccept;
     }
 
-    public void setDateAccept(Date dateAccept) {
+    public void setDateAccept(LocalDate dateAccept) {
         this.dateAccept = dateAccept;
     }
 
-    public Date getDateReject() {
+    public LocalDate getDateReject() {
         return dateReject;
     }
 
-    public void setDateReject(Date dateReject) {
+    public void setDateReject(LocalDate dateReject) {
         this.dateReject = dateReject;
     }
 
-    public Date getDateRequest() {
+    public LocalDate getDateRequest() {
         return dateRequest;
     }
 
-    public void setDateRequest(Date dateRequest) {
+    public void setDateRequest(LocalDate dateRequest) {
         this.dateRequest = dateRequest;
     }
 

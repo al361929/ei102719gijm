@@ -1,14 +1,15 @@
 package majorsacasa.model;
 
-import java.sql.Time;
+import java.time.LocalTime;
 
 public class VolunteerTime {
 
     String dniVolunteer;
+    String dniElderly;
     String mes;
     int dia;
-    Time startTime;
-    Time endTime;
+    LocalTime startTime;
+    LocalTime endTime;
     String availability;
 
     public VolunteerTime() {
@@ -21,6 +22,13 @@ public class VolunteerTime {
 
     public void setDniVolunteer(String dniVolunteer) {
         this.dniVolunteer = dniVolunteer;
+    }
+
+    public String getDniElderly() {
+        return dniElderly;
+    }
+
+    public void setDniElderly(String dniElderly) {
     }
 
     public String getMes() {
@@ -39,19 +47,19 @@ public class VolunteerTime {
         this.dia = dia;
     }
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 
@@ -62,4 +70,5 @@ public class VolunteerTime {
     public void setAvailability(String availability) {
         this.availability = availability;
     }
+
 }

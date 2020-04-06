@@ -8,31 +8,38 @@
 <body>
 <div class="container">
     <h1>Lista de Voluntarios</h1>
-
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>DNI</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Dirección</th>
+            <th>DNI Voluntario</th>
+            <th>DNI Persona Mayor</th>
+            <th>Dia</th>
+            <th>Mes</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+            <th>Disponibilidad</th>
             <th></th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="voluntario: ${volunteers}">
-            <td th:text="${voluntario.dni}"></td>
-            <td th:text="${voluntario.nombre}"></td>
-            <td th:text="${voluntario.apellidos}"></td>
-            <td th:text="${voluntario.direccion}"></td>
+        <tr th:each="voluntario: ${volunteersTime}">
+            <td th:text="${voluntario.dniVolunteer}"></td>
+            <td th:text="${voluntario.dniElderly}"></td>
+            <td th:text="${voluntario.dia}"></td>
+            <td th:text="${voluntario.mes}"></td>
+            <td th:text="${voluntario.startTime}"></td>
+            <td th:text="${voluntario.endTime}"></td>
+            <td th:text="${voluntario.availability}"></td>
             <td>
-                <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.dni})}" class="btn btn btn-warning" role="button"
+                <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.dniVolunteer})}" class="btn btn btn-warning"
+                   role="button"
                    aria-pressed="true">Editar</a>
 
             </td>
             <td>
-                <a th:href="@{/volunteer/delete/{dni}(dni=${voluntario.dni})}" class="btn btn btn-danger" role="button"
+                <a th:href="@{/volunteer/delete/{dni}(dni=${voluntario.dniVolunteer})}" class="btn btn btn-danger"
+                   role="button"
                    aria-pressed="true">Borrar</a>
 
             </td>

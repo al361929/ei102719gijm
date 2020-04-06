@@ -14,20 +14,20 @@
     <table>
         <tr>
             <td><label>Número de factura</label></td>
-            <td><input type="number" th:field="*{invoiceNumber}" readonly style="background-color: rgb(170, 170, 170)"/>
+            <td><input type="number" class="form-control" th:field="*{invoiceNumber}" readonly style="background-color: rgb(170, 170, 170)"/>
             </td>
         </tr>
         <tr>
             <td><label>DNI Persona mayor</label></td>
-            <td><input type="text" th:field="*{dniElderly}" required/></td>
+            <td><input type="text" class="form-control" th:field="*{dniElderly}" required/></td>
         </tr>
         <tr>
             <td><label>Fecha de facturación</label></td>
-            <td><input type="date" th:field="*{dateInvoice}"/></td>
+            <td><input type="date" class="form-control" id="dateInvoice" th:field="*{dateInvoice}"/></td>
         </tr>
         <tr>
             <td><label>Precio Total</label></td>
-            <td><input type="number" th:field="*{totalPrice}"/></td>
+            <td><input type="number" class="form-control" th:field="*{totalPrice}"/></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Modifica Factura" class="btn btn btn-warning" role="button"

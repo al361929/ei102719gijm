@@ -1,13 +1,17 @@
 package majorsacasa.model;
 
-import java.sql.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class Contract {
     Integer ncontract;
     String firma;
     Double precio;
-    Date releaseDate;
-    Date dateDown;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate releaseDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate dateDown;
     Integer cantidad;
     String descripcion;
     String nifcompany;
@@ -32,19 +36,19 @@ public class Contract {
         this.precio = precio;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public Date getDateDown() {
+    public LocalDate getDateDown() {
         return dateDown;
     }
 
-    public void setDateDown(Date dateDown) {
+    public void setDateDown(LocalDate dateDown) {
         this.dateDown = dateDown;
     }
 

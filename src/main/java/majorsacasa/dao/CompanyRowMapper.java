@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 
 public class CompanyRowMapper implements RowMapper<Company> {
@@ -18,7 +19,7 @@ public class CompanyRowMapper implements RowMapper<Company> {
         company.setNumeroTelf(rs.getString("phoneNumber"));
         company.setNombreUsuario(rs.getString("user_name"));
         company.setPassword(rs.getString("password"));
-        company.setFechaAlta(rs.getDate("releasedate"));
+        company.setFechaAlta(rs.getObject("releasedate", LocalDate.class));
         company.setCuentaBancaria(rs.getString("bankaccount"));
         company.setEmail(rs.getString("email"));
         return company;

@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public final class RequestRowMapper implements RowMapper<Request> {
     @Override
@@ -12,10 +13,10 @@ public final class RequestRowMapper implements RowMapper<Request> {
         Request request = new Request();
         request.setId(rs.getInt("id"));
         request.setServiceType(rs.getString("servicetype"));
-        request.setDateRequest(rs.getDate("daterequest"));
+        request.setDateRequest(rs.getObject("daterequest", LocalDate.class));
         request.setState(rs.getString("state"));
-        request.setDateAccept(rs.getDate("dateaccept"));
-        request.setDateReject(rs.getDate("datereject"));
+        request.setDateAccept(rs.getObject("dateaccept", LocalDate.class));
+        request.setDateReject(rs.getObject("datereject", LocalDate.class));
         request.setComments(rs.getString("comments"));
         request.setDni(rs.getString("dni"));
         request.setNif(rs.getString("nif"));

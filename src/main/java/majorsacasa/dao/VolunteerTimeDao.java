@@ -31,18 +31,18 @@ public class VolunteerTimeDao {
     }
 
     public void addVolunteerTime(VolunteerTime volunteerTime) {
-        jdbcTemplate.update("INSERT INTO VolunteerTime VALUES(?,?,?,?,?,?", volunteerTime.getDniVolunteer(), volunteerTime.getMes(), volunteerTime.getDia(),
-                volunteerTime.getStartTime(), volunteerTime.getEndTime(), volunteerTime.getAvailability());
+        jdbcTemplate.update("INSERT INTO VolunteerTime VALUES(?,?,?,?,?,?,?", volunteerTime.getMes(), volunteerTime.getDia(),
+                volunteerTime.getStartTime(), volunteerTime.getEndTime(), volunteerTime.getAvailability(), volunteerTime.getDniVolunteer(), volunteerTime.getDniElderly());
 
     }
 
     public VolunteerTime getVolunteerTime(String dniVolunteerTime) {
-        return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dni_v=?", new VolunteerTimeRowMapper(), dniVolunteerTime);
+        return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer=?", new VolunteerTimeRowMapper(), dniVolunteerTime);
     }
 
     public void updateVolunteerTime(VolunteerTime volunteerTime) {
-        jdbcTemplate.update("UPDATE VolunteerTime SET mes=?, dia=?, startTime=?, endTime=?, availability=? WHERE dni_v=?",
-                volunteerTime.getMes(), volunteerTime.getDia(), volunteerTime.getStartTime(), volunteerTime.getEndTime(), volunteerTime.getAvailability(), volunteerTime.getDniVolunteer());
+        jdbcTemplate.update("UPDATE VolunteerTime SET mes=?, dia=?, startTime=?, endTime=?, availability=? WHERE dniVolunteer=? AND dniElderly=?",
+                volunteerTime.getMes(), volunteerTime.getDia(), volunteerTime.getStartTime(), volunteerTime.getEndTime(), volunteerTime.getAvailability(), volunteerTime.getDniVolunteer(), volunteerTime.getDniElderly());
     }
 
     public void deleteVolunteerTime(String dniVolunteerTime) {

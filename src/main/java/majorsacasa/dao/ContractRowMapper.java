@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public final class ContractRowMapper implements RowMapper<Contract> {
     @Override
@@ -13,8 +14,8 @@ public final class ContractRowMapper implements RowMapper<Contract> {
         contract.setNcontract(rs.getInt("ncontract"));
         contract.setFirma(rs.getString("firma"));
         contract.setPrecio(rs.getDouble("price"));
-        contract.setReleaseDate(rs.getDate("releasedate"));
-        contract.setDateDown(rs.getDate("datedown"));
+        contract.setReleaseDate(rs.getObject("releasedate", LocalDate.class));
+        contract.setDateDown(rs.getObject("datedown", LocalDate.class));
         contract.setCantidad(rs.getInt("quantity"));
         contract.setDescripcion(rs.getString("description"));
         contract.setNifcompany(rs.getString("nifcompany"));

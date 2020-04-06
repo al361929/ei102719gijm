@@ -4,6 +4,7 @@ import majorsacasa.model.Elderly;
 import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public final class ElderlyRowMapper implements RowMapper<Elderly> {
     @Override
@@ -16,9 +17,9 @@ public final class ElderlyRowMapper implements RowMapper<Elderly> {
         elderly.setTelefono(rs.getString("phonenumber"));
         elderly.setAlergias(rs.getString("allergies"));
         elderly.setCuentaBancaria(rs.getString("bankaccount"));
-        elderly.setBirthday(rs.getDate("birthday"));
-        elderly.setDateDown(rs.getDate("datedown"));
-        elderly.setReleaseDate(rs.getDate("releasedate"));
+        elderly.setBirthday(rs.getObject("birthday", LocalDate.class));
+        elderly.setDateDown(rs.getObject("datedown", LocalDate.class));
+        elderly.setReleaseDate(rs.getObject("releasedate", LocalDate.class));
         elderly.setContraseña(rs.getString("password"));
         elderly.setUsuario(rs.getString("user_name"));
         elderly.setSocialWorker(rs.getString("socialWorker"));

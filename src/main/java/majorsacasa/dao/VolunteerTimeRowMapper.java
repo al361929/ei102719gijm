@@ -5,17 +5,19 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 
 public final class VolunteerTimeRowMapper implements RowMapper<VolunteerTime> {
 
     @Override
     public VolunteerTime mapRow(ResultSet rs, int i) throws SQLException {
         VolunteerTime volunteerTime = new VolunteerTime();
-        volunteerTime.setDniVolunteer(rs.getString("dni_v"));
+        volunteerTime.setDniVolunteer(rs.getString("dniVolunteer"));
+        volunteerTime.setDniElderly(rs.getString("dniElderly"));
         volunteerTime.setMes(rs.getString("mes"));
         volunteerTime.setDia(rs.getInt("dia"));
-        volunteerTime.setStartTime(rs.getTime("startTime"));
-        volunteerTime.setEndTime(rs.getTime("endTime"));
+        volunteerTime.setStartTime(rs.getObject("startTime", LocalTime.class));
+        volunteerTime.setEndTime(rs.getObject("endTime", LocalTime.class));
         volunteerTime.setAvailability(rs.getString("availability"));
         return volunteerTime;
     }

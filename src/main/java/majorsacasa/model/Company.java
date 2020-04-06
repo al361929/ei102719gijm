@@ -1,6 +1,8 @@
 package majorsacasa.model;
 
-import java.sql.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class Company {
 
@@ -11,7 +13,8 @@ public class Company {
     String numeroTelf;
     String nombreUsuario;
     String password;
-    Date fechaAlta;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate fechaAlta;
     String cuentaBancaria;
     String email;
 
@@ -74,11 +77,11 @@ public class Company {
         this.password = password;
     }
 
-    public Date getFechaAlta() {
+    public LocalDate getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(LocalDate fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class Invoice {
 
     Integer invoiceNumber;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate dateInvoice;
     Integer totalPrice;
     String dniElderly;

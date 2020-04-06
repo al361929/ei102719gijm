@@ -1,7 +1,6 @@
 package majorsacasa.dao;
 
 import majorsacasa.model.Invoice;
-import majorsacasa.model.SocialWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,15 +33,15 @@ public class InvoiceDao {
         jdbcTemplate.update("INSERT INTO Invoice VALUES(?,?,?,?)", invoice.getInvoiceNumber(), invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getDniElderly());
     }
 
-    public Invoice getInvoice(Integer invoiceNumber) {
-        return jdbcTemplate.queryForObject("SELECT * FROM Invoice WHERE invoicenumber=?", new InvoiceRowMapper(), invoiceNumber);
+    public Invoice getInvoice(Integer idinvoice) {
+        return jdbcTemplate.queryForObject("SELECT * FROM Invoice WHERE idinvoice=?", new InvoiceRowMapper(), idinvoice);
     }
 
     public void updateInvoice(Invoice invoice) {
-        jdbcTemplate.update("UPDATE Invoice SET dateinvoice=?, totalprice=?, dnielderly=? WHERE invoicenumber=?", invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getDniElderly(), invoice.getInvoiceNumber());
+        jdbcTemplate.update("UPDATE Invoice SET dateinvoice=?, totalprice=?, dnielderly=? WHERE idinvoice=?", invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getDniElderly(), invoice.getInvoiceNumber());
     }
 
     public void deleteInvoice(Integer invoice) {
-        jdbcTemplate.update("DELETE FROM Invoice WHERE invoicenumber=?", invoice);
+        jdbcTemplate.update("DELETE FROM Invoice WHERE idinvoice=?", invoice);
     }
 }

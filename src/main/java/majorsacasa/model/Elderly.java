@@ -1,8 +1,11 @@
 package majorsacasa.model;
 
-import java.sql.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class Elderly {
+
     String nombre;
     String apellidos;
     String direccion;
@@ -11,9 +14,12 @@ public class Elderly {
     String telefono;
     String usuario;
     String contraseña;
-    Date releaseDate;
-    Date dataDown = null;
-    Date birthday;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate releaseDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate dataDown;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate birthday;
     String cuentaBancaria;
     String email;
     String socialWorker;
@@ -85,27 +91,27 @@ public class Elderly {
         this.contraseña = contraseña;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public Date getDateDown() {
+    public LocalDate getDateDown() {
         return dataDown;
     }
 
-    public void setDateDown(Date dataDown) {
+    public void setDateDown(LocalDate dataDown) {
         this.dataDown = dataDown;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
