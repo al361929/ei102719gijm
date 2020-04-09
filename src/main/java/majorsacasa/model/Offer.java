@@ -1,10 +1,10 @@
 package majorsacasa.model;
 
-public class Offers {
+public class Offer {
     Integer idService;
     String nif;
 
-    public Offers() {
+    public Offer() {
 
     }
 

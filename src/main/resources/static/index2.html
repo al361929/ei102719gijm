@@ -1,22 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/base}">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <link rel="stylesheet" type="text/css"
-          href="/css/estilo.css"
-          th:href="@{/css/estilo.css}"/>
-    <title>Login</title>
     <meta charset="UTF-8"/>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-
+    <title>Majors a casa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css" th:href="@{/css/estilo.css}"/>
 </head>
 <body>
-<a>Hola</a>
-<a>Hola</a>
-<a>Hola</a>
-<div th:replace="fragments/nav"></div>
-<div layout:fragment="content"></div>
-
+<h1>Majors a casa</h1>
+<ul>
+    <a href="volunteer/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de Voluntarios</a>
+</ul>
+<ul>
+    <a href="elderly/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de Personas
+        Mayores</a>
+</ul>
+<ul>
+    <a href="contract/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de Contratos</a>
+</ul>
+<ul>
+    <a href="company/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de Empresas</a>
+</ul>
+<ul>
+    <a href="invoice/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de Facturas</a>
+</ul>
+<ul>
+    <a href="request/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de Solicitudes</a>
+</ul>
+<ul>
+    <a href="socialWorker/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de
+        Trabajadores Sociales</a>
+</ul>
+<ul>
+    <a href="volunteertime/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de horarios
+        de voluntarios</a>
+</ul>
 </body>
 </html>

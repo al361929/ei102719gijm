@@ -1,7 +1,7 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.OffersDao;
-import majorsacasa.model.Offers;
+import majorsacasa.model.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,12 +29,12 @@ public class OffersController {
 
     @RequestMapping(value = "/add")
     public String addOffer(Model model) {
-        model.addAttribute("offer", new Offers());
+        model.addAttribute("offer", new Offer());
         return "offers/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("offer") Offers offers, BindingResult bindingResult) {
+    public String processAddSubmit(@ModelAttribute("offer") Offer offers, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "offers/add";
         offersDao.addOffers(offers);

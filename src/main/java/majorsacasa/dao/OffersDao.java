@@ -1,7 +1,6 @@
 package majorsacasa.dao;
 
-import majorsacasa.model.Offers;
-import majorsacasa.model.SocialWorker;
+import majorsacasa.model.Offer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,22 +19,22 @@ public class OffersDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public List<Offers> getOffers() {
+    public List<Offer> getOffers() {
         try {
             return jdbcTemplate.query(
                     "SELECT * FROM Offers",
                     new OffersRowMapper());
         } catch (EmptyResultDataAccessException e) {
-            return new ArrayList<Offers>();
+            return new ArrayList<Offer>();
         }
     }
 
-    public void addOffers(Offers offers) {
+    public void addOffers(Offer offers) {
         jdbcTemplate.update("INSERT INTO Offers VALUES(?,?)", offers.getIdService(), offers.getNif());
 
     }
 
-    public Offers getOffers(String idService, String nif) {
+    public Offer getOffer(String idService, String nif) {
         return jdbcTemplate.queryForObject("SELECT * FROM Offers WHERE idService_off=? AND nif_off=?", new OffersRowMapper(), idService, nif);
     }
 
