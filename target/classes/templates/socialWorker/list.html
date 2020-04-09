@@ -7,32 +7,38 @@
 </head>
 <body>
 <div class="container">
-    <h1>Lista de Voluntarios</h1>
+    <h1>Lista de Trabajadores Sociales</h1>
 
     <table class="table table-striped">
         <thead>
         <tr>
             <th>DNI</th>
             <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Dirección</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Usuario</th>
+            <th>Contraseña</th>
             <th></th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="voluntario: ${volunteers}">
-            <td th:text="${voluntario.dni}"></td>
-            <td th:text="${voluntario.nombre}"></td>
-            <td th:text="${voluntario.apellidos}"></td>
-            <td th:text="${voluntario.direccion}"></td>
+        <tr th:each="socialWorker: ${socialWorkers}">
+            <td th:text="${socialWorker.dni}"></td>
+            <td th:text="${socialWorker.nombre}"></td>
+            <td th:text="${socialWorker.apellidos}"></td>
+            <td th:text="${socialWorker.email}"></td>
+            <td th:text="${socialWorker.telefono}"></td>
+            <td th:text="${socialWorker.usuario}"></td>
+            <td th:text="${socialWorker.contrasena}"></td>
             <td>
-                <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.dni})}" class="btn btn btn-warning" role="button"
+                <a th:href="@{/volunteer/update/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-warning" role="button"
                    aria-pressed="true">Editar</a>
 
             </td>
             <td>
-                <a th:href="@{/volunteer/delete/{dni}(dni=${voluntario.dni})}" class="btn btn btn-danger" role="button"
+                <a th:href="@{/volunteer/delete/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-danger" role="button"
                    aria-pressed="true">Borrar</a>
 
             </td>
