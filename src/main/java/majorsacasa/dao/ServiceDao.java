@@ -30,7 +30,7 @@ public class ServiceDao {
     }
 
     public void addService(Service service) {
-        jdbcTemplate.update("INSERT INTO Service VALUES(DEFAULT,?,?,?", service.getServiceType(), service.getPrice(), service.getDescription());
+        jdbcTemplate.update("INSERT INTO Service VALUES(DEFAULT,?,?,?)", service.getServiceType(), service.getPrice(), service.getDescription());
     }
 
     public Service getService(Integer idService) {

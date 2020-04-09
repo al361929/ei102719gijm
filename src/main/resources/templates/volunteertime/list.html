@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gestionar Voluntarios</title>
+    <title>Gestionar horarios</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
 </head>
 <body>
 <div class="container">
-    <h1>Lista de Voluntarios</h1>
+    <h1>Lista de horarios</h1>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="voluntario: ${volunteersTime}">
+        <tr th:each="voluntario: ${volunteerstime}">
             <td th:text="${voluntario.dniVolunteer}"></td>
             <td th:text="${voluntario.dniElderly}"></td>
             <td th:text="${voluntario.dia}"></td>
@@ -32,13 +32,15 @@
             <td th:text="${voluntario.endTime}"></td>
             <td th:text="${voluntario.availability}"></td>
             <td>
-                <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.dniVolunteer})}" class="btn btn btn-warning"
+                <a th:href="@{/volunteertime/update/{dni}/{dia}/{mes}/{startTime}(dni=${voluntario.dniVolunteer}, dia=${voluntario.dia}, mes=${voluntario.mes}, startTime=${voluntario.startTime})}"
+                   class="btn btn btn-warning"
                    role="button"
                    aria-pressed="true">Editar</a>
 
             </td>
             <td>
-                <a th:href="@{/volunteer/delete/{dni}(dni=${voluntario.dniVolunteer})}" class="btn btn btn-danger"
+                <a th:href="@{/volunteertime/delete/{dni}/{dia}/{mes}/{startTime}(dni=${voluntario.dniVolunteer}, dia=${voluntario.dia}, mes=${voluntario.mes}, startTime=${voluntario.startTime})}"
+                   class="btn btn btn-danger"
                    role="button"
                    aria-pressed="true">Borrar</a>
 
@@ -46,7 +48,7 @@
         </tr>
         </tbody>
     </table>
-    <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Voluntario</a>
+    <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir horario</a>
 </div>
 </body>
 </html>

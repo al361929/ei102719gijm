@@ -30,7 +30,7 @@ public class RequestDao {
     }
 
     public void addRequest(Request request) {
-        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?,?,?", request.getServiceType(), request.getDateRequest(), request.getState(),
+        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?,?,?)", request.getServiceType(), request.getDateRequest(), request.getState(),
                 request.getDateAccept(), request.getDateReject(), request.getComments(), request.getDni(), request.getNif());
 
     }

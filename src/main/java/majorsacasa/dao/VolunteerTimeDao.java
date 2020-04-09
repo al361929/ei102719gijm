@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,21 +32,21 @@ public class VolunteerTimeDao {
     }
 
     public void addVolunteerTime(VolunteerTime volunteerTime) {
-        jdbcTemplate.update("INSERT INTO VolunteerTime VALUES(?,?,?,?,?,?,?", volunteerTime.getMes(), volunteerTime.getDia(),
+        jdbcTemplate.update("INSERT INTO VolunteerTime VALUES(?,?,?,?,?,?,?)", volunteerTime.getMes(), volunteerTime.getDia(),
                 volunteerTime.getStartTime(), volunteerTime.getEndTime(), volunteerTime.getAvailability(), volunteerTime.getDniVolunteer(), volunteerTime.getDniElderly());
 
     }
 
-    public VolunteerTime getVolunteerTime(String dniVolunteerTime) {
-        return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer=?", new VolunteerTimeRowMapper(), dniVolunteerTime);
+    public VolunteerTime getVolunteerTime(String dniVolunteer, String mes, Integer dia, LocalTime startTime) {
+        return jdbcTemplate.queryForObject("SELECT * FROM VolunteerTime WHERE dniVolunteer=? AND mes=? AND dia=? AND startTime=?", new VolunteerTimeRowMapper(), dniVolunteer, mes, dia, startTime);
     }
 
     public void updateVolunteerTime(VolunteerTime volunteerTime) {
-        jdbcTemplate.update("UPDATE VolunteerTime SET mes=?, dia=?, startTime=?, endTime=?, availability=? WHERE dniVolunteer=? AND dniElderly=?",
-                volunteerTime.getMes(), volunteerTime.getDia(), volunteerTime.getStartTime(), volunteerTime.getEndTime(), volunteerTime.getAvailability(), volunteerTime.getDniVolunteer(), volunteerTime.getDniElderly());
+        jdbcTemplate.update("UPDATE VolunteerTime SET endTime=?, availability=?, dniElderly=? WHERE dniVolunteer=? AND mes=? AND dia=? AND startTime=?", volunteerTime.getEndTime(),
+                volunteerTime.getAvailability(), volunteerTime.getDniElderly(), volunteerTime.getDniVolunteer(), volunteerTime.getMes(), volunteerTime.getDia(), volunteerTime.getStartTime());
     }
 
-    public void deleteVolunteerTime(String dniVolunteerTime) {
-        jdbcTemplate.update("DELETE FROM SocialWorker WHERE dni_v=?", dniVolunteerTime);
+    public void deleteVolunteerTime(String dniVolunteer, String mes, Integer dia, LocalTime startTime) {
+        jdbcTemplate.update("DELETE FROM VolunteerTime WHERE dniVolunteer=? AND mes=? AND dia=? AND startTime=?", dniVolunteer, mes, dia, startTime);
     }
 }

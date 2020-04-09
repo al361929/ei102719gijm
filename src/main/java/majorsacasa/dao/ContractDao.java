@@ -26,12 +26,12 @@ public class ContractDao {
     }
 
     public void addContract(Contract contract) {
-        jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?,?,?)", contract.getNcontract(), contract.getFirma(), contract.getPrecio(),
+        jdbcTemplate.update("INSERT INTO Contract VALUES(DEFAULT,?,?,?,?,?,?,?,?)", contract.getFirma(), contract.getPrecio(),
                 contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getNifcompany(), contract.getDnielderly());
     }
 
     public void deleteContract(Integer ncontract) {
-        jdbcTemplate.update("DELETE FROM Contract WHERE nifcompany=?", ncontract);
+        jdbcTemplate.update("DELETE FROM Contract WHERE idContract=?", ncontract);
     }
 
     public void updateContract(Contract contract) {

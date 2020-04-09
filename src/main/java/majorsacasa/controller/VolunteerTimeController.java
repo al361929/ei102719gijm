@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.sql.Time;
+import java.time.LocalTime;
+
 @Repository
 @RequestMapping("/volunteertime")
 public class VolunteerTimeController {
@@ -24,13 +27,13 @@ public class VolunteerTimeController {
     }
 
     @RequestMapping("/list")
-    public String listSocialWorkers(Model model) {
-        model.addAttribute("volunteersTime", volunteerTimeDao.getVolunteersTime());
+    public String listVolunteerTimes(Model model) {
+        model.addAttribute("volunteerstime", volunteerTimeDao.getVolunteersTime());
         return "volunteertime/list";
     }
 
     @RequestMapping(value = "/add")
-    public String addSocialWorker(Model model) {
+    public String addVolunteerTime(Model model) {
         model.addAttribute("volunteertime", new VolunteerTime());
         return "volunteertime/add";
     }
@@ -43,24 +46,25 @@ public class VolunteerTimeController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/update/{dniVoluntario}", method = RequestMethod.GET)
-    public String editSocialWorker(Model model, @PathVariable String dniVoluntario) {
-        model.addAttribute("volunteertime", volunteerTimeDao.getVolunteerTime(dniVoluntario));
+    @RequestMapping(value = "/update/{dniVoluntario}/{dia}/{mes}/{startTime}", method = RequestMethod.GET)
+    public String editVolunteerTime(Model model, @PathVariable String dniVoluntario, @PathVariable Integer dia, @PathVariable String mes, @PathVariable LocalTime startTime) {
+        model.addAttribute("volunteertime", volunteerTimeDao.getVolunteerTime(dniVoluntario, mes, dia, startTime));
         return "volunteertime/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("volunteertime") VolunteerTime volunteertime,
                                       BindingResult bindingResult) {
+        System.out.println(volunteertime.toString());
         if (bindingResult.hasErrors())
             return "volunteertime/update";
         volunteerTimeDao.updateVolunteerTime(volunteertime);
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/delete/{dniVoluntario}")
-    public String processDelete(@PathVariable String dniVoluntario) {
-        volunteerTimeDao.deleteVolunteerTime(dniVoluntario);
+    @RequestMapping(value = "/delete/{dniVoluntario}/{dia}/{mes}/{startTime}")
+    public String processDelete(@PathVariable String dniVoluntario, @PathVariable Integer dia, @PathVariable String mes, @PathVariable LocalTime startTime) {
+        volunteerTimeDao.deleteVolunteerTime(dniVoluntario, mes, dia, startTime);
         return "redirect:../list";
     }
 

@@ -31,7 +31,7 @@ public class ProduceDao {
     }
 
     public void addProduce(Produce produce) {
-        jdbcTemplate.update("INSERT INTO Produce VALUES(?,?", produce.getIdInvoice(), produce.getIdRequest());
+        jdbcTemplate.update("INSERT INTO Produce VALUES(?,?)", produce.getIdInvoice(), produce.getIdRequest());
 
     }
 
