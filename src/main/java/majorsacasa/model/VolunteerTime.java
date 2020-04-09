@@ -71,4 +71,16 @@ public class VolunteerTime {
         this.availability = availability;
     }
 
+    @Override
+    public String toString() {
+        return "VolunteerTime{" +
+                "dniVolunteer='" + dniVolunteer + '\'' +
+                ", dniElderly='" + dniElderly + '\'' +
+                ", mes='" + mes + '\'' +
+                ", dia=" + dia +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", availability='" + availability + '\'' +
+                '}';
+    }
 }

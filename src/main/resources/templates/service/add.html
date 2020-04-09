@@ -13,7 +13,11 @@
     <table>
         <tr>
             <td><label>Tipo de servicio</label></td>
-            <td><input type="text" class="form-control" th:field="*{serviceType}"/></td>
+            <td><select type="text" class="form-control" th:field="*{serviceType}"/>
+                <option>Catering</option>
+                <option>Limpieza</option>
+                <option>Enfermería</option>
+                </select></td>
         </tr>
         <tr>
             <td><label>Precio</label></td>

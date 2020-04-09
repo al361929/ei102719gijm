@@ -1,57 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Modificar Voluntario</title>
+    <title>Modificar horario</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1>Modificar Voluntario</h1>
-<h2 th:text="${volunteerTime.nombre}"></h2>
-<form action="#" th:action="@{/volunteer/update}"
-      th:object="${volunteerTime}" method="post">
+<h1>Modificar horario</h1>
+<h2 th:text="${volunteertime.dniVolunteer}"></h2>
+<form action="#" th:action="@{/volunteertime/update}"
+      th:object="${volunteertime}" method="post">
     <table>
         <tr>
-            <td><label>DNI</label></td>
-            <td><input type="text" class="form-control" th:field="*{dni}" readonly
-                       style="background-color: rgb(170, 170, 170)"/></td>
+            <td><label>Mes</label></td>
+            <td><select type="text" class="form-control" th:field="*{mes}"/>
+                <option>Enero</option>
+                <option>Febrero</option>
+                <option>Marzo</option>
+                <option>Abril</option>
+                <option>Mayo</option>
+                <option>Junio</option>
+                <option>Julio</option>
+                <option>Agosto</option>
+                <option>Septiembre</option>
+                <option>Octubre</option>
+                <option>Noviembre</option>
+                <option>Diciembre</option>
+                </select></td>
         </tr>
         <tr>
-            <td><label>Nombre</label></td>
-            <td><input type="text" class="form-control" th:field="*{nombre}"/></td>
+            <td><label>Día</label></td>
+            <td><input type="number" class="form-control" th:field="*{dia}"/></td>
         </tr>
         <tr>
-            <td><label>Apellidos</label></td>
-            <td><input type="text" class="form-control" th:field="*{apellidos}"/></td>
+            <td><label>Hora inicial</label></td>
+            <td><input type="time" class="form-control" th:field="*{startTime}"/></td>
         </tr>
         <tr>
-            <td><label>Direccion</label></td>
-            <td><input type="text" class="form-control" th:field="*{direccion}"/></td>
+            <td><label>Hora final</label></td>
+            <td><input type="time" class="form-control" th:field="*{endTime}"/></td>
         </tr>
         <tr>
-            <td><label>Telefono</label></td>
-            <td><input type="tel" class="form-control" th:field="*{telefono}"/></td>
+            <td><label>Disponibilidad</label></td>
+            <td><input type="text" class="form-control" th:field="*{availability}"/></td>
         </tr>
         <tr>
-            <td><label>Usuario</label></td>
-            <td><input type="text" class="form-control" th:field="*{usuario}" required/></td>
+            <td><label>DNI Voluntario</label></td>
+            <td><input type="text" class="form-control" th:field="*{dniVolunteer}" required/></td>
         </tr>
         <tr>
-            <td><label>Contraseña</label></td>
-            <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de alta</label></td>
-            <td><input type="date" class="form-control" th:field="*{releaseDate}"/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de baja</label></td>
-            <td><input type="text" class="form-control" th:field="*{dataDown}" placeholder="yyyy-mm-dd"/></td>
-        </tr>
-        <tr>
-            <td><label>Cumpleaños</label></td>
-            <td><input type="date" class="form-control" th:field="*{birthday}"/></td>
+            <td><label>DNI Persona Mayor</label></td>
+            <td><input type="text" class="form-control" th:field="*{dniElderly}"/></td>
         </tr>
         <tr>
             <td colspan="2"><input type="submit" value="Modifica voluntario" class="btn btn btn-warning" role="button"

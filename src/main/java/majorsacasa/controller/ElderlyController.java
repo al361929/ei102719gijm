@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Arrays;
+
 @Controller
 @RequestMapping("/elderly")
 public class ElderlyController {
@@ -30,6 +32,7 @@ public class ElderlyController {
 
     @RequestMapping(value = "/add")
     public String addElderly(Model model) {
+        model.addAttribute("allergies", Arrays.asList("Polen", "Frutos secos"));
         model.addAttribute("elderly", new Elderly());
         return "elderly/add";
     }
