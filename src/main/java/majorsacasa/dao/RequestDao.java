@@ -23,7 +23,8 @@ public class RequestDao {
     public List<Request> getRequests() {
         try {
             return jdbcTemplate.query(
-                    "SELECT * FROM Request", new RequestRowMapper());
+                    "SELECT * FROM Request",
+                    new RequestRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
         }
