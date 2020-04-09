@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Añadir servicio</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Añadir servicio</h2>
+<form action="#" th:action="@{/service/add}"
+      th:object="${service}" method="POST">
+    <table>
+        <tr>
+            <td><label>Tipo de servicio</label></td>
+            <td><input type="text" class="form-control" th:field="*{serviceType}"/></td>
+        </tr>
+        <tr>
+            <td><label>Precio</label></td>
+            <td><input type="number" class="form-control" th:field="*{price}"/></td>
+        </tr>
+        <tr>
+            <td><label>Descripción</label></td>
+            <td><input type="text" class="form-control" th:field="*{description}"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Añadir servicio" class="btn btn btn-success" role="button"
+                                   aria-pressed="true"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

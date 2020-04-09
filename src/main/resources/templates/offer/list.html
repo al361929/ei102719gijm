@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Offers</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Lista de Offers</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Número de servicio</th>
+            <th>Nif</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="offer: ${offers}">
+            <td th:text="${offer.getIdService()}"></td>
+            <td th:text="${offer.getNif()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

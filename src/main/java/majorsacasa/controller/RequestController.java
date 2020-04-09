@@ -35,7 +35,7 @@ public class RequestController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("socialWorker") Request request, BindingResult bindingResult) {
+    public String processAddSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "request/add";
         requestDao.addRequest(request);

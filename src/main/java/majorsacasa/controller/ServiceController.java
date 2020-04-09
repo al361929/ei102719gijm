@@ -44,7 +44,7 @@ public class ServiceController {
     }
 
     @RequestMapping(value = "/update/{idService}", method = RequestMethod.GET)
-    public String editSocialWorker(Model model, @PathVariable String idService) {
+    public String editService(Model model, @PathVariable Integer idService) {
         model.addAttribute("service", serviceDao.getService(idService));
         return "service/update";
     }
@@ -52,14 +52,15 @@ public class ServiceController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("service") Service service,
                                       BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
             return "service/update";
+        }
         serviceDao.updateService(service);
         return "redirect:list";
     }
 
     @RequestMapping(value = "/delete/{idService}")
-    public String processDelete(@PathVariable String idService) {
+    public String processDelete(@PathVariable Integer idService) {
         serviceDao.deleteService(idService);
         return "redirect:../list";
     }

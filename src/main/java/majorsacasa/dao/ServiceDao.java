@@ -30,18 +30,18 @@ public class ServiceDao {
     }
 
     public void addService(Service service) {
-        jdbcTemplate.update("INSERT INTO Service VALUES(DEFAULT,?,?;?)", service.getServiceType(), service.getPrice(), service.getDescription());
+        jdbcTemplate.update("INSERT INTO Service VALUES(DEFAULT,?,?,?", service.getServiceType(), service.getPrice(), service.getDescription());
     }
 
-    public Service getService(String idService) {
-        return jdbcTemplate.queryForObject("SELET * FROM Service WHERE idService=?", new ServiceRowMapper(), idService);
+    public Service getService(Integer idService) {
+        return jdbcTemplate.queryForObject("SELECT * FROM Service WHERE idService=?", new ServiceRowMapper(), idService);
     }
 
     public void updateService(Service service) {
         jdbcTemplate.update("UPDATE Service SET serviceType=?, price=?, description=? WHERE idService=?", service.getServiceType(), service.getPrice(), service.getDescription(), service.getIdService());
     }
 
-    public void deleteService(String idService) {
+    public void deleteService(Integer idService) {
         jdbcTemplate.update("DELETE FROM Service WHERE idService=?", idService);
     }
 }

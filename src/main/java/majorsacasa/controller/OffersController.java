@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/offers")
+@RequestMapping("/offer")
 public class OffersController {
     private OffersDao offersDao;
 
@@ -24,23 +24,22 @@ public class OffersController {
     @RequestMapping("/list")
     public String listOffers(Model model) {
         model.addAttribute("offers", offersDao.getOffers());
-        return "offers/list";
+        return "offer/list";
     }
 
     @RequestMapping(value = "/add")
     public String addOffer(Model model) {
         model.addAttribute("offer", new Offer());
-        return "offers/add";
+        return "offer/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("offer") Offer offers, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "offers/add";
+            return "offer/add";
         offersDao.addOffers(offers);
         return "redirect:list";
     }
-
 
     //POSIBLE FALLO
     @RequestMapping(value = "/delete/{idService}/{nif}")
