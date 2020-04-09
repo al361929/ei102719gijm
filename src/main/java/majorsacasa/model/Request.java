@@ -6,11 +6,9 @@ import java.time.LocalDate;
 
 public class Request {
 
-    int id;
-    String dni;
-    String nif;
+    int idRequest;
+    int idService;
     String state;
-    String serviceType;
     String comments;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate dateRequest;
@@ -23,28 +21,20 @@ public class Request {
 
     }
 
-    public int getId() {
-        return id;
+    public int getIdRequest() {
+        return idRequest;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdRequest(int idRequest) {
+        this.idRequest = idRequest;
     }
 
-    public String getDni() {
-        return dni;
+    public int getIdService() {
+        return idService;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public String getNif() {
-        return nif;
-    }
-
-    public void setNif(String nif) {
-        this.nif = nif;
+    public void setIdService(int idService) {
+        this.idService = idService;
     }
 
     public String getState() {
@@ -53,14 +43,6 @@ public class Request {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public String getServiceType() {
-        return serviceType;
-    }
-
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
     }
 
     public String getComments() {
@@ -98,15 +80,13 @@ public class Request {
     @Override
     public String toString() {
         return "Request{" +
-                "dni='" + dni + '\'' +
-                ", nif='" + nif + '\'' +
+                "idRequest=" + idRequest +
+                ", idService=" + idService +
                 ", state='" + state + '\'' +
-                ", serviceType='" + serviceType + '\'' +
                 ", comments='" + comments + '\'' +
                 ", dateRequest=" + dateRequest +
                 ", dateAccept=" + dateAccept +
                 ", dateReject=" + dateReject +
                 '}';
     }
-
 }

@@ -53,7 +53,9 @@ public class RequestController {
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "request/update";
+        System.out.println(request.toString());
         requestDao.updateRequest(request);
+        System.out.println(request.toString());
         return "redirect:list";
     }
 

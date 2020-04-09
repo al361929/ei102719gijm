@@ -32,7 +32,7 @@ public class SocialWorkerDao {
 
     public void addSocialWorker(SocialWorker socialWorker) {
         jdbcTemplate.update("INSERT INTO SocialWorker VALUES(?,?,?,?,?,?,?)", socialWorker.getNombre(), socialWorker.getApellidos(), socialWorker.getDni(),
-                socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContraseña(), socialWorker.getEmail());
+                socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContrasena(), socialWorker.getEmail());
 
     }
 
@@ -42,7 +42,7 @@ public class SocialWorkerDao {
 
     public void updateSocialWorker(SocialWorker socialWorker) {
         jdbcTemplate.update("UPDATE SocialWorker SET name=?, surname=?, phonenumber=?, user_name=?, password=?, email=? WHERE dni=?",
-                socialWorker.getNombre(), socialWorker.getApellidos(), socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContraseña(), socialWorker.getEmail(), socialWorker.getDni());
+                socialWorker.getNombre(), socialWorker.getApellidos(), socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContrasena(), socialWorker.getEmail(), socialWorker.getDni());
     }
 
     public void deleteSocialWorker(String socialWorker) {

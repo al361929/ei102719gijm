@@ -31,22 +31,22 @@ public class RequestDao {
     }
 
     public void addRequest(Request request) {
-        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?,?,?)", request.getServiceType(), request.getDateRequest(), request.getState(),
-                request.getDateAccept(), request.getDateReject(), request.getComments(), request.getDni(), request.getNif());
+        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?)", request.getIdService(), request.getDateRequest(), request.getState(),
+                request.getDateAccept(), request.getDateReject(), request.getComments());
 
     }
 
     public Request getRequest(int idRequest) {
-        return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE id=?", new RequestRowMapper(), idRequest);
+        return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE idRequest=?", new RequestRowMapper(), idRequest);
     }
 
     public void updateRequest(Request request) {
-        jdbcTemplate.update("UPDATE Request SET state=?, serviceType=?, comments=?, dateRequest=?, dateAccept=?, dateReject=?, dni=?, nif=? WHERE id=? ",
-                request.getState(), request.getServiceType(), request.getComments(), request.getDateRequest(), request.getDateAccept(), request.getDateReject(), request.getDni(), request.getNif(), request.getId());
+        jdbcTemplate.update("UPDATE Request SET idservice=?, state=?, comments=?, dateRequest=?, dateAccept=?, dateReject=? WHERE idrequest=? ",
+                request.getIdService(), request.getState(), request.getComments(), request.getDateRequest(), request.getDateAccept(), request.getDateReject(), request.getIdRequest());
     }
 
     public void deleteRequest(int idRequest) {
-        jdbcTemplate.update("DELETE FROM Request WHERE id=?", idRequest);
+        jdbcTemplate.update("DELETE FROM Request WHERE idRequest=?", idRequest);
     }
 
 }

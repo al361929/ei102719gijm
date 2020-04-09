@@ -12,16 +12,12 @@
       th:object="${request}" method="post">
     <table>
         <tr>
-            <td><label>DNI Persona mayor</label></td>
-            <td><input type="text" class="form-control" th:field="*{dni}"/></td>
+            <td><label>ID Request</label></td>
+            <td><input type="text" class="form-control" th:field="*{idRequest}" readonly/></td>
         </tr>
         <tr>
-            <td><label>NIF Empresa</label></td>
-            <td><input type="text" class="form-control" th:field="*{nif}"/></td>
-        </tr>
-        <tr>
-            <td><label>Tipo de servicio</label></td>
-            <td><input type="text" class="form-control" th:field="*{serviceType}"/></td>
+            <td><label>ID Service</label></td>
+            <td><input type="text" class="form-control" th:field="*{idService}"/></td>
         </tr>
         <tr>
             <td><label>Fecha de solicitud</label></td>

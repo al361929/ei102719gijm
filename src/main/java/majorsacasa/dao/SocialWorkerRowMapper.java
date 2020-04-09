@@ -15,7 +15,7 @@ public final class SocialWorkerRowMapper implements RowMapper<SocialWorker> {
         socialWorker.setApellidos(rs.getString("surname"));
         socialWorker.setTelefono(rs.getString("phoneNumber"));
         socialWorker.setUsuario(rs.getString("user_name"));
-        socialWorker.setContraseña(rs.getString("password"));
+        socialWorker.setContrasena(rs.getString("password"));
         socialWorker.setEmail(rs.getString("email"));
         return socialWorker;
     }
