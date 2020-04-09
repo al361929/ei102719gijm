@@ -32,13 +32,13 @@
             <td th:text="${voluntario.endTime}"></td>
             <td th:text="${voluntario.availability}"></td>
             <td>
-                <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.dniVolunteer})}" class="btn btn btn-warning"
+                <a th:href="@{/volunteertime/update/{dni}(dni=${voluntario.dniVolunteer})}" class="btn btn btn-warning"
                    role="button"
                    aria-pressed="true">Editar</a>
 
             </td>
             <td>
-                <a th:href="@{/volunteer/delete/{dni}(dni=${voluntario.dniVolunteer})}" class="btn btn btn-danger"
+                <a th:href="@{/volunteertime/delete/{dni}(dni=${voluntario.dniVolunteer})}" class="btn btn btn-danger"
                    role="button"
                    aria-pressed="true">Borrar</a>
 

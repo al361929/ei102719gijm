@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/fragments/base}">
 <head>
     <meta charset="UTF-8"/>
     <title>Majors a casa</title>
@@ -36,13 +37,16 @@
         de voluntarios</a>
 </ul>
 <ul>
-    <a href="/produce/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de produces</a>
+    <a href="produce/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de produces</a>
 </ul>
 <ul>
-    <a href="/service/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de servicios</a>
+    <a href="service/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de servicios</a>
 </ul>
 <ul>
-    <a href="/offer/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de Offers</a>
+    <a href="offer/list" class="btn btn btn-info" role="button" aria-pressed="true">Gestión de Offers</a>
+</ul>
+<ul>
+    <a href="../templates/login.html" class="btn btn btn-info" role="button" aria-pressed="true">Login</a>
 </ul>
 </body>
 </html>

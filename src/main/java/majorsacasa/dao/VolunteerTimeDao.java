@@ -31,7 +31,7 @@ public class VolunteerTimeDao {
     }
 
     public void addVolunteerTime(VolunteerTime volunteerTime) {
-        jdbcTemplate.update("INSERT INTO VolunteerTime VALUES(?,?,?,?,?,?,?", volunteerTime.getMes(), volunteerTime.getDia(),
+        jdbcTemplate.update("INSERT INTO VolunteerTime VALUES(?,?,?,?,?,?,?)", volunteerTime.getMes(), volunteerTime.getDia(),
                 volunteerTime.getStartTime(), volunteerTime.getEndTime(), volunteerTime.getAvailability(), volunteerTime.getDniVolunteer(), volunteerTime.getDniElderly());
 
     }
