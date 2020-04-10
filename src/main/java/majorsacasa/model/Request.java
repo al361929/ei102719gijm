@@ -6,8 +6,10 @@ import java.time.LocalDate;
 
 public class Request {
 
-    int idRequest;
-    int idService;
+    Integer idRequest;
+    Integer idService;
+    String dni;
+    String nif;
     String state;
     String comments;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -21,20 +23,36 @@ public class Request {
 
     }
 
-    public int getIdRequest() {
+    public Integer getIdRequest() {
         return idRequest;
     }
 
-    public void setIdRequest(int idRequest) {
+    public void setIdRequest(Integer idRequest) {
         this.idRequest = idRequest;
     }
 
-    public int getIdService() {
+    public Integer getIdService() {
         return idService;
     }
 
-    public void setIdService(int idService) {
+    public void setIdService(Integer idService) {
         this.idService = idService;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getNif() {
+        return nif;
+    }
+
+    public void setNif(String nif) {
+        this.nif = nif;
     }
 
     public String getState() {
@@ -82,6 +100,8 @@ public class Request {
         return "Request{" +
                 "idRequest=" + idRequest +
                 ", idService=" + idService +
+                ", dni='" + dni + '\'' +
+                ", nif='" + nif + '\'' +
                 ", state='" + state + '\'' +
                 ", comments='" + comments + '\'' +
                 ", dateRequest=" + dateRequest +

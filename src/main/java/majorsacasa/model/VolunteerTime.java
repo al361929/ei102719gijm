@@ -29,6 +29,7 @@ public class VolunteerTime {
     }
 
     public void setDniElderly(String dniElderly) {
+        this.dniElderly = dniElderly;
     }
 
     public String getMes() {

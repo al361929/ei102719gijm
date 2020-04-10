@@ -29,10 +29,12 @@
         </tr>
         <tr>
             <td><label>Alergias</label></td>
-            <td><li th:each="allergie : ${allergies}">
-                <input type="checkbox" name="allergies" th:value="${allergie}"/>
-                <label th:text="${allergie}"></label>
-            </li></td>
+            <td>
+                <li th:each="allergie : ${allergies}">
+                    <input type="checkbox" name="allergies" th:value="${allergie}"/>
+                    <label th:text="${allergie}"></label>
+                </li>
+            </td>
         </tr>
         <tr>
             <td><label>Telefono</label></td>

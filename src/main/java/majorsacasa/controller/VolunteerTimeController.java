@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.sql.Time;
 import java.time.LocalTime;
 
 @Repository
@@ -55,7 +53,7 @@ public class VolunteerTimeController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("volunteertime") VolunteerTime volunteertime,
                                       BindingResult bindingResult) {
-        System.out.println(volunteertime.toString());
+        //System.out.println(volunteertime.toString());
         if (bindingResult.hasErrors())
             return "volunteertime/update";
         volunteerTimeDao.updateVolunteerTime(volunteertime);
@@ -67,5 +65,4 @@ public class VolunteerTimeController {
         volunteerTimeDao.deleteVolunteerTime(dniVoluntario, mes, dia, startTime);
         return "redirect:../list";
     }
-
 }

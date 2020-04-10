@@ -42,6 +42,7 @@ public class VolunteerTimeDao {
     }
 
     public void updateVolunteerTime(VolunteerTime volunteerTime) {
+        System.out.println(volunteerTime.toString());
         jdbcTemplate.update("UPDATE VolunteerTime SET endTime=?, availability=?, dniElderly=? WHERE dniVolunteer=? AND mes=? AND dia=? AND startTime=?", volunteerTime.getEndTime(),
                 volunteerTime.getAvailability(), volunteerTime.getDniElderly(), volunteerTime.getDniVolunteer(), volunteerTime.getMes(), volunteerTime.getDia(), volunteerTime.getStartTime());
     }

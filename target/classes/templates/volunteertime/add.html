@@ -26,7 +26,7 @@
                 <option>Octubre</option>
                 <option>Noviembre</option>
                 <option>Diciembre</option>
-            </select></td>
+                </select></td>
         </tr>
         <tr>
             <td><label>Día</label></td>
@@ -43,10 +43,14 @@
         <tr>
             <td><label>Disponibilidad</label></td>
             <td>
-            <ul>
-                <li><input type="radio" class="form-control" name="disponibilidad" value="True" th:field="*{availability}"/>Disponible</li>
-                <li><input type="radio" class="form-control" name="disponibilidad" value="False" th:field="*{availability}"/>No Disponible</li>
-            </ul>
+                <ul>
+                    <li><input type="radio" class="form-control" name="disponibilidad" value="True"
+                               th:field="*{availability}"/>Disponible
+                    </li>
+                    <li><input type="radio" class="form-control" name="disponibilidad" value="False"
+                               th:field="*{availability}"/>No Disponible
+                    </li>
+                </ul>
             </td>
 
         </tr>

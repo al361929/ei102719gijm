@@ -24,7 +24,7 @@ public class RequestController {
 
     @RequestMapping("/list")
     public String listRequests(Model model) {
-        model.addAttribute("solicitudes", requestDao.getRequests());
+        model.addAttribute("requests", requestDao.getRequests());
         return "request/list";
     }
 
@@ -51,6 +51,7 @@ public class RequestController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("request") Request request,
                                       BindingResult bindingResult) {
+        System.out.println(request.toString());
         if (bindingResult.hasErrors())
             return "request/update";
         System.out.println(request.toString());
