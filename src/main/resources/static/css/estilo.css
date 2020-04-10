@@ -6,6 +6,8 @@ body {
     }
 h1 {
     font-family: 'Arimo', sans-serif;
+    font-weight: bold;
+    text-align: center;
     color: #201F1F;
 }
 
