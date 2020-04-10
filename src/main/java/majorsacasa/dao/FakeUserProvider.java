@@ -21,26 +21,27 @@ public class FakeUserProvider implements UserDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public List<Volunteer> getVolunteers() {
+/*    public List<UserDetails> getUsers() {
         try {
             return jdbcTemplate.query(
                     "SELECT * FROM Volunteer",
-                    new VolunteerRowMapper());
+                    new UserRowMapper());
         } catch (EmptyResultDataAccessException e) {
-            return new ArrayList<Volunteer>();
+            return new ArrayList<UserDetails>();
         }
-    }
+    }*/
 
     public FakeUserProvider() {
-        List<Volunteer> list = getVolunteers();
         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        for (Volunteer v : list) {
-            UserDetails user = new UserDetails();
-            user.setUsername(v.getUsuario());
-            user.setPassword(passwordEncryptor.encryptPassword(v.getContraseña()));
-            knownUsers.put(v.getUsuario(), user);
+      /*  List<UserDetails> list = getUsers();
 
-        }
+        for (UserDetails u : list) {
+            UserDetails user = new UserDetails();
+            user.setUsername((u.getUsername()));
+            user.setPassword(passwordEncryptor.encryptPassword(u.getPassword()));
+            knownUsers.put(u.getUsername(), user);
+
+        }*/
         UserDetails userAlice = new UserDetails();
         userAlice.setUsername("alice");
         userAlice.setPassword(passwordEncryptor.encryptPassword("alice"));
