@@ -5,9 +5,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class Contract {
-    Integer ncontract;
+    Integer idContract;
     String firma;
-    Double precio;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate releaseDate;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -20,20 +19,20 @@ public class Contract {
     public Contract() {
     }
 
+    public Integer getIdContract() {
+        return idContract;
+    }
+
+    public void setIdContract(Integer idContract) {
+        this.idContract = idContract;
+    }
+
     public String getFirma() {
         return firma;
     }
 
     public void setFirma(String firma) {
         this.firma = firma;
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
     }
 
     public LocalDate getReleaseDate() {
@@ -72,16 +71,8 @@ public class Contract {
         return nifcompany;
     }
 
-    public void setNifcompany(String nif) {
-        this.nifcompany = nif;
-    }
-
-    public Integer getNcontract() {
-        return ncontract;
-    }
-
-    public void setNcontract(Integer ncontract) {
-        this.ncontract = ncontract;
+    public void setNifcompany(String nifcompany) {
+        this.nifcompany = nifcompany;
     }
 
     public String getDnielderly() {
@@ -90,5 +81,19 @@ public class Contract {
 
     public void setDnielderly(String dnielderly) {
         this.dnielderly = dnielderly;
+    }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "idContract=" + idContract +
+                ", firma='" + firma + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", dateDown=" + dateDown +
+                ", cantidad=" + cantidad +
+                ", descripcion='" + descripcion + '\'' +
+                ", nifcompany='" + nifcompany + '\'' +
+                ", dnielderly='" + dnielderly + '\'' +
+                '}';
     }
 }

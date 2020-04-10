@@ -43,9 +43,9 @@ public class ContractController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/update/{ncontract}", method = RequestMethod.GET)
-    public String editContract(Model model, @PathVariable Integer ncontract) {
-        model.addAttribute("contract", contractDao.getContract(ncontract));
+    @RequestMapping(value = "/update/{idContract}", method = RequestMethod.GET)
+    public String editContract(Model model, @PathVariable Integer idContract) {
+        model.addAttribute("contract", contractDao.getContract(idContract));
         return "contract/update";
     }
 
@@ -58,9 +58,9 @@ public class ContractController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/delete/{ncontract}")
-    public String processDelete(@PathVariable Integer ncontract) {
-        contractDao.deleteContract(ncontract);
+    @RequestMapping(value = "/delete/{idContract}")
+    public String processDelete(@PathVariable Integer idContract) {
+        contractDao.deleteContract(idContract);
         return "redirect:../list";
     }
 }
