@@ -33,13 +33,13 @@
             <td th:text="${socialWorker.usuario}"></td>
             <td th:text="${socialWorker.contrasena}"></td>
             <td>
-                <a th:href="@{/volunteer/update/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-warning"
+                <a th:href="@{/socialWorker/update/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-warning"
                    role="button"
                    aria-pressed="true">Editar</a>
 
             </td>
             <td>
-                <a th:href="@{/volunteer/delete/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-danger"
+                <a th:href="@{/socialWorker/delete/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-danger"
                    role="button"
                    aria-pressed="true">Borrar</a>
 

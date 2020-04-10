@@ -11,10 +11,10 @@ public final class InvoiceRowMapper implements RowMapper<Invoice> {
     @Override
     public Invoice mapRow(ResultSet rs, int i) throws SQLException {
         Invoice invoice = new Invoice();
-        invoice.setInvoiceNumber(rs.getInt("idinvoice"));
-        invoice.setDateInvoice(rs.getObject("dateinvoice", LocalDate.class));
-        invoice.setTotalPrice(rs.getInt("totalprice"));
-        invoice.setDniElderly(rs.getString("dnielderly"));
+        invoice.setInvoiceNumber(rs.getInt("idInvoice"));
+        invoice.setDateInvoice(rs.getObject("dateInvoice", LocalDate.class));
+        invoice.setTotalPrice(rs.getInt("totalPrice"));
+        invoice.setDniElderly(rs.getString("dniElderly"));
         return invoice;
     }
 }

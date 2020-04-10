@@ -36,8 +36,8 @@ public class SocialWorkerDao {
 
     }
 
-    public SocialWorker getSocialWorker(String socialWorker) {
-        return jdbcTemplate.queryForObject("SELECT * FROM SocialWorker WHERE dni=?", new SocialWorkerRowMapper(), socialWorker);
+    public SocialWorker getSocialWorker(String dniSocialWorker) {
+        return jdbcTemplate.queryForObject("SELECT * FROM SocialWorker WHERE dni=?", new SocialWorkerRowMapper(), dniSocialWorker);
     }
 
     public void updateSocialWorker(SocialWorker socialWorker) {
@@ -45,8 +45,8 @@ public class SocialWorkerDao {
                 socialWorker.getNombre(), socialWorker.getApellidos(), socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContrasena(), socialWorker.getEmail(), socialWorker.getDni());
     }
 
-    public void deleteSocialWorker(String socialWorker) {
-        jdbcTemplate.update("DELETE FROM SocialWorker WHERE dni=?", socialWorker);
+    public void deleteSocialWorker(String dniSocialWorker) {
+        jdbcTemplate.update("DELETE FROM SocialWorker WHERE dni=?", dniSocialWorker);
     }
 
 }

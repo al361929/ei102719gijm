@@ -30,18 +30,18 @@ public class InvoiceDao {
     }
 
     public void addInvoice(Invoice invoice) {
-        jdbcTemplate.update("INSERT INTO Invoice VALUES(DEFAULT,?,?,?)", invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getDniElderly());
+        jdbcTemplate.update("INSERT INTO Invoice VALUES(DEFAULT,?,?,?)", invoice.getDniElderly(), invoice.getDateInvoice(), invoice.getTotalPrice());
     }
 
-    public Invoice getInvoice(Integer idinvoice) {
-        return jdbcTemplate.queryForObject("SELECT * FROM Invoice WHERE idinvoice=?", new InvoiceRowMapper(), idinvoice);
+    public Invoice getInvoice(Integer idInvoice) {
+        return jdbcTemplate.queryForObject("SELECT * FROM Invoice WHERE idInvoice=?", new InvoiceRowMapper(), idInvoice);
     }
 
     public void updateInvoice(Invoice invoice) {
-        jdbcTemplate.update("UPDATE Invoice SET dateinvoice=?, totalprice=?, dnielderly=? WHERE idinvoice=?", invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getDniElderly(), invoice.getInvoiceNumber());
+        jdbcTemplate.update("UPDATE Invoice SET dateinvoice=?, totalprice=?, dnielderly=? WHERE idInvoice=?", invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getDniElderly(), invoice.getInvoiceNumber());
     }
 
     public void deleteInvoice(Integer invoice) {
-        jdbcTemplate.update("DELETE FROM Invoice WHERE idinvoice=?", invoice);
+        jdbcTemplate.update("DELETE FROM Invoice WHERE idInvoice=?", invoice);
     }
 }

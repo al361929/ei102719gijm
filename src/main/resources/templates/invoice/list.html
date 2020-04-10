@@ -15,6 +15,7 @@
             <th>Número de factura</th>
             <th>Fecha</th>
             <th>Precio total</th>
+            <th>DNI Persona mayor</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
             <td th:text="${invoice.invoiceNumber}"></td>
             <td th:text="${#temporals.format(invoice.dateInvoice,'dd/MM/yyyy')}"></td>
             <td th:text="${invoice.totalPrice}"></td>
+            <td th:text="${invoice.dniElderly}"></td>
             <td>
                 <a th:href="@{/invoice/update/{invoiceNumber}(invoiceNumber=${invoice.invoiceNumber})}"
                    class="btn btn btn-warning" role="button"
