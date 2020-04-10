@@ -45,9 +45,9 @@ public class LoginController {
         session.setAttribute("user", user);
 
         // Torna a la pàgina principal
-        if (!url.isEmpty()) {
+        if (url != null)
             return "redirect:/" + url;
-        }
+
         return "redirect:/";
     }
 

@@ -13,34 +13,47 @@ h1 {
 
 h2 {
    font-family: 'Arimo', sans-serif;
+   font-weight: bold;
+
     color: #545151;
 }
 h3 {
    font-family: 'Arimo', sans-serif;
+    font-weight: bold;
     color: #545151;
 }
 
 h4 {
     font-family: 'Arimo', sans-serif;
+    font-weight: bold;
     color: #B32121;
 }
 
 h5 {
    font-family: 'Arimo', sans-serif;
+   font-weight: bold;
+
     color: #CB3E3E;
 }
 
 /*Estilo del link*/
 a:link {
       font-family: 'Arimo', sans-serif;
+
+      font-weight: bold;
+
       color: #B32121;
 }
 
 /* visited link */
 a:visited {
  font-family: 'Arimo', sans-serif;
+ font-weight: bold;
+
  color: #B32121;}
 
  button: {
          font-family: 'Arimo', sans-serif;
+         font-weight: bold;
+
          }
