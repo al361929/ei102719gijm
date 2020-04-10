@@ -5,36 +5,40 @@ body {
     color: #181717;
     }
 h1 {
-    font-family: 'Crimson Text', serif;
+    font-family: 'Arimo', sans-serif;
     color: #201F1F;
 }
 
 h2 {
-    font-family: 'Crimson Text', serif;
+   font-family: 'Arimo', sans-serif;
     color: #545151;
 }
 h3 {
-    font-family: 'Crimson Text', serif;
+   font-family: 'Arimo', sans-serif;
     color: #545151;
 }
 
 h4 {
-    font-family: 'Crimson Text', serif;
+    font-family: 'Arimo', sans-serif;
     color: #B32121;
 }
 
 h5 {
-    font-family: 'Crimson Text', serif;
+   font-family: 'Arimo', sans-serif;
     color: #CB3E3E;
 }
 
 /*Estilo del link*/
 a:link {
-      font-family: 'Crimson Text', serif;
+      font-family: 'Arimo', sans-serif;
       color: #B32121;
 }
 
 /* visited link */
 a:visited {
- font-family: 'Crimson Text', serif;
+ font-family: 'Arimo', sans-serif;
  color: #B32121;}
+
+ button: {
+         font-family: 'Arimo', sans-serif;
+         }
