@@ -11,21 +11,23 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Id Request</th>
-            <th>Id Service</th>
+            <th>Id solicitud</th>
+            <th>Id servicio</th>
+            <th>DNI</th>
+            <th>NIF</th>
             <th>Estado</th>
             <th>Fecha de solicitud</th>
             <th>Fecha de aceptación</th>
             <th>Fecha de rechazo</th>
             <th>Comentarios</th>
-            <th></th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="request: ${solicitudes}">
+        <tr th:each="request: ${requests}">
             <td th:text="${request.idRequest}"></td>
             <td th:text="${request.idService}"></td>
+            <td th:text="${request.dni}"></td>
+            <td th:text="${request.nif}"></td>
             <td th:text="${request.state}"></td>
             <td th:text="${request.dateRequest}"></td>
             <td th:text="${request.dateAccept}"></td>

@@ -11,8 +11,8 @@ public final class RequestRowMapper implements RowMapper<Request> {
     @Override
     public Request mapRow(ResultSet rs, int i) throws SQLException {
         Request request = new Request();
-        request.setId(rs.getInt("id"));
-        request.setServiceType(rs.getString("servicetype"));
+        request.setIdService(rs.getInt("idService"));
+        request.setIdRequest(rs.getInt("idRequest"));
         request.setDateRequest(rs.getObject("daterequest", LocalDate.class));
         request.setState(rs.getString("state"));
         request.setDateAccept(rs.getObject("dateaccept", LocalDate.class));
