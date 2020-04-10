@@ -24,23 +24,27 @@
                                     <div class="form-label-group">
 
                                         <label for="inputUser">Usuario</label>
-                                        <input class="form-control" id="inputUser" type="text" th:field="*{username}" placeholder="Usuario"
+                                        <input class="form-control" id="inputUser" type="text" th:field="*{username}"
+                                               placeholder="Usuario"
                                                required autofocus/>
 
-                                       <!-- <input type="text" id="inputUser" class="form-control" placeholder="Usuario"
-                                               required autofocus>-->
-                                        <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                                        <!-- <input type="text" id="inputUser" class="form-control" placeholder="Usuario"
+                                                required autofocus>-->
+                                        <div class="error" th:if="${#fields.hasErrors('username')}"
+                                             th:errors="*{username}"></div>
 
                                     </div>
 
                                     <div class="form-label-group">
 
                                         <label for="inputPassword">Contraseña</label>
-                                        <input class="form-control" id="inputPassword" type="password" th:field="*{password}" placeholder="Contraseña" required/>
-                                        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                                        <input class="form-control" id="inputPassword" type="password"
+                                               th:field="*{password}" placeholder="Contraseña" required/>
+                                        <div class="error" th:if="${#fields.hasErrors('password')}"
+                                             th:errors="*{password}"></div>
 
-                                       <!-- <input type="password" id="inputPassword" class="form-control"
-                                               placeholder="Contraseña" required> -->
+                                        <!-- <input type="password" id="inputPassword" class="form-control"
+                                                placeholder="Contraseña" required> -->
                                     </div>
 
                                     <div class="custom-control custom-checkbox mb-3">
