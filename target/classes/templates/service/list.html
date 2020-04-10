@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestionar Facturas</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>Lista de Facturas</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Número de servicio</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Tipo de servicio</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="service: ${services}">
+            <td th:text="${service.getIdService()}"></td>
+            <td th:text="${service.getDescription()}"></td>
+            <td th:text="${service.getPrice()}"></td>
+            <td th:text="${service.getServiceType()}"></td>
+            <td>
+                <a th:href="@{/service/update/{idService}(idService=${service.idService})}"
+                   class="btn btn btn-warning" role="button"
+                   aria-pressed="true">Editar</a>
+
+            </td>
+            <td>
+                <a th:href="@{/service/delete/{idService}(idService=${service.idService})}"
+                   class="btn btn btn-danger" role="button"
+                   aria-pressed="true">Borrar</a>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Servicio</a>
+</div>
+</body>
+</html>
