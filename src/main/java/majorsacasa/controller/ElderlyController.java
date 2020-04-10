@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/elderly")
 public class ElderlyController {
 
     private ElderlyDao elderlyDao;
+
+    private List alergias = Arrays.asList("Polen", "Frutos secos", "Gluten", "Pepinillo");
 
     @Autowired
     public void setElderlyDao(ElderlyDao elderlyDao) {
@@ -32,7 +35,7 @@ public class ElderlyController {
 
     @RequestMapping(value = "/add")
     public String addElderly(Model model) {
-        model.addAttribute("allergies", Arrays.asList("Polen", "Frutos secos"));
+        model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", new Elderly());
         return "elderly/add";
     }
@@ -47,6 +50,7 @@ public class ElderlyController {
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
     public String editElderly(Model model, @PathVariable String dni) {
+        model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", elderlyDao.getElderly(dni));
         return "elderly/update";
     }

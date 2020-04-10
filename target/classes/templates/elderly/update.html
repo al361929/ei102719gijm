@@ -31,7 +31,13 @@
         </tr>
         <tr>
             <td><label>Alergias</label></td>
-            <td><input type="text" class="form-control" th:field="*{alergias}"/></td>
+<!--            <td><input type="text" class="form-control" th:field="*{alergias}"/></td>-->
+            <td>
+                <li th:each="allergie : ${allergies}">
+                    <input type="checkbox" name="allergies" th:value="${allergie}" th:field="*{alergias}"/>
+                    <label th:text="${allergie}"></label>
+                </li>
+            </td>
         </tr>
         <tr>
             <td><label>Telefono</label></td>
