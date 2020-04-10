@@ -16,32 +16,28 @@
             <th>NIF</th>
             <th>Firma</th>
             <th>DNI Persona mayor</th>
-            <th>Precio</th>
             <th>Cantidad</th>
             <th>Descripción</th>
-
-            <th></th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="contrato: ${contracts}">
-            <td th:text="${contrato.ncontract}"></td>
+            <td th:text="${contrato.idContract}"></td>
             <td th:text="${contrato.nifcompany}"></td>
             <td th:text="${contrato.firma}"></td>
             <td th:text="${contrato.dnielderly}"></td>
-            <td th:text="${contrato.precio}"></td>
             <td th:text="${contrato.cantidad}"></td>
             <td th:text="${contrato.descripcion}"></td>
             <td>
-                <a th:href="@{/contract/update/{ncontract}(ncontract=${contrato.ncontract})}"
+                <a th:href="@{/contract/update/{ncontract}(ncontract=${contrato.idContract})}"
                    class="btn btn btn-warning"
                    role="button"
                    aria-pressed="true">Editar</a>
 
             </td>
             <td>
-                <a th:href="@{/contract/delete/{ncontract}(ncontract=${contrato.ncontract})}" class="btn btn btn-danger"
+                <a th:href="@{/contract/delete/{ncontract}(ncontract=${contrato.idContract})}"
+                   class="btn btn btn-danger"
                    role="button"
                    aria-pressed="true">Borrar</a>
 
