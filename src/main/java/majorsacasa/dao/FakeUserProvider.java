@@ -34,17 +34,12 @@ public class FakeUserProvider implements UserDao {
 
     @Override
     public UserDetails loadUserByUsername(String username, String password) {
-        System.out.println("USERNAME: " + username);
-        System.out.println("Miro Volunteer");
         List userList = jdbcTemplate.query("SELECT user_name, password FROM Volunteer WHERE user_name=?", new UserRowMapper(), username);
         if (userList.isEmpty()) {
-            System.out.println("Miro ElderlyPeople");
             userList = jdbcTemplate.query("SELECT user_name, password FROM ElderlyPeople WHERE user_name=?", new UserRowMapper(), username);
             if (userList.isEmpty()) {
-                System.out.println("Miro SocialWorker");
                 userList = jdbcTemplate.query("SELECT user_name, password FROM SocialWorker WHERE user_name=?", new UserRowMapper(), username);
                 if (userList.isEmpty()) {
-                    System.out.println("Miro Company");
                     userList = jdbcTemplate.query("SELECT user_name, password FROM Company WHERE user_name=?", new UserRowMapper(), username);
                     if (userList.isEmpty()) {
                         return null; // Usuari no trobat
@@ -57,7 +52,6 @@ public class FakeUserProvider implements UserDao {
 
         // Contrasenya
         if (user.getPassword().equals(password)) {
-            System.out.println("contraseña");
             // Es deuria esborrar de manera segura el camp password abans de tornar-lo
             return user;
         } else {
