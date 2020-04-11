@@ -11,66 +11,51 @@
 <body>
 <div layout:fragment="content">
     <div class="container-fluid">
-        <div class="row no-gutter">
-            <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-            <div class="col-md-8 col-lg-6">
-                <div class="login d-flex align-items-center py-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-9 col-lg-8 mx-auto">
-                                <h3 class="login-heading mb-4">Bienvenido!</h3>
-                                <form action="#" th:action="@{/login}"
-                                      th:object="${user}" method="post">
-                                    <div class="form-label-group">
+        <h3 class="login-heading mb-4">Bienvenido!</h3>
+        <form action="#" th:action="@{/login}"
+              th:object="${user}" method="post">
+            <div class="form-label-group">
 
-                                        <label for="inputUser">Usuario</label>
-                                        <input class="form-control" id="inputUser" type="text" th:field="*{username}"
-                                               placeholder="Usuario"
-                                               required autofocus/>
+                <label for="inputUser">Usuario</label>
+                <input class="form-control" id="inputUser" type="text" th:field="*{username}"
+                       placeholder="Usuario"
+                       required autofocus/>
 
-                                        <!-- <input type="text" id="inputUser" class="form-control" placeholder="Usuario"
-                                                required autofocus>-->
-                                        <div class="error" th:if="${#fields.hasErrors('username')}"
-                                             th:errors="*{username}"></div>
-
-                                    </div>
-
-                                    <div class="form-label-group">
-
-                                        <label for="inputPassword">Contraseña</label>
-                                        <input class="form-control" id="inputPassword" type="password"
-                                               th:field="*{password}" placeholder="Contraseña" required/>
-                                        <div class="error" th:if="${#fields.hasErrors('password')}"
-                                             th:errors="*{password}"></div>
-
-                                        <!-- <input type="password" id="inputPassword" class="form-control"
-                                                placeholder="Contraseña" required> -->
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mb-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Recordar
-                                            contraseña</label>
-                                    </div>
-                                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-                                            type="submit" value="Accedir">Entrar
-                                    </button>
+                <!-- <input type="text" id="inputUser" class="form-control" placeholder="Usuario"
+                        required autofocus>-->
+                <div class="error" th:if="${#fields.hasErrors('username')}"
+                     th:errors="*{username}"></div>
 
 
-                                </form>
-                                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-                                        type="submit">Registrar
-                                </button>
-                                <div class="text-center">
-                                    <a class="small" href="#">Forgot password?</a></div>
+                <label for="inputPassword">Contraseña</label>
+                <input class="form-control" id="inputPassword" type="password"
+                       th:field="*{password}" placeholder="Contraseña" required/>
+                <div class="error" th:if="${#fields.hasErrors('password')}"
+                     th:errors="*{password}"></div>
 
-                            </div>
-                        </div>
-                    </div>
+                <!-- <input type="password" id="inputPassword" class="form-control"
+                        placeholder="Contraseña" required> -->
+
+                <div class="custom-control custom-checkbox mb-3">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">Recordar
+                        contraseña</label>
                 </div>
-            </div>
-        </div>
+                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                        type="submit" value="Accedir">Entrar
+                </button>
+
+
+        </form>
+        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                type="submit">Registrar
+        </button>
+
+        <div class="text-center">
+            <a class="small" href="#">Forgot password?</a></div>
     </div>
+</div>
+</div>
 </div>
 </body>
 </html>
