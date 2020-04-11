@@ -34,7 +34,7 @@
             <td th:text="${elderly.direccion}"></td>
             <td th:text="${elderly.alergias}"></td>
             <td th:text="${elderly.telefono}"></td>
-            <td th:text="${elderly.birthday}"></td>
+            <td th:text="${#temporals.format(elderly.birthday,'dd/MM/yyyy')}"></td>
             <td th:text="${elderly.cuentaBancaria}"></td>
             <td th:text="${elderly.socialWorker}"></td>
             <td th:text="${elderly.email}"></td>

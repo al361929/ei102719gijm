@@ -29,9 +29,9 @@
             <td th:text="${request.dni}"></td>
             <td th:text="${request.nif}"></td>
             <td th:text="${request.state}"></td>
-            <td th:text="${request.dateRequest}"></td>
-            <td th:text="${request.dateAccept}"></td>
-            <td th:text="${request.dateReject}"></td>
+            <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(request.dateReject,'dd/MM/yyyy')}"></td>
             <td th:text="${request.comments}"></td>
             <td>
                 <a th:href="@{/request/update/{id}(id=${request.idRequest})}"

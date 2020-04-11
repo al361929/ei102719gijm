@@ -16,6 +16,9 @@
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Dirección</th>
+        <th>Fecha Alta</th>
+        <th>Fecha Baja</th>
+        <th>Cumpleaños</th>
         <th></th>
         <th></th>
     </tr>
@@ -26,6 +29,9 @@
         <td th:text="${voluntario.nombre}"></td>
         <td th:text="${voluntario.apellidos}"></td>
         <td th:text="${voluntario.direccion}"></td>
+        <td th:text="${#temporals.format(voluntario.releaseDate,'dd/MM/yyyy')}"></td>
+        <td th:text="${#temporals.format(voluntario.dataDown,'dd/MM/yyyy')}"></td>
+        <td th:text="${#temporals.format(voluntario.birthday,'dd/MM/yyyy')}"></td>
         <td>
             <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.dni})}" class="btn btn btn-warning" role="button"
                aria-pressed="true">Editar</a>

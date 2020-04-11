@@ -19,7 +19,7 @@
             <th>Número de teléfono</th>
             <th>Nombre de usuario</th>
             <th>Contraseña</th>
-            <th>Fecha de alta</th>
+            <th>Fecha Alta</th>
             <th>Cuneta bancaria</th>
             <th></th>
             <th></th>
@@ -34,7 +34,7 @@
             <td th:text="${empresa.numeroTelf}"></td>
             <td th:text="${empresa.nombreUsuario}"></td>
             <td th:text="${empresa.password}"></td>
-            <td th:text="${empresa.fechaAlta}"></td>
+            <td th:text="${#temporals.format(empresa.fechaAlta,'dd/MM/yyyy')}"></td>
             <td th:text="${empresa.cuentaBancaria}"></td>
             <td>
                 <a th:href="@{/company/update/{nif}(nif=${empresa.nif})}" class="btn btn btn-warning" role="button"
