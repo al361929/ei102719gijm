@@ -21,7 +21,7 @@ public class FakeUserProvider implements UserDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-/*    public List<UserDetails> getUsers() {
+    public List<UserDetails> getUsers() {
         try {
             return jdbcTemplate.query(
                     "SELECT * FROM Volunteer",
@@ -29,39 +29,35 @@ public class FakeUserProvider implements UserDao {
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<UserDetails>();
         }
-    }*/
-
-    public FakeUserProvider() {
-        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-      /*  List<UserDetails> list = getUsers();
-
-        for (UserDetails u : list) {
-            UserDetails user = new UserDetails();
-            user.setUsername((u.getUsername()));
-            user.setPassword(passwordEncryptor.encryptPassword(u.getPassword()));
-            knownUsers.put(u.getUsername(), user);
-
-        }*/
-        UserDetails userAlice = new UserDetails();
-        userAlice.setUsername("alice");
-        userAlice.setPassword(passwordEncryptor.encryptPassword("alice"));
-        knownUsers.put("alice", userAlice);
-
-        UserDetails userBob = new UserDetails();
-        userBob.setUsername("bob");
-        userBob.setPassword(passwordEncryptor.encryptPassword("bob"));
-        knownUsers.put("bob", userBob);
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String username, String password) {
-        System.out.println(username + "---" + password);
-        UserDetails user = knownUsers.get(username.trim());
-        if (user == null)
-            return null; // Usuari no trobat
+        System.out.println("USERNAME: " + username);
+        System.out.println("Miro Volunteer");
+        List userList = jdbcTemplate.query("SELECT user_name, password FROM Volunteer WHERE user_name=?", new UserRowMapper(), username);
+        if (userList.isEmpty()) {
+            System.out.println("Miro ElderlyPeople");
+            userList = jdbcTemplate.query("SELECT user_name, password FROM ElderlyPeople WHERE user_name=?", new UserRowMapper(), username);
+            if (userList.isEmpty()) {
+                System.out.println("Miro SocialWorker");
+                userList = jdbcTemplate.query("SELECT user_name, password FROM SocialWorker WHERE user_name=?", new UserRowMapper(), username);
+                if (userList.isEmpty()) {
+                    System.out.println("Miro Company");
+                    userList = jdbcTemplate.query("SELECT user_name, password FROM Company WHERE user_name=?", new UserRowMapper(), username);
+                    if (userList.isEmpty()) {
+                        return null; // Usuari no trobat
+                    }
+                }
+            }
+        }
+        UserDetails user = (UserDetails) userList.get(0);
+        user.toString();
+
         // Contrasenya
-        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        if (passwordEncryptor.checkPassword(password, user.getPassword())) {
+        if (user.getPassword().equals(password)) {
+            System.out.println("contraseña");
             // Es deuria esborrar de manera segura el camp password abans de tornar-lo
             return user;
         } else {
