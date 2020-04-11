@@ -461,6 +461,10 @@
     </state>
     <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1582734487674" />
     <state x="229" y="0" width="1036" height="858" key="SettingsEditor/0.0.1920.1046@0.0.1920.1046" timestamp="1583233467996" />
+    <state x="392" y="85" key="VCS.ChangeListViewerDialog" timestamp="1586600779537">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="392" y="85" key="VCS.ChangeListViewerDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1586600779537" />
     <state x="387" y="144" key="Vcs.Push.Dialog.v2" timestamp="1586540139448">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -471,9 +475,10 @@
     <state x="387" y="144" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586516669288" />
     <state x="387" y="144" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583325979217" />
     <state x="2307" y="143" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583710507608" />
-    <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586540119667">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="492" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586600771152">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="492" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1586600771152" />
     <state x="492" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1583334076632" />
     <state x="553" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1583337547636" />
     <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1586540119667" />
