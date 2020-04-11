@@ -33,7 +33,7 @@ public class SocialWorkerDao {
     }
 
     public void addSocialWorker(SocialWorker socialWorker) {
-        jdbcTemplate.update("INSERT INTO SocialWorker VALUES(?,?,?,?,?,?,?)", socialWorker.getNombre(), socialWorker.getApellidos(), socialWorker.getDni(),
+        jdbcTemplate.update("INSERT INTO SocialWorker VALUES(?,?,?,?,?,?,?)", socialWorker.getDni(), socialWorker.getNombre(), socialWorker.getApellidos(),
                 socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContrasena(), socialWorker.getEmail());
 
     }
