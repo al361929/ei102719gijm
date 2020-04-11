@@ -34,12 +34,16 @@ public class FakeUserProvider implements UserDao {
 
     @Override
     public UserDetails loadUserByUsername(String username, String password) {
+        String tipo="Volunteer";
         List userList = jdbcTemplate.query("SELECT user_name, password FROM Volunteer WHERE user_name=?", new UserRowMapper(), username);
         if (userList.isEmpty()) {
+            tipo="ElderlyPeople";
             userList = jdbcTemplate.query("SELECT user_name, password FROM ElderlyPeople WHERE user_name=?", new UserRowMapper(), username);
             if (userList.isEmpty()) {
+                tipo="SocialWorker";
                 userList = jdbcTemplate.query("SELECT user_name, password FROM SocialWorker WHERE user_name=?", new UserRowMapper(), username);
                 if (userList.isEmpty()) {
+                    tipo="Company";
                     userList = jdbcTemplate.query("SELECT user_name, password FROM Company WHERE user_name=?", new UserRowMapper(), username);
                     if (userList.isEmpty()) {
                         return null; // Usuari no trobat
@@ -48,7 +52,8 @@ public class FakeUserProvider implements UserDao {
             }
         }
         UserDetails user = (UserDetails) userList.get(0);
-        user.toString();
+        user.setTipo(tipo);
+        System.out.println(user.toString());
 
         // Contrasenya
         if (user.getPassword().equals(password)) {
