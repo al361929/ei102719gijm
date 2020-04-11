@@ -50,4 +50,6 @@ public class ElderlyDao {
     public void deleteElderly(String elderly) {
         jdbcTemplate.update("DELETE FROM ElderlyPeople WHERE dni=?", elderly);
     }
+
+
 }

@@ -1,5 +1,6 @@
 package majorsacasa.dao;
 
+import majorsacasa.model.Elderly;
 import majorsacasa.model.SocialWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -7,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import javax.swing.text.EditorKit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,4 +51,14 @@ public class SocialWorkerDao {
         jdbcTemplate.update("DELETE FROM SocialWorker WHERE dni=?", dniSocialWorker);
     }
 
+
+    public List<Elderly> getElderlyList(String dniSocialWorker) {
+        try {
+
+            return jdbcTemplate.query("SELECT * FROM elderly WHERE socialworker=?", new ElderlyRowMapper(), dniSocialWorker);
+
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Elderly>();
+        }
+    }
 }
