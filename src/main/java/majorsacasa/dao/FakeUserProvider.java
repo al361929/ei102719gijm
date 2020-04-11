@@ -53,7 +53,6 @@ public class FakeUserProvider implements UserDao {
         }
         UserDetails user = (UserDetails) userList.get(0);
         user.setTipo(tipo);
-        System.out.println(user.toString());
 
         // Contrasenya
         if (user.getPassword().equals(password)) {
