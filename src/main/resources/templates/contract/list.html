@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
 <head>
     <title>Gestionar Contratos</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
-</head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
 <body>
+<div layout:fragment="content">
+
 <div class="container">
     <h1>Lista de Contratos</h1>
 
@@ -48,5 +52,7 @@
     <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Contrato</a>
     <a href="/login" class="btn btn btn-danger" role="button" aria-pressed="true">Atrás</a>
 </div>
+</div>
+
 </body>
 </html>
