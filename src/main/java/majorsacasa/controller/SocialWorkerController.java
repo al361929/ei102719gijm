@@ -63,7 +63,7 @@ public class SocialWorkerController {
         return "redirect:../list";
     }
 
-    // @RequestMapping(value ="")
+    //@RequestMapping(value ="")
     // public String getElderlyList(Model model){
 
     // model.addAllAttributes("elderlyList",socialWorkerDao.getElderlyList());
