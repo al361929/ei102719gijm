@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
 <head>
     <title>Añadir empresa</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-</head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
 <body>
+<div layout:fragment="content">
+
+    <div class="container">
 <h2>Añadir Empresa</h2>
 <form action="#" th:action="@{/company/add}"
       th:object="${company}" method="post">
@@ -63,5 +67,7 @@
         </tr>
     </table>
 </form>
+</div>
+</div>
 </body>
 </html>
