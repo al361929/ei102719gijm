@@ -54,9 +54,7 @@ public class SocialWorkerDao {
 
     public List<Elderly> getElderlyList(String dniSocialWorker) {
         try {
-
             return jdbcTemplate.query("SELECT * FROM elderly WHERE socialworker=?", new ElderlyRowMapper(), dniSocialWorker);
-
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Elderly>();
         }

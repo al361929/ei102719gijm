@@ -66,13 +66,12 @@ public class SocialWorkerController {
         return "redirect:../list";
     }
 
-/*    @RequestMapping(value ="")
-    public String getElderlyList(HttpSession session,Model model){
+    @RequestMapping(value = "/elderlyList")
+    public String getElderlyList(HttpSession session,Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
-
-     model.addAllAttributes("elderlyList",socialWorkerDao.getElderlyList(user.getDni()));
-     return "";
-     }*/
+        model.addAttribute("elderlyList", socialWorkerDao.getElderlyList(user.getDni()));
+        return "socialWorker/elderlyListSW";
+    }
 
 
 }

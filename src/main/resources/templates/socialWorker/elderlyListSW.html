@@ -11,48 +11,43 @@
 <body>
 <div layout:fragment="content">
     <div class="container">
-        <h1>Lista de Personas mayores asociadas a</h1>
+        <h1>Lista de Personas mayores asociadas a este trabajador social</h1>
 
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>DNI</th>
                 <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Email</th>
+                <th>Apellido</th>
+                <th>Dirección</th>
+                <th>Alergias</th>
                 <th>Telefono</th>
-                <th>Usuario</th>
-                <th>Contraseña</th>
+                <th>Cumpleaños</th>
+                <th>Cuenta Bancaria</th>
+                <th>Trabajador Social</th>
+                <th>Email</th>
                 <th></th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="socialWorker: ${socialWorkers}">
+            <tr th:each="socialWorker: ${elderlyList}">
                 <td th:text="${socialWorker.dni}"></td>
                 <td th:text="${socialWorker.nombre}"></td>
                 <td th:text="${socialWorker.apellidos}"></td>
-                <td th:text="${socialWorker.email}"></td>
+                <td th:text="${socialWorker.direccion}"></td>
+                <td th:text="${socialWorker.alergias}"></td>
                 <td th:text="${socialWorker.telefono}"></td>
-                <td th:text="${socialWorker.usuario}"></td>
-                <td th:text="${socialWorker.contrasena}"></td>
+                <td th:text="${#temporals.format(socialWorker.birthday,'dd/MM/yyyy')}"></td>
+                <td th:text="${socialWorker.cuentaBancaria}"></td>
+                <td th:text="${socialWorker.socialWorker}"></td>
+                <td th:text="${socialWorker.email}"></td>
                 <td>
-                    <a th:href="@{/socialWorker/update/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-warning"
-                       role="button"
-                       aria-pressed="true">Editar</a>
-
-                </td>
-                <td>
-                    <a th:href="@{/socialWorker/delete/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-danger"
-                       role="button"
-                       aria-pressed="true">Borrar</a>
-
                 </td>
             </tr>
             </tbody>
         </table>
-        <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Trabajador Social</a>
-        <a href="/login" class="btn btn btn-danger" role="button" aria-pressed="true">Atrás</a>
+
     </div>
 </div>
 </body>
