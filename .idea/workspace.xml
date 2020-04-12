@@ -113,6 +113,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.MajorsACasaApplication" />
+      <item itemvalue="Spring Boot.MajorsACasaApplication" />
     </list>
   </component>
   <component name="SvnConfiguration">
