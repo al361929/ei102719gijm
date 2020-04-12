@@ -1,6 +1,7 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.VolunteerDao;
+import majorsacasa.model.UserDetails;
 import majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -71,5 +72,12 @@ public class VolunteerController extends Controlador {
     public String processDelete(@PathVariable String dni) {
         volunteerDao.deleteVolunteer(dni);
         return "redirect:../list";
+    }
+
+    @RequestMapping(value = "/scheduleList")
+    public String getScheduleList(HttpSession session, Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("scheduleList", volunteerDao.getScheduleList(user.getDni()));
+        return "volunteer/scheduleList";
     }
 }
