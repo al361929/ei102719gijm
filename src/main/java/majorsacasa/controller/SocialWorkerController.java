@@ -2,6 +2,7 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.SocialWorkerDao;
 import majorsacasa.model.SocialWorker;
+import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/socialWorker")
@@ -63,11 +66,13 @@ public class SocialWorkerController {
         return "redirect:../list";
     }
 
-    //@RequestMapping(value ="")
-    // public String getElderlyList(Model model){
+/*    @RequestMapping(value ="")
+    public String getElderlyList(HttpSession session,Model model){
+        UserDetails user = (UserDetails) session.getAttribute("user");
 
-    // model.addAllAttributes("elderlyList",socialWorkerDao.getElderlyList());
-    // }
+     model.addAllAttributes("elderlyList",socialWorkerDao.getElderlyList(user.getDni()));
+     return "";
+     }*/
 
 
 }
