@@ -6,6 +6,7 @@ import java.time.LocalTime;
 
 public class VolunteerTime {
 
+    Integer idVolunteerTime;
     String dniVolunteer;
     String dniElderly;
     String mes;
@@ -18,6 +19,14 @@ public class VolunteerTime {
 
     public VolunteerTime() {
 
+    }
+
+    public Integer getIdVolunteerTime() {
+        return idVolunteerTime;
+    }
+
+    public void setIdVolunteerTime(Integer idVolunteerTime) {
+        this.idVolunteerTime = idVolunteerTime;
     }
 
     public String getDniVolunteer() {
@@ -79,7 +88,8 @@ public class VolunteerTime {
     @Override
     public String toString() {
         return "VolunteerTime{" +
-                "dniVolunteer='" + dniVolunteer + '\'' +
+                "idVolunteerTime='" + idVolunteerTime + '\'' +
+                ", dniVolunteer='" + dniVolunteer + '\'' +
                 ", dniElderly='" + dniElderly + '\'' +
                 ", mes='" + mes + '\'' +
                 ", dia=" + dia +
