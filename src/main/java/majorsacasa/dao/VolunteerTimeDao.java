@@ -43,8 +43,8 @@ public class VolunteerTimeDao {
 
     public void updateVolunteerTime(VolunteerTime volunteerTime) {
         System.out.println(volunteerTime.toString());
-        jdbcTemplate.update("UPDATE VolunteerTime SET endTime=?, availability=?, dniElderly=? WHERE dniVolunteer=? AND mes=? AND dia=? AND startTime=?", volunteerTime.getEndTime(),
-                volunteerTime.getAvailability(), volunteerTime.getDniElderly(), volunteerTime.getDniVolunteer(), volunteerTime.getMes(), volunteerTime.getDia(), volunteerTime.getStartTime());
+        jdbcTemplate.update("UPDATE VolunteerTime SET dniElderly=?, endTime=?, availability=?, mes=?, dia=?, startTime=? WHERE dniVolunteer=? AND mes=? AND dia=? AND startTime=?", volunteerTime.getDniElderly(), volunteerTime.getEndTime(),
+                volunteerTime.getAvailability(), volunteerTime.getMes(), volunteerTime.getDia(), volunteerTime.getStartTime(), volunteerTime.getDniVolunteer(), volunteerTime.getMes(), volunteerTime.getDia(), volunteerTime.getStartTime());
     }
 
     public void deleteVolunteerTime(String dniVolunteer, String mes, Integer dia, LocalTime startTime) {
