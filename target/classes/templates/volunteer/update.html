@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
 <head>
     <title>Modificar Voluntario</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-</head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
 <body>
+<div layout:fragment="content">
+
+    <div class="container">
 <h1>Modificar Voluntario</h1>
 <h2 th:text="${volunteer.nombre}"></h2>
 <form action="#" th:action="@{/volunteer/update}"
@@ -67,5 +71,7 @@
         </tr>
     </table>
 </form>
+</div>
+</div>
 </body>
 </html>

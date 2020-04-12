@@ -17,8 +17,8 @@ public class MajorsaCasaControllerAdvice {
         return mav;
     }
 
-
-        public ModelAndView handleNotFoundError(HttpServletResponse response,
+    @ExceptionHandler(value=NoHandlerFoundException.class)
+    public ModelAndView handleNotFoundError(HttpServletResponse response,
                                         NoHandlerFoundException ex) {
             ModelAndView mav = new ModelAndView("error/exceptionError");
             mav.addObject("message", "La pàgina no existe");
