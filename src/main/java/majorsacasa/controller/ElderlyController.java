@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
 
 @Controller
 @RequestMapping("/elderly")
-public class ElderlyController {
+public class ElderlyController  extends Controlador{
 
     private ElderlyDao elderlyDao;
 
@@ -28,9 +29,10 @@ public class ElderlyController {
     }
 
     @RequestMapping("/list")
-    public String listElderlys(Model model) {
+    public String listElderlys(HttpSession session,Model model) {
         model.addAttribute("elderlys", elderlyDao.getElderlys());
-        return "elderly/list";
+        return gestionarAcceso(session,model,"SocialWorker","elderly/list");
+
     }
 
     @RequestMapping(value = "/add")
