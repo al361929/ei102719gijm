@@ -5,30 +5,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/DemoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/DemoExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ExceptionGeneratorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/greeting.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/MajorsaCasaControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/MajorsaCasaControllerAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/SocialWorkerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/SocialWorkerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/VolunteerTimeRowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/VolunteerTimeRowMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/error/exceptionError.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/error/exceptionError.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/controller/MajorsaCasaControllerAdvice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/controller/MajorsaCasaControllerAdvice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/controller/SocialWorkerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/controller/SocialWorkerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/controller/VolunteerTimeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/controller/VolunteerTimeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/dao/CompanyDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/dao/CompanyDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/dao/FakeUserProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/dao/FakeUserProvider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/dao/VolunteerTimeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/dao/VolunteerTimeDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/dao/VolunteerTimeRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/dao/VolunteerTimeRowMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/model/VolunteerTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/model/VolunteerTime.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/contract/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/contract/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/error/exceptionError.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/error/exceptionError.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/nav1.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/nav1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/scheduleList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/scheduleList.html" afterDir="false" />
-    </list>
+    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +75,7 @@
       <recent name="D:\UJI\Diseño e implementacion de sistemas de informacion\ei102719gijm\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MajorsACasaApplication">
+  <component name="RunManager" selected="Spring Boot.MajorsACasaApplication">
     <configuration name="MajorsACasaApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <envs>
         <env name="USER" value="ei102719gijm" />
@@ -132,6 +109,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.MajorsACasaApplication" />
+      <item itemvalue="Spring Boot.MajorsACasaApplication" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -309,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586703697194</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Resaltado del volunteertime cuando se modifica o añade">
+      <created>1586718401723</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1586718401723</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,12 +310,13 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hola" />
@@ -352,7 +338,8 @@
     <MESSAGE value="Nav mejorado" />
     <MESSAGE value="htmls" />
     <MESSAGE value="Login corregido." />
-    <option name="LAST_COMMIT_MESSAGE" value="Login corregido." />
+    <MESSAGE value="Resaltado del volunteertime cuando se modifica o añade" />
+    <option name="LAST_COMMIT_MESSAGE" value="Resaltado del volunteertime cuando se modifica o añade" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -411,10 +398,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="430" y="225" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1582733892236" />
-    <state x="329" y="0" key="CommitChangelistDialog2" timestamp="1586603576210">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="234" y="0" key="CommitChangelistDialog2" timestamp="1586718452570">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="234" y="0" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1586512831845" />
+    <state x="234" y="0" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1586718452570" />
     <state x="1585" y="0" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583791723782" />
     <state x="234" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1583333433744" />
     <state x="329" y="0" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1586603576210" />
