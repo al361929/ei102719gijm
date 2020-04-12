@@ -2,6 +2,7 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.ElderlyDao;
 import majorsacasa.model.Elderly;
+import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,10 +37,11 @@ public class ElderlyController  extends Controlador{
     }
 
     @RequestMapping(value = "/add")
-    public String addElderly(Model model) {
+    public String addElderly(HttpSession session,Model model) {
         model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", new Elderly());
-        return "elderly/add";
+        return gestionarAcceso(session,model,"SocialWorker","elderly/add");
+
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -51,10 +53,12 @@ public class ElderlyController  extends Controlador{
     }
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
-    public String editElderly(Model model, @PathVariable String dni) {
+    public String editElderly(HttpSession session,Model model, @PathVariable String dni) {
+
         model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", elderlyDao.getElderly(dni));
-        return "elderly/update";
+        return gestionarAcceso(session,model,"SocialWorker","elderly/update");
+       // return "elderly/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -67,7 +71,11 @@ public class ElderlyController  extends Controlador{
     }
 
     @RequestMapping(value = "/delete/{dni}")
-    public String processDelete(@PathVariable String dni) {
+    public String processDelete(HttpSession session,@PathVariable String dni) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        if (!user.getTipo().equals("SocialWorker")) {
+            return "error/sinPermiso";
+        }
         elderlyDao.deleteElderly(dni);
         return "redirect:../list";
     }
