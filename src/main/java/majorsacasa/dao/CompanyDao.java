@@ -1,13 +1,10 @@
 package majorsacasa.dao;
 
 import majorsacasa.model.Company;
-import majorsacasa.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.ColumnMapRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +42,10 @@ public class CompanyDao {
     public void updateCompany(Company company) {
         jdbcTemplate.update("UPDATE Company SET name=?, responsiblename=?, address=?, phonenumber=?, user_name=?, password=?, releaseDate=?, bankaccount=?, email=? WHERE nif=?", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
                 company.getNumeroTelf(), company.getNombreUsuario(), company.getPassword(), company.getFechaAlta(), company.getCuentaBancaria(), company.getEmail(), company.getNif());
+    }
+
+    public Boolean checkCompany(String nif) {
+        List<String> compañias = jdbcTemplate.queryForList("SELECT nif FROM Company", String.class);
+        return compañias.contains(nif);
     }
 }
