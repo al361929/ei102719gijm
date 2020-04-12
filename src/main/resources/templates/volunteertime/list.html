@@ -15,6 +15,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>ID VolunteerTime</th>
             <th>DNI Voluntario</th>
             <th>DNI Persona Mayor</th>
             <th>Dia</th>
@@ -28,6 +29,7 @@
         </thead>
         <tbody>
         <tr th:each="voluntario: ${volunteerstime}">
+            <td th:text="${voluntario.idVolunteerTime}"></td>
             <td th:text="${voluntario.dniVolunteer}"></td>
             <td th:text="${voluntario.dniElderly}"></td>
             <td th:text="${voluntario.dia}"></td>
@@ -36,13 +38,13 @@
             <td th:text="${voluntario.endTime}"></td>
             <td th:text="${voluntario.availability}"></td>
             <td>
-                <a th:href="@{/volunteertime/update/{dni}/{dia}/{mes}/{startTime}(dni=${voluntario.dniVolunteer}, dia=${voluntario.dia}, mes=${voluntario.mes}, startTime=${voluntario.startTime})}"
+                <a th:href="@{/volunteertime/update/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
                    class="btn btn btn-warning"
                    role="button"
                    aria-pressed="true">Editar</a>
             </td>
             <td>
-                <a th:href="@{/volunteertime/delete/{dni}/{dia}/{mes}/{startTime}(dni=${voluntario.dniVolunteer}, dia=${voluntario.dia}, mes=${voluntario.mes}, startTime=${voluntario.startTime})}"
+                <a th:href="@{/volunteertime/delete/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
                    class="btn btn btn-danger"
                    role="button"
                    aria-pressed="true">Borrar</a>
