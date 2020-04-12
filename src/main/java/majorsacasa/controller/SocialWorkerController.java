@@ -66,7 +66,7 @@ public class SocialWorkerController {
     // @RequestMapping(value ="")
     // public String getElderlyList(Model model){
 
-    //  model.addAllAttributes("elderlyList",socialWorkerDao.getElderlyList());
+    // model.addAllAttributes("elderlyList",socialWorkerDao.getElderlyList());
     // }
 
 
