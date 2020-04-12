@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 
 @Controller
@@ -24,8 +23,10 @@ public class InvoiceController {
     }
 
     @RequestMapping("/list")
-    public String listInvoices(Model model) {
+    public String listInvoices(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("invoices", invoiceDao.getInvoices());
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return "invoice/list";
     }
 
@@ -41,7 +42,7 @@ public class InvoiceController {
             return "invoice/add";
         }
         invoiceDao.addInvoice(invoice);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
     }
 
     @RequestMapping(value = "/update/{idInvoice}", method = RequestMethod.GET)
@@ -58,7 +59,7 @@ public class InvoiceController {
             return "invoice/update";
         }
         invoiceDao.updateInvoice(invoice);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
     }
 
     @RequestMapping(value = "/delete/{invoiceNumber}")

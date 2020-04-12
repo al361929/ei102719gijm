@@ -27,7 +27,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="request: ${requests}">
+        <tr th:each="request: ${requests}"
+            th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info text-white'">
             <td th:text="${request.idRequest}"></td>
             <td th:text="${request.idService}"></td>
             <td th:text="${request.dni}"></td>

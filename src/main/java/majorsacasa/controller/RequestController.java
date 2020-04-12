@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/request")
@@ -23,8 +22,10 @@ public class RequestController {
     }
 
     @RequestMapping("/list")
-    public String listRequests(Model model) {
+    public String listRequests(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("requests", requestDao.getRequests());
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return "request/list";
     }
 
@@ -39,7 +40,7 @@ public class RequestController {
         if (bindingResult.hasErrors())
             return "request/add";
         requestDao.addRequest(request);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + request.getIdRequest();
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
@@ -54,10 +55,8 @@ public class RequestController {
         System.out.println(request.toString());
         if (bindingResult.hasErrors())
             return "request/update";
-        System.out.println(request.toString());
         requestDao.updateRequest(request);
-        System.out.println(request.toString());
-        return "redirect:list";
+        return "redirect:list?nuevo=" + request.getIdRequest();
     }
 
     @RequestMapping(value = "/delete/{id}")

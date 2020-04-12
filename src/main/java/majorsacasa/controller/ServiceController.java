@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/service")
@@ -24,8 +23,10 @@ public class ServiceController {
     }
 
     @RequestMapping("/list")
-    public String listService(Model model) {
+    public String listService(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("services", serviceDao.getServices());
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return "service/list";
     }
 
@@ -40,7 +41,7 @@ public class ServiceController {
         if (bindingResult.hasErrors())
             return "service/add";
         serviceDao.addService(service);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + service.getIdService();
     }
 
     @RequestMapping(value = "/update/{idService}", method = RequestMethod.GET)
@@ -56,7 +57,7 @@ public class ServiceController {
             return "service/update";
         }
         serviceDao.updateService(service);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + service.getIdService();
     }
 
     @RequestMapping(value = "/delete/{idService}")

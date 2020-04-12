@@ -7,14 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/elderly")
@@ -30,9 +28,11 @@ public class ElderlyController  extends Controlador{
     }
 
     @RequestMapping("/list")
-    public String listElderlys(HttpSession session,Model model) {
+    public String listElderlys(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("elderlys", elderlyDao.getElderlys());
-        return gestionarAcceso(session,model,"SocialWorker","elderly/list");
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
+        return gestionarAcceso(session, model, "SocialWorker", "elderly/list");
 
     }
 
@@ -49,7 +49,7 @@ public class ElderlyController  extends Controlador{
         if (bindingResult.hasErrors())
             return "elderly/add";
         elderlyDao.addElderly(elderly);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + elderly.getDni();
     }
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
@@ -67,7 +67,7 @@ public class ElderlyController  extends Controlador{
         if (bindingResult.hasErrors())
             return "elderly/update";
         elderlyDao.updateElderly(elderly);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + elderly.getDni();
     }
 
     @RequestMapping(value = "/delete/{dni}")

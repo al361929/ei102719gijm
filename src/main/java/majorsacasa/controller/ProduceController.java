@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/produce")
@@ -23,8 +22,10 @@ public class ProduceController {
     }
 
     @RequestMapping("/list")
-    public String listProduces(Model model) {
+    public String listProduces(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("produces", produceDao.getProduces());
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return "produce/list";
     }
 
@@ -39,7 +40,7 @@ public class ProduceController {
         if (bindingResult.hasErrors())
             return "produce/add";
         produceDao.addProduce(produce);
-        return "redirect:list";
+        return "redirect:list?req=" + produce.getIdRequest() + "?inv=" + produce.getIdInvoice();
     }
 
 

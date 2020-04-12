@@ -6,13 +6,11 @@ import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/company")
@@ -26,8 +24,10 @@ public class CompanyController extends Controlador{
     }
 
     @RequestMapping("/list")
-    public String listCompanies(Model model) {
+    public String listCompanies(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("companies", companyDao.getCompanies());
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return "company/list";
     }
 
@@ -42,7 +42,7 @@ public class CompanyController extends Controlador{
         if (bindingResult.hasErrors())
             return "company/add";
         companyDao.addCompany(company);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + company.getNif();
     }
 
     @RequestMapping(value = "/update/{nif}", method = RequestMethod.GET)
@@ -57,7 +57,7 @@ public class CompanyController extends Controlador{
         if (bindingResult.hasErrors())
             return "company/update";
         companyDao.updateCompany(company);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + company.getNif();
     }
 
     @RequestMapping(value = "/delete/{nif}")

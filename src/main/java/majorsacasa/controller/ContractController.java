@@ -8,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/contract")
@@ -30,8 +28,10 @@ public class ContractController {
 
 
     @RequestMapping("/list")
-    public String listContracts(Model model) {
+    public String listContracts(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("contracts", contractDao.getContracts());
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return "contract/list";
     }
 
@@ -52,7 +52,7 @@ public class ContractController {
         if (bindingResult.hasErrors())
             return "contract/add";
         contractDao.addContract(contract);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + contract.getIdContract();
     }
 
     @RequestMapping(value = "/update/{idContract}", method = RequestMethod.GET)
@@ -67,7 +67,7 @@ public class ContractController {
         if (bindingResult.hasErrors())
             return "contract/update";
         contractDao.updateContract(contract);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + contract.getIdContract();
     }
 
     @RequestMapping(value = "/delete/{idContract}")

@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/offer")
@@ -22,8 +21,10 @@ public class OffersController {
     }
 
     @RequestMapping("/list")
-    public String listOffers(Model model) {
+    public String listOffers(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("offers", offersDao.getOffers());
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return "offer/list";
     }
 
@@ -38,7 +39,7 @@ public class OffersController {
         if (bindingResult.hasErrors())
             return "offer/add";
         offersDao.addOffers(offers);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + offers.getIdService();
     }
 
     //POSIBLE FALLO
