@@ -79,4 +79,25 @@ public class ElderlyController  extends Controlador{
         elderlyDao.deleteElderly(dni);
         return "redirect:../list";
     }
+
+
+    @RequestMapping(value = "/perfil", method = RequestMethod.GET)
+    public String editElderlyPerfil(HttpSession session,Model model) {
+        String destino= sesionAbierta(session,model,"elderly/perfil");
+        if (destino!=null) return destino;
+
+        model.addAttribute("allergies", alergias);
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("elderly", elderlyDao.getElderly(user.getDni()));
+        return gestionarAcceso(session,model,"ElderlyPeople","elderly/perfil");
+    }
+
+    @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
+    public String processUpdatePerfilSubmit(@ModelAttribute("elderly") Elderly elderly,
+                                      BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "elderly/updatePerfil";
+        elderlyDao.updateElderly(elderly);
+        return "redirect:/";
+    }
 }

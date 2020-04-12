@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Perfil persona mayor</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+<body>
+<div layout:fragment="content">
+
+    <div class="container">
+        <h1>Datos de la persona</h1>
+        <h2 th:text="${elderly.nombre}"></h2>
+        <form action="#" th:action="@{/elderly/updatePerfil}"
+              th:object="${elderly}" method="post">
+            <table>
+                <tr>
+                    <td><label>DNI</label></td>
+                    <td><input type="text" class="form-control" th:field="*{dni}" readonly
+                               style="background-color: rgb(170, 170, 170)"/></td>
+                </tr>
+                <tr>
+                    <td><label>Nombre</label></td>
+                    <td><input type="text" class="form-control" th:field="*{nombre}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Apellidos</label></td>
+                    <td><input type="text" class="form-control" th:field="*{apellidos}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Direccion</label></td>
+                    <td><input type="text" class="form-control" th:field="*{direccion}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Alergias</label></td>
+                    <!--            <td><input type="text" class="form-control" th:field="*{alergias}"/></td>-->
+                    <td>
+                        <li th:each="allergie : *{alergias}">
+                            <input type="checkbox" name="allergies" th:value="${allergie}" th:field="*{alergias}"/>
+                            <label th:text="${allergie}"></label>
+                        </li>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Telefono</label></td>
+                    <td><input type="tel" class="form-control" th:field="*{telefono}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Usuario</label></td>
+                    <td><input type="text" class="form-control" th:field="*{usuario}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Contraseña</label></td>
+                    <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Email</label></td>
+                    <td><input type="text" class="form-control" th:field="*{email}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de alta</label></td>
+                    <td><input type="date" class="form-control" th:field="*{releaseDate}" readonly/></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de baja</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Trabajador Social</label></td>
+                    <td><input type="text" class="form-control" th:field="*{socialWorker}" readonly/></td>
+                </tr>
+                <tr>
+                    <td><label>Cumpleaños</label></td>
+                    <td><input type="date" class="form-control" th:field="*{birthday}" readonly/></td>
+                </tr>
+                <tr>
+                    <td><label>Cuenta Bancaria</label></td>
+                    <td><input type="text" class="form-control" th:field="*{cuentaBancaria}"
+                               placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="35"
+                               required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Modifica persona mayor" class="btn btn btn-warning"
+                                           role="button"
+                                           aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a href="/#" class="btn btn btn-danger" role="button"
+                                       aria-pressed="true">Atrás</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -2,6 +2,7 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.CompanyDao;
 import majorsacasa.model.Company;
+import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/company")
-public class CompanyController {
+public class CompanyController extends Controlador{
 
     private CompanyDao companyDao;
 
@@ -63,5 +66,24 @@ public class CompanyController {
         return "redirect:../list";
     }
 
+    @RequestMapping(value = "/perfil")
+    public String getPerfil(HttpSession session, Model model) {
+        String destino= sesionAbierta(session,model,"company/perfil");
+        if (destino!=null) return destino;
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("company", companyDao.getCompany(user.getDni()));
+        return gestionarAcceso(session,model,"Company","company/perfil");
+
+        //return "socialWorker/elderlyListSW";
+    }
+    @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
+    public String processUpdatePerfilSubmit(@ModelAttribute("company") Company company,
+                                      BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "company/perfil";
+        companyDao.updateCompany(company);
+        return "redirect:/";
+    }
 
 }
