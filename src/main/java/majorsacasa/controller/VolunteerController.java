@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/volunteer")
-public class VolunteerController {
+public class VolunteerController extends Controlador {
 
     private VolunteerDao volunteerDao;
 
@@ -23,11 +25,14 @@ public class VolunteerController {
         this.volunteerDao = volunteerDao;
     }
 
+
     @RequestMapping("/list")
-    public String listVolunteers(Model model) {
+    public String listVolunteers(HttpSession session, Model model) {
         model.addAttribute("volunteers", volunteerDao.getVolunteers());
-        return "volunteer/list";
+       return gestionarAcceso(session,model,"SocialWorker","volunteer/list");
     }
+
+
 
     @RequestMapping(value = "/add")
     public String addVolunteer(Model model) {

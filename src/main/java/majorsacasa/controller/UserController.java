@@ -26,6 +26,9 @@ public class UserController {
             session.setAttribute("nextUrl", "user/list");
             return "login";
         }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        if (user.getTipo().equals("SocialWorker"))
+            return "login";
         model.addAttribute("users", userDao.listAllUsers());
         return "user/list";
     }
