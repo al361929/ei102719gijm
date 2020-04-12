@@ -1,5 +1,6 @@
 package majorsacasa.dao;
 
+import javafx.scene.chart.ScatterChart;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.Volunteer;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,7 +15,12 @@ public final class UserRowMapper implements RowMapper<UserDetails> {
         UserDetails user = new UserDetails();
         user.setUsername(rs.getString("user_name"));
         user.setPassword(rs.getString("password"));
-        user.setDni(rs.getString("dni"));
+        try {
+            user.setDni(rs.getString("dni"));
+        }catch(Exception e){
+                user.setDni(rs.getString("nif"));
+            }
+
 
         return user;
     }

@@ -4,6 +4,7 @@ package majorsacasa.controller;
 import majorsacasa.dao.VolunteerTimeDao;
 import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,25 +45,24 @@ public class VolunteerTimeController {
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/update/{dniVoluntario}/{dia}/{mes}/{startTime}", method = RequestMethod.GET)
-    public String editVolunteerTime(Model model, @PathVariable String dniVoluntario, @PathVariable Integer dia, @PathVariable String mes, @PathVariable LocalTime startTime) {
-        model.addAttribute("volunteertime", volunteerTimeDao.getVolunteerTime(dniVoluntario, mes, dia, startTime));
+    @RequestMapping(value = "/update/{idVolunteerTime}", method = RequestMethod.GET)
+    public String editVolunteerTime(Model model, @PathVariable Integer idVolunteerTime) {
+        model.addAttribute("volunteertime", volunteerTimeDao.getVolunteerTime(idVolunteerTime));
         return "volunteertime/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("volunteertime") VolunteerTime volunteertime,
                                       BindingResult bindingResult) {
-        //System.out.println(volunteertime.toString());
         if (bindingResult.hasErrors())
             return "volunteertime/update";
         volunteerTimeDao.updateVolunteerTime(volunteertime);
         return "redirect:list";
     }
 
-    @RequestMapping(value = "/delete/{dniVoluntario}/{dia}/{mes}/{startTime}")
-    public String processDelete(@PathVariable String dniVoluntario, @PathVariable Integer dia, @PathVariable String mes, @PathVariable LocalTime startTime) {
-        volunteerTimeDao.deleteVolunteerTime(dniVoluntario, mes, dia, startTime);
+    @RequestMapping(value = "/delete/{idVolunteerTime}")
+    public String processDelete(@PathVariable Integer idVolunteerTime) {
+        volunteerTimeDao.deleteVolunteerTime(idVolunteerTime);
         return "redirect:../list";
     }
 }

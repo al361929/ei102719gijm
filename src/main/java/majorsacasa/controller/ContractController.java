@@ -1,5 +1,6 @@
 package majorsacasa.controller;
 
+import majorsacasa.dao.CompanyDao;
 import majorsacasa.dao.ContractDao;
 import majorsacasa.model.Contract;
 import majorsacasa.model.Volunteer;
@@ -12,16 +13,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/contract")
 public class ContractController {
 
     private ContractDao contractDao;
+    private CompanyDao companyDao;
 
     @Autowired
-    public void setContractDao(ContractDao contractDao) {
+    public void setContractDao(ContractDao contractDao, CompanyDao companyDao) {
         this.contractDao = contractDao;
+        this.companyDao = companyDao;
     }
+
 
     @RequestMapping("/list")
     public String listContracts(Model model) {
@@ -37,6 +43,12 @@ public class ContractController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
+        Boolean check = companyDao.checkCompany(contract.getNifcompany());
+        System.out.println(check);
+        if (!check) {
+            bindingResult.rejectValue("nifcompany", "badnif", "No existe la empresa");
+            return "contract/add";
+        }
         if (bindingResult.hasErrors())
             return "contract/add";
         contractDao.addContract(contract);
@@ -63,4 +75,5 @@ public class ContractController {
         contractDao.deleteContract(idContract);
         return "redirect:../list";
     }
+
 }

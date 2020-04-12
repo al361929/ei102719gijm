@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
 <head>
     <title>Añadir contrato</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-</head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
 <body>
+<div layout:fragment="content">
+
+    <div class="container">
 <h2>Añadir Contrato</h2>
 <form action="#" th:action="@{/contract/add}"
       th:object="${contract}" method="post">
     <table>
         <tr>
             <td><label>Num Contrato</label></td>
-            <td><input type="number" class="form-control" th:field="*{idContract}"/></td>
+            <td><input type="number" class="form-control" th:field="*{idContract}" readonly/></td>
         </tr>
         <tr>
             <td><label>NIF Empresa</label></td>
             <td><input type="text" class="form-control" th:field="*{nifcompany}"/></td>
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('nifcompany')}"
+                     th:errors="*{nifcompany}"></div>
+            </td>
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('nifcompany')}"><a href="/company/add"
+                                                                                 class="btn btn btn-danger"
+                                                                                 role="button"
+                                                                                 aria-pressed="true">Añadir nueva
+                    empresa</a></div>
+            </td>
         </tr>
         <tr>
             <td><label>DNI Persona Mayor</label></td>
@@ -52,6 +67,7 @@
                                aria-pressed="true">Atrás</a></td>
         </tr>
     </table>
-</form>
+</form></div>
+</div>
 </body>
 </html>
