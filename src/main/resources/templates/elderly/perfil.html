@@ -11,7 +11,7 @@
 <div layout:fragment="content">
 
     <div class="container">
-        <h1>Datos de la persona</h1>
+        <h1>Datos del usuario</h1>
         <h2 th:text="${elderly.nombre}"></h2>
         <form action="#" th:action="@{/elderly/updatePerfil}"
               th:object="${elderly}" method="post">

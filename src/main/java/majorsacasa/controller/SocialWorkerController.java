@@ -75,5 +75,28 @@ public class SocialWorkerController extends Controlador{
         //return "socialWorker/elderlyListSW";
     }
 
+    @RequestMapping(value = "/perfil", method = RequestMethod.GET)
+    public String editSocialWorkerPerfil(HttpSession session,Model model) {
+        String destino= sesionAbierta(session,model,"elderly/perfil");
+        if (destino!=null) return destino;
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        model.addAttribute("socialWorker", socialWorkerDao.getSocialWorker(user.getDni()));
+        //return "socialWorker/update";
+        return gestionarAcceso(session,model,"SocialWorker","socialWorker/perfil");
+
+    }
+
+    @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
+    public String processUpdateSubmitPerfil(@ModelAttribute("socialWorker") SocialWorker socialWorker,
+                                      BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "socialWorker/perfil";
+        socialWorkerDao.updateSocialWorker(socialWorker);
+        return "redirect:/";
+    }
+
+
+
 
 }
