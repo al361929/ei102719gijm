@@ -12,7 +12,7 @@ public final class VolunteerTimeRowMapper implements RowMapper<VolunteerTime> {
     @Override
     public VolunteerTime mapRow(ResultSet rs, int i) throws SQLException {
         VolunteerTime volunteerTime = new VolunteerTime();
-        volunteerTime.setDia(rs.getInt("idVolunteertTime"));
+        volunteerTime.setDia(rs.getInt("idVolunteerTime"));
         volunteerTime.setDniVolunteer(rs.getString("dniVolunteer"));
         volunteerTime.setDniElderly(rs.getString("dniElderly"));
         volunteerTime.setMes(rs.getString("mes"));

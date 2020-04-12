@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/socialWorker")
-public class SocialWorkerController {
+public class SocialWorkerController extends Controlador{
 
     private SocialWorkerDao socialWorkerDao;
 
@@ -70,7 +70,9 @@ public class SocialWorkerController {
     public String getElderlyList(HttpSession session,Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("elderlyList", socialWorkerDao.getElderlyList(user.getDni()));
-        return "socialWorker/elderlyListSW";
+        return gestionarAcceso(session,model,"SocialWorker","socialWorker/elderlyListSW");
+
+        //return "socialWorker/elderlyListSW";
     }
 
 
