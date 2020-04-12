@@ -1,5 +1,7 @@
 package majorsacasa.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalTime;
 
 public class VolunteerTime {
@@ -8,7 +10,9 @@ public class VolunteerTime {
     String dniElderly;
     String mes;
     int dia;
+    @DateTimeFormat(pattern = "HH:mm")
     LocalTime startTime;
+    @DateTimeFormat(pattern = "HH:mm")
     LocalTime endTime;
     String availability;
 

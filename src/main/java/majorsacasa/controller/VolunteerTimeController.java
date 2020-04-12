@@ -4,6 +4,7 @@ package majorsacasa.controller;
 import majorsacasa.dao.VolunteerTimeDao;
 import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,7 +46,7 @@ public class VolunteerTimeController {
     }
 
     @RequestMapping(value = "/update/{dniVoluntario}/{dia}/{mes}/{startTime}", method = RequestMethod.GET)
-    public String editVolunteerTime(Model model, @PathVariable String dniVoluntario, @PathVariable Integer dia, @PathVariable String mes, @PathVariable LocalTime startTime) {
+    public String editVolunteerTime(Model model, @PathVariable String dniVoluntario, @PathVariable Integer dia, @PathVariable String mes, @DateTimeFormat(pattern = "HH:mm") @PathVariable LocalTime startTime) {
         model.addAttribute("volunteertime", volunteerTimeDao.getVolunteerTime(dniVoluntario, mes, dia, startTime));
         return "volunteertime/update";
     }
@@ -61,7 +62,7 @@ public class VolunteerTimeController {
     }
 
     @RequestMapping(value = "/delete/{dniVoluntario}/{dia}/{mes}/{startTime}")
-    public String processDelete(@PathVariable String dniVoluntario, @PathVariable Integer dia, @PathVariable String mes, @PathVariable LocalTime startTime) {
+    public String processDelete(@PathVariable String dniVoluntario, @PathVariable Integer dia, @PathVariable String mes, @DateTimeFormat(pattern = "HH:mm") @PathVariable LocalTime startTime) {
         volunteerTimeDao.deleteVolunteerTime(dniVoluntario, mes, dia, startTime);
         return "redirect:../list";
     }
