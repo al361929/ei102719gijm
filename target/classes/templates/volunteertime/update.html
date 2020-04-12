@@ -17,6 +17,11 @@
       th:object="${volunteertime}" method="post">
     <table>
         <tr>
+            <td><label>ID VolunteerTime</label></td>
+            <td><input type="text" class="form-control" th:field="*{idVolunteerTime}" readonly
+                       style="background-color: rgb(170, 170, 170)"/></td>
+        </tr>
+        <tr>
             <td><label>Mes</label></td>
             <td><select type="text" class="form-control" th:field="*{mes}"/>
                 <option>Enero</option>

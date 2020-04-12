@@ -8,11 +8,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalTime;
+import java.util.Optional;
 
 @Repository
 @RequestMapping("/volunteertime")
@@ -26,8 +25,10 @@ public class VolunteerTimeController {
     }
 
     @RequestMapping("/list")
-    public String listVolunteerTimes(Model model) {
+    public String listVolunteerTimes(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("volunteerstime", volunteerTimeDao.getVolunteersTime());
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return "volunteertime/list";
     }
 
@@ -42,7 +43,7 @@ public class VolunteerTimeController {
         if (bindingResult.hasErrors())
             return "volunteertime/add";
         volunteerTimeDao.addVolunteerTime(volunteertime);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + volunteertime.getIdVolunteerTime();
     }
 
     @RequestMapping(value = "/update/{idVolunteerTime}", method = RequestMethod.GET)
@@ -57,7 +58,7 @@ public class VolunteerTimeController {
         if (bindingResult.hasErrors())
             return "volunteertime/update";
         volunteerTimeDao.updateVolunteerTime(volunteertime);
-        return "redirect:list";
+        return "redirect:list?nuevo=" + volunteertime.getIdVolunteerTime();
     }
 
     @RequestMapping(value = "/delete/{idVolunteerTime}")
