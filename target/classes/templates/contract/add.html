@@ -17,11 +17,15 @@
     <table>
         <tr>
             <td><label>Num Contrato</label></td>
-            <td><input type="number" class="form-control" th:field="*{idContract}"/></td>
+            <td><input type="number" class="form-control" th:field="*{idContract}" readonly/></td>
         </tr>
         <tr>
             <td><label>NIF Empresa</label></td>
             <td><input type="text" class="form-control" th:field="*{nifcompany}"/></td>
+            <td><div class="error" th:if="${#fields.hasErrors('nifcompany')}"
+                 th:errors="*{nifcompany}"></div></td>
+            <td><div class="error" th:if="${#fields.hasErrors('nifcompany')}"><a href="/company/add" class="btn btn btn-danger" role="button"
+                                                                                 aria-pressed="true">Añadir nueva empresa</a></div> </td>
         </tr>
         <tr>
             <td><label>DNI Persona Mayor</label></td>
