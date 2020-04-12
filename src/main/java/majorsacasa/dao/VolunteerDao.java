@@ -1,12 +1,17 @@
 package majorsacasa.dao;
 
 
+import com.sun.org.apache.bcel.internal.generic.Select;
+import majorsacasa.model.Elderly;
 import majorsacasa.model.Volunteer;
+import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,4 +59,14 @@ public class VolunteerDao {
                 volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getTelefono(), volunteer.getUsuario(),
                 volunteer.getContraseña(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getEmail(), volunteer.getDni());
     }
+
+    //listar horarios para el usuario
+    public List<VolunteerTime> getScheduleList(String dnivolunteer) {
+        try {
+            return jdbcTemplate.query("Select * From volunteertime Where dnivolunteer = ?", new VolunteerTimeRowMapper(), dnivolunteer);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<VolunteerTime>();
+        }
+    }
+
 }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Horarios del usuario</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+<body>
+<div layout:fragment="content">
+
+    <div class="container">
+        <h1>Lista de mis horarios</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>DNI Voluntario</th>
+                <th>DNI Persona Mayor</th>
+                <th>Dia</th>
+                <th>Mes</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Disponibilidad</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="voluntario: ${scheduleList}">
+                <td th:text="${voluntario.dniVolunteer}"></td>
+                <td th:text="${voluntario.dniElderly}"></td>
+                <td th:text="${voluntario.dia}"></td>
+                <td th:text="${voluntario.mes}"></td>
+                <td th:text="${voluntario.startTime}"></td>
+                <td th:text="${voluntario.endTime}"></td>
+                <td th:text="${voluntario.availability}"></td>
+                <td>
+                    <a th:href="@{/volunteertime/update/{dni}/{dia}/{mes}/{startTime}(dni=${voluntario.dniVolunteer}, dia=${voluntario.dia}, mes=${voluntario.mes}, startTime=${voluntario.startTime})}"
+                       class="btn btn btn-warning"
+                       role="button"
+                       aria-pressed="true">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{/volunteertime/delete/{dni}/{dia}/{mes}/{startTime}(dni=${voluntario.dniVolunteer}, dia=${voluntario.dia}, mes=${voluntario.mes}, startTime=${voluntario.startTime})}"
+                       class="btn btn btn-danger"
+                       role="button"
+                       aria-pressed="true">Borrar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir horario</a>
+        <a href="/login" class="btn btn btn-danger" role="button" aria-pressed="true">Atrás</a>
+    </div>
+</div>
+
+</body>
+</html>
