@@ -86,6 +86,8 @@ public class VolunteerController extends Controlador {
         String destino= sesionAbierta(session,model,"volunteer/perfil");
         if (destino!=null) return destino;
         UserDetails user = (UserDetails) session.getAttribute("user");
+        if (user.getTipo()!="Volunteer") return "error/sinPermiso";
+
         model.addAttribute("volunteer", volunteerDao.getVolunteer(user.getDni()));
         //return "volunteer/update";
         return gestionarAcceso(session,model,"Volunteer","volunteer/perfil");

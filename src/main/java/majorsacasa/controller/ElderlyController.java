@@ -88,6 +88,9 @@ public class ElderlyController  extends Controlador{
 
         model.addAttribute("allergies", alergias);
         UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (user.getTipo()!="ElderlyPeople") return "error/sinPermiso";
+
         model.addAttribute("elderly", elderlyDao.getElderly(user.getDni()));
         return gestionarAcceso(session,model,"ElderlyPeople","elderly/perfil");
     }

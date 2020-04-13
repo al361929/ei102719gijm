@@ -72,6 +72,8 @@ public class CompanyController extends Controlador{
         if (destino!=null) return destino;
 
         UserDetails user = (UserDetails) session.getAttribute("user");
+        if (user.getTipo()!="Company") return "error/sinPermiso";
+
         model.addAttribute("company", companyDao.getCompany(user.getDni()));
         return gestionarAcceso(session,model,"Company","company/perfil");
 

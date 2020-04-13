@@ -80,6 +80,8 @@ public class SocialWorkerController extends Controlador{
         String destino= sesionAbierta(session,model,"elderly/perfil");
         if (destino!=null) return destino;
         UserDetails user = (UserDetails) session.getAttribute("user");
+        if (user.getTipo()!="SocialWorker") return "error/sinPermiso";
+
 
         model.addAttribute("socialWorker", socialWorkerDao.getSocialWorker(user.getDni()));
         //return "socialWorker/update";
