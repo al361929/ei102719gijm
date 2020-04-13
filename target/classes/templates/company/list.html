@@ -31,7 +31,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="empresa: ${companies}">
+        <tr th:each="empresa: ${companies}"
+            th:class="${#strings.equals(nuevo,empresa.nif)}?'bg-info text-white'">
             <td th:text="${empresa.nif}"></td>
             <td th:text="${empresa.nombre}"></td>
             <td th:text="${empresa.nombreResponsable}"></td>

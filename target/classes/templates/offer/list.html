@@ -21,7 +21,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="offer: ${offers}">
+        <tr th:each="offer: ${offers}"
+            th:class="${#strings.equals(nuevo,offer.nif)}?'bg-info text-white'">
             <td th:text="${offer.getIdService()}"></td>
             <td th:text="${offer.getNif()}"></td>
         </tr>

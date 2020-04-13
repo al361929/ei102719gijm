@@ -22,7 +22,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="produce: ${produces}">
+        <tr th:each="produce: ${produces}"
+            th:class="${#strings.equals(nuevo,produce.idRequest)}?'bg-info text-white'">
             <td th:text="${produce.idInvoice}"></td>
             <td th:text="${produce.idRequest}"></td>
         </tr>
