@@ -20,27 +20,6 @@ public class MajorsaCasaControllerAdvice {
         mav.addObject("errorName", ex.getErrorName());
         return mav;
     }
-   /*@ExceptionHandler(value=NoHandlerFoundException.class)
-   @RequestMapping(value = "/error")
-   public ModelAndView handleNotFoundError(HttpServletResponse response,
-                                        NoHandlerFoundException ex) {
-            ModelAndView mav = new ModelAndView("error/exceptionError");
-            mav.addObject("message", "La pàgina no existe");
-            mav.addObject("errorName", "Error 404");
-            return mav;
 
-        }
-
-    @RequestMapping("/anotherService")
-    public String generator() throws Exception {
-        throw new Exception("excepcion");}
-    }
-   @RequestMapping("/greeting")
-   public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World")String name, Model model){
-       model.addAttribute("name", name);
-       return "greeting";
-   }
-
-*/
 
 }
