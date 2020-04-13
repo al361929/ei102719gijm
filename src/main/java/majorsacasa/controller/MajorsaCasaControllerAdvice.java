@@ -34,13 +34,13 @@ public class MajorsaCasaControllerAdvice {
     @RequestMapping("/anotherService")
     public String generator() throws Exception {
         throw new Exception("excepcion");}
-    }*/
+    }
    @RequestMapping("/greeting")
    public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World")String name, Model model){
        model.addAttribute("name", name);
        return "greeting";
    }
 
-
+*/
 
 }

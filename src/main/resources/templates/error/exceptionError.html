@@ -2,18 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="~{fragments/base}">
 <head>
-    <title>Sin Permiso</title>
-
+    <meta charset="UTF-8">
+    <title>Mensaje del Error</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
-</head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
 <body>
 <div layout:fragment="content">
+
     <div class="container">
-        <h3 align="center">Error</h3>
+    <div class="alert" th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'alert-danger' : 'alert-info'">
+        <h5 th:text="${message}"></h5>
+        <!--<p>Pulsa el botó per anar a l'inici o el botó del navegador per anar cap enrere</p>
     </div>
+    <div th:align="center">
+        <a href="/" class="btn btn-primary" th:align="left">Inici</a>
+        -->
+    </div>
+</div>
 </div>
 
 </body>
