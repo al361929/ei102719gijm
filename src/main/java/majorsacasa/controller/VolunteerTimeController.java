@@ -77,9 +77,12 @@ public class VolunteerTimeController {
         return "volunteertime/addTime";
     }
     @RequestMapping(value = "/addVolunteer", method = RequestMethod.POST)
-    public String processAddSubmitVolunteer(@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
+    public String processAddSubmitVolunteer(HttpSession session,@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "volunteertime/addVolunteertime";
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        volunteertime.setDniVolunteer(user.getDni());
         volunteerTimeDao.addVolunteerTime(volunteertime);
         return "redirect:/";
     }

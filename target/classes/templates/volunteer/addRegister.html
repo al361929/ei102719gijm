@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                     <td><label>Telefono</label></td>
-                    <td><input type="tel" class="form-control" th:field="*{telefono}" required/></td>
+                    <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="9" required/></td>
                 </tr>
                 <tr>
                     <td><label>Usuario</label></td>
@@ -44,10 +44,10 @@
                     <td><label>Contraseña</label></td>
                     <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
                 </tr>
-                <tr>
-                    <td><label>Fecha de alta</label></td>
-                    <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>
-                </tr>
+                <!--                <tr>-->
+                <!--                    <td><label>Fecha de alta</label></td>-->
+                <!--                    <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>-->
+                <!--                </tr>-->
                 <tr>
                     <td><label>E-mail</label></td>
                     <td><input type="text" class="form-control" th:field="*{email}" required/></td>
