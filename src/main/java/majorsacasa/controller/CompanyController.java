@@ -45,6 +45,20 @@ public class CompanyController extends Controlador{
         return "redirect:list?nuevo=" + company.getNif();
     }
 
+    @RequestMapping(value = "/addRegister")
+    public String addCompanyRegister(Model model) {
+        model.addAttribute("company", new Company());
+        return "company/addRegister";
+    }
+
+    @RequestMapping(value = "/addRegister", method = RequestMethod.POST)
+    public String processAddSubmitRegister(@ModelAttribute("company") Company company, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "company/addRegister";
+        companyDao.addCompany(company);
+        return "redirect:login" + company.getNif();
+    }
+
     @RequestMapping(value = "/update/{nif}", method = RequestMethod.GET)
     public String editCompany(Model model, @PathVariable String nif) {
         model.addAttribute("company", companyDao.getCompany(nif));

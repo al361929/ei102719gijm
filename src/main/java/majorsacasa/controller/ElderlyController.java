@@ -52,13 +52,28 @@ public class ElderlyController  extends Controlador{
         return "redirect:list?nuevo=" + elderly.getDni();
     }
 
+    @RequestMapping(value = "/addRegister")
+    public String addElderlyRegister(Model model) {
+        model.addAttribute("allergies", alergias);
+        model.addAttribute("elderly", new Elderly());
+        return "/elderly/addRegister";
+
+    }
+
+    @RequestMapping(value = "/addRegister", method = RequestMethod.POST)
+    public String processAddSubmitRegister(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "elderly/addRegister";
+        elderlyDao.addElderly(elderly);
+        return "redirect:/login";
+    }
+
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
-    public String editElderly(HttpSession session,Model model, @PathVariable String dni) {
+    public String editElderly(HttpSession session, Model model, @PathVariable String dni) {
 
         model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", elderlyDao.getElderly(dni));
-        return gestionarAcceso(session,model,"SocialWorker","elderly/update");
-       // return "elderly/update";
+        return gestionarAcceso(session, model, "SocialWorker", "elderly/update");
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

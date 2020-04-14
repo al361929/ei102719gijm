@@ -33,8 +33,6 @@ public class VolunteerController extends Controlador {
         return gestionarAcceso(session, model, "SocialWorker", "volunteer/list");
     }
 
-
-
     @RequestMapping(value = "/add")
     public String addVolunteer(Model model) {
         model.addAttribute("volunteer", new Volunteer());
@@ -47,6 +45,20 @@ public class VolunteerController extends Controlador {
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
         return "redirect:list?nuevo=" + volunteer.getDni();
+    }
+
+    @RequestMapping(value = "/addRegister")
+    public String addVolunteerRegister(Model model) {
+        model.addAttribute("volunteer", new Volunteer());
+        return "volunteer/addRegister";
+    }
+
+    @RequestMapping(value = "/addRegister", method = RequestMethod.POST)
+    public String processAddSubmitRegister(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "volunteer/addRegister";
+        volunteerDao.addVolunteer(volunteer);
+        return "redirect:login";
     }
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
