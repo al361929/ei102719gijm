@@ -37,7 +37,11 @@
         </tr>
         <tr>
             <td><label>Estado</label></td>
-            <td><input type="text" class="form-control" th:field="*{state}"/></td>
+            <td><select type="text" class="form-control" th:selected="${request.state}" th:field="*{state}"/>
+                <option>Pendiente</option>
+                <option>Rechazada</option>
+                <option>Aceptada</option>
+                </select></td>
         </tr>
         <tr>
             <td><label>Fecha de aceptación</label></td>
