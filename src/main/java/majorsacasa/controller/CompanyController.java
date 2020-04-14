@@ -117,5 +117,12 @@ public class CompanyController extends Controlador{
         return gestionarAcceso(session, model, "Company", "company/serviceList");
     }
 
+    @RequestMapping(value = "/contractList")
+    public String getContractList(HttpSession session, Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("contractList", companyDao.getContractsList(user.getDni()));
+        return gestionarAcceso(session, model, "Company", "company/contractList");
+    }
+
 
 }
