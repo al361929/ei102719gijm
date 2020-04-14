@@ -1,5 +1,6 @@
 package majorsacasa.dao;
 
+import majorsacasa.model.Contract;
 import majorsacasa.model.Elderly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -55,6 +56,15 @@ public class ElderlyDao {
     public Boolean checkElderly(String dni) {
         List<String> elderlys = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople", String.class);
         return elderlys.contains(dni);
+    }
+
+
+    public List<Contract> getContractList(String dni) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM contract WHERE dnielderly=?", new ContractRowMapper(), dni);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Contract>();
+        }
     }
 
 }

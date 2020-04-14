@@ -112,10 +112,17 @@ public class ElderlyController  extends Controlador{
 
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
     public String processUpdatePerfilSubmit(@ModelAttribute("elderly") Elderly elderly,
-                                      BindingResult bindingResult) {
+                                            BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/updatePerfil";
         elderlyDao.updateElderly(elderly);
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/ederly/contractList")
+    public String getContractList(HttpSession session, Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("contractList", elderlyDao.getContractList(user.getDni()));
+        return gestionarAcceso(session, model, "ElderlyPeople", "elderlyPeople/contractList");
     }
 }

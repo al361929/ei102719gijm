@@ -124,5 +124,4 @@ public class CompanyController extends Controlador{
         return gestionarAcceso(session, model, "Company", "company/contractList");
     }
 
-
 }

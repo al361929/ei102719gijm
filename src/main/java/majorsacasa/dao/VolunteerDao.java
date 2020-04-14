@@ -2,6 +2,7 @@ package majorsacasa.dao;
 
 
 import com.sun.org.apache.bcel.internal.generic.Select;
+import majorsacasa.model.Contract;
 import majorsacasa.model.Elderly;
 import majorsacasa.model.Volunteer;
 import majorsacasa.model.VolunteerTime;
