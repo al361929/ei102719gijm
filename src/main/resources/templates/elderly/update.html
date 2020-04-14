@@ -23,11 +23,11 @@
         </tr>
         <tr>
             <td><label>Nombre</label></td>
-            <td><input type="text" class="form-control" th:field="*{nombre}"/></td>
+            <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
         </tr>
         <tr>
             <td><label>Apellidos</label></td>
-            <td><input type="text" class="form-control" th:field="*{apellidos}"/></td>
+            <td><input type="text" class="form-control" th:field="*{apellidos}" required/></td>
         </tr>
         <tr>
             <td><label>Direccion</label></td>
@@ -45,7 +45,7 @@
         </tr>
         <tr>
             <td><label>Telefono</label></td>
-            <td><input type="tel" class="form-control" th:field="*{telefono}"/></td>
+            <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="9" required/></td>
         </tr>
         <tr>
             <td><label>Usuario</label></td>

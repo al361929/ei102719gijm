@@ -2,7 +2,9 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.CompanyDao;
 import majorsacasa.dao.ContractDao;
+import majorsacasa.dao.ElderlyDao;
 import majorsacasa.model.Contract;
+import majorsacasa.model.Elderly;
 import majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +21,13 @@ public class ContractController {
 
     private ContractDao contractDao;
     private CompanyDao companyDao;
+    private ElderlyDao elderlyDao;
 
     @Autowired
-    public void setContractDao(ContractDao contractDao, CompanyDao companyDao) {
+    public void setContractDao(ContractDao contractDao, CompanyDao companyDao, ElderlyDao elderlyDao) {
         this.contractDao = contractDao;
         this.companyDao = companyDao;
+        this.elderlyDao = elderlyDao;
     }
 
 
@@ -43,14 +47,16 @@ public class ContractController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
-        Boolean check = companyDao.checkCompany(contract.getNifcompany());
-        System.out.println(check);
-        if (!check) {
+        Boolean checkCompany = companyDao.checkCompany(contract.getNifcompany());
+        if (!checkCompany) {
             bindingResult.rejectValue("nifcompany", "badnif", "No existe la empresa");
             return "contract/add";
         }
-        if (bindingResult.hasErrors())
+        Boolean checkElderly = elderlyDao.checkElderly(contract.getDnielderly());
+        if (!checkElderly) {
+            bindingResult.rejectValue("dnielderly", "baddni", "No existe la persona mayor");
             return "contract/add";
+        }
         contractDao.addContract(contract);
         return "redirect:list?nuevo=" + contract.getIdContract();
     }

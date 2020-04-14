@@ -51,5 +51,9 @@ public class ElderlyDao {
         jdbcTemplate.update("DELETE FROM ElderlyPeople WHERE dni=?", elderly);
     }
 
+    public Boolean checkElderly(String dni) {
+        List<String> elderlys = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople", String.class);
+        return elderlys.contains(dni);
+    }
 
 }

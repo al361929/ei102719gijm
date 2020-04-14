@@ -37,6 +37,17 @@
         <tr>
             <td><label>DNI Persona Mayor</label></td>
             <td><input type="text" class="form-control" th:field="*{dnielderly}"/></td>
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('dnielderly')}"
+                     th:errors="*{dnielderly}"></div>
+            </td>
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('dnielderly')}"><a href="/elderly/add"
+                                                                                 class="btn btn btn-danger"
+                                                                                 role="button"
+                                                                                 aria-pressed="true">Añadir nueva
+                    persona mayor</a></div>
+            </td>
         </tr>
         <tr>
             <td><label>Fecha de alta</label></td>
@@ -44,11 +55,11 @@
         </tr>
         <tr>
             <td><label>Fecha de baja</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateDown}" required/></td>
+            <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
         </tr>
         <tr>
             <td><label>Cantidad</label></td>
-            <td><input type="number" class="form-control" th:field="*{cantidad}"/></td>
+            <td><input type="number" class="form-control" th:field="*{cantidad}" min="1"/></td>
         </tr>
         <tr>
             <td><label>Descripción</label></td>
