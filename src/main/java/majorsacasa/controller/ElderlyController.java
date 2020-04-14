@@ -40,7 +40,7 @@ public class ElderlyController  extends Controlador{
     public String addElderly(HttpSession session,Model model) {
         model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", new Elderly());
-        return "elderly/add";
+        return gestionarAcceso(session,model,"SocialWorker","elderly/add");
 
     }
 
