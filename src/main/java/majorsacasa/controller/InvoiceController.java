@@ -2,18 +2,20 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.InvoiceDao;
 import majorsacasa.model.Invoice;
+import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 
 @Controller
 @RequestMapping("/invoice")
-public class InvoiceController {
+public class InvoiceController extends Controlador{
 
     private InvoiceDao invoiceDao;
 
@@ -62,10 +64,16 @@ public class InvoiceController {
         return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
     }
 
-    @RequestMapping(value = "/delete/{invoiceNumber}")
+    @RequestMapping(value = "/delete/{invoiceElderly}")
     public String processDelete(@PathVariable Integer invoiceNumber) {
         invoiceDao.deleteInvoice(invoiceNumber);
         return "redirect:../list";
+    }
+    @RequestMapping(value = "/invoiceListElderly")
+    public String getInvoiceCompanyList(HttpSession session, Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("invoiceCompanyList", invoiceDao.getInvoiceElderly(user.getDni()));
+        return gestionarAcceso(session, model, "ElderlyPeople", "invoice/invoiceListElderly");
     }
 
 }
