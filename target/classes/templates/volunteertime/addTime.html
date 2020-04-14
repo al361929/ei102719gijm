@@ -8,11 +8,12 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" >
 
-    <div class="container">
+    <div class="container" th:object="${session}">
 <h2>Añadir horario</h2>
-<form action="#" th:action="@{/volunteertime/add}"
+
+        <form action="#" th:action="@{/volunteertime/addVolunteer}"
       th:object="${volunteertime}" method="post">
     <table>
         <tr>
@@ -60,7 +61,8 @@
         </tr>
         <tr>
             <td><label>DNI Voluntario</label></td>
-            <td><input type="text" class="form-control" th:field="*{dniVolunteer}" required/></td>
+            <td><input type="text" class="form-control" th:field="*{dniVolunteer}"   required/></td>
+
         </tr>
         <tr>
             <td><label>DNI Persona Mayor</label></td>
@@ -71,7 +73,7 @@
                                    aria-pressed="true"/></td>
         </tr>
         <tr>
-            <td colspan="2"><a href="/volunteertime/list" class="btn btn btn-danger" role="button" aria-pressed="true">Atrás</a>
+            <td colspan="2"><a href="/volunteer/scheduleList" class="btn btn btn-danger" role="button" aria-pressed="true">Atrás</a>
             </td>
         </tr>
     </table>

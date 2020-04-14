@@ -93,6 +93,8 @@ public class VolunteerController extends Controlador {
         return "volunteer/scheduleList";
     }
 
+
+
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
     public String editVolunteerPerfil(HttpSession session,Model model) {
         String destino= sesionAbierta(session,model,"volunteer/perfil");

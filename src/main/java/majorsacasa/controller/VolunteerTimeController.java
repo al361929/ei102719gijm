@@ -2,6 +2,7 @@ package majorsacasa.controller;
 
 
 import majorsacasa.dao.VolunteerTimeDao;
+import majorsacasa.model.UserDetails;
 import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalTime;
 import java.util.Optional;
 
@@ -65,5 +67,20 @@ public class VolunteerTimeController {
     public String processDelete(@PathVariable Integer idVolunteerTime) {
         volunteerTimeDao.deleteVolunteerTime(idVolunteerTime);
         return "redirect:../list";
+    }
+    @RequestMapping(value = "/addTime")
+    public String addVolunteerTimeVolunteer(HttpSession session,Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        model.addAttribute("volunteertime", new VolunteerTime());
+        model.addAttribute("dniVolunteer",user.getDni());
+        return "volunteertime/addTime";
+    }
+    @RequestMapping(value = "/addVolunteer", method = RequestMethod.POST)
+    public String processAddSubmitVolunteer(@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "volunteertime/addVolunteertime";
+        volunteerTimeDao.addVolunteerTime(volunteertime);
+        return "redirect:/";
     }
 }
