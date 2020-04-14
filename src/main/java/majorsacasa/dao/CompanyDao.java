@@ -1,6 +1,7 @@
 package majorsacasa.dao;
 
 import majorsacasa.model.Company;
+import majorsacasa.model.Contract;
 import majorsacasa.model.Invoice;
 import majorsacasa.model.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,12 +54,19 @@ public class CompanyDao {
     }
 
 
-
     public List<Service> getServiceList(String nif) {
         try {
             return jdbcTemplate.query("SELECT s.* FROM service AS s JOIN offers AS o USING(idservice) WHERE nif=?", new ServiceRowMapper(), nif);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Service>();
+        }
+    }
+
+    public List<Contract> getContractsList(String nif) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM contract WHERE nifcompany=?", new ContractRowMapper(), nif);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Contract>();
         }
     }
 }
