@@ -82,7 +82,7 @@ public class VolunteerTimeController {
         if (bindingResult.hasErrors())
             return "volunteertime/addVolunteertime";
         UserDetails user = (UserDetails) session.getAttribute("user");
-
+        volunteertime.setDniElderly(null);
         volunteertime.setDniVolunteer(user.getDni());
         volunteerTimeDao.addVolunteerTime(volunteertime);
         return "redirect:/";

@@ -11,74 +11,83 @@
 <div layout:fragment="content">
 
     <div class="container">
-<h2>Añadir Contrato</h2>
-<form action="#" th:action="@{/contract/add}"
-      th:object="${contract}" method="post">
-    <table>
-        <tr>
-            <td><label>Num Contrato</label></td>
-            <td><input type="number" class="form-control" th:field="*{idContract}" readonly/></td>
-        </tr>
-        <tr>
-            <td><label>NIF Empresa</label></td>
-            <td><input type="text" class="form-control" th:field="*{nifcompany}"/></td>
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('nifcompany')}"
-                     th:errors="*{nifcompany}"></div>
-            </td>
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('nifcompany')}"><a href="/company/add"
-                                                                                 class="btn btn btn-danger"
-                                                                                 role="button"
-                                                                                 aria-pressed="true">Añadir nueva
-                    empresa</a></div>
-            </td>
-        </tr>
-        <tr>
-            <td><label>DNI Persona Mayor</label></td>
-            <td><input type="text" class="form-control" th:field="*{dnielderly}"/></td>
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('dnielderly')}"
-                     th:errors="*{dnielderly}"></div>
-            </td>
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('dnielderly')}"><a href="/elderly/add"
-                                                                                 class="btn btn btn-danger"
-                                                                                 role="button"
-                                                                                 aria-pressed="true">Añadir nueva
-                    persona mayor</a></div>
-            </td>
-        </tr>
-        <!--        <tr>-->
-        <!--            <td><label>Fecha de alta</label></td>-->
-        <!--            <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>-->
-        <!--        </tr>-->
-        <tr>
-            <td><label>Fecha de baja</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
-        </tr>
-        <tr>
-            <td><label>Cantidad</label></td>
-            <td><input type="number" class="form-control" th:field="*{cantidad}" min="1"/></td>
-        </tr>
-        <tr>
-            <td><label>Descripción</label></td>
-            <td><input type="text" class="form-control" th:field="*{descripcion}"/></td>
-        </tr>
-        <tr>
-            <td><label>Firma</label></td>
-            <td><input type="text" class="form-control" th:field="*{firma}"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Añadir contrato" class="btn btn btn-success" role="button"
-                                   aria-pressed="true"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><a href="/contract/list" class="btn btn btn-danger" role="button"
-                               aria-pressed="true">Atrás</a></td>
-        </tr>
-    </table>
-</form></div>
+        <h2>Añadir Contrato</h2>
+        <form action="#" th:action="@{/contract/add}"
+              th:object="${contract}" method="post">
+            <table>
+                <tr>
+                    <td><label>Num Contrato</label></td>
+                    <td><input type="number" class="form-control" th:field="*{idContract}" readonly/></td>
+                </tr>
+                <tr>
+                    <td><label>NIF Empresa</label></td>
+                    <td><input type="text" class="form-control" th:field="*{nifcompany}"/></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('nifcompany')}"
+                             th:errors="*{nifcompany}"></div>
+                    </td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('nifcompany')}"><a href="/company/add"
+                                                                                         class="btn btn btn-danger"
+                                                                                         role="button"
+                                                                                         aria-pressed="true">Añadir
+                            nueva
+                            empresa</a></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>DNI Persona Mayor</label></td>
+                    <td><input type="text" class="form-control" th:field="*{dnielderly}"/></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('dnielderly')}"
+                             th:errors="*{dnielderly}"></div>
+                    </td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('dnielderly')}"><a href="/elderly/add"
+                                                                                         class="btn btn btn-danger"
+                                                                                         role="button"
+                                                                                         aria-pressed="true">Añadir
+                            nueva
+                            persona mayor</a></div>
+                    </td>
+                </tr>
+                <!--        <tr>-->
+                <!--            <td><label>Fecha de alta</label></td>-->
+                <!--            <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>-->
+                <!--        </tr>-->
+                <tr>
+                    <td><label>Fecha de baja</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Cantidad</label></td>
+                    <td><input type="number" class="form-control" th:field="*{cantidad}" min="1"/></td>
+                </tr>
+                <tr>
+                    <td><label>Descripción</label></td>
+                    <td><input type="text" class="form-control" th:field="*{descripcion}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Firma</label></td>
+                    <td><input type="text" class="form-control" th:field="*{firma}"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Añadir contrato" class="btn btn btn-success"
+                                           role="button"
+                                           aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a href="/contract/list" class="btn btn btn-danger" role="button"
+                                       aria-pressed="true">Atrás</a></td>
+                </tr>
+            </table>
+        </form>
+        <form method="POST" action="/upload"
+              th:action="@{/upload}" enctype="multipart/form-data">
+            <input type="file" name="file" id="file"/> <br/>
+            <input type="submit" value="upload" name="upload" id="upload"/>
+        </form>
+    </div>
 </div>
 </body>
 </html>
