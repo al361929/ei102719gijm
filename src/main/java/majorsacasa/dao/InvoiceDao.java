@@ -44,4 +44,11 @@ public class InvoiceDao {
     public void deleteInvoice(Integer invoice) {
         jdbcTemplate.update("DELETE FROM Invoice WHERE idInvoice=?", invoice);
     }
+    public List<Invoice> getInvoiceElderly(String nif) {
+        try {
+            return jdbcTemplate.query(" select * from invoice where dnielderly =?", new InvoiceRowMapper(), nif);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Invoice>();
+        }
+    }
 }
