@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class VolunteerDao {
     //añadir
     public void addVolunteer(Volunteer volunteer) {
         jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?,?,?,?,?,?,?,?,?)", volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getDni(),
-                volunteer.getTelefono(), volunteer.getUsuario(), volunteer.getContraseña(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getEmail());
+                volunteer.getTelefono(), volunteer.getUsuario(), volunteer.getContraseña(), LocalDate.now(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getEmail());
     }
 
     //eliminar
