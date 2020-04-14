@@ -103,7 +103,7 @@ public class CompanyController extends Controlador{
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/invoiceList")
+    @RequestMapping(value = "/invoiceListCompany")
     public String getInvoiceCompanyList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("incoiceCompanyList", companyDao.getInvoiceCompany(user.getDni()));
