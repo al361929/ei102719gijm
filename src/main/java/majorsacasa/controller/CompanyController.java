@@ -93,13 +93,22 @@ public class CompanyController extends Controlador{
 
         //return "socialWorker/elderlyListSW";
     }
+
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
     public String processUpdatePerfilSubmit(@ModelAttribute("company") Company company,
-                                      BindingResult bindingResult) {
+                                            BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "company/perfil";
         companyDao.updateCompany(company);
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/invoiceList")
+    public String getInvoiceCompanyList(HttpSession session, Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("incoiceCompanyList", companyDao.getInvoiceCompany(user.getDni()));
+        return gestionarAcceso(session, model, "Company", "company/invoiceListCompany");
+    }
+
 
 }
