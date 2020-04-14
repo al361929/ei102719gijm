@@ -1,0 +1,49 @@
+body {
+    background-color: #F1F1F1;
+    font-family: 'Gentium Basic', serif;
+    color: #181717;
+}
+
+h1 {
+    /* background-color: #CB3E3E;*/
+    font-family: 'Arimo', sans-serif;
+    font-weight: bold;
+    margin-top: 100px;
+    color: black;
+}
+
+.botonReg {
+    font-family: 'Arimo', sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    color: #B32121;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: white;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #B32121;
+}
+
+.botonReg:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #B32121;
+}
+
+.container {
+    justify-content: space-evenly;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonContainer {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+}
