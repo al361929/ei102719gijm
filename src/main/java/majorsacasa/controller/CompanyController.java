@@ -103,11 +103,18 @@ public class CompanyController extends Controlador{
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/invoiceListCompany")
+    @RequestMapping(value = "/invoiceListComapny")
     public String getInvoiceCompanyList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
-        model.addAttribute("incoiceCompanyList", companyDao.getInvoiceCompany(user.getDni()));
+        model.addAttribute("invoiceCompanyList", companyDao.getInvoiceCompany(user.getDni()));
         return gestionarAcceso(session, model, "Company", "company/invoiceListCompany");
+    }
+
+    @RequestMapping(value = "/serviceList")
+    public String getServiceCompanyList(HttpSession session, Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("serviceCompanyList", companyDao.getServiceList(user.getDni()));
+        return gestionarAcceso(session, model, "Company", "company/serviceList");
     }
 
 

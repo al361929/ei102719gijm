@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="~{fragments/base}">
 <head>
-    <title>Listado de Facturas de la co</title>
+    <title>Servicios de una empresa</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -10,34 +10,33 @@
 </head>
 <body>
 <div layout:fragment="content">
-
     <div class="container">
-        <h1>Lista de mis facturas</h1>
+        <h1>Mis Servicios</h1>
 
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Número de factura</th>
-                <th>Fecha</th>
-                <th>Precio total</th>
-                <th>DNI Persona mayor</th>
+                <th>Número de servicio</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Tipo de servicio</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="company: ${invoiceCompanyList}"
-                th:class="${#strings.equals(nuevo,company.invoiceNumber)}?'bg-info text-white'">
-                <td th:text="${company.invoiceNumber}"></td>
-                <td th:text="${#temporals.format(company.dateInvoice,'dd/MM/yyyy')}"></td>
-                <td th:text="${company.totalPrice}"></td>
-                <td th:text="${company.dniElderly}"></td>
+            <tr th:each="company: ${serviceCompanyList}"
+                th:class="${#strings.equals(nuevo,company.getIdService())}?'bg-info text-white'">
+                <td th:text="${company.getIdService()}"></td>
+                <td th:text="${company.getDescription()}"></td>
+                <td th:text="${company.getPrice()}"></td>
+                <td th:text="${company.getServiceType()}"></td>
                 <td>
-                    <a th:href="@{/invoice/update/{invoiceNumber}(invoiceNumber=${company.invoiceNumber})}"
+                    <a th:href="@{/service/update/{idService}(idService=${service.idService})}"
                        class="btn btn btn-warning" role="button"
                        aria-pressed="true">Editar</a>
 
                 </td>
                 <td>
-                    <a th:href="@{/invoice/delete/{invoiceNumber}(invoiceNumber=${company.invoiceNumber})}"
+                    <a th:href="@{/service/delete/{idService}(idService=${service.idService})}"
                        class="btn btn btn-danger" role="button"
                        aria-pressed="true">Borrar</a>
 
@@ -45,10 +44,9 @@
             </tr>
             </tbody>
         </table>
-        <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Factura</a>
+        <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Servicio</a>
         <a href="/login" class="btn btn btn-danger" role="button" aria-pressed="true">Atrás</a>
     </div>
 </div>
-
 </body>
 </html>
