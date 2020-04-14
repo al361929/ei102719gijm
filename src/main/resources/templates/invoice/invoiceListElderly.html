@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="company: ${invoiceCompanyList}"
+            <tr th:each="company: ${invoiceList}"
                 th:class="${#strings.equals(nuevo,company.invoiceNumber)}?'bg-info text-white'">
                 <td th:text="${company.invoiceNumber}"></td>
                 <td th:text="${#temporals.format(company.dateInvoice,'dd/MM/yyyy')}"></td>

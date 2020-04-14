@@ -52,13 +52,7 @@ public class CompanyDao {
         return compañias.contains(nif);
     }
 
-    public List<Invoice> getInvoiceCompany(String nif) {
-        try {
-            return jdbcTemplate.query("SELECT * FROM invoice AS i JOIN produce AS pro USING(idinvoice) JOIN request AS r USING(idrequest) WHERE nif=?", new InvoiceRowMapper(), nif);
-        } catch (EmptyResultDataAccessException e) {
-            return new ArrayList<Invoice>();
-        }
-    }
+
 
     public List<Service> getServiceList(String nif) {
         try {
