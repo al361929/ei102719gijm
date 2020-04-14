@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -15,7 +17,7 @@ import java.util.Optional;
 public class RequestController {
 
     private RequestDao requestDao;
-
+    private List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada");
     @Autowired
     public void setRequestDao(RequestDao requestDao) {
         this.requestDao = requestDao;
@@ -45,6 +47,7 @@ public class RequestController {
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String editRequest(Model model, @PathVariable int id) {
+
         model.addAttribute("request", requestDao.getRequest(id));
         return "request/update";
     }
@@ -52,7 +55,7 @@ public class RequestController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("request") Request request,
                                       BindingResult bindingResult) {
-        System.out.println(request.toString());
+
         if (bindingResult.hasErrors())
             return "request/update";
         requestDao.updateRequest(request);

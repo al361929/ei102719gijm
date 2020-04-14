@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{fragments/base}">
+      layout:decorate="~{fragments/baseE}">
 <head>
     <title>Listado de Facturas de la co</title>
     <meta charset="UTF-8"/>
@@ -24,24 +24,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="company: ${invoiceList}"
-                th:class="${#strings.equals(nuevo,company.invoiceNumber)}?'bg-info text-white'">
-                <td th:text="${company.invoiceNumber}"></td>
-                <td th:text="${#temporals.format(company.dateInvoice,'dd/MM/yyyy')}"></td>
-                <td th:text="${company.totalPrice}"></td>
-                <td th:text="${company.dniElderly}"></td>
-                <td>
-                    <a th:href="@{/invoice/update/{invoiceNumber}(invoiceNumber=${company.invoiceNumber})}"
-                       class="btn btn btn-warning" role="button"
-                       aria-pressed="true">Editar</a>
+            <tr th:each="invoice: ${invoiceList}"
+                th:class="${#strings.equals(nuevo,invoice.invoiceNumber)}?'bg-info text-white'">
+                <td th:text="${invoice.invoiceNumber}"></td>
+                <td th:text="${#temporals.format(invoice.dateInvoice,'dd/MM/yyyy')}"></td>
+                <td th:text="${invoice.totalPrice}"></td>
+                <td th:text="${invoice.dniElderly}"></td>
 
-                </td>
-                <td>
-                    <a th:href="@{/invoice/delete/{invoiceNumber}(invoiceNumber=${company.invoiceNumber})}"
-                       class="btn btn btn-danger" role="button"
-                       aria-pressed="true">Borrar</a>
-
-                </td>
             </tr>
             </tbody>
         </table>

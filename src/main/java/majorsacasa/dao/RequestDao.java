@@ -32,7 +32,7 @@ public class RequestDao {
     }
 
     public void addRequest(Request request) {
-        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?,?,?)", request.getIdService(), LocalDate.now(), request.getState(),
+        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?,?,?)", request.getIdService(), LocalDate.now(), "Pendiente",
                 request.getDateAccept(), request.getDateReject(), request.getComments(), request.getDni(), request.getNif());
 
     }

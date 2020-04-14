@@ -72,7 +72,7 @@ public class InvoiceController extends Controlador{
     @RequestMapping(value = "/invoiceListElderly")
     public String getInvoiceCompanyList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
-        model.addAttribute("invoiceCompanyList", invoiceDao.getInvoiceElderly(user.getDni()));
+        model.addAttribute("invoiceList", invoiceDao.getInvoiceElderly(user.getDni()));
         return gestionarAcceso(session, model, "ElderlyPeople", "invoice/invoiceListElderly");
     }
 
