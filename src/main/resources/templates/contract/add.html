@@ -16,10 +16,6 @@
               th:object="${contract}" method="post">
             <table>
                 <tr>
-                    <td><label>Num Contrato</label></td>
-                    <td><input type="number" class="form-control" th:field="*{idContract}" readonly/></td>
-                </tr>
-                <tr>
                     <td><label>NIF Empresa</label></td>
                     <td><input type="text" class="form-control" th:field="*{nifcompany}"/></td>
                     <td>
@@ -72,6 +68,10 @@
                     <td><input type="text" class="form-control" th:field="*{firma}"/></td>
                 </tr>
                 <tr>
+                    <td><label>Contrato</label></td>
+                    <td><input type="file" name="file" id="file"/> <br/></td>
+                </tr>
+                <tr>
                     <td colspan="2"><input type="submit" value="Añadir contrato" class="btn btn btn-success"
                                            role="button"
                                            aria-pressed="true"/></td>
@@ -81,11 +81,6 @@
                                        aria-pressed="true">Atrás</a></td>
                 </tr>
             </table>
-        </form>
-        <form method="POST" action="/upload"
-              th:action="@{/upload}" enctype="multipart/form-data">
-            <input type="file" name="file" id="file"/> <br/>
-            <input type="submit" value="upload" name="upload" id="upload"/>
         </form>
     </div>
 </div>
