@@ -44,6 +44,7 @@ public class VolunteerTimeController {
     public String processAddSubmit(@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "volunteertime/add";
+        volunteertime.setDniElderly(null);
         volunteerTimeDao.addVolunteerTime(volunteertime);
         return "redirect:list?nuevo=" + volunteertime.getIdVolunteerTime();
     }
@@ -81,7 +82,7 @@ public class VolunteerTimeController {
         if (bindingResult.hasErrors())
             return "volunteertime/addVolunteertime";
         UserDetails user = (UserDetails) session.getAttribute("user");
-
+        volunteertime.setDniElderly(null);
         volunteertime.setDniVolunteer(user.getDni());
         volunteerTimeDao.addVolunteerTime(volunteertime);
         return "redirect:/";

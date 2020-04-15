@@ -43,7 +43,7 @@
             <td th:text="${#temporals.format(empresa.fechaAlta,'dd/MM/yyyy')}"></td>
             <td th:text="${empresa.cuentaBancaria}"></td>
             <td>
-                <a th:href="@{/company/update/{nif}(nif=${empresa.nif})}" class="btn btn btn-warning" role="button"
+                <a th:href="@{/company/update/{nif}(nif=${empresa.nif})}" class="btn btn btn-secondary" role="button"
                    aria-pressed="true">Editar</a>
 
             </td>

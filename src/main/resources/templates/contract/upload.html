@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Añadir PDF contrato</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Subir contrato en PDF</h1>
+    <td><h2 style="display: inline">Contrato Nº - </h2></td>
+    <td><h2 style="display: inline" th:text="${contrato.idContract}"></h2></td>
+    <br>
+    <table class="table table-striped">
+        <tr>
+            <td> NIF Compañia:</td>
+            <td th:text="${contrato.nifcompany}"></td>
+        </tr>
+        <tr>
+            <td> DNI Persona Mayor:</td>
+            <td th:text="${contrato.dnielderly}"></td>
+        </tr>
+        <tr>
+            <td> Firma:</td>
+            <td th:text="${contrato.firma}"></td>
+        </tr>
+        <tr>
+            <td> Cantidad:</td>
+            <td th:text="${contrato.cantidad}"></td>
+        </tr>
+        <tr>
+            <td> Descripción:</td>
+            <td th:text="${contrato.descripcion}"></td>
+        </tr>
+    </table>
+    <form method="POST" action="/upload" th:action="@{/upload}" enctype="multipart/form-data">
+        <input type="file" name="file" id="file"/> <br/>
+        <td><input type="submit" value="Añadir" name="upload" id="upload" class="btn btn btn-success"/></td>
+        <td><a href="/contract/list" class="btn btn btn-danger" role="button"
+               aria-pressed="true">Atrás</a></td>
+    </form>
+</div>
+</body>
+</html>
