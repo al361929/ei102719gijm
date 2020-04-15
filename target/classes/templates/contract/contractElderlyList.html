@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Gestionar Contratos</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+<body>
+<div layout:fragment="content">
+
+    <div class="container">
+        <h1>Lista de Contratos</h1>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nº Contrato</th>
+                <th>NIF</th>
+                <th>Firma</th>
+                <th>DNI Persona mayor</th>
+                <th>Cantidad</th>
+                <th>Descripción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="contrato: ${elderlyListC}"
+                th:class="${#strings.equals(nuevo,contrato.idContract)}?'bg-info text-white'">
+                <td th:text="${contrato.idContract}"></td>
+                <td th:text="${contrato.nifcompany}"></td>
+                <td th:text="${contrato.firma}"></td>
+                <td th:text="${contrato.dnielderly}"></td>
+                <td th:text="${contrato.cantidad}"></td>
+                <td th:text="${contrato.descripcion}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Contrato</a>
+        <a href="/login" class="btn btn btn-danger" role="button" aria-pressed="true">Atrás</a>
+    </div>
+</div>
+
+</body>
+</html>
