@@ -119,10 +119,5 @@ public class ElderlyController  extends Controlador{
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/ederly/contractList")
-    public String getContractList(HttpSession session, Model model) {
-        UserDetails user = (UserDetails) session.getAttribute("user");
-        model.addAttribute("contractList", elderlyDao.getContractList(user.getDni()));
-        return gestionarAcceso(session, model, "ElderlyPeople", "elderlyPeople/contractList");
-    }
+
 }

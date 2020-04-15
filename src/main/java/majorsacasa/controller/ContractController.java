@@ -5,6 +5,7 @@ import majorsacasa.dao.ContractDao;
 import majorsacasa.dao.ElderlyDao;
 import majorsacasa.model.Contract;
 import majorsacasa.model.Elderly;
+import majorsacasa.model.UserDetails;
 import majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/contract")
-public class ContractController {
+public class ContractController extends Controlador {
 
     private ContractDao contractDao;
     private CompanyDao companyDao;
@@ -80,6 +82,13 @@ public class ContractController {
     public String processDelete(@PathVariable Integer idContract) {
         contractDao.deleteContract(idContract);
         return "redirect:../list";
+    }
+
+    @RequestMapping(value = "/contractElderlyList")
+    public String getElderlyContractList(HttpSession session, Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("elderlyListC", contractDao.getElderlyList(user.getDni()));
+        return gestionarAcceso(session, model, "ElderlyPeople", "contract/contractElderlyList");
     }
 
 }

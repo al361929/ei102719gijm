@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="~{fragments/base}">
 <head>
-    <title>Lista de mis Contratos</title>
+    <title>Contratos del beneficiario</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
@@ -25,7 +26,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="contrato: ${contractList}"
+            <tr th:each="contrato: ${elderlyListC}"
                 th:class="${#strings.equals(nuevo,contrato.idContract)}?'bg-info text-white'">
                 <td th:text="${contrato.idContract}"></td>
                 <td th:text="${contrato.nifcompany}"></td>
@@ -33,7 +34,6 @@
                 <td th:text="${contrato.dnielderly}"></td>
                 <td th:text="${contrato.cantidad}"></td>
                 <td th:text="${contrato.descripcion}"></td>
-
             </tr>
             </tbody>
         </table>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -38,5 +39,13 @@ public class ContractDao {
     public void updateContract(Contract contract) {
         jdbcTemplate.update("UPDATE Contract SET dnielderly=?, nifcompany=?, firma=?, releaseDate=?, dateDown=?, quantity=?, description=? WHERE idContract=?", contract.getDnielderly(),
                 contract.getNifcompany(), contract.getFirma(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getIdContract());
+    }
+
+    public List<Contract> getElderlyList(String dni) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM contract WHERE dnielderly=?", new ContractRowMapper(), dni);
+        } catch (EnumConstantNotPresentException e) {
+            return new ArrayList<Contract>();
+        }
     }
 }

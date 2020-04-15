@@ -59,12 +59,5 @@ public class ElderlyDao {
     }
 
 
-    public List<Contract> getContractList(String dni) {
-        try {
-            return jdbcTemplate.query("SELECT * FROM contract WHERE dnielderly=?", new ContractRowMapper(), dni);
-        } catch (EmptyResultDataAccessException e) {
-            return new ArrayList<Contract>();
-        }
-    }
 
 }
