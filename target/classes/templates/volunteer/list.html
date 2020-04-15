@@ -38,7 +38,7 @@
         <td th:text="${#temporals.format(voluntario.dataDown,'dd/MM/yyyy')}"></td>
         <td th:text="${#temporals.format(voluntario.birthday,'dd/MM/yyyy')}"></td>
         <td>
-            <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.dni})}" class="btn btn btn-warning" role="button"
+            <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.dni})}" class="btn btn btn-secondary" role="button"
                aria-pressed="true">Editar</a>
 
         </td>

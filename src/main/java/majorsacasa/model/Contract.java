@@ -15,8 +15,10 @@ public class Contract {
     String descripcion;
     String nifcompany;
     String dnielderly;
+    Boolean contractPDF;
 
     public Contract() {
+        setContractPDF(false);
     }
 
     public Integer getIdContract() {
@@ -83,6 +85,14 @@ public class Contract {
         this.dnielderly = dnielderly;
     }
 
+    public Boolean getContractPDF() {
+        return contractPDF;
+    }
+
+    public void setContractPDF(Boolean contractPDF) {
+        this.contractPDF = contractPDF;
+    }
+
     @Override
     public String toString() {
         return "Contract{" +
@@ -94,6 +104,7 @@ public class Contract {
                 ", descripcion='" + descripcion + '\'' +
                 ", nifcompany='" + nifcompany + '\'' +
                 ", dnielderly='" + dnielderly + '\'' +
+                ", contractPDF=" + contractPDF +
                 '}';
     }
 }
