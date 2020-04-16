@@ -45,4 +45,12 @@ public class ServiceDao {
     public void deleteService(Integer idService) {
         jdbcTemplate.update("DELETE FROM Service WHERE idService=?", idService);
     }
+
+    public List<Service> getElderlyList(String dni) {
+        try {
+            return jdbcTemplate.query("SELECT s.* FROM contract AS c JOIN company AS cy USING(nif) JOIN offers AS o USING (nif) JOIN service AS s USING (idservice) WHERE dni=?", new ServiceRowMapper(), dni);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Service>();
+        }
+    }
 }

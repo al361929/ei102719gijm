@@ -3,17 +3,19 @@ package majorsacasa.controller;
 import majorsacasa.dao.ServiceDao;
 import majorsacasa.model.Service;
 import majorsacasa.model.SocialWorker;
+import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/service")
-public class ServiceController {
+public class ServiceController extends Controlador {
 
     private ServiceDao serviceDao;
 
@@ -64,5 +66,12 @@ public class ServiceController {
     public String processDelete(@PathVariable Integer idService) {
         serviceDao.deleteService(idService);
         return "redirect:../list";
+    }
+
+    @RequestMapping(value = "/elderlyList")
+    public String getElderlyList(HttpSession session, Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("elderlyList", serviceDao.getElderlyList(user.getDni()));
+        return gestionarAcceso(session, model, "ElderlyPeople", "/service/elderlyList");
     }
 }
