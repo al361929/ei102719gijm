@@ -1,9 +1,7 @@
 package majorsacasa.dao;
 
 
-import com.sun.org.apache.bcel.internal.generic.Select;
-import majorsacasa.model.Contract;
-import majorsacasa.model.Elderly;
+
 import majorsacasa.model.Volunteer;
 import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +38,7 @@ public class VolunteerDao {
     }
 
     public Volunteer getVolunteer(String volunteer) {
-        return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE dni=?", new VolunteerRowMapper(), volunteer);
+        return jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE dnivolunteer=?", new VolunteerRowMapper(), volunteer);
 
     }
 
@@ -52,12 +50,12 @@ public class VolunteerDao {
 
     //eliminar
     public void deleteVolunteer(String volunteer) {
-        jdbcTemplate.update("DELETE FROM Volunteer WHERE dni=?", volunteer);
+        jdbcTemplate.update("DELETE FROM Volunteer WHERE dnivolunteer=?", volunteer);
     }
 
     //editar
     public void updateVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, address=?, phonenumber=?, user_name=?, password=?, releaseDate=?, dateDown=?, birthday=?, email=? WHERE dni=?",
+        jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, address=?, phonenumber=?, user_name=?, password=?, releaseDate=?, dateDown=?, birthday=?, email=? WHERE dnivolunteer=?",
                 volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getTelefono(), volunteer.getUsuario(),
                 volunteer.getContraseña(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getEmail(), volunteer.getDni());
     }
@@ -65,7 +63,7 @@ public class VolunteerDao {
     //listar horarios para el usuario
     public List<VolunteerTime> getScheduleList(String dnivolunteer) {
         try {
-            return jdbcTemplate.query("Select * From volunteertime Where dnivolunteer = ?", new VolunteerTimeRowMapper(), dnivolunteer);
+            return jdbcTemplate.query("Select * From volunteertime Where dni = ?", new VolunteerTimeRowMapper(), dnivolunteer);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<VolunteerTime>();
         }

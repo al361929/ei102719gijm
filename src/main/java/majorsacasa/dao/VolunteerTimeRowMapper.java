@@ -13,7 +13,7 @@ public final class VolunteerTimeRowMapper implements RowMapper<VolunteerTime> {
     public VolunteerTime mapRow(ResultSet rs, int i) throws SQLException {
         VolunteerTime volunteerTime = new VolunteerTime();
         volunteerTime.setIdVolunteerTime(rs.getInt("idVolunteerTime"));
-        volunteerTime.setDniVolunteer(rs.getString("dniVolunteer"));
+        volunteerTime.setDniVolunteer(rs.getString("dni"));
         volunteerTime.setDniElderly(rs.getString("dni"));
         volunteerTime.setMes(rs.getString("mes"));
         volunteerTime.setDia(rs.getInt("dia"));

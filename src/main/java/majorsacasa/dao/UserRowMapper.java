@@ -1,8 +1,6 @@
 package majorsacasa.dao;
 
-import javafx.scene.chart.ScatterChart;
 import majorsacasa.model.UserDetails;
-import majorsacasa.model.Volunteer;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -18,7 +16,13 @@ public final class UserRowMapper implements RowMapper<UserDetails> {
         try {
             user.setDni(rs.getString("dni"));
         }catch(Exception e){
+            try {
                 user.setDni(rs.getString("nif"));
+            }catch(Exception ex){
+                user.setDni(rs.getString("dnivolunteer"));
+
+            }
+
             }
 
 
