@@ -19,6 +19,7 @@ public final class ContractRowMapper implements RowMapper<Contract> {
         contract.setDescripcion(rs.getString("description"));
         contract.setNifcompany(rs.getString("nif"));
         contract.setDnielderly(rs.getString("dni"));
+        contract.setContractPDF(rs.getBoolean("pdf"));
         return contract;
     }
 }

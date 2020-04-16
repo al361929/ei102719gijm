@@ -29,7 +29,7 @@ public class ContractDao {
 
     public void addContract(Contract contract) {
         jdbcTemplate.update("INSERT INTO Contract VALUES(DEFAULT,?,?,?,?,?,?,?)", contract.getFirma(), LocalDate.now(), contract.getDateDown(),
-                contract.getCantidad(), contract.getDescripcion(), contract.getNifcompany(), contract.getDnielderly());
+                contract.getCantidad(), contract.getDescripcion(), contract.getNifcompany(), contract.getDnielderly(), contract.getContractPDF());
     }
 
     public void deleteContract(Integer idContract) {
@@ -37,8 +37,12 @@ public class ContractDao {
     }
 
     public void updateContract(Contract contract) {
-        jdbcTemplate.update("UPDATE Contract SET dni=?, nif=?, firma=?, releaseDate=?, dateDown=?, quantity=?, description=? WHERE idContract=?", contract.getDnielderly(),
-                contract.getNifcompany(), contract.getFirma(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getIdContract());
+        jdbcTemplate.update("UPDATE Contract SET dni=?, nif=?, firma=?, releaseDate=?, dateDown=?, quantity=?, description=?, pdf=? WHERE idContract=?", contract.getDnielderly(),
+                contract.getNifcompany(), contract.getFirma(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getContractPDF(), contract.getIdContract());
+    }
+
+    public void uploadPDF(Integer idContract, Boolean pdf) {
+        jdbcTemplate.update("UPDATE Contract SET pdf=? WHERE idContract=?", pdf, idContract);
     }
 
     public List<Contract> getElderlyList(String dni) {

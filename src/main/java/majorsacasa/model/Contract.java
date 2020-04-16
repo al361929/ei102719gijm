@@ -18,7 +18,6 @@ public class Contract {
     Boolean contractPDF;
 
     public Contract() {
-        setContractPDF(false);
     }
 
     public Integer getIdContract() {

@@ -101,8 +101,7 @@ public class ContractController extends Controlador {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(uploadDirectory + "/contract/" + contract.getIdContract() + ".pdf");
             Files.write(path, bytes);
-            contractDao.getContract(contract.getIdContract()).setContractPDF(true);
-            System.out.println(contract.toString());
+            contractDao.uploadPDF(contract.getIdContract(), true);
         } catch (IOException e) {
             e.printStackTrace();
         }
