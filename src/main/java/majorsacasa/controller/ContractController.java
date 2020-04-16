@@ -108,6 +108,12 @@ public class ContractController extends Controlador {
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
 
+    @RequestMapping(value = "/verPDF/{idContract}", method = RequestMethod.GET)
+    public String seePDF(Model model, @PathVariable Integer idContract) {
+        model.addAttribute("contrato", contractDao.getContract(idContract));
+        return "contract/upload";
+    }
+
     @RequestMapping(value = "/delete/{idContract}")
     public String processDelete(@PathVariable Integer idContract) {
         contractDao.deleteContract(idContract);
