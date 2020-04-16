@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:id="http://www.w3.org/1999/xhtml"
       layout:decorate="~{fragments/baseS}">
 <head>
     <title>Gestionar Personas Mayores</title>
@@ -57,7 +58,9 @@
         </tbody>
     </table>
     <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Persona Mayor</a>
-    <a href="/login" class="btn btn btn-danger" role="button" aria-pressed="true">Atrás</a>
+
+    <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a>
+
 </div>
 </div>
 
