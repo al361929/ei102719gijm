@@ -48,7 +48,7 @@ public class ServiceDao {
 
     public List<Service> getElderlyList(String dni) {
         try {
-            return jdbcTemplate.query(" select * from service JOIN request USING(idservice) WHERE dni=? AND state='Accepted'", new ServiceRowMapper(), dni);
+            return jdbcTemplate.query(" select * from service JOIN request USING(idservice) WHERE dni=? AND state='Aceptada'", new ServiceRowMapper(), dni);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Service>();
         }
