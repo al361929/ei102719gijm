@@ -44,7 +44,7 @@ public class ElderlyDao {
     }
 
     public void updateElderly(Elderly elderly) {
-        jdbcTemplate.update("UPDATE ElderlyPeople SET name=?, surname=?, address=?, allergies=?, phonenumber=?, user_name=?, password=?, releasedate=?, datedown=?, birthday=?, bankaccount=?, socialWorker=?, email=? WHERE dni=?",
+        jdbcTemplate.update("UPDATE ElderlyPeople SET name=?, surname=?, address=?, allergies=?, phonenumber=?, user_name=?, password=?, releasedate=?, datedown=?, birthday=?, bankaccount=?, dnisocialWorker=?, email=? WHERE dni=?",
                 elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(),
                 elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria(), elderly.getSocialWorker(), elderly.getEmail(), elderly.getDni());
     }
