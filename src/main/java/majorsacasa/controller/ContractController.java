@@ -110,8 +110,10 @@ public class ContractController extends Controlador {
 
     @RequestMapping(value = "/verPDF/{idContract}", method = RequestMethod.GET)
     public String seePDF(Model model, @PathVariable Integer idContract) {
-        model.addAttribute("contrato", contractDao.getContract(idContract));
-        return "contract/upload";
+        model.addAttribute("contrato", idContract);
+        String ruta = uploadDirectory + "/contract/" + idContract + ".pdf";
+        model.addAttribute("filename", ruta);
+        return "contract/verPDF";
     }
 
     @RequestMapping(value = "/delete/{idContract}")
