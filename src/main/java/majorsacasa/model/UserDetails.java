@@ -5,6 +5,15 @@ public class UserDetails {
     String password;
     String tipo;
     String dni;
+    int code;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 
     public String getUsername() {
         return username;
@@ -47,6 +56,7 @@ public class UserDetails {
                 ", password='" + password + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", dni='" + dni + '\'' +
+                ", code=" + code +
                 '}';
     }
 }

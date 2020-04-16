@@ -1,0 +1,28 @@
+<nav xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div class="loggeduser" th:object="${session}">
+    <div th:if="*{user.code == 5}">
+        <div th:replace="fragments/navAdmin"></div>
+    </div>
+
+    <div th:if="*{user.code == 4}">
+        <div th:replace="fragments/navCompany"></div>
+    </div>
+
+    <div th:if="*{user.code == 3}">
+        <div th:replace="fragments/navSocialWorker"></div>
+    </div>
+
+    <div th:if="*{user.code == 2}">
+        <div th:replace="fragments/navElderly"></div>
+    </div>
+
+    <div th:if="*{user.code == 1}">
+        <div th:replace="fragments/navVolunteer"></div>
+    </div>
+
+
+
+
+</div>
+</nav>
