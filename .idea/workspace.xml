@@ -6,10 +6,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="Login corregido.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/elderly/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/elderly/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/contract/contractElderlyList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/contract/contractElderlyList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/navElderly.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/navElderly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/company/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/company/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/company/addRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/company/addRegister.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/company/contractList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/company/contractList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/company/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/company/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/company/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/company/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/company/serviceList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/company/serviceList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/company/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/company/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/contract/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/contract/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/contract/contractElderlyList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/contract/contractElderlyList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/contract/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/contract/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/contract/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/contract/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/contract/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/contract/upload.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/elderly/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/elderly/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/elderly/addRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/elderly/addRegister.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/elderly/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/elderly/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/elderly/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/elderly/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/invoice/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/invoice/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/invoice/invoiceListElderly.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/invoice/invoiceListElderly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/invoice/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/invoice/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/invoice/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/invoice/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/offer/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/offer/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/produce/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/produce/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/request/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/request/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/request/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/request/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/request/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/request/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/service/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/service/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/service/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/service/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/service/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/service/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/socialWorker/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/socialWorker/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/socialWorker/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/socialWorker/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/socialWorker/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/socialWorker/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/socialWorker/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/socialWorker/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/addRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/addRegister.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/scheduleList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/scheduleList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteertime/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteertime/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteertime/addTime.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteertime/addTime.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteertime/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteertime/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteertime/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteertime/update.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,12 +113,12 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\familia\IdeaProjects\ei102719gijm\src\main\resources\templates" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Philippe\IdeaProjects\ei102719gijm\src\main\resources\templates\fragments" />
       <recent name="D:\UJI\Diseño e implementacion de sistemas de informacion\ei102719gijm\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\familia\IdeaProjects\ei102719gijm\src\main\resources\templates" />
     </key>
   </component>
   <component name="RunManager" selected="Application.MajorsACasaApplication">
@@ -390,10 +428,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="341" y="9" width="697" height="720" key="#MajorsACasaApplication/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004555243" />
-    <state x="554" y="0" key="#Project_Structure" timestamp="1586512984645">
+    <state x="554" y="0" key="#Project_Structure" timestamp="1587036551177">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="554" y="0" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1586512984645" />
+    <state x="554" y="0" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1587036551177" />
     <state x="554" y="178" key="#Project_Structure/0.0.1920.1046@0.0.1920.1046" timestamp="1582138606980" />
     <state x="1037" y="178" key="#Web_Browsers" timestamp="1583240700427">
       <screen x="0" y="0" width="1920" height="1046" />

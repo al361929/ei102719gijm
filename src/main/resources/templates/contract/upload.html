@@ -39,8 +39,8 @@
     <form method="POST" action="/upload" th:action="@{/upload}" enctype="multipart/form-data">
         <input type="file" name="file" id="file"/> <br/>
         <td><input type="submit" value="Añadir" name="upload" id="upload" class="btn btn btn-success"/></td>
-        <td><a href="/contract/list" class="btn btn btn-danger" role="button"
-               aria-pressed="true">Atrás</a></td>
+        <td>  <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a></td>
+
     </form>
 </div>
 </body>
