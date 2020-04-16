@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Servicios del usuario</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Mis servicios</h1>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Número de servicio</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Tipo de servicio</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="service: ${elderlyList}"
+                th:class="${#strings.equals(nuevo,service.getIdService())}?'bg-info text-white'">
+                <td th:text="${service.getIdService()}"></td>
+                <td th:text="${service.getDescription()}"></td>
+                <td th:text="${service.getPrice()}"></td>
+                <td th:text="${service.getServiceType()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Servicio</a>
+        <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
+    </div>
+</div>
+</body>
+</html>

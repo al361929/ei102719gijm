@@ -42,14 +42,14 @@ public class FakeUserProvider implements UserDao {
             return user;
 
         }
-        String tipo="Volunteer";
-        List userList = jdbcTemplate.query("SELECT user_name, password, dni FROM Volunteer WHERE user_name=?", new UserRowMapper(), username);
+        String tipo = "Volunteer";
+        List userList = jdbcTemplate.query("SELECT user_name, password, dnivolunteer FROM Volunteer WHERE user_name=?", new UserRowMapper(), username);
         if (userList.isEmpty()) {
             tipo="ElderlyPeople";
             userList = jdbcTemplate.query("SELECT user_name, password, dni FROM ElderlyPeople WHERE user_name=?", new UserRowMapper(), username);
             if (userList.isEmpty()) {
-                tipo="SocialWorker";
-                userList = jdbcTemplate.query("SELECT user_name, password,dni FROM SocialWorker WHERE user_name=?", new UserRowMapper(), username);
+                tipo = "SocialWorker";
+                userList = jdbcTemplate.query("SELECT user_name, password,dnisocialworker FROM SocialWorker WHERE user_name=?", new UserRowMapper(), username);
                 if (userList.isEmpty()) {
                     tipo="Company";
                     userList = jdbcTemplate.query("SELECT user_name, password, nif FROM Company WHERE user_name=?", new UserRowMapper(), username);
