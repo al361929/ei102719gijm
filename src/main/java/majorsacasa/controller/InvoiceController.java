@@ -64,7 +64,7 @@ public class InvoiceController extends Controlador{
         return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
     }
 
-    @RequestMapping(value = "/delete/{invoiceElderly}")
+    @RequestMapping(value = "/delete/{invoiceNumber}")
     public String processDelete(@PathVariable Integer invoiceNumber) {
         invoiceDao.deleteInvoice(invoiceNumber);
         return "redirect:../list";
