@@ -136,6 +136,14 @@ button {
 
 }
 
+#estilo2 {
+
+    font-family: 'Arimo', sans-serif;
+    color: #F4F4F4;
+    font-weight: bold;
+}
+
+
 :root {
     -btn-primary: #4285f4;
     -btn-default: #2bbbad;
