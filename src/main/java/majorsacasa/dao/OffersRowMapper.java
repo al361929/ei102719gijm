@@ -11,8 +11,8 @@ public final class OffersRowMapper implements RowMapper<Offer> {
     @Override
     public Offer mapRow(ResultSet rs, int i) throws SQLException {
         Offer offers = new Offer();
-        offers.setIdService(rs.getInt("idService_off"));
-        offers.setNif(rs.getString("nif_off"));
+        offers.setIdService(rs.getInt("idService"));
+        offers.setNif(rs.getString("nif"));
         return offers;
     }
 }
