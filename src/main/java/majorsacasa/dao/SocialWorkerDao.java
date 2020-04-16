@@ -39,22 +39,22 @@ public class SocialWorkerDao {
     }
 
     public SocialWorker getSocialWorker(String dniSocialWorker) {
-        return jdbcTemplate.queryForObject("SELECT * FROM SocialWorker WHERE dni=?", new SocialWorkerRowMapper(), dniSocialWorker);
+        return jdbcTemplate.queryForObject("SELECT * FROM SocialWorker WHERE dnisocialworker=?", new SocialWorkerRowMapper(), dniSocialWorker);
     }
 
     public void updateSocialWorker(SocialWorker socialWorker) {
-        jdbcTemplate.update("UPDATE SocialWorker SET name=?, surname=?, phonenumber=?, user_name=?, password=?, email=? WHERE dni=?",
+        jdbcTemplate.update("UPDATE SocialWorker SET name=?, surname=?, phonenumber=?, user_name=?, password=?, email=? WHERE dnisocialworker=?",
                 socialWorker.getNombre(), socialWorker.getApellidos(), socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContrasena(), socialWorker.getEmail(), socialWorker.getDni());
     }
 
     public void deleteSocialWorker(String dniSocialWorker) {
-        jdbcTemplate.update("DELETE FROM SocialWorker WHERE dni=?", dniSocialWorker);
+        jdbcTemplate.update("DELETE FROM SocialWorker WHERE dnisocialworker=?", dniSocialWorker);
     }
 
 
     public List<Elderly> getElderlyList(String dniSocialWorker) {
         try {
-            return jdbcTemplate.query("SELECT * FROM elderlypeople WHERE socialworker=?", new ElderlyRowMapper(), dniSocialWorker);
+            return jdbcTemplate.query("SELECT * FROM elderlypeople WHERE dnisocialworker=?", new ElderlyRowMapper(), dniSocialWorker);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Elderly>();
         }

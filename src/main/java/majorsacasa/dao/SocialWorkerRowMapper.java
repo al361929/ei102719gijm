@@ -10,7 +10,7 @@ public final class SocialWorkerRowMapper implements RowMapper<SocialWorker> {
     @Override
     public SocialWorker mapRow(ResultSet rs, int i) throws SQLException {
         SocialWorker socialWorker = new SocialWorker();
-        socialWorker.setDni(rs.getString("dni"));
+        socialWorker.setDni(rs.getString("dnisocialworker"));
         socialWorker.setNombre(rs.getString("name"));
         socialWorker.setApellidos(rs.getString("surname"));
         socialWorker.setTelefono(rs.getString("phoneNumber"));

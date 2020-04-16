@@ -64,7 +64,7 @@ public class CompanyDao {
 
     public List<Contract> getContractsList(String nif) {
         try {
-            return jdbcTemplate.query("SELECT * FROM contract WHERE nifcompany=?", new ContractRowMapper(), nif);
+            return jdbcTemplate.query("SELECT * FROM contract WHERE nif=?", new ContractRowMapper(), nif);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Contract>();
         }

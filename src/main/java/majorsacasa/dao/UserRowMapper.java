@@ -19,8 +19,12 @@ public final class UserRowMapper implements RowMapper<UserDetails> {
             try {
                 user.setDni(rs.getString("nif"));
             }catch(Exception ex){
-                user.setDni(rs.getString("dnivolunteer"));
+                try {
+                    user.setDni(rs.getString("dnivolunteer"));
+                }catch(Exception ex1){
+                    user.setDni(rs.getString("dnisocialworker"));
 
+                }
             }
 
             }
