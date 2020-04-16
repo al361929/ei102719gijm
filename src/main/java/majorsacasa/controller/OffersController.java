@@ -1,22 +1,31 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.OffersDao;
+import majorsacasa.dao.ServiceDao;
 import majorsacasa.model.Offer;
+import majorsacasa.model.Service;
+import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/offer")
-public class OffersController {
+public class OffersController extends Controlador{
     private OffersDao offersDao;
+    private ServiceDao serviceDao;
+
 
     @Autowired
-    public void setOffersDao(OffersDao offersDao) {
+    public void setOffersDao(OffersDao offersDao, ServiceDao serviceDao) {
+        this.serviceDao = serviceDao;
+
         this.offersDao = offersDao;
     }
 
@@ -28,18 +37,28 @@ public class OffersController {
         return "offer/list";
     }
 
-    @RequestMapping(value = "/add")
+    @RequestMapping(value = "/addService")
     public String addOffer(Model model) {
         model.addAttribute("offer", new Offer());
-        return "offer/add";
+        List<Service> servicios = serviceDao.getServices();
+        System.out.println(servicios.toString());
+
+        model.addAttribute("servicios", servicios);
+
+        return "offer/addService";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("offer") Offer offers, BindingResult bindingResult) {
+    @RequestMapping(value = "/addService", method = RequestMethod.POST)
+    public String processAddSubmit(HttpSession session,Model model, @ModelAttribute("offer") Offer offers, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "offer/add";
+            return "offer/addService";
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        offers.setNif(user.getDni());
         offersDao.addOffers(offers);
-        return "redirect:list?nuevo=" + offers.getIdService();
+       // return "redirect:list?nuevo=" + offers.getIdService();
+        return gestionarAcceso(session,model,"Company","redirect:../company/serviceList?nuevo=" + offers.getIdService());
+
     }
 
     //POSIBLE FALLO

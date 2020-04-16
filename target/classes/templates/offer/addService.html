@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Solicitar solicitud</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+<body>
+
+<div layout:fragment="content">
+    <div class="container">
+
+        <h2>Solicitar solicitud</h2>
+        <form action="#" th:action="@{/offer/addService}"
+              th:object="${offer}" method="post">
+            <table>
+                <tr>
+                    <td><label>Servicio</label></td>
+                    <td><select th:field="*{idService}">
+                        <option value="" selected disabled>--- Selecciona servicio ---</option>
+                        <option th:each="servicio : ${servicios}" th:value="${servicio.idService}"
+                                th:utext="${servicio.getDescription()}"></option>
+                    </select></td>
+                </tr>
+                <tr>
+
+                    <td colspan="2"><input  id="estilo2" type="submit" value="Solicitar" class="btn btn btn-success"
+                                            role="button"
+                                            aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
+                    </td>
+
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>
