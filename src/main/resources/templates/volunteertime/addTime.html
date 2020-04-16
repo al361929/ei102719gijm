@@ -6,9 +6,10 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
-<div layout:fragment="content" >
+<div layout:fragment="content">
 
     <div class="container" th:object="${session}">
         <h2>Añadir horario</h2>
@@ -17,20 +18,13 @@
             <table>
                 <tr>
                     <td><label>Mes</label></td>
-                    <td><select type="text" class="form-control" th:field="*{mes}"/>
-                        <option>Enero</option>
-                        <option>Febrero</option>
-                        <option>Marzo</option>
-                        <option>Abril</option>
-                        <option>Mayo</option>
-                        <option>Junio</option>
-                        <option>Julio</option>
-                        <option>Agosto</option>
-                        <option>Septiembre</option>
-                        <option>Octubre</option>
-                        <option>Noviembre</option>
-                        <option>Diciembre</option>
-                        </select></td>
+                    <div><input type="radio" class="form-control" name="disponibilidad" value="True"
+                                th:field="*{availability}"/>Disponible
+                    </div>
+                    <div><input type="radio" class="form-control" name="disponibilidad" value="False"
+                                th:field="*{availability}"/>No Disponible
+                    </div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Día</label></td>
@@ -64,12 +58,13 @@
                     <td><input type="text" class="form-control" th:field="*{dniElderly}"/></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input  id="estilo2" type="submit" value="Añadir horario" class="btn btn btn-success"
+                    <td colspan="2"><input id="estilo2" type="submit" value="Añadir horario" class="btn btn btn-success"
                                            role="button"
                                            aria-pressed="true"/></td>
                 </tr>
                 <tr>
-                    <td colspan="2">  <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a></td>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
+                    </td>
 
                     </td>
                 </tr>
