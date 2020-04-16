@@ -49,5 +49,17 @@ public class RequestDao {
     public void deleteRequest(int idRequest) {
         jdbcTemplate.update("DELETE FROM Request WHERE idRequest=?", idRequest);
     }
+    public List<Request> getRequestsElderly(String dni) {
+        try {
+            return jdbcTemplate.query(
+                    "SELECT * FROM Request where dni=?",
+                    new RequestRowMapper(),dni);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
+    public void updateEstado(int id, String estado) {
+        jdbcTemplate.update("UPDATE Request SET state=? WHERE idRequest=? ",estado,id);
+    }
 
 }
