@@ -17,8 +17,8 @@ public final class ContractRowMapper implements RowMapper<Contract> {
         contract.setDateDown(rs.getObject("datedown", LocalDate.class));
         contract.setCantidad(rs.getInt("quantity"));
         contract.setDescripcion(rs.getString("description"));
-        contract.setNifcompany(rs.getString("nifcompany"));
-        contract.setDnielderly(rs.getString("dnielderly"));
+        contract.setNifcompany(rs.getString("nif"));
+        contract.setDnielderly(rs.getString("dni"));
         return contract;
     }
 }

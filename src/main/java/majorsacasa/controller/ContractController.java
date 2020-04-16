@@ -8,12 +8,18 @@ import majorsacasa.model.Elderly;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +30,9 @@ public class ContractController extends Controlador {
     private ContractDao contractDao;
     private CompanyDao companyDao;
     private ElderlyDao elderlyDao;
+
+    @Value("${upload.file.directory}")
+    private String uploadDirectory;
 
     @Autowired
     public void setContractDao(ContractDao contractDao, CompanyDao companyDao, ElderlyDao elderlyDao) {
@@ -76,6 +85,29 @@ public class ContractController extends Controlador {
             return "contract/update";
         contractDao.updateContract(contract);
         return "redirect:list?nuevo=" + contract.getIdContract();
+    }
+
+    @RequestMapping(value = "/contract/upload/{idContract}", method = RequestMethod.GET)
+    public String prepareUploadContract(Model model, @PathVariable Integer idContract) {
+        model.addAttribute("contrato", contractDao.getContract(idContract));
+        return "contract/upload";
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("contract") Contract contract) {
+        if (file.isEmpty()) {
+            return "redirect:contract/upload";
+        }
+        try {
+            // Obtener el fichero y guardarlo
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(uploadDirectory + "/contract/" + contract.getIdContract() + ".pdf");
+            Files.write(path, bytes);
+            contractDao.getContract(contract.getIdContract()).setContractPDF(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "redirect:contract/list";
     }
 
     @RequestMapping(value = "/delete/{idContract}")

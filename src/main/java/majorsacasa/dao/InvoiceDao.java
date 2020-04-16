@@ -38,7 +38,7 @@ public class InvoiceDao {
     }
 
     public void updateInvoice(Invoice invoice) {
-        jdbcTemplate.update("UPDATE Invoice SET dateinvoice=?, totalprice=?, dnielderly=? WHERE idInvoice=?", invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getDniElderly(), invoice.getInvoiceNumber());
+        jdbcTemplate.update("UPDATE Invoice SET dateinvoice=?, totalprice=?, dni=? WHERE idInvoice=?", invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getDniElderly(), invoice.getInvoiceNumber());
     }
 
     public void deleteInvoice(Integer invoice) {
@@ -46,7 +46,7 @@ public class InvoiceDao {
     }
     public List<Invoice> getInvoiceElderly(String nif) {
         try {
-            return jdbcTemplate.query(" select * from invoice where dnielderly =?", new InvoiceRowMapper(), nif);
+            return jdbcTemplate.query(" select * from invoice where dni =?", new InvoiceRowMapper(), nif);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Invoice>();
         }

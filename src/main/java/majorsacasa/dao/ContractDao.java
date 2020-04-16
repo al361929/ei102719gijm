@@ -37,13 +37,13 @@ public class ContractDao {
     }
 
     public void updateContract(Contract contract) {
-        jdbcTemplate.update("UPDATE Contract SET dnielderly=?, nifcompany=?, firma=?, releaseDate=?, dateDown=?, quantity=?, description=? WHERE idContract=?", contract.getDnielderly(),
+        jdbcTemplate.update("UPDATE Contract SET dni=?, nif=?, firma=?, releaseDate=?, dateDown=?, quantity=?, description=? WHERE idContract=?", contract.getDnielderly(),
                 contract.getNifcompany(), contract.getFirma(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getIdContract());
     }
 
     public List<Contract> getElderlyList(String dni) {
         try {
-            return jdbcTemplate.query("SELECT * FROM contract WHERE dnielderly=?", new ContractRowMapper(), dni);
+            return jdbcTemplate.query("SELECT * FROM contract WHERE dni=?", new ContractRowMapper(), dni);
         } catch (EnumConstantNotPresentException e) {
             return new ArrayList<Contract>();
         }
