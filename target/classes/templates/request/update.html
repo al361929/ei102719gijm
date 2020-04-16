@@ -1,71 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="~{fragments/base}">
-    <title>Modificar solicitud</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+<title>Modificar solicitud</title>
+<meta charset="UTF-8"/>
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
 <body>
 
 <div layout:fragment="content">
     <div class="container">
 
-<h2>Modificar solicitud</h2>
-<form action="#" th:action="@{/request/update}"
-      th:object="${request}" method="post">
-    <table>
-        <tr>
-            <td><label>ID Request</label></td>
-            <td><input type="text" class="form-control" th:field="*{idRequest}" readonly/></td>
-        </tr>
-        <tr>
-            <td><label>ID Service</label></td>
-            <td><input type="text" class="form-control" th:field="*{idService}" required/></td>
-        </tr>
-        <tr>
-            <td><label>DNI</label></td>
-            <td><input type="text" class="form-control" th:field="*{dni}" required/></td>
-        </tr>
-        <tr>
-            <td><label>NIF</label></td>
-            <td><input type="text" class="form-control" th:field="*{nif}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de solicitud</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateRequest}"/></td>
-        </tr>
-        <tr>
-            <td><label>Estado</label></td>
-            <td><select type="text" class="form-control" th:selected="${request.state}" th:field="*{state}"/>
-                <option th>Pendiente</option>
-                <option>Rechazada</option>
-                <option>Aceptada</option>
-                </select></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de aceptación</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateAccept}"/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de rechazo</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateReject}"/></td>
-        </tr>
-        <tr>
-            <td><label>Comentarios</label></td>
-            <td><input type="text" class="form-control" th:field="*{comments}"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Modificar solicitud" class="btn btn btn-success" role="button"
-                                   aria-pressed="true"/></td>
-        </tr>
-        <tr>
-            <td colspan="2">  <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a></td>
+        <h2>Modificar solicitud</h2>
+        <form action="#" th:action="@{/request/update}"
+              th:object="${request}" method="post">
+            <table>
+                <tr>
+                    <td><label>ID Request</label></td>
+                    <td><input type="text" class="form-control" th:field="*{idRequest}" readonly/></td>
+                </tr>
+                <tr>
+                    <td><label>ID Service</label></td>
+                    <td><input type="text" class="form-control" th:field="*{idService}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>DNI</label></td>
+                    <td><input type="text" class="form-control" th:field="*{dni}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>NIF</label></td>
+                    <td><input type="text" class="form-control" th:field="*{nif}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de solicitud</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateRequest}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Estado</label></td>
+                    <td><select th:field="*{state}">
+                        <option th:each="estado : ${estados}" th:value="${estado}" th:selected="${request.state}" th:utext="${estado}"></option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de aceptación</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateAccept}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de rechazo</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateReject}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Comentarios</label></td>
+                    <td><input type="text" class="form-control" th:field="*{comments}"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Modificar solicitud" class="btn btn btn-success" role="button"
+                                           aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2">  <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a></td>
 
-        </tr>
-    </table>
-</form>
-</div>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 </body>
 </html>

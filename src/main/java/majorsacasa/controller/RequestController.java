@@ -1,7 +1,9 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.RequestDao;
+import majorsacasa.dao.ServiceDao;
 import majorsacasa.model.Request;
+import majorsacasa.model.Service;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +21,13 @@ import java.util.Optional;
 public class RequestController extends Controlador{
 
     private RequestDao requestDao;
-    private List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada","Cancelada");
+    private ServiceDao serviceDao;
+    private List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada", "Cancelada");
+
     @Autowired
-    public void setRequestDao(RequestDao requestDao) {
+    public void setRequestDao(RequestDao requestDao, ServiceDao serviceDao) {
         this.requestDao = requestDao;
+        this.serviceDao = serviceDao;
     }
 
     @RequestMapping("/list")
@@ -35,6 +40,9 @@ public class RequestController extends Controlador{
 
     @RequestMapping(value = "/add")
     public String addRequest(Model model) {
+        List<Service> servicios = serviceDao.getServices();
+        System.out.println(servicios.toString());
+        model.addAttribute("servicios", servicios);
         model.addAttribute("request", new Request());
         return "request/add";
     }
@@ -49,7 +57,7 @@ public class RequestController extends Controlador{
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String editRequest(Model model, @PathVariable int id) {
-
+        model.addAttribute("estados", estados);
         model.addAttribute("request", requestDao.getRequest(id));
         return "request/update";
     }
