@@ -4,9 +4,7 @@ import majorsacasa.dao.CompanyDao;
 import majorsacasa.dao.ContractDao;
 import majorsacasa.dao.ElderlyDao;
 import majorsacasa.model.Contract;
-import majorsacasa.model.Elderly;
 import majorsacasa.model.UserDetails;
-import majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -14,13 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -94,16 +92,17 @@ public class ContractController extends Controlador {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("contract") Contract contract) {
+    public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("contrato") Contract contract) {
         if (file.isEmpty()) {
             return "contract/upload";
         }
         try {
             // Obtener el fichero y guardarlo
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(uploadDirectory + "/contract/" + contractDao.getContract(contract.getIdContract()) + ".pdf");
+            Path path = Paths.get(uploadDirectory + "/contract/" + contract.getIdContract() + ".pdf");
             Files.write(path, bytes);
             contractDao.getContract(contract.getIdContract()).setContractPDF(true);
+            System.out.println(contract.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
