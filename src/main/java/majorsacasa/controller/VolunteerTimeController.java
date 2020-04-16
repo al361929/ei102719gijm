@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,6 +22,8 @@ import java.util.Optional;
 public class VolunteerTimeController {
 
     private VolunteerTimeDao volunteerTimeDao;
+    private List<String> meses = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+
 
     @Autowired
     public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao) {
@@ -36,6 +40,7 @@ public class VolunteerTimeController {
 
     @RequestMapping(value = "/add")
     public String addVolunteerTime(Model model) {
+        model.addAttribute("meses", meses);
         model.addAttribute("volunteertime", new VolunteerTime());
         return "volunteertime/add";
     }
@@ -51,6 +56,7 @@ public class VolunteerTimeController {
 
     @RequestMapping(value = "/update/{idVolunteerTime}", method = RequestMethod.GET)
     public String editVolunteerTime(Model model, @PathVariable Integer idVolunteerTime) {
+        model.addAttribute("meses", meses);
         model.addAttribute("volunteertime", volunteerTimeDao.getVolunteerTime(idVolunteerTime));
         return "volunteertime/update";
     }
@@ -71,6 +77,7 @@ public class VolunteerTimeController {
     }
     @RequestMapping(value = "/addTime")
     public String addVolunteerTimeVolunteer(HttpSession session,Model model) {
+        model.addAttribute("meses", meses);
         UserDetails user = (UserDetails) session.getAttribute("user");
 
         model.addAttribute("volunteertime", new VolunteerTime());

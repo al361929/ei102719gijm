@@ -23,19 +23,8 @@
         </tr>
         <tr>
             <td><label>Mes</label></td>
-            <td><select type="text" class="form-control" th:field="*{mes}"/>
-                <option>Enero</option>
-                <option>Febrero</option>
-                <option>Marzo</option>
-                <option>Abril</option>
-                <option>Mayo</option>
-                <option>Junio</option>
-                <option>Julio</option>
-                <option>Agosto</option>
-                <option>Septiembre</option>
-                <option>Octubre</option>
-                <option>Noviembre</option>
-                <option>Diciembre</option>
+            <td><select th:field="*{mes}"/>
+                <option th:each="mes : ${meses}" th:value="${mes}" th:utext="${mes}" th:selected="${volunteertime.mes}"></option>
                 </select></td>
         </tr>
         <tr>
@@ -52,7 +41,12 @@
         </tr>
         <tr>
             <td><label>Disponibilidad</label></td>
-            <td><input type="text" class="form-control" th:field="*{availability}"/></td>
+            <td>
+                <div><input type="radio" class="form-control" name="disponibilidad" value="True"
+                            th:field="*{availability}"/>Disponible</div>
+                <div><input type="radio" class="form-control" name="disponibilidad" value="False"
+                            th:field="*{availability}"/>No Disponible</div>
+            </td>
         </tr>
         <tr>
             <td><label>DNI Voluntario</label></td>
