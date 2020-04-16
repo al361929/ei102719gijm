@@ -20,7 +20,8 @@
                     <td><label>Servicio</label></td>
                     <td><select th:field="*{idService}">
                         <option value="" selected disabled>--- Selecciona servicio ---</option>
-                        <option th:each="servicio : ${servicios}" th:value="${servicio.idService}" th:utext="${servicio.getDescription()}"></option>
+                        <option th:each="servicio : ${servicios}" th:value="${servicio.idService}"
+                                th:utext="${servicio.getDescription()}"></option>
                     </select></td>
                 </tr>
                 <tr>
@@ -52,11 +53,13 @@
                     <td><input type="text" class="form-control" th:field="*{comments}"/></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="Añadir solicitud" class="btn btn btn-success" role="button"
+                    <td colspan="2"><input type="submit" value="Añadir solicitud" class="btn btn btn-success"
+                                           role="button"
                                            aria-pressed="true"/></td>
                 </tr>
                 <tr>
-                    <td colspan="2">  <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a></td>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
+                    </td>
 
                 </tr>
             </table>
