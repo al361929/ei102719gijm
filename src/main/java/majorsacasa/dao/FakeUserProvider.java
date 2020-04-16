@@ -39,19 +39,21 @@ public class FakeUserProvider implements UserDao {
             user.setUsername(username);
             user.setPassword(password);
             user.setTipo("Admin");
+            user.setCode(5);
             return user;
 
         }
         String tipo = "Volunteer";
+        int code=1;
         List userList = jdbcTemplate.query("SELECT user_name, password, dnivolunteer FROM Volunteer WHERE user_name=?", new UserRowMapper(), username);
         if (userList.isEmpty()) {
-            tipo="ElderlyPeople";
+            tipo="ElderlyPeople"; code=2;
             userList = jdbcTemplate.query("SELECT user_name, password, dni FROM ElderlyPeople WHERE user_name=?", new UserRowMapper(), username);
             if (userList.isEmpty()) {
-                tipo = "SocialWorker";
+                tipo = "SocialWorker"; code=3;
                 userList = jdbcTemplate.query("SELECT user_name, password,dnisocialworker FROM SocialWorker WHERE user_name=?", new UserRowMapper(), username);
                 if (userList.isEmpty()) {
-                    tipo="Company";
+                    tipo="Company"; code= 4;
                     userList = jdbcTemplate.query("SELECT user_name, password, nif FROM Company WHERE user_name=?", new UserRowMapper(), username);
                     if (userList.isEmpty()) {
                         return null; // Usuari no trobat
@@ -61,6 +63,7 @@ public class FakeUserProvider implements UserDao {
         }
         UserDetails user = (UserDetails) userList.get(0);
         user.setTipo(tipo);
+        user.setCode(code);
         //System.out.println(user.toString());
 
         // Contrasenya
