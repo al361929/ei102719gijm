@@ -87,7 +87,7 @@ public class ContractController extends Controlador {
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
 
-    @RequestMapping(value = "/contract/upload/{idContract}", method = RequestMethod.GET)
+    @RequestMapping(value = "/upload/{idContract}", method = RequestMethod.GET)
     public String prepareUploadContract(Model model, @PathVariable Integer idContract) {
         model.addAttribute("contrato", contractDao.getContract(idContract));
         return "contract/upload";
@@ -96,18 +96,18 @@ public class ContractController extends Controlador {
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("contract") Contract contract) {
         if (file.isEmpty()) {
-            return "redirect:contract/upload";
+            return "contract/upload";
         }
         try {
             // Obtener el fichero y guardarlo
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(uploadDirectory + "/contract/" + contract.getIdContract() + ".pdf");
+            Path path = Paths.get(uploadDirectory + "/contract/" + contractDao.getContract(contract.getIdContract()) + ".pdf");
             Files.write(path, bytes);
             contractDao.getContract(contract.getIdContract()).setContractPDF(true);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "redirect:contract/list";
+        return "redirect:list?nuevo=" + contract.getIdContract();
     }
 
     @RequestMapping(value = "/delete/{idContract}")

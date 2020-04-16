@@ -42,7 +42,7 @@ public class VolunteerTimeDao {
     }
 
     public void updateVolunteerTime(VolunteerTime volunteerTime) {
-        jdbcTemplate.update("UPDATE VolunteerTime SET dniVolunteer=?, dniElderly=?, endTime=?, availability=?, mes=?, dia=?, startTime=? WHERE idVolunteerTime=?", volunteerTime.getDniVolunteer(), volunteerTime.getDniElderly(), volunteerTime.getEndTime(),
+        jdbcTemplate.update("UPDATE VolunteerTime SET dniVolunteer=?, dni=?, endTime=?, availability=?, mes=?, dia=?, startTime=? WHERE idVolunteerTime=?", volunteerTime.getDniVolunteer(), volunteerTime.getDniElderly(), volunteerTime.getEndTime(),
                 volunteerTime.getAvailability(), volunteerTime.getMes(), volunteerTime.getDia(), volunteerTime.getStartTime(), volunteerTime.getIdVolunteerTime());
     }
 

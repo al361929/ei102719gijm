@@ -14,7 +14,7 @@ public final class VolunteerTimeRowMapper implements RowMapper<VolunteerTime> {
         VolunteerTime volunteerTime = new VolunteerTime();
         volunteerTime.setIdVolunteerTime(rs.getInt("idVolunteerTime"));
         volunteerTime.setDniVolunteer(rs.getString("dniVolunteer"));
-        volunteerTime.setDniElderly(rs.getString("dniElderly"));
+        volunteerTime.setDniElderly(rs.getString("dni"));
         volunteerTime.setMes(rs.getString("mes"));
         volunteerTime.setDia(rs.getInt("dia"));
         volunteerTime.setStartTime(rs.getObject("startTime", LocalTime.class));
