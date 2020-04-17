@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -122,7 +121,7 @@ public class ContractController extends Controlador {
     public String seePDF(Model model, @PathVariable Integer idContract) {
         String ruta = "/pdfs/contract/" + idContract + ".pdf";
         model.addAttribute("filename", ruta);
-        return "contract/verPDF";
+        return "verPDF";
     }
 
     @RequestMapping(value = "/delete/{idContract}")

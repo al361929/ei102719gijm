@@ -20,6 +20,7 @@
             <th>Fecha</th>
             <th>Precio total</th>
             <th>DNI Persona mayor</th>
+            <th>¿PDF?</th>
         </tr>
         </thead>
         <tbody>
@@ -29,6 +30,21 @@
             <td th:text="${#temporals.format(invoice.dateInvoice,'dd/MM/yyyy')}"></td>
             <td th:text="${invoice.totalPrice}"></td>
             <td th:text="${invoice.dniElderly}"></td>
+            <td th:text="${invoice.invoicePDF}"></td>
+            <td>
+                <div th:if="${!invoice.invoicePDF}">
+                    <a th:href="@{/invoice/upload/{idInvoice}(idInvoice=${invoice.invoiceNumber})}"
+                       class="btn btn btn-default"
+                       role="button"
+                       aria-pressed="true">Añadir PDF</a>
+                </div>
+                <div th:if="${invoice.invoicePDF}">
+                    <a th:href="@{/invoice/verPDF/{idInvoice}(idInvoice=${invoice.invoiceNumber})}"
+                       class="btn btn btn-default"
+                       role="button"
+                       aria-pressed="true">Ver PDF</a>
+                </div>
+            </td>
             <td>
                 <a th:href="@{/invoice/update/{invoiceNumber}(invoiceNumber=${invoice.invoiceNumber})}"
                    class="btn btn btn-secondary" role="button"

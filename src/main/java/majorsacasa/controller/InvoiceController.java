@@ -2,7 +2,6 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.ElderlyDao;
 import majorsacasa.dao.InvoiceDao;
-import majorsacasa.model.Contract;
 import majorsacasa.model.Elderly;
 import majorsacasa.model.Invoice;
 import majorsacasa.model.UserDetails;
@@ -84,14 +83,14 @@ public class InvoiceController extends Controlador {
 
     @RequestMapping(value = "/upload/{idInvoice}", method = RequestMethod.GET)
     public String prepareUploadInvoice(Model model, @PathVariable Integer idInvoice) {
-        model.addAttribute("idContract", invoiceDao.getInvoice(idInvoice));
+        model.addAttribute("invoice", invoiceDao.getInvoice(idInvoice));
         return "invoice/upload";
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("invoice") Invoice invoice) {
         if (file.isEmpty()) {
-            return "contract/upload";
+            return "invoice/upload";
         }
         try {
             // Obtener el fichero y guardarlo
@@ -105,11 +104,11 @@ public class InvoiceController extends Controlador {
         return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
     }
 
-    @RequestMapping(value = "/verPDF/{idContract}", method = RequestMethod.GET)
-    public String seePDF(Model model, @PathVariable Integer invoiceNumber) {
-        String ruta = "/pdfs/invoice/" + invoiceNumber + ".pdf";
+    @RequestMapping(value = "/verPDF/{idInvoice}", method = RequestMethod.GET)
+    public String seePDF(Model model, @PathVariable Integer idInvoice) {
+        String ruta = "/pdfs/invoice/" + idInvoice + ".pdf";
         model.addAttribute("filename", ruta);
-        return "contract/verPDF";
+        return "verPDF";
     }
 
     @RequestMapping(value = "/delete/{invoiceNumber}")
