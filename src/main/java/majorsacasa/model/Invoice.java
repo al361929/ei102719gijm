@@ -11,6 +11,7 @@ public class Invoice {
     LocalDate dateInvoice;
     Integer totalPrice;
     String dniElderly;
+    Boolean invoicePDF;
 
     public Invoice() {
     }
@@ -47,6 +48,14 @@ public class Invoice {
         this.dniElderly = dniElderly;
     }
 
+    public Boolean getInvoicePDF() {
+        return invoicePDF;
+    }
+
+    public void setInvoicePDF(Boolean invoicePDF) {
+        this.invoicePDF = invoicePDF;
+    }
+
     @Override
     public String toString() {
         return "Invoice{" +
@@ -54,6 +63,7 @@ public class Invoice {
                 ", dateInvoice=" + dateInvoice +
                 ", totalPrice=" + totalPrice +
                 ", dniElderly='" + dniElderly + '\'' +
+                ", invoicePDF=" + invoicePDF +
                 '}';
     }
 }

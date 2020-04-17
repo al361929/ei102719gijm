@@ -15,6 +15,7 @@ public final class InvoiceRowMapper implements RowMapper<Invoice> {
         invoice.setDateInvoice(rs.getObject("dateInvoice", LocalDate.class));
         invoice.setTotalPrice(rs.getInt("totalPrice"));
         invoice.setDniElderly(rs.getString("dni"));
+        invoice.setInvoicePDF(rs.getBoolean("pdf"));
         return invoice;
     }
 }

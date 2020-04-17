@@ -2,30 +2,40 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.ElderlyDao;
 import majorsacasa.dao.InvoiceDao;
+import majorsacasa.model.Contract;
 import majorsacasa.model.Elderly;
 import majorsacasa.model.Invoice;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
-
 @Controller
 @RequestMapping("/invoice")
-public class InvoiceController extends Controlador{
+public class InvoiceController extends Controlador {
 
     private InvoiceDao invoiceDao;
     private ElderlyDao elderlyDao;
 
+    @Value("${upload.file.directory}")
+    private String uploadDirectory;
+
     @Autowired
-    public void setInvoiceDao(InvoiceDao invoiceDao,ElderlyDao elderlyDao) {
-        this.invoiceDao = invoiceDao;         this.elderlyDao = elderlyDao;
+    public void setInvoiceDao(InvoiceDao invoiceDao, ElderlyDao elderlyDao) {
+        this.invoiceDao = invoiceDao;
+        this.elderlyDao = elderlyDao;
 
     }
 
@@ -72,11 +82,42 @@ public class InvoiceController extends Controlador{
         return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
     }
 
+    @RequestMapping(value = "/upload/{idInvoice}", method = RequestMethod.GET)
+    public String prepareUploadInvoice(Model model, @PathVariable Integer idInvoice) {
+        model.addAttribute("idContract", invoiceDao.getInvoice(idInvoice));
+        return "invoice/upload";
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("invoice") Invoice invoice) {
+        if (file.isEmpty()) {
+            return "contract/upload";
+        }
+        try {
+            // Obtener el fichero y guardarlo
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(uploadDirectory + "/invoice/" + invoice.getInvoiceNumber() + ".pdf");
+            Files.write(path, bytes);
+            invoiceDao.updloadInvoice(invoice.getInvoiceNumber(), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
+    }
+
+    @RequestMapping(value = "/verPDF/{idContract}", method = RequestMethod.GET)
+    public String seePDF(Model model, @PathVariable Integer invoiceNumber) {
+        String ruta = "/pdfs/invoice/" + invoiceNumber + ".pdf";
+        model.addAttribute("filename", ruta);
+        return "contract/verPDF";
+    }
+
     @RequestMapping(value = "/delete/{invoiceNumber}")
     public String processDelete(@PathVariable Integer invoiceNumber) {
         invoiceDao.deleteInvoice(invoiceNumber);
         return "redirect:../list";
     }
+
     @RequestMapping(value = "/invoiceListElderly")
     public String getInvoiceCompanyList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
