@@ -23,6 +23,8 @@
                 <th>DNI Persona mayor</th>
                 <th>Cantidad</th>
                 <th>Descripción</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Baja</th>
             </tr>
             </thead>
             <tbody>
@@ -34,6 +36,10 @@
                 <td th:text="${contrato.dnielderly}"></td>
                 <td th:text="${contrato.cantidad}"></td>
                 <td th:text="${contrato.descripcion}"></td>
+                <td th:text="${contrato.releaseDate}"></td>
+                <td th:text="${contrato.dateDown}"></td>
+
+
             </tr>
             </tbody>
         </table>

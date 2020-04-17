@@ -1,9 +1,6 @@
 package majorsacasa.controller;
 
-import majorsacasa.dao.CompanyDao;
-import majorsacasa.dao.ElderlyDao;
-import majorsacasa.dao.RequestDao;
-import majorsacasa.dao.ServiceDao;
+import majorsacasa.dao.*;
 import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +17,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/request")
 public class RequestController extends Controlador{
+    private ContractDao contractDao;
 
     private RequestDao requestDao;
     private ServiceDao serviceDao;
@@ -27,11 +26,12 @@ public class RequestController extends Controlador{
     private List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada", "Cancelada");
 
     @Autowired
-    public void setRequestDao(RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao) {
+    public void setRequestDao(RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao,ContractDao contractDao) {
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
         this.companyDao = companyDao;
         this.elderlyDao = elderlyDao;
+        this.contractDao = contractDao;
     }
 
     @RequestMapping("/list")
@@ -79,6 +79,25 @@ public class RequestController extends Controlador{
 
         if (bindingResult.hasErrors())
             return "request/update";
+        if(request.getState().equals("Aceptada")) {
+            Contract contract =new Contract();
+            contract.setNifcompany(request.getNif());
+            contract.setDnielderly(request.getDni());
+            contract.setCantidad(1);
+            Service service=serviceDao.getService(request.getIdService());
+            contract.setDescripcion(service.getDescription()+" Comentario: "+request.getComments());
+            contract.setDateDown(LocalDate.now().plusMonths(6));
+            String elderly = elderlyDao.getElderly(request.getDni()).getNombre();
+            contract.setFirma(elderly);
+            contractDao.addContract(contract);
+
+            request.setDateAccept(LocalDate.now());
+        }else{
+            if(request.getState().equals("Rechazada")) request.setDateReject(LocalDate.now());
+
+        }
+
+
         requestDao.updateRequest(request);
         return "redirect:list?nuevo=" + request.getIdRequest();
     }
