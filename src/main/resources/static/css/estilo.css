@@ -1,6 +1,6 @@
 /* Estil aplicat al cos de la pàgina */
 body {
-    background-color: #F1F1F1;
+    background-color: ##FFFFFF;
     font-family: 'Gentium Basic', serif;
     color: #181717;
 }
@@ -112,7 +112,7 @@ h5 {
 /*Estilo del link*/
 a:link {
     font-family: 'Arimo', sans-serif;
-    color: #F4F4F4;
+    color: #FFFFFF;
         font-weight: bold;
 
 }
@@ -120,7 +120,7 @@ a:link {
 /* visited link */
 a:visited {
  font-family: 'Arimo', sans-serif;
- color: #F4F4F4;
+ color: #FFFFFF;
      font-weight: bold;
 
  }
@@ -139,7 +139,7 @@ button {
 #estilo2 {
 
     font-family: 'Arimo', sans-serif;
-    color: #F4F4F4;
+    color: #FFFFFF;
     font-weight: bold;
 }
 
