@@ -19,8 +19,7 @@
                 <tr>
                     <td><label>Mes</label></td>
                     <td><select th:field="*{mes}">
-                        <option th:each="mes : ${meses}" th:value="${mes}" th:selected="${volunteertime.mes}"
-                                th:utext="${mes}"></option>
+                        <option th:each="mes : ${meses}" th:value="${mes}" th:utext="${mes}"></option>
                     </select></td>
                 </tr>
                 <tr>
@@ -37,9 +36,10 @@
                 </tr>
                 <tr>
                     <td><label>Disponibilidad</label></td>
-                    <td><div><input type="radio" class="form-control" name="disponibilidad" value="True"
+                    <td>
+                        <div><input type="radio" class="form-control" name="disponibilidad" value="True"
                                     th:field="*{availability}"/>Disponible
-                    </div>
+                        </div>
                     </td>
                     <td>
                         <div><input type="radio" class="form-control" name="disponibilidad" value="False"

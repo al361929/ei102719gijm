@@ -10,8 +10,8 @@ public final class ServiceRowMapper implements RowMapper<Service> {
     @Override
     public Service mapRow(ResultSet rs, int i) throws SQLException {
         Service service = new Service();
-        service.setIdService(rs.getInt("idService"));
-        service.setServiceType(rs.getString("serviceType"));
+        service.setIdService(rs.getInt("idservice"));
+        service.setServiceType(rs.getString("servicetype"));
         service.setPrice(rs.getInt("price"));
         service.setDescription(rs.getString("description"));
         return service;
