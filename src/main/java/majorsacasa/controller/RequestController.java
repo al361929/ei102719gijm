@@ -20,18 +20,20 @@ public class RequestController extends Controlador{
     private ContractDao contractDao;
 
     private RequestDao requestDao;
+    private OffersDao offersDao;
     private ServiceDao serviceDao;
     private CompanyDao companyDao;
     private ElderlyDao elderlyDao;
     private List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada", "Cancelada");
 
     @Autowired
-    public void setRequestDao(RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao,ContractDao contractDao) {
+    public void setRequestDao(RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao,ContractDao contractDao,OffersDao offersDao) {
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
         this.companyDao = companyDao;
         this.elderlyDao = elderlyDao;
         this.contractDao = contractDao;
+        this.offersDao= offersDao;
     }
 
     @RequestMapping("/list")
@@ -133,13 +135,22 @@ public class RequestController extends Controlador{
         Service servicio = serviceDao.getService(request.getIdService());
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (requestDao.checkService(servicio.getServiceType(), user.getDni())) {
-            bindingResult.rejectValue("idService", "badserv", "Ya has solicitado este servicio");
+            bindingResult.rejectValue("idService", "badserv", " Ya has solicitado este servicio");
             List<Service> servicios = serviceDao.getServices();
             model.addAttribute("servicios", servicios);
             List<Company> company = companyDao.getCompanies();
             model.addAttribute("companyies", company);
             return "request/addRequestElderly";
         }
+        if (!offersDao.checkService(request.getNif(),request.getIdService())){
+            bindingResult.rejectValue("nif", "badOffer", " Esta empresa no ofrece ese servicio.");
+            List<Service> servicios = serviceDao.getServices();
+            model.addAttribute("servicios", servicios);
+            List<Company> company = companyDao.getCompanies();
+            model.addAttribute("companyies", company);
+            return "request/addRequestElderly";
+        }
+
         if (bindingResult.hasErrors())
             return "request/addRequestElderly";
         request.setDni(user.getDni());

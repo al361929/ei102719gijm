@@ -36,6 +36,10 @@
                 <option th:each="company : ${companyies}" th:value="${company.nif}"
                         th:utext="${company.nombre}"></option>
             </select></td>
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('nif')}"
+                     th:errors="*{nif}"></div>
+            </td>
         </tr>
 
       <!--  <tr>
