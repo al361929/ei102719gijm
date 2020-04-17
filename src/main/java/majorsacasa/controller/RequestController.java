@@ -130,9 +130,16 @@ public class RequestController extends Controlador{
 
     @RequestMapping(value = "/addRequestElderly", method = RequestMethod.POST)
     public String processAddSubmitRequestElderly(HttpSession session,@ModelAttribute("request") Request request,Model model, BindingResult bindingResult) {
+        Service servicio = serviceDao.getService(request.getIdService());
+        System.out.println("COGE EL SERVICIO");
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        if (requestDao.checkService(servicio.getServiceType(), user.getDni())) {
+            System.out.println("ERROR");
+            bindingResult.rejectValue("idService", "badserv", "Ya has solicitado este servicio");
+            return "request/addRequestElderly";
+        }
         if (bindingResult.hasErrors())
             return "request/addRequestElderly";
-        UserDetails user = (UserDetails) session.getAttribute("user");
         request.setDni(user.getDni());
         requestDao.addRequest(request);
 
