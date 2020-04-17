@@ -6,38 +6,45 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
     <div class="container">
-<h2>Añadir factura</h2>
-<form action="#" th:action="@{/invoice/add}"
-      th:object="${invoice}" method="POST">
-    <table>
-        <tr>
-            <td><label>DNI Persona mayor</label></td>
-            <td><input type="text" class="form-control" th:field="*{dniElderly}"/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de facturación</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateInvoice}"/></td>
-        </tr>
-        <tr>
-            <td><label>Precio Total</label></td>
-            <td><input type="number" class="form-control" th:field="*{totalPrice}" min="0"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input  id="estilo2" type="submit" value="Añadir factura" class="btn btn btn-success" role="button"
-                                   aria-pressed="true"/></td>
-        </tr>
-        <tr>
-            <td colspan="2">  <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a></td>
+        <h2>Añadir factura</h2>
+        <form action="#" th:action="@{/invoice/add}"
+              th:object="${invoice}" method="POST">
+            <table>
+                <tr>
+                    <td><label>Persona Mayor</label></td>
+                    <td><select th:field="*{dniElderly}">
+                        <option value="" selected disabled>--- Selecciona Persona ---</option>
+                        <option th:each="elderly : ${elderlys}" th:value="${elderly.dni}"
+                                th:utext="${elderly.getDatos()}"></option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de facturación</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateInvoice}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Precio Total</label></td>
+                    <td><input type="number" class="form-control" th:field="*{totalPrice}" min="0"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input id="estilo2" type="submit" value="Añadir factura" class="btn btn btn-success"
+                                           role="button"
+                                           aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
+                    </td>
 
-        </tr>
-    </table>
-</form>
-</div>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 </body>
 </html>

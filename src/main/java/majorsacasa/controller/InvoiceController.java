@@ -1,6 +1,8 @@
 package majorsacasa.controller;
 
+import majorsacasa.dao.ElderlyDao;
 import majorsacasa.dao.InvoiceDao;
+import majorsacasa.model.Elderly;
 import majorsacasa.model.Invoice;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -18,10 +21,12 @@ import java.util.Optional;
 public class InvoiceController extends Controlador{
 
     private InvoiceDao invoiceDao;
+    private ElderlyDao elderlyDao;
 
     @Autowired
-    public void setInvoiceDao(InvoiceDao invoiceDao) {
-        this.invoiceDao = invoiceDao;
+    public void setInvoiceDao(InvoiceDao invoiceDao,ElderlyDao elderlyDao) {
+        this.invoiceDao = invoiceDao;         this.elderlyDao = elderlyDao;
+
     }
 
     @RequestMapping("/list")
@@ -35,6 +40,9 @@ public class InvoiceController extends Controlador{
     @RequestMapping(value = "/add")
     public String addInvoice(Model model) {
         model.addAttribute("invoice", new Invoice());
+        List<Elderly> elderly = elderlyDao.getElderlys();
+        model.addAttribute("elderlys", elderly);
+
         return "invoice/add";
     }
 
