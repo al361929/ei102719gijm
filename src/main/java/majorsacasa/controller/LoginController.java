@@ -47,6 +47,25 @@ public class LoginController {
         // Torna a la pàgina principal
         if (url != null)
             return "redirect:/" + url;
+        if (user.getTipo().equals("Volunteer")) {
+            return "redirect:/volunteer/scheduleList";
+        }else{
+            if (user.getTipo().equals("ElderlyPeople")) {
+                return "redirect:/request/listElderly";
+            }else{
+                if (user.getTipo().equals("Company")) {
+                    return "redirect:/company/contractList";
+                }else{
+                    if (user.getTipo().equals("SocialWorker")) {
+                        return "redirect:/socialWorker/elderlyList";
+                    }else{
+                        if (user.getTipo().equals("Admin")) {
+                            return "redirect:/contract/list";
+                        }
+                    }
+                }
+            }
+        }
 
         return "redirect:/";
     }
