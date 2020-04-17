@@ -53,4 +53,11 @@ public class ServiceDao {
             return new ArrayList<Service>();
         }
     }
+    public List<Service> getServiceList(String nif) {
+        try {
+            return jdbcTemplate.query("SELECT s.* FROM service AS s JOIN offers AS o USING(idservice) WHERE nif=?", new ServiceRowMapper(), nif);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Service>();
+        }
+    }
 }
