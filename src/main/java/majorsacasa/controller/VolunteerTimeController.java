@@ -84,10 +84,10 @@ public class VolunteerTimeController {
         model.addAttribute("dniVolunteer",user.getDni());
         return "volunteertime/addTime";
     }
-    @RequestMapping(value = "/addVolunteer", method = RequestMethod.POST)
+    @RequestMapping(value = "/addTime", method = RequestMethod.POST)
     public String processAddSubmitVolunteer(HttpSession session,@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "volunteertime/addVolunteertime";
+            return "volunteertime/addTime";
         UserDetails user = (UserDetails) session.getAttribute("user");
         volunteertime.setDniElderly(null);
         volunteertime.setDniVolunteer(user.getDni());
