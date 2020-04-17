@@ -2,19 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/estiloRegistro.css}" href="/static/css/estiloRegistro.css"/>
     <title>MAJORS A CASA</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/estiloRegistro.css}" href="/static/css/estiloRegistro.css"/>
 </head>
 <body>
-<div class="container">
+<div layout:fragment="content">
+    <div class="container">
     <h1>Selecciona el tipo de usuario</h1>
     <div class="buttonContainer">
         <a class="botonReg" href="/elderly/addRegister" role="button" aria-pressed="true">Persona Mayor</a>
         <a class="botonReg" href="/company/addRegister" role="button" aria-pressed="true">Empresa</a>
         <a class="botonReg" href="/volunteer/addRegister" role="button" aria-pressed="true">Voluntario</a>
     </div>
-    <td colspan="2"><a href="/login" class="btn btn btn-danger" role="button"
-                       aria-pressed="true">Atrás</a></td>
+<br>
+    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
+    </td>
+    </div>
 </div>
 </body>
 </html>

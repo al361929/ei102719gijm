@@ -47,3 +47,14 @@ h1 {
     flex-direction: row;
     margin-top: 100px;
 }
+#estilo1 {
+
+    color: #B32121;
+
+}
+#estilo2{
+
+    font-family: 'Arimo', sans-serif;
+    color: #F4F4F4;
+    font-weight: bold;
+}
