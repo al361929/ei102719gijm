@@ -121,7 +121,7 @@ public class ContractController extends Controlador {
     @RequestMapping(value = "/verPDF/{idContract}", method = RequestMethod.GET)
     public String seePDF(Model model, @PathVariable Integer idContract) {
         model.addAttribute("contrato", idContract);
-        String ruta = uploadDirectory + "/contract/" + idContract + ".pdf";
+        String ruta = "/pdfs/contract/" + idContract + ".pdf";
         model.addAttribute("filename", ruta);
         return "contract/verPDF";
     }
