@@ -56,7 +56,7 @@ public class CompanyController extends Controlador{
         if (bindingResult.hasErrors())
             return "company/addRegister";
         companyDao.addCompany(company);
-        return "redirect:login" + company.getNif();
+        return "redirect:../login";
     }
 
     @RequestMapping(value = "/update/{nif}", method = RequestMethod.GET)

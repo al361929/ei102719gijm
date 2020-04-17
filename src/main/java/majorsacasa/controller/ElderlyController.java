@@ -1,7 +1,10 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.ElderlyDao;
+import majorsacasa.dao.SocialWorkerDao;
 import majorsacasa.model.Elderly;
+import majorsacasa.model.Service;
+import majorsacasa.model.SocialWorker;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +22,14 @@ import java.util.Optional;
 public class ElderlyController  extends Controlador{
 
     private ElderlyDao elderlyDao;
+    private SocialWorkerDao socialWorkerDao;
 
     private List alergias = Arrays.asList("Polen", "Frutos secos", "Gluten", "Pepinillo");
 
     @Autowired
-    public void setElderlyDao(ElderlyDao elderlyDao) {
+    public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao) {
         this.elderlyDao = elderlyDao;
+        this.socialWorkerDao = socialWorkerDao;
     }
 
     @RequestMapping("/list")
@@ -33,7 +38,6 @@ public class ElderlyController  extends Controlador{
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
         return gestionarAcceso(session, model, "SocialWorker", "elderly/list");
-
     }
 
     @RequestMapping(value = "/add")
@@ -56,6 +60,9 @@ public class ElderlyController  extends Controlador{
     public String addElderlyRegister(Model model) {
         model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", new Elderly());
+
+        List<SocialWorker> social = socialWorkerDao.getSocialWorkers();
+        model.addAttribute("SocialWorkers", social);
         return "/elderly/addRegister";
 
     }
@@ -88,7 +95,7 @@ public class ElderlyController  extends Controlador{
     @RequestMapping(value = "/delete/{dni}")
     public String processDelete(HttpSession session,@PathVariable String dni) {
         UserDetails user = (UserDetails) session.getAttribute("user");
-        if (!user.getTipo().equals("SocialWorker")) {
+        if (!user.getTipo().equals("SocialWorker") && !user.getTipo().equals("Admin")) {
             return "error/sinPermiso";
         }
         elderlyDao.deleteElderly(dni);

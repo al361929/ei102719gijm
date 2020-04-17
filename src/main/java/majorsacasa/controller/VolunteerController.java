@@ -60,7 +60,7 @@ public class VolunteerController extends Controlador {
         if (bindingResult.hasErrors())
             return "volunteer/addRegister";
         volunteerDao.addVolunteer(volunteer);
-        return "redirect:login";
+        return "redirect:../login";
     }
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
