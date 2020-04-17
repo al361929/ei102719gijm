@@ -41,4 +41,9 @@ public class OffersDao {
     public void deleteOffers(String idService, String nif) {
         jdbcTemplate.update("SELECT * FROM Offers WHERE idService_off=? AND nif_off=?", idService, nif);
     }
+
+    public Boolean checkService(String nif,int id) {
+        List<String> servicios = jdbcTemplate.queryForList("select idservice from offers where nif=?", String.class,nif);
+        return servicios.contains(id);
+    }
 }

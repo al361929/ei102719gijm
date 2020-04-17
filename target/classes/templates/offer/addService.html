@@ -23,14 +23,17 @@
                         <option th:each="servicio : ${servicios}" th:value="${servicio.idService}"
                                 th:utext="${servicio.getDescription()}"></option>
                     </select></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('idService')}"
+                             th:errors="*{idService}"></div>
+                    </td>
                 </tr>
                 <tr>
 
                     <td colspan="2"><input  id="estilo2" type="submit" value="Solicitar" class="btn btn btn-success"
                                             role="button"
                                             aria-pressed="true"/></td>
-                </tr>
-                <tr>
+
                     <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
                     </td>
 

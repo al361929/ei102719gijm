@@ -108,7 +108,7 @@ public class CompanyController extends Controlador{
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("invoiceCompanyList", companyDao.getInvoiceCompany(user.getDni()));
         return gestionarAcceso(session, model, "Company", "company/invoiceListCompany");
-    }*/
+    }
 
     @RequestMapping(value = "/serviceList")
     public String getServiceCompanyList(HttpSession session, Model model) {
@@ -116,7 +116,7 @@ public class CompanyController extends Controlador{
         model.addAttribute("serviceCompanyList", companyDao.getServiceList(user.getDni()));
         return gestionarAcceso(session, model, "Company", "company/serviceList");
     }
-
+*/
     @RequestMapping(value = "/contractList")
     public String getContractList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");

@@ -53,11 +53,20 @@ public class OffersController extends Controlador{
         if (bindingResult.hasErrors())
             return "offer/addService";
         UserDetails user = (UserDetails) session.getAttribute("user");
+        Boolean checkCompany = offersDao.checkService(user.getDni(),offers.getIdService());
+        if (!checkCompany) {
+            bindingResult.rejectValue("idService", "badnif", " Ya estas ofreciendo este servicio");
 
+            List<Service> servicios = serviceDao.getServices();
+            model.addAttribute("servicios", servicios);
+
+
+            return "offer/addService";
+        }
         offers.setNif(user.getDni());
         offersDao.addOffers(offers);
        // return "redirect:list?nuevo=" + offers.getIdService();
-        return gestionarAcceso(session,model,"Company","redirect:../company/serviceList?nuevo=" + offers.getIdService());
+        return gestionarAcceso(session,model,"Company","redirect:../service/serviceList?nuevo=" + offers.getIdService());
 
     }
 

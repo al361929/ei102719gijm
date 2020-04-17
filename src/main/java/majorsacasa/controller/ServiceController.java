@@ -74,4 +74,10 @@ public class ServiceController extends Controlador {
         model.addAttribute("elderlyList", serviceDao.getElderlyList(user.getDni()));
         return gestionarAcceso(session, model, "ElderlyPeople", "/service/elderlyList");
     }
+    @RequestMapping(value = "/serviceList")
+    public String getServiceCompanyList(HttpSession session, Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("serviceCompanyList", serviceDao.getServiceList(user.getDni()));
+        return gestionarAcceso(session, model, "Company", "service/serviceList");
+    }
 }
