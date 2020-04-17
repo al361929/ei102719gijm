@@ -16,7 +16,14 @@
               th:object="${contract}" method="post">
             <table>
                 <tr>
-                    <td><label>NIF Empresa</label></td>
+                    <td><label>Empresa</label></td>
+                    <td><select th:field="*{nifcompany}">
+                        <option value="" selected disabled>--- Selecciona Empresa ---</option>
+                        <option th:each="company : ${companyies}" th:value="${company.nif}"
+                                th:utext="${company.nombre}"></option>
+                    </select></td>
+
+                 <!--   <td><label>NIF Empresa</label></td>
                     <td><input type="text" class="form-control" th:field="*{nifcompany}"/></td>
                     <td>
                         <div class="error" th:if="${#fields.hasErrors('nifcompany')}"
@@ -28,10 +35,18 @@
                                                                                          role="button"
                                                                                          aria-pressed="true">Añadir
                             nueva
-                            empresa</a></div>
-                    </td>
+                            empresa</a></div></td>
+                            -->
+
                 </tr>
                 <tr>
+                    <td><label>Persona Mayor</label></td>
+                    <td><select th:field="*{dnielderly}">
+                        <option value="" selected disabled>--- Selecciona Persona ---</option>
+                        <option th:each="elderly : ${elderlys}" th:value="${elderly.dni}"
+                                th:utext="${elderly.getDatos()}"></option>
+                    </select></td>
+               <!-- <tr>
                     <td><label>DNI Persona Mayor</label></td>
                     <td><input type="text" class="form-control" th:field="*{dnielderly}"/></td>
                     <td>
@@ -46,7 +61,7 @@
                             nueva
                             persona mayor</a></div>
                     </td>
-                </tr>
+                </tr>-->
                 <!--        <tr>-->
                 <!--            <td><label>Fecha de alta</label></td>-->
                 <!--            <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>-->

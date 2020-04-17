@@ -26,6 +26,9 @@ public class Elderly {
 
     public Elderly() {
     }
+    public String getDatos() {
+        return nombre+" "+apellidos+" "+dni;
+    }
 
     public String getNombre() {
         return nombre;

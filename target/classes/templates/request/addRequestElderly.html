@@ -17,13 +17,21 @@
       th:object="${request}" method="post">
     <table>
         <tr>
-            <td><label>ID Service</label></td>
-            <td><input type="text" class="form-control" th:field="*{idService}" required/></td>
+            <td><label>Servicio</label></td>
+            <td><select th:field="*{idService}">
+                <option value="" selected disabled>--- Selecciona servicio ---</option>
+                <option th:each="servicio : ${servicios}" th:value="${servicio.idService}"
+                        th:utext="${servicio.getDescription()}"></option>
+            </select></td>
         </tr>
 
         <tr>
-            <td><label>NIF</label></td>
-            <td><input type="text" class="form-control" th:field="*{nif}" required/></td>
+            <td><label>Empresa</label></td>
+            <td><select th:field="*{nif}">
+                <option value="" selected disabled>--- Selecciona Empresa ---</option>
+                <option th:each="company : ${companyies}" th:value="${company.nif}"
+                        th:utext="${company.nombre}"></option>
+            </select></td>
         </tr>
 
         <tr>

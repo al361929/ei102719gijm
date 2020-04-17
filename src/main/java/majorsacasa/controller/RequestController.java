@@ -1,10 +1,10 @@
 package majorsacasa.controller;
 
+import majorsacasa.dao.CompanyDao;
+import majorsacasa.dao.ElderlyDao;
 import majorsacasa.dao.RequestDao;
 import majorsacasa.dao.ServiceDao;
-import majorsacasa.model.Request;
-import majorsacasa.model.Service;
-import majorsacasa.model.UserDetails;
+import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +22,16 @@ public class RequestController extends Controlador{
 
     private RequestDao requestDao;
     private ServiceDao serviceDao;
+    private CompanyDao companyDao;
+    private ElderlyDao elderlyDao;
     private List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada", "Cancelada");
 
     @Autowired
-    public void setRequestDao(RequestDao requestDao, ServiceDao serviceDao) {
+    public void setRequestDao(RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao) {
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
+        this.companyDao = companyDao;
+        this.elderlyDao = elderlyDao;
     }
 
     @RequestMapping("/list")
@@ -41,9 +45,16 @@ public class RequestController extends Controlador{
     @RequestMapping(value = "/add")
     public String addRequest(Model model) {
         List<Service> servicios = serviceDao.getServices();
-        System.out.println(servicios.toString());
         model.addAttribute("servicios", servicios);
+
+        List<Elderly> elderly = elderlyDao.getElderlys();
+        model.addAttribute("elderlys", elderly);
+
+        List<Company> company = companyDao.getCompanies();
+        model.addAttribute("companyies", company);
+
         model.addAttribute("request", new Request());
+
         return "request/add";
     }
 
@@ -90,16 +101,23 @@ public class RequestController extends Controlador{
     @RequestMapping(value = "/addRequestElderly")
     public String addRequestElderly(Model model) {
         model.addAttribute("request", new Request());
+        List<Service> servicios = serviceDao.getServices();
+        model.addAttribute("servicios", servicios);
+
+        List<Company> company = companyDao.getCompanies();
+        model.addAttribute("companyies", company);
         return "request/addRequestElderly";
     }
 
     @RequestMapping(value = "/addRequestElderly", method = RequestMethod.POST)
-    public String processAddSubmitRequestElderly(HttpSession session,@ModelAttribute("request") Request request, BindingResult bindingResult) {
+    public String processAddSubmitRequestElderly(HttpSession session,@ModelAttribute("request") Request request,Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "request/addRequestElderly";
         UserDetails user = (UserDetails) session.getAttribute("user");
         request.setDni(user.getDni());
         requestDao.addRequest(request);
+
+
         return "redirect:listElderly?nuevo=" + request.getIdRequest();
     }
     @RequestMapping(value = "/cancelarRequest/{id}")

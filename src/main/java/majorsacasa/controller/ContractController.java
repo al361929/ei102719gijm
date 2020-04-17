@@ -3,8 +3,7 @@ package majorsacasa.controller;
 import majorsacasa.dao.CompanyDao;
 import majorsacasa.dao.ContractDao;
 import majorsacasa.dao.ElderlyDao;
-import majorsacasa.model.Contract;
-import majorsacasa.model.UserDetails;
+import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -19,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -50,13 +50,22 @@ public class ContractController extends Controlador {
 
     @RequestMapping(value = "/add")
     public String addContract(Model model) {
+
         model.addAttribute("contract", new Contract());
+
+        List<Elderly> elderly = elderlyDao.getElderlys();
+        model.addAttribute("elderlys", elderly);
+
+        List<Company> company = companyDao.getCompanies();
+        model.addAttribute("companyies", company);
+
+
         return "contract/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
-        Boolean checkCompany = companyDao.checkCompany(contract.getNifcompany());
+       /* Boolean checkCompany = companyDao.checkCompany(contract.getNifcompany());
         if (!checkCompany) {
             bindingResult.rejectValue("nifcompany", "badnif", "No existe la empresa");
             return "contract/add";
@@ -65,7 +74,8 @@ public class ContractController extends Controlador {
         if (!checkElderly) {
             bindingResult.rejectValue("dnielderly", "baddni", "No existe la persona mayor");
             return "contract/add";
-        }
+        }*/
+        System.out.println(contract.toString());
         contractDao.addContract(contract);
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
