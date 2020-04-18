@@ -142,7 +142,7 @@ public class RequestController extends Controlador{
             model.addAttribute("companyies", company);
             return "request/addRequestElderly";
         }
-        if (!offersDao.checkService(request.getNif(),request.getIdService())){
+        if (offersDao.checkService(request.getNif(),request.getIdService())){
             bindingResult.rejectValue("nif", "badOffer", " Esta empresa no ofrece ese servicio.");
             List<Service> servicios = serviceDao.getServices();
             model.addAttribute("servicios", servicios);

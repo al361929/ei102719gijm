@@ -35,15 +35,19 @@ public class OffersDao {
     }
 
     public Offer getOffer(String idService, String nif) {
-        return jdbcTemplate.queryForObject("SELECT * FROM Offers WHERE idService_off=? AND nif_off=?", new OffersRowMapper(), idService, nif);
+        return jdbcTemplate.queryForObject("SELECT * FROM Offers WHERE idService=? AND nif=?", new OffersRowMapper(), idService, nif);
+    }
+    public Offer getType(String idService) {
+        return jdbcTemplate.queryForObject("SELECT servicetype FROM Offers WHERE idService=?", new OffersRowMapper(), idService);
     }
 
     public void deleteOffers(String idService, String nif) {
-        jdbcTemplate.update("SELECT * FROM Offers WHERE idService_off=? AND nif_off=?", idService, nif);
+        jdbcTemplate.update("SELECT * FROM Offers WHERE idService=? AND nif=?", idService, nif);
     }
 
     public Boolean checkService(String nif,int id) {
-        List<String> servicios = jdbcTemplate.queryForList("select idservice from offers where nif=?", String.class,nif);
-        return servicios.contains(id);
+        List<String> servicios = jdbcTemplate.queryForList("select idservice from offers where nif=? AND idservice=?", String.class,nif,id);
+      // System.out.println(servicios.contains(id)+" id-"+id);
+        return servicios.isEmpty();
     }
 }

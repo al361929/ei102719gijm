@@ -1,0 +1,8 @@
+<div class="loggeduser" th:object="${session}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div th:if="*{user == null}">
+        <div th:replace="fragments/navVacio"></div>
+    </div>
+    <div th:unless="*{user == null}">
+        <p th:replace="fragments/nav"></p>
+    </div>
+</div>

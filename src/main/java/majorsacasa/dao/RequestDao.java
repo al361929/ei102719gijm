@@ -65,8 +65,8 @@ public class RequestDao {
 
     public Boolean checkService(String servicio, String dni) {
         List<String> servicios = jdbcTemplate.queryForList("SELECT servicetype FROM Service JOIN request USING(idservice) WHERE dni=? AND NOT state='Cancelada' AND NOT state='Rechazada'", String.class, dni);
-        System.out.println(dni);
-        System.out.println(servicios.toString());
+        //System.out.println(dni);
+       // System.out.println(servicios.toString());
         return servicios.contains(servicio);
     }
 }
