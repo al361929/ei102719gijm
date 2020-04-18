@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <link rel="icon" type="image/png" href="/static/pdfs/favicon.ico">
+    <link rel="icon" type="image/png" href="/static/favicon.ico">
     <!-- Required meta tags -->
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -19,15 +19,16 @@
 </head>
 
 <body class="container">
-<!--<header class="page-header">
-    <h1  id="estilo1">MAJORS A CASA</h1>
-</header>-->
+<header class="page-header">
+    <div th:replace="fragments/navInfo"></div>
+</header>
+
 <!--<div th:replace="fragments/nav1"></div>
 <div th:replace="fragments/nav11"></div>
 -->
-
+<br><br><br>
 <div th:replace="fragments/logininfo"></div>
-<br><br>
+
 <div layout:fragment="content"></div>
 <footer>
     <hr>

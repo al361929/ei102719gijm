@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Añadir PDF factura</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Subir factura en PDF</h1>
+    <td><h2 style="display: inline">Contrato Nº - </h2></td>
+    <td><h2 style="display: inline" th:text="${invoice.invoiceNumber}"></h2></td>
+    <br>
+    <form method="POST" th:action="@{/invoice/upload}" enctype="multipart/form-data"
+          th:object="${invoice}">
+        <table>
+            <tr>
+                <td><label>Número de factura</label></td>
+                <td><input type="text" class="form-control" th:field="*{invoiceNumber}" readonly
+                           style="background-color: rgb(170, 170, 170)"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>DNI Persona mayor</label></td>
+                <td><input type="text" class="form-control" th:field="*{dniElderly}" readonly/></td>
+            </tr>
+            <tr>
+                <td><label>Fecha de facturación</label></td>
+                <td><input type="date" class="form-control" id="dateInvoice" th:field="*{dateInvoice}" readonly/></td>
+            </tr>
+            <tr>
+                <td><label>Precio Total</label></td>
+                <td><input type="text" class="form-control" th:field="*{totalPrice}" min="0" readonly/></td>
+            </tr>
+        </table>
+        <td><input id="file" type="file" name="file"/> <br/></td>
+        <td><input id="estilo2" type="submit" value="Añadir" name="upload" class="btn btn btn-success"/></td>
+        <td><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a></td>
+
+    </form>
+</div>
+</body>
+</html>
