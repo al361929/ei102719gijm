@@ -33,10 +33,10 @@
             <td th:text="${invoice.invoicePDF}"></td>
             <td>
                 <div th:if="${!invoice.invoicePDF}">
-                    <a th:href="@{/invoice/upload/{idInvoice}(idInvoice=${invoice.invoiceNumber})}"
+                    <a th:href="@{/invoice/generatePDF/{idInvoice}(idInvoice=${invoice.invoiceNumber})}"
                        class="btn btn btn-default"
                        role="button"
-                       aria-pressed="true">Añadir PDF</a>
+                       aria-pressed="true">Generar PDF</a>
                 </div>
                 <div th:if="${invoice.invoicePDF}">
                     <a th:href="@{/invoice/verPDF/{idInvoice}(idInvoice=${invoice.invoiceNumber})}"

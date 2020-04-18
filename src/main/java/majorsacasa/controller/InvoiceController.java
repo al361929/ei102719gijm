@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -85,6 +86,15 @@ public class InvoiceController extends Controlador {
     public String prepareUploadInvoice(Model model, @PathVariable Integer idInvoice) {
         model.addAttribute("invoice", invoiceDao.getInvoice(idInvoice));
         return "invoice/upload";
+    }
+
+    @RequestMapping(value = "/generatePDF/{idInvoice}", method = RequestMethod.GET)
+    public String generatePDF(Model model, @PathVariable Integer idInvoice) {
+        GeneratePDF generatePDF = new GeneratePDF();
+        String path = uploadDirectory + "/invoice/" + idInvoice + ".pdf";
+        generatePDF.createPDF(new File(path));
+        invoiceDao.updloadInvoice(idInvoice, true);
+        return "redirect:list?nuevo=" + idInvoice;
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
