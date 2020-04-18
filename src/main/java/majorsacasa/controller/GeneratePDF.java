@@ -1,6 +1,8 @@
 package majorsacasa.controller;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 
@@ -110,6 +112,48 @@ public class GeneratePDF {
             list.add(item);
             paragraphMoreS.add(list);
             document.add(chapSecond);
+
+            // How to use PdfPTable
+            // Utilización de PdfPTable
+            // We use various elements to add title and subtitle
+            // Usamos varios elementos para añadir título y subtítulo
+            Anchor anchor = new Anchor("Table export to PDF (Exportamos la tabla a PDF)", categoryFont);
+            anchor.setName("Table export to PDF (Exportamos la tabla a PDF)");
+            Chapter chapTitle = new Chapter(new Paragraph(anchor), 1);
+            Paragraph paragraph = new Paragraph("Do it by Xules (Realizado por Xules)", subcategoryFont);
+            Section paragraphMore = chapTitle.addSection(paragraph);
+            paragraphMore.add(new Paragraph("This is a simple example (Este es un ejemplo sencillo)"));
+            Integer numColumns = 6;
+            Integer numRows = 120;
+
+            // We create the table (Creamos la tabla).
+            PdfPTable table = new PdfPTable(numColumns);
+            // Now we fill the PDF table
+            // Ahora llenamos la tabla del PDF
+            PdfPCell columnHeader;
+            // Fill table rows (rellenamos las filas de la tabla).
+            for (int column = 0; column < numColumns; column++) {
+                columnHeader = new PdfPCell(new Phrase("COL " + column));
+                columnHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(columnHeader);
+            }
+            table.setHeaderRows(1);
+
+            // Fill table rows (rellenamos las filas de la tabla).
+            for (int row = 0; row < numRows; row++) {
+                for (int column = 0; column < numColumns; column++) {
+                    table.addCell("Row " + row + " - Col" + column);
+                }
+            }
+
+            // We add the table (Añadimos la tabla)
+            paragraphMore.add(table);
+
+            // We add the paragraph with the table (Añadimos el elemento con la tabla).
+            document.add(chapTitle);
+            document.close();
+            System.out.println("Your PDF file has been generated!(¡Se ha generado tu hoja PDF!");
+
 
             document.close();
             System.out.println("Your PDF file has been generated!(¡Se ha generado tu hoja PDF!");
