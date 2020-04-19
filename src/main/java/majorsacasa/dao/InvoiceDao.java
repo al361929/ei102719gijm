@@ -49,9 +49,9 @@ public class InvoiceDao {
         jdbcTemplate.update("DELETE FROM Invoice WHERE idInvoice=?", invoice);
     }
 
-    public List<Invoice> getInvoiceElderly(String nif) {
+    public List<Invoice> getInvoiceElderly(String dni) {
         try {
-            return jdbcTemplate.query(" SELECT * FROM Invoice WHERE dni =?", new InvoiceRowMapper(), nif);
+            return jdbcTemplate.query(" SELECT * FROM Invoice WHERE dni =?", new InvoiceRowMapper(), dni);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Invoice>();
         }

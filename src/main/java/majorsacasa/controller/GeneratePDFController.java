@@ -5,12 +5,14 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
+import majorsacasa.model.Elderly;
+import majorsacasa.model.Invoice;
 
 import java.io.*;
 
 public class GeneratePDFController {
 
-    private static final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 26, Font.BOLDITALIC);
+    private static final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 26, Font.BOLD);
     private static final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
 
     private static final Font categoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
@@ -30,7 +32,7 @@ public class GeneratePDFController {
      *                   pdf File we are going to write.
      *                   Fichero pdf en el que vamos a escribir.
      */
-    public void createPDF(File pdfNewFile) {
+    public void createPDF(File pdfNewFile, Invoice invoice, Elderly elderly) {
         // Aquí introduciremos el código para crear el PDF.
         // We create the document and set the file name.
 
@@ -46,16 +48,16 @@ public class GeneratePDFController {
             document.open();
             // We add metadata to PDF
             // Añadimos los metadatos del PDF
-            document.addTitle("Table export to PDF (Exportamos la tabla a PDF)");
-            document.addSubject("Using iText (usando iText)");
-            document.addKeywords("Java, PDF, iText");
-            document.addAuthor("Código Xules");
-            document.addCreator("Código Xules");
+            document.addTitle("Factura-" + invoice.getInvoiceNumber());
+            document.addSubject("Usando iText");
+            document.addKeywords("Java, PDF, iText, Majors a Casa, HTML, CSS");
+            document.addAuthor("Majors a Casa");
+            document.addCreator("Majors a Casa");
 
             // First page
             // Primera página
-            Chunk chunk = new Chunk("This is the title", chapterFont);
-            chunk.setBackground(BaseColor.GRAY);
+            Chunk chunk = new Chunk("Factura-" + invoice.getInvoiceNumber(), chapterFont);
+            chunk.setBackground(BaseColor.WHITE);
             // Let's create de first Chapter (Creemos el primer capítulo)
             Chapter chapter = new Chapter(new Paragraph(chunk), 1);
             chapter.setNumberDepth(0);

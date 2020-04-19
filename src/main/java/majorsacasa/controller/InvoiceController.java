@@ -92,7 +92,9 @@ public class InvoiceController extends Controlador {
     public String generatePDF(Model model, @PathVariable Integer idInvoice) {
         GeneratePDFController generatePDF = new GeneratePDFController();
         String path = uploadDirectory + "/invoice/" + idInvoice + ".pdf";
-        generatePDF.createPDF(new File(path));
+        Invoice invoice = invoiceDao.getInvoice(idInvoice);
+        Elderly elderly = elderlyDao.getElderly(invoiceDao.getInvoice(idInvoice).getDniElderly());
+        generatePDF.createPDF(new File(path), invoice, elderly);
         invoiceDao.updloadInvoice(idInvoice, true);
         return "redirect:../list?nuevo=" + idInvoice;
     }
