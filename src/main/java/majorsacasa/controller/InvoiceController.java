@@ -90,11 +90,11 @@ public class InvoiceController extends Controlador {
 
     @RequestMapping(value = "/generatePDF/{idInvoice}", method = RequestMethod.GET)
     public String generatePDF(Model model, @PathVariable Integer idInvoice) {
-        GeneratePDF generatePDF = new GeneratePDF();
+        GeneratePDFController generatePDF = new GeneratePDFController();
         String path = uploadDirectory + "/invoice/" + idInvoice + ".pdf";
         generatePDF.createPDF(new File(path));
         invoiceDao.updloadInvoice(idInvoice, true);
-        return "redirect:list?nuevo=" + idInvoice;
+        return "redirect:../list?nuevo=" + idInvoice;
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)

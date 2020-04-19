@@ -8,7 +8,7 @@ import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 
 import java.io.*;
 
-public class GeneratePDF {
+public class GeneratePDFController {
 
     private static final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 26, Font.BOLDITALIC);
     private static final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
@@ -18,7 +18,7 @@ public class GeneratePDF {
     private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
-    private static final String iTextExampleImage = "/static/img/anciano.jpg";
+    private static final String iTextExampleImage = "D:\\UJI\\Diseño e implementacion de sistemas de informacion\\ei102719gijm\\src\\main\\resources\\static\\img\\anciano.jpg";
 
     /**
      * We create a PDF document with iText using different elements to learn
