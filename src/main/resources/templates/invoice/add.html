@@ -18,7 +18,7 @@
             <table>
                 <tr>
                     <td><label>Persona Mayor</label></td>
-                    <td><select th:field="*{dniElderly}">
+                    <td><select class="select-css" th:field="*{dniElderly}">
                         <option value="" selected disabled>--- Selecciona Persona ---</option>
                         <option th:each="elderly : ${elderlys}" th:value="${elderly.dni}"
                                 th:utext="${elderly.getDatos()}"></option>
