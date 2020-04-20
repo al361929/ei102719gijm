@@ -63,7 +63,7 @@ public class VolunteerDao {
     //listar horarios para el usuario
     public List<VolunteerTime> getScheduleList(String dnivolunteer) {
         try {
-            return jdbcTemplate.query("Select * From volunteertime Where dni = ?", new VolunteerTimeRowMapper(), dnivolunteer);
+            return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ?", new VolunteerTimeRowMapper(), dnivolunteer);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<VolunteerTime>();
         }

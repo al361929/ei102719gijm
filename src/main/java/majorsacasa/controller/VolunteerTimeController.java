@@ -46,12 +46,20 @@ public class VolunteerTimeController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
+    public String processAddSubmit(HttpSession session,@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "volunteertime/add";
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
         volunteertime.setDniElderly(null);
+        volunteertime.setDniVolunteer(user.getDni());
+        System.out.println(volunteertime.toString());
         volunteerTimeDao.addVolunteerTime(volunteertime);
+        if (user.getTipo().equals("Volunteer")){
+            return "redirect:../volunteer/scheduleList";
+        }
         return "redirect:list?nuevo=" + volunteertime.getIdVolunteerTime();
+
     }
 
     @RequestMapping(value = "/update/{idVolunteerTime}", method = RequestMethod.GET)
@@ -92,6 +100,9 @@ public class VolunteerTimeController {
         volunteertime.setDniElderly(null);
         volunteertime.setDniVolunteer(user.getDni());
         volunteerTimeDao.addVolunteerTime(volunteertime);
+        if (user.getTipo().equals("Volunteer")){
+            return "volunteer/scheduleList";
+        }
         return "redirect:/";
     }
 }
