@@ -17,8 +17,8 @@
       th:object="${request}" method="post">
     <table>
         <tr>
-            <td><label>Servicio</label></td>
-            <td><select th:field="*{idService}">
+            <td><label>Servicio: </label></td>
+            <td><select th:field="*{idService}" class="select-css">
                 <option value="" selected disabled>--- Selecciona servicio ---</option>
                 <option th:each="servicio : ${servicios}" th:value="${servicio.idService}"
                         th:utext="${servicio.getDescription()}"></option>
@@ -30,8 +30,8 @@
         </tr>
 
         <tr>
-            <td><label>Empresa</label></td>
-            <td><select th:field="*{nif}">
+            <td><label>Empresa: </label></td>
+            <td><select th:field="*{nif}" class="select-css">
                 <option value="" selected disabled>--- Selecciona Empresa ---</option>
                 <option th:each="company : ${companyies}" th:value="${company.nif}"
                         th:utext="${company.nombre}"></option>

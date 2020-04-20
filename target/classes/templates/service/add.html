@@ -16,8 +16,8 @@
       th:object="${service}" method="POST">
     <table>
         <tr>
-            <td><label>Tipo de servicio</label></td>
-            <td><select type="text" class="form-control" th:field="*{serviceType}"/>
+            <td><label>Tipo de servicio: </label></td>
+            <td><select type="text"  th:field="*{serviceType}"class="select-css"/>
                 <option>Catering</option>
                 <option>Limpieza</option>
                 <option>Enfermería</option>

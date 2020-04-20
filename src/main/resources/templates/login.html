@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{fragments/base}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>MAJORS A CASA</title>
@@ -11,78 +10,66 @@
 <body>
 <div layout:fragment="content">
     <div class="container">
-<br>
-<table class="centrado">
-    <tr>
-        <td>        <h2 >Bienvenido!</h2>
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <section>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <div class="card" style="width: 25rem;">
+                            <img class="img-fluid " src="img/anciano.jpg" alt="">
+                            <div class="card-body">
+                                <p class="card-text">Entra y distruta de todos los servicios que ofrecemos, con la maxima atención y calidad que te mereces.</p>
+                            </div>
+                        </div>                        </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <form action="#" th:action="@{/login}"
+                              th:object="${user}" method="post">
+                            <div>
 
-    </tr>
-    <tr> <td  colspan="5"><h2 class="oculto">-------------------------------------------------------------------------------------------</h2></td></tr>
-    <tr>
-        <td colspan="1">
-                <form action="#" th:action="@{/login}"
-                      th:object="${user}" method="post">
-                    <div>
+                                <label for="inputUser">Usuario</label>
+                                <input class="form-control" id="inputUser" type="text" th:field="*{username}"
+                                       placeholder="Usuario"
+                                       required autofocus/>
 
-                        <label for="inputUser">Usuario</label>
-                        <input class="form-control" id="inputUser" type="text" th:field="*{username}"
-                               placeholder="Usuario"
-                               required autofocus/>
-
-                        <!-- <input type="text" id="inputUser" class="form-control" placeholder="Usuario"
-                                required autofocus>-->
-                        <div class="error" th:if="${#fields.hasErrors('username')}"
-                             th:errors="*{username}"></div>
+                                <!-- <input type="text" id="inputUser" class="form-control" placeholder="Usuario"
+                                        required autofocus>-->
+                                <div class="error" th:if="${#fields.hasErrors('username')}"
+                                     th:errors="*{username}"></div>
 
 
-                        <label for="inputPassword">Contraseña</label>
-                        <input class="form-control" id="inputPassword" type="password"
-                               th:field="*{password}" placeholder="Contraseña" required/>
-                        <div class="error" th:if="${#fields.hasErrors('password')}"
-                             th:errors="*{password}"></div>
+                                <label for="inputPassword">Contraseña</label>
+                                <input class="form-control" id="inputPassword" type="password"
+                                       th:field="*{password}" placeholder="Contraseña" required/>
+                                <div class="error" th:if="${#fields.hasErrors('password')}"
+                                     th:errors="*{password}"></div>
 
-                        <!-- <input type="password" id="inputPassword" class="form-control"
-                                placeholder="Contraseña" required> -->
+                                <!-- <input type="password" id="inputPassword" class="form-control"
+                                        placeholder="Contraseña" required> -->
 
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Recordar
-                                contraseña</label>
-                        </div>
-                        <button class="btn btn btn-success btn-block btn-login text-uppercase font-weight-bold mb-2"
-                                type="submit" value="Accedir">Entrar
-                        </button>
-                        <p><b>¿No tienes cuenta?</b> <a th:action="@{/register}" href="/register" id="estilo1">Registrate</a>
-                        </p>
-                    </div>
-                </form>
-
-        </td>
-        <td><h3 class="oculto">22</h3></td>
-        <td><h3 class="oculto">22</h3></td>
-        <td><h3 class="oculto">22</h3></td>
-        <td><h3 class="oculto">22</h3></td>
-
-        <td colspan="1">
-
-                <div class="card" style="width: 25rem;">
-                    <img class="img-fluid " src="img/anciano.jpg" alt="">
-                    <div class="card-body">
-                        <p class="card-text">Entra y distruta de todos los servicios que ofrecemos, con la maxima atención y calidad que te mereces.</p>
+                                <div class="custom-control custom-checkbox mb-3">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">Recordar
+                                        contraseña</label>
+                                </div>
+                                <button class="btn btn btn-success btn-block btn-login text-uppercase font-weight-bold mb-2"
+                                        type="submit" value="Accedir">Entrar
+                                </button>
+                                <p><b>¿No tienes cuenta?</b> <a th:action="@{/register}" href="/register" id="estilo1">Registrate</a>
+                                </p>
+                            </div>
+                        </form>
                     </div>
                 </div>
+            </div>
 
-        </td>
-
-    </tr>
-
-</table>
+        </section>
+        <footer>
+            <hr>
+            <p class="text-muted">© Copyright 2020, Generalitat Valenciana</p>
+        </footer>
 </div>
+
 </div>
 
 </body>

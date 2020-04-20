@@ -18,7 +18,7 @@
             <table>
                 <tr>
                     <td><label>Mes</label></td>
-                    <td><select th:field="*{mes}">
+                    <td><select class="select-css" th:field="*{mes}">
                         <option th:each="mes : ${meses}" th:value="${mes}" th:utext="${mes}"></option>
                     </select></td>
                 </tr>

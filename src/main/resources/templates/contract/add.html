@@ -17,7 +17,7 @@
             <table>
                 <tr>
                     <td><label>Empresa</label></td>
-                    <td><select th:field="*{nifcompany}">
+                    <td><select class="select-css" th:field="*{nifcompany}">
                         <option value="" selected disabled>--- Selecciona Empresa ---</option>
                         <option th:each="company : ${companyies}" th:value="${company.nif}"
                                 th:utext="${company.nombre}"></option>
@@ -41,7 +41,7 @@
                 </tr>
                 <tr>
                     <td><label>Persona Mayor</label></td>
-                    <td><select th:field="*{dnielderly}">
+                    <td><select class="select-css" th:field="*{dnielderly}">
                         <option value="" selected disabled>--- Selecciona Persona ---</option>
                         <option th:each="elderly : ${elderlys}" th:value="${elderly.dni}"
                                 th:utext="${elderly.getDatos()}"></option>

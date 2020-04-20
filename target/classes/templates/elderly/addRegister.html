@@ -65,8 +65,8 @@
                     <td><label>Email</label></td>
                     <td><input type="text" class="form-control" th:field="*{email}"/></td>
                 </tr>
-                <tr><td><label>Trabajador Social</label></td>
-                    <td><select th:field="*{socialWorker}">
+                <tr><td><label>Trabajador Social: </label></td>
+                    <td><select class="select-css" th:field="*{socialWorker}">
                     <option value="" selected disabled>--- Selecciona Trabajador Social ---</option>
                     <option th:each="Social : ${SocialWorkers}" th:value="${Social.dni}"
                             th:utext="${Social.nombre}"></option>

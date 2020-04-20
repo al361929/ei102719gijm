@@ -17,8 +17,8 @@
               th:object="${offer}" method="post">
             <table>
                 <tr>
-                    <td><label>Servicio</label></td>
-                    <td><select th:field="*{idService}">
+                    <td><label>Servicio: </label></td>
+                    <td><select class="select-css" th:field="*{idService}">
                         <option value="" selected disabled>--- Selecciona servicio ---</option>
                         <option th:each="servicio : ${servicios}" th:value="${servicio.idService}"
                                 th:utext="${servicio.getDescription()}"></option>
