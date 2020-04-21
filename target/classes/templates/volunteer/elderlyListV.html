@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Gestionar Trabajadores Sociales</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Lista de Personas mayores asociadas al voluntario</h1>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Dirección</th>
+                <th>Alergias</th>
+                <th>Telefono</th>
+                <th>Cumpleaños</th>
+                <th>Trabajador Social</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="elderly: ${elderlyList}"
+                th:class="${#strings.equals(nuevo,elderly.dni)}?'bg-info text-white'">
+                <td th:text="${elderly.nombre}"></td>
+                <td th:text="${elderly.apellidos}"></td>
+                <td th:text="${elderly.direccion}"></td>
+                <td th:text="${elderly.alergias}"></td>
+                <td th:text="${elderly.telefono}"></td>
+                <td th:text="${#temporals.format(elderly.birthday,'dd/MM/yyyy')}"></td>
+                <td th:text="${elderly.socialWorker}"></td>
+                <td th:text="${elderly.email}"></td>
+                <td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

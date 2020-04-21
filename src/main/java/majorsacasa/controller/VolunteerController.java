@@ -123,4 +123,13 @@ public class VolunteerController extends Controlador {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/elderlyList")
+    public String getElderlyList(HttpSession session,Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("elderlyList", volunteerDao.getElderlyList(user.getDni()));
+        return gestionarAcceso(session,model,"Volunteer","volunteer/elderlyListV");
+
+        //return "socialWorker/elderlyListSW";
+    }
+
 }

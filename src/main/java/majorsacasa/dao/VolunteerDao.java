@@ -2,6 +2,7 @@ package majorsacasa.dao;
 
 
 
+import majorsacasa.model.Elderly;
 import majorsacasa.model.Volunteer;
 import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,14 @@ public class VolunteerDao {
             return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ?", new VolunteerTimeRowMapper(), dnivolunteer);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<VolunteerTime>();
+        }
+    }
+
+    public List<Elderly> getElderlyList(String dniVolunteer) {
+        try {
+            return jdbcTemplate.query("select elderlypeople.* from elderlypeople JOIN volunteertime USING(dni) WHERE dnivolunteer=?", new ElderlyRowMapper(), dniVolunteer);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Elderly>();
         }
     }
 
