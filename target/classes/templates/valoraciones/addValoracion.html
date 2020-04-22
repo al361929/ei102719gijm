@@ -12,6 +12,10 @@
 
     <form action="#"  th:object="${valoracion}" th:action="@{/valoraciones/addValoracion}"
          method="post">
+        <td>
+            <div class="error" th:if="${#fields.hasErrors('dniVolunteer')}"
+                 th:errors="*{dniVolunteer}"></div>
+        </td>
         <table>
             <tr class="oculto">
                 <td><label>DNI Voluntario</label></td>

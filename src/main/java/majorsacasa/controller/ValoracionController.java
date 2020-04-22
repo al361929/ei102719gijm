@@ -2,6 +2,7 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.SocialWorkerDao;
 import majorsacasa.dao.ValoracionDao;
+import majorsacasa.model.Service;
 import majorsacasa.model.SocialWorker;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.Valoracion;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -94,9 +96,19 @@ public class ValoracionController extends Controlador {
     @RequestMapping(value = "/addValoracion", method = RequestMethod.POST)
     public String processAddSubmitValoracion(HttpSession session,Model model,@ModelAttribute("valoracion") Valoracion valoracion, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "valoracion/add";
+            return "valoraciones/addValoracion";
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracion.setDni(user.getDni());
+        //------------------------------------------------------------
+        Boolean checkValoracion = valoracionDao.checkValoracion(user.getDni(),valoracion.getDni());
+        if (!checkValoracion) {
+            bindingResult.rejectValue("dniVolunteer", "badnif", "Ya valorado ha este voluntario");
+
+            return "valoraciones/addValoracion";
+        }
+
+        //_----------------------------------------------------------
+
         System.out.println(valoracion.toString());
         valoracionDao.addValoracion(valoracion);
         return "redirect:elderlyList?nuevo=" + valoracion.getDni();

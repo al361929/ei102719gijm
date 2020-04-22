@@ -66,5 +66,10 @@ public class ValoracionDao {
             return new ArrayList<Valoracion>();
         }
     }
+    public boolean checkValoracion(String dniElderly,String dniVolunter){
+        List<String> valoracion = jdbcTemplate.queryForList(" select * from volunteerValoration where dni=? and dnivolunteer=?", String.class,dniElderly,dniVolunter);
+
+        return valoracion.isEmpty();
+    }
 
 }
