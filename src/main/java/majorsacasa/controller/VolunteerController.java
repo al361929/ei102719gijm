@@ -1,5 +1,6 @@
 package majorsacasa.controller;
 
+import majorsacasa.dao.ValoracionDao;
 import majorsacasa.dao.VolunteerDao;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.Volunteer;
@@ -10,8 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.lang.reflect.Array;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -20,10 +19,12 @@ import java.util.Optional;
 public class VolunteerController extends Controlador {
 
     private VolunteerDao volunteerDao;
+    private ValoracionDao valoracionDao;
 
     @Autowired
-    public void setVolunteerDao(VolunteerDao volunteerDao) {
+    public void setVolunteerDao(VolunteerDao volunteerDao,ValoracionDao valoracionDao ) {
         this.volunteerDao = volunteerDao;
+        this.valoracionDao =valoracionDao;
     }
 
 
@@ -137,6 +138,9 @@ public class VolunteerController extends Controlador {
         model.addAttribute("volunteers", volunteerDao.getVolunteers());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+
+        model.addAttribute("promedio",valoracionDao.getPromedio());
+
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listVolunteer");
     }
 
@@ -147,6 +151,8 @@ public class VolunteerController extends Controlador {
         model.addAttribute("misVoluntarios", volunteerDao.getVolunteerAsigned(user.getDni()));//getVolunteerAsigned()
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        model.addAttribute("promedio",valoracionDao.getPromedio());
+
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listMisVolunteer");
     }
 

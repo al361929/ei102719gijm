@@ -32,9 +32,9 @@
         <td th:text="${voluntario.nombre}"></td>
         <td th:text="${voluntario.apellidos}"></td>
         <td th:text="${voluntario.direccion}"></td>
-        <td>No Disponible</td>
+        <td th:text="${promedio.get(voluntario.dni)}"></td>
         <td>
-            <a th:href="@{/valoraciones/scheduleListVolunteer/{dni}(dni=${voluntario.dni})}" class="btn btn btn-secondary" role="button"
+            <a th:href="@{/valoraciones/listMisValoraciones/{dni}(dni=${voluntario.dni})}" class="btn btn btn-secondary" role="button"
                aria-pressed="true">Ver reseñas</a>
         </td>
         <td>

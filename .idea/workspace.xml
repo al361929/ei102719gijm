@@ -5,295 +5,28 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="dependencias">
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/BUILDING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/CODE_OF_CONDUCT.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/CONTRIBUTING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/LICENSE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-javadoc.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-javadoc.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-javadoc.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-javadoc.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-javadoc.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-sources.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-sources.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-sources.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-sources.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3-sources.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/barcodes-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/font-asian-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-javadoc.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-javadoc.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-javadoc.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-javadoc.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-javadoc.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-sources.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-sources.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-sources.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-sources.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3-sources.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/forms-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/gnu-agpl-v3.0.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/hyph-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-javadoc.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-javadoc.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-javadoc.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-javadoc.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-javadoc.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-sources.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-sources.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-sources.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-sources.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3-sources.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/io-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/itext7-core-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/itext7-core-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/itext7-core-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/itext7-core-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/itext7-core-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/itext7-core-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-javadoc.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-javadoc.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-javadoc.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-javadoc.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-javadoc.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-sources.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-sources.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-sources.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-sources.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3-sources.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/kernel-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-javadoc.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-javadoc.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-javadoc.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-javadoc.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-javadoc.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-sources.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-sources.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-sources.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-sources.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3-sources.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/layout-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-javadoc.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-javadoc.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-javadoc.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-javadoc.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-javadoc.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-sources.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-sources.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-sources.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-sources.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3-sources.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdfa-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-javadoc.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-javadoc.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-javadoc.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-javadoc.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-javadoc.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-sources.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-sources.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-sources.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-sources.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3-sources.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/pdftest-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/root-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/root-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/root-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/root-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/root-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/root-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-javadoc.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-javadoc.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-javadoc.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-javadoc.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-javadoc.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-sources.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-sources.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-sources.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-sources.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3-sources.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/sign-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-javadoc.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-javadoc.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-javadoc.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-javadoc.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-javadoc.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-sources.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-sources.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-sources.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-sources.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3-sources.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/styled-xml-parser-7.1.3.pom.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-javadoc.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-javadoc.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-javadoc.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-javadoc.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-javadoc.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-sources.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-sources.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-sources.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-sources.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3-sources.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.jar.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.jar.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.jar.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.jar.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.jar.sha1.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.pom" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.pom.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.pom.md5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.pom.md5.asc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.pom.sha1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iText7-Core-7.1.3/svg-7.1.3.pom.sha1.asc" afterDir="false" />
+    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/iText7_Core_7_11.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/GeneratePDFController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/GeneratePDFController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ValoracionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ValoracionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/VolunteerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/VolunteerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/ValoracionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/dao/ValoracionDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/valoraciones/listMisValoraciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/valoraciones/listMisValoraciones.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/listMisVolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/listMisVolunteer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/listVolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/listVolunteer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/controller/GeneratePDFController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/controller/GeneratePDFController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/listMisVolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/listMisVolunteer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/listVolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/listVolunteer.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -333,7 +66,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -355,12 +88,13 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.4863388" />
+    <property name="project.structure.side.proportion" value="0.49539405" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Philippe\IdeaProjects\ei102719gijm\src\main\resources\templates\valoraciones" />
       <recent name="C:\Users\Philippe\IdeaProjects\ei102719gijm\src\main\resources\templates\volunteer" />
       <recent name="C:\Users\Philippe\IdeaProjects\ei102719gijm\src\main\resources\templates\fragments" />
       <recent name="D:\UJI\Diseño e implementacion de sistemas de informacion\ei102719gijm\src\main\resources" />
@@ -373,7 +107,7 @@
       <recent name="D:\UJI\Diseño e implementacion de sistemas de informacion\ei102719gijm\src\main\resources\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.MajorsACasaApplication">
+  <component name="RunManager" selected="Application.MajorsACasaApplication">
     <configuration name="MajorsACasaApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <envs>
         <env name="USER" value="ei102719gijm" />
@@ -407,7 +141,6 @@
     </configuration>
     <list>
       <item itemvalue="Application.MajorsACasaApplication" />
-      <item itemvalue="Spring Boot.MajorsACasaApplication" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -685,28 +418,11 @@
       <option name="project" value="LOCAL" />
       <updated>1587568166800</updated>
     </task>
-    <task id="LOCAL-00036" summary="dependencias">
-      <created>1587586193797</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1587586193797</updated>
-    </task>
-    <option name="localTasksCounter" value="37" />
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -727,6 +443,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Elderly y  Volunteer terminados" />
     <MESSAGE value="retoques" />
     <MESSAGE value="Todo funcional" />
     <MESSAGE value="Cositas" />
@@ -751,8 +468,7 @@
     <MESSAGE value="Genera PDF" />
     <MESSAGE value="Genera PDF, falta modificarlo a nuestro gusto para mostrar los datos" />
     <MESSAGE value="Creado Valoraciones." />
-    <MESSAGE value="dependencias" />
-    <option name="LAST_COMMIT_MESSAGE" value="dependencias" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creado Valoraciones." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -798,10 +514,6 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="374" y="162" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004577492" />
-    <state x="1890" y="203" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1587586129060">
-      <screen x="1366" y="0" width="1280" height="994" />
-    </state>
-    <state x="1890" y="203" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587586129060" />
     <state x="423" y="360" width="433" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1586768005147">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
@@ -820,11 +532,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="430" y="225" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1582733892236" />
-    <state x="1585" y="0" key="CommitChangelistDialog2" timestamp="1587586173731">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state x="329" y="0" key="CommitChangelistDialog2" timestamp="1587568165162">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="234" y="0" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254422002" />
-    <state x="1585" y="0" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587586173731" />
+    <state x="1585" y="0" key="CommitChangelistDialog2/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583791723782" />
     <state x="234" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1583333433744" />
     <state x="329" y="0" key="CommitChangelistDialog2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587568165162" />
     <state x="329" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1586519043981" />
@@ -836,96 +548,96 @@
     <state x="361" y="207" key="EnvironmentVariablesDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1583004614175" />
     <state x="361" y="207" key="EnvironmentVariablesDialog/0.0.1366.738@0.0.1366.738" timestamp="1582734051980" />
     <state x="546" y="404" key="EnvironmentVariablesDialog/0.0.1920.1046@0.0.1920.1046" timestamp="1583261124044" />
-    <state x="1672" y="128" key="FileChooserDialogImpl" timestamp="1587586386580">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state x="460" y="134" key="FileChooserDialogImpl" timestamp="1587587975274">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="327" y="95" key="FileChooserDialogImpl/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587228498816" />
-    <state x="1672" y="128" key="FileChooserDialogImpl/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587586386580" />
-    <state width="1237" height="215" key="GridCell.Tab.0.bottom" timestamp="1587579820564">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state x="460" y="134" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587587975274" />
+    <state width="1865" height="215" key="GridCell.Tab.0.bottom" timestamp="1587598544686">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="407" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1587034145070" />
     <state width="1323" height="154" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
-    <state width="1237" height="215" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587579820564" />
+    <state width="1237" height="236" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583890279049" />
     <state width="1493" height="391" key="GridCell.Tab.0.bottom/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1877" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
-    <state width="1865" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587570701244" />
+    <state width="1865" height="215" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587598544686" />
     <state width="908" height="293" key="GridCell.Tab.0.bottom/0.0.1920.1046@0.0.1920.1046" timestamp="1583261135360" />
     <state width="1877" height="267" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583783261384" />
     <state width="1877" height="267" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583710516715" />
-    <state width="1237" height="215" key="GridCell.Tab.0.center" timestamp="1587579820564">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1865" height="215" key="GridCell.Tab.0.center" timestamp="1587598544686">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="407" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1587034145070" />
     <state width="1323" height="154" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
-    <state width="1237" height="215" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587579820564" />
+    <state width="1237" height="236" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583890279049" />
     <state width="1493" height="391" key="GridCell.Tab.0.center/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1877" height="275" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
-    <state width="1865" height="292" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587570701243" />
+    <state width="1865" height="215" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587598544686" />
     <state width="908" height="293" key="GridCell.Tab.0.center/0.0.1920.1046@0.0.1920.1046" timestamp="1583261135359" />
     <state width="1877" height="267" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583783261383" />
     <state width="1877" height="267" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583710516715" />
-    <state width="1237" height="215" key="GridCell.Tab.0.left" timestamp="1587579820564">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1865" height="215" key="GridCell.Tab.0.left" timestamp="1587598544686">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="407" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1587034145070" />
     <state width="1323" height="154" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
-    <state width="1237" height="215" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587579820564" />
+    <state width="1237" height="236" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583890279048" />
     <state width="1493" height="391" key="GridCell.Tab.0.left/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703076" />
     <state width="1877" height="275" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670067" />
-    <state width="1865" height="292" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587570701243" />
+    <state width="1865" height="215" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587598544686" />
     <state width="908" height="293" key="GridCell.Tab.0.left/0.0.1920.1046@0.0.1920.1046" timestamp="1583261135359" />
     <state width="1877" height="267" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583783261383" />
     <state width="1877" height="267" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583710516715" />
-    <state width="1237" height="215" key="GridCell.Tab.0.right" timestamp="1587579820564">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1865" height="215" key="GridCell.Tab.0.right" timestamp="1587598544686">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="407" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1587034145070" />
     <state width="1323" height="154" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
-    <state width="1237" height="215" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587579820564" />
+    <state width="1237" height="236" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583890279049" />
     <state width="1493" height="391" key="GridCell.Tab.0.right/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1877" height="275" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
-    <state width="1865" height="292" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587570701244" />
+    <state width="1865" height="215" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587598544686" />
     <state width="908" height="293" key="GridCell.Tab.0.right/0.0.1920.1046@0.0.1920.1046" timestamp="1583261135360" />
     <state width="1877" height="267" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583783261384" />
     <state width="1877" height="267" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583710516715" />
-    <state width="1237" height="215" key="GridCell.Tab.1.bottom" timestamp="1587579820564">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="275" key="GridCell.Tab.1.bottom" timestamp="1587569670068">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="154" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
-    <state width="1237" height="215" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587579820564" />
+    <state width="1237" height="236" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583890279049" />
     <state width="1493" height="391" key="GridCell.Tab.1.bottom/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1877" height="275" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
     <state width="1865" height="330" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587044565280" />
-    <state width="1237" height="215" key="GridCell.Tab.1.center" timestamp="1587579820564">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="275" key="GridCell.Tab.1.center" timestamp="1587569670068">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="154" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
-    <state width="1237" height="215" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587579820564" />
+    <state width="1237" height="236" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583890279049" />
     <state width="1493" height="391" key="GridCell.Tab.1.center/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1877" height="275" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
     <state width="1865" height="330" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587044565279" />
-    <state width="1237" height="215" key="GridCell.Tab.1.left" timestamp="1587579820564">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="275" key="GridCell.Tab.1.left" timestamp="1587569670068">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="154" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
-    <state width="1237" height="215" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587579820564" />
+    <state width="1237" height="236" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583890279049" />
     <state width="1493" height="391" key="GridCell.Tab.1.left/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1877" height="275" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
     <state width="1865" height="330" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587044565279" />
-    <state width="1237" height="215" key="GridCell.Tab.1.right" timestamp="1587579820564">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="275" key="GridCell.Tab.1.right" timestamp="1587569670068">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="154" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
-    <state width="1237" height="215" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587579820564" />
+    <state width="1237" height="236" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583890279049" />
     <state width="1493" height="391" key="GridCell.Tab.1.right/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1877" height="275" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
     <state width="1865" height="330" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587044565280" />
-    <state x="1531" y="185" key="Maven.ArtifactSearchDialog" timestamp="1587586012787">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state x="299" y="34" key="Maven.ArtifactSearchDialog" timestamp="1587587597948">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="213" y="24" key="Maven.ArtifactSearchDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587234199134" />
-    <state x="1531" y="185" key="Maven.ArtifactSearchDialog/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587586012787" />
+    <state x="299" y="34" key="Maven.ArtifactSearchDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1587587597948" />
     <state x="147" y="65" key="MergeDialog" timestamp="1586876417330">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -936,34 +648,34 @@
     <state x="395" y="85" key="MultipleFileMergeDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1586187509349" />
     <state x="444" y="95" key="MultipleFileMergeDialog/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586710675565" />
     <state x="555" y="120" width="995" height="568" key="MultipleFileMergeDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1586458584720" />
-    <state x="1513" y="32" width="1167" height="708" key="SettingsEditor" timestamp="1587586398785">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state x="57" y="19" width="1167" height="708" key="SettingsEditor" timestamp="1587587982265">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="157" y="24" width="1167" height="708" key="SettingsEditor/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587234243428" />
-    <state x="1513" y="32" key="SettingsEditor/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587586398785" />
     <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1582734487674" />
+    <state x="57" y="19" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1587587982265" />
     <state x="229" y="0" width="1036" height="858" key="SettingsEditor/0.0.1920.1046@0.0.1920.1046" timestamp="1583233467996" />
     <state x="512" y="96" key="VCS.ChangeListViewerDialog" timestamp="1587053818649">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="512" y="96" key="VCS.ChangeListViewerDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587053818649" />
-    <state x="1624" y="137" key="Vcs.Push.Dialog.v2" timestamp="1587586195670">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state x="387" y="144" key="Vcs.Push.Dialog.v2" timestamp="1587568174241">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587237816405" />
-    <state x="1624" y="137" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587586195670" />
+    <state x="1624" y="137" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1583791801148" />
     <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1583333437947" />
     <state x="310" y="114" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878349347" />
     <state x="387" y="144" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587568174241" />
     <state x="387" y="144" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1586516669288" />
     <state x="387" y="144" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583325979217" />
     <state x="2307" y="143" key="Vcs.Push.Dialog.v2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583710507608" />
-    <state x="1783" y="365" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587586380144">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state x="625" y="382" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587587966759">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="445" y="271" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587228229320" />
-    <state x="1783" y="365" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1587586380144" />
-    <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587469593464">
+    <state x="625" y="382" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1587587966759" />
+    <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587587119268">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="381" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.984@0.0.1280.984" timestamp="1587032252040" />
@@ -972,7 +684,7 @@
     <state x="553" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586876407997" />
     <state x="553" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1583337547636" />
     <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1586540119667" />
-    <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587469593464" />
+    <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587587119268" />
     <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583764025781" />
     <state x="2611" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583767104097" />
     <state x="-1368" y="-11" width="1371" height="1027" maximized="true" key="dock-window-1" timestamp="1586444509933">

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -67,9 +68,20 @@ public class ValoracionDao {
         }
     }
     public boolean checkValoracion(String dniElderly,String dniVolunter){
-        List<String> valoracion = jdbcTemplate.queryForList(" select * from volunteerValoration where dni=? and dnivolunteer=?", String.class,dniElderly,dniVolunter);
+        List<String> valoracion = jdbcTemplate.queryForList(" select dni from volunteerValoration where dni=? and dnivolunteer=?", String.class,dniElderly,dniVolunter);
 
         return valoracion.isEmpty();
     }
+    public HashMap<String,Float> getPromedio(){
+        List<String> key = jdbcTemplate.queryForList("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer", String.class);
+        List<String> value = jdbcTemplate.queryForList("select avg(valoration) from volunteerValoration GROUP BY dniVolunteer", String.class);
+        HashMap <String,Float> promedio=new HashMap<>();
+        for (int i=0; i<key.size();i++){
+            promedio.put(key.get(i),Float.parseFloat(value.get(i)));
 
+        }
+       // HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer","select avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
+
+        return  promedio;
+    }
 }
