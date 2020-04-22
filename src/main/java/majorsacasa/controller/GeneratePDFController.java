@@ -1,9 +1,13 @@
 package majorsacasa.controller;
 
+import com.itextpdf.kernel.events.Event;
+import com.itextpdf.kernel.events.IEventHandler;
+import com.itextpdf.kernel.events.PdfDocumentEvent;
 import com.itextpdf.text.*;
+import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import majorsacasa.model.Elderly;
 import majorsacasa.model.Invoice;
@@ -20,7 +24,22 @@ public class GeneratePDFController {
     private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
-    private static final String iTextExampleImage = "D:\\UJI\\Diseño e implementacion de sistemas de informacion\\ei102719gijm\\src\\main\\resources\\static\\img\\anciano.jpg";
+    private static final String iTextExampleImage = "src/main/resources/static/img/linea-roja.png";
+
+
+    private class EventoPagina implements IEventHandler {
+
+        private final Document documento;
+
+        public EventoPagina(Document doc) {
+            documento = doc;
+        }
+
+        @Override
+        public void handleEvent(Event event) {
+
+        }
+    }
 
     /**
      * We create a PDF document with iText using different elements to learn
@@ -39,13 +58,25 @@ public class GeneratePDFController {
         // Creamos el documento e indicamos el nombre del fichero.
         try {
             Document document = new Document();
+            PdfDocument pdfDocument = null;
             try {
-                PdfWriter.getInstance(document, new FileOutputStream(pdfNewFile));
+                PdfWriter pdfWriter = new PdfWriter(pdfNewFile);
+                pdfDocument = new PdfDocument(pdfWriter);
+                com.itextpdf.text.pdf.PdfWriter.getInstance(document, new FileOutputStream(pdfNewFile));
             } catch (FileNotFoundException fileNotFoundException) {
                 System.out.println("No such file was found to generate the PDF "
                         + "(No se encontró el fichero para generar el pdf)" + fileNotFoundException);
             }
             document.open();
+
+            // Creamos el manejador de evento de pagina, el cual agregara
+            // el encabezado y pie de pagina
+            EventoPagina evento = new EventoPagina(document);
+            // Indicamos que el manejador se encargara del evento END_PAGE
+            pdfDocument.addEventHandler(PdfDocumentEvent.END_PAGE, evento);
+            // Establecemos los margenes
+            document.setMargins(75, 50, 0, 0);
+
             // We add metadata to PDF
             // Añadimos los metadatos del PDF
             document.addTitle("Factura-" + invoice.getInvoiceNumber());
@@ -53,6 +84,17 @@ public class GeneratePDFController {
             document.addKeywords("Java, PDF, iText, Majors a Casa, HTML, CSS");
             document.addAuthor("Majors a Casa");
             document.addCreator("Majors a Casa");
+
+            Image image;
+            try {
+                image = Image.getInstance(iTextExampleImage);
+                image.setAlignment(4);
+                document.add(image);
+            } catch (BadElementException ex) {
+                System.out.println("Image BadElementException" + ex);
+            } catch (IOException ex) {
+                System.out.println("Image IOException " + ex);
+            }
 
             // First page
             // Primera página
@@ -63,16 +105,7 @@ public class GeneratePDFController {
             chapter.setNumberDepth(0);
             chapter.add(new Paragraph("This is the paragraph", paragraphFont));
             // We add an image (Añadimos una imagen)
-            Image image;
-            try {
-                image = Image.getInstance(iTextExampleImage);
-                image.setAbsolutePosition(2, 150);
-                chapter.add(image);
-            } catch (BadElementException ex) {
-                System.out.println("Image BadElementException" + ex);
-            } catch (IOException ex) {
-                System.out.println("Image IOException " + ex);
-            }
+
             document.add(chapter);
 
             // Second page - some elements
@@ -162,5 +195,6 @@ public class GeneratePDFController {
         } catch (DocumentException documentException) {
             System.out.println("The file not exists (Se ha producido un error al generar un documento): " + documentException);
         }
+
     }
 }
