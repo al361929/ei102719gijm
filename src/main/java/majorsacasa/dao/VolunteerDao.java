@@ -72,7 +72,7 @@ public class VolunteerDao {
 
     public List<Elderly> getElderlyList(String dniVolunteer) {
         try {
-            return jdbcTemplate.query("select elderlypeople.* from elderlypeople JOIN volunteertime USING(dni) WHERE dnivolunteer=?", new ElderlyRowMapper(), dniVolunteer);
+            return jdbcTemplate.query("select DISTINCT elderlypeople.* from elderlypeople JOIN volunteertime USING(dni) WHERE dnivolunteer=?", new ElderlyRowMapper(), dniVolunteer);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Elderly>();
         }
