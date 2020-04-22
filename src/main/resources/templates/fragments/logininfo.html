@@ -6,9 +6,8 @@
     </div>
     <div th:unless="*{user == null}">
     <!--<p th:replace="fragments/nav"></p>-->
-        <div th:if="*{user.code == 5}">
            <br>
-        </div>
+
         <b>Autenticado como: </b> <span th:text="*{user.username}"></span>
 
 

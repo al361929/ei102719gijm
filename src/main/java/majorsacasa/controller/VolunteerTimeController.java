@@ -112,4 +112,12 @@ public class VolunteerTimeController {
         model.addAttribute("scheduleList", volunteerTimeDao.getScheduleList(user.getDni()));
         return "volunteer/scheduleList";
     }
+    @RequestMapping(value = "/solicitar/{idVolunteerTime}")
+    public String solicitar(HttpSession session,@PathVariable Integer idVolunteerTime) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        volunteerTimeDao.solicitar(idVolunteerTime,user.getDni());
+        return "redirect:../../volunteer/listVolunteer";
+    }
+
 }
