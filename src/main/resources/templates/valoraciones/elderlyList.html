@@ -1,7 +1,8 @@
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"  layout:decorate="~{fragments/base}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
 <head>
-    <title>Gestionar Valoraciones</title>
+    <title>Gestionar mis valoraciones</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -10,7 +11,7 @@
 <body>
 <div layout:fragment="content">
     <div class="container">
-        <h1>Lista valoraciones</h1>
+        <h1>Lista de mis valoraciones</h1>
 
         <table class="table table-striped">
             <thead>
@@ -23,26 +24,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="valoracion: ${valoraciones}">
+            <tr th:each="valoracion: ${listMisValoraciones}">
                 <td th:text="${valoracion.dniVolunteer}"></td>
                 <td th:text="${valoracion.dni}"></td>
                 <td th:text="${valoracion.valoration}"></td>
                 <td th:text="${valoracion.comments}"></td>
-                <td th:text="${#temporals.format(valoracion.dateValoration,'dd/MM/yyyy')}"></td>
-                <td>
-                    <a th:href="@{/valoraciones/update/{dniVolunteer}(dniVolunteer=${valoracion.dniVolunteer})/{dni}(dni=${valoracion.dni})}"
-                       class="btn btn btn-secondary"
-                       role="button"
-                       aria-pressed="true">Editar</a>
-
-                </td>
-                <td>
-                    <a th:href="@{/valoraciones/delete/{dniVolunteer}(dniVolunteer=${valoracion.dniVolunteer})/{dni}(dni=${valoracion.dni})}"
-                       class="btn btn btn-danger"
-                       role="button"
-                       aria-pressed="true">Borrar</a>
-
-                </td>
+                <td th:text="${valoracion.dateValoration}"></td>
             </tr>
             </tbody>
         </table>

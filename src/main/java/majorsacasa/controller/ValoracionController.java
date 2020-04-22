@@ -74,5 +74,32 @@ public class ValoracionController extends Controlador {
         model.addAttribute("nuevo", newVolunteerTime);
         return gestionarAcceso(session, model, "Volunteer", "valoraciones/listMisValoraciones");
     }
+    @RequestMapping(value = "/elderlyList")
+    public String ListMisValoracionesElderly(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("listMisValoraciones", valoracionDao.getMisValoracionesElderly(user.getDni()));//getVolunteerAsigned()
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
+        return gestionarAcceso(session, model, "ElderlyPeople", "valoraciones/elderlyList");
+    }
+    @RequestMapping(value = "/addValoracion/{dniVolunteer}")
+    public String addValoracion2(@PathVariable String dniVolunteer,Model model,HttpSession session) {
+        Valoracion v= new Valoracion();
+        v.setDniVolunteer(dniVolunteer);
+        model.addAttribute("valoracion", v);
+        System.out.println(v.toString());
+
+        return "valoraciones/addValoracion";
+    }
+    @RequestMapping(value = "/addValoracion", method = RequestMethod.POST)
+    public String processAddSubmitValoracion(HttpSession session,Model model,@ModelAttribute("valoracion") Valoracion valoracion, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "valoracion/add";
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        valoracion.setDni(user.getDni());
+        System.out.println(valoracion.toString());
+        valoracionDao.addValoracion(valoracion);
+        return "redirect:elderlyList?nuevo=" + valoracion.getDni();
+    }
 
 }

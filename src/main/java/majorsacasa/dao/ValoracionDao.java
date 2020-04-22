@@ -59,5 +59,12 @@ public class ValoracionDao {
             return new ArrayList<Valoracion>();
         }
     }
+    public List<Valoracion> getMisValoracionesElderly(String dni) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM volunteerValoration WHERE dni=?", new ValoracionRowMapper(), dni);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Valoracion>();
+        }
+    }
 
 }

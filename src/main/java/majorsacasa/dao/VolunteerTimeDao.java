@@ -64,4 +64,8 @@ public class VolunteerTimeDao {
             return new ArrayList<VolunteerTime>();
         }
     }
+
+    public void solicitar(Integer id, String dni) {
+        jdbcTemplate.update("UPDATE VolunteerTime SET  dni=? WHERE idVolunteerTime=?", dni, id);
+    }
 }
