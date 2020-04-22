@@ -78,4 +78,12 @@ public class VolunteerDao {
         }
     }
 
+    public List<Volunteer> getVolunteerAsigned(String dniElderly) {
+        try {
+            return jdbcTemplate.query("SELECT DISTINCT v.* FROM volunteer AS v JOIN volunteerTime AS vt USING(dnivolunteer) WHERE vt.dni=?", new VolunteerRowMapper(), dniElderly);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Volunteer>();
+        }
+    }
+
 }

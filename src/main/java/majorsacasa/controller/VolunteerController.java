@@ -3,6 +3,7 @@ package majorsacasa.controller;
 import majorsacasa.dao.VolunteerDao;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.Volunteer;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -142,7 +143,8 @@ public class VolunteerController extends Controlador {
 
     @RequestMapping("/listMisVoluntarios")
     public String listVolunteersElderlyQ(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
-        model.addAttribute("volunteers", volunteerDao.getVolunteerAsigned());//getVolunteerAsigned()
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("misVoluntarios", volunteerDao.getVolunteerAsigned(user.getDni()));//getVolunteerAsigned()
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listMisVoluntarios");
