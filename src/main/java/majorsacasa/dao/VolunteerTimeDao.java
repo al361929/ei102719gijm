@@ -49,4 +49,11 @@ public class VolunteerTimeDao {
     public void deleteVolunteerTime(Integer idVolunteerTime) {
         jdbcTemplate.update("DELETE FROM VolunteerTime WHERE idVolunteerTime=?", idVolunteerTime);
     }
+    public List<VolunteerTime> getScheduleList(String dnivolunteer) {
+        try {
+            return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ?", new VolunteerTimeRowMapper(), dnivolunteer);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<VolunteerTime>();
+        }
+    }
 }
