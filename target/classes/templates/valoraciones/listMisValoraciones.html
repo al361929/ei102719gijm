@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Gestionar mis valoraciones</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h1>Lista de mis valoraciones</h1>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>DNI Voluntario</th>
+                <th>DNI Elderly</th>
+                <th>Valoracion</th>
+                <th>Comentarios</th>
+                <th>Fecha</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="valoracion: ${listMisValoraciones}">
+                <td th:text="${valoracion.dniVolunteer}"></td>
+                <td th:text="${valoracion.dni}"></td>
+                <td th:text="${valoracion.valoration}"></td>
+                <td th:text="${valoracion.comments}"></td>
+                <td th:text="${valoracion.dateValoration}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a></td>
+    </div>
+</div>
+</body>
+</html>
