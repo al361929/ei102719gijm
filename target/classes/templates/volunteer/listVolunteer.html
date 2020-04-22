@@ -37,6 +37,11 @@
             <a th:href="@{/valoraciones/scheduleListVolunteer/{dni}(dni=${voluntario.dni})}" class="btn btn btn-secondary" role="button"
                aria-pressed="true">Ver reseñas</a>
         </td>
+        <td>
+        <a th:href="@{/volunteer/tiempoDelVoluntario/{dni}(dni=${voluntario.dni})}" class="btn btn btn-default" role="button"
+           aria-pressed="true">Solicitar</a>
+    </td>
+
 
 
     </tr>

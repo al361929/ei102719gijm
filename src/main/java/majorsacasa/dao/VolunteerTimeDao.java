@@ -56,4 +56,12 @@ public class VolunteerTimeDao {
             return new ArrayList<VolunteerTime>();
         }
     }
+
+    public List<VolunteerTime> getScheduleListDisponibles(String dnivolunteer) {
+        try {
+            return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ? AND dni=null", new VolunteerTimeRowMapper(), dnivolunteer);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<VolunteerTime>();
+        }
+    }
 }
