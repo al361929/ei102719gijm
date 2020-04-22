@@ -66,4 +66,13 @@ public class ValoracionController extends Controlador {
         return "redirect:../list";
     }
 
+    @RequestMapping(value = "/listMisValoraciones")
+    public String ListMisValoraciones(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("listMisValoraciones", valoracionDao.getMisValoraciones(user.getDni()));//getVolunteerAsigned()
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
+        return gestionarAcceso(session, model, "Volunteer", "valoraciones/listMisValoraciones");
+    }
+
 }

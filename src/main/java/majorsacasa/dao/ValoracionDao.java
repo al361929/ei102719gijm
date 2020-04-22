@@ -52,4 +52,12 @@ public class ValoracionDao {
                 LocalDate.now(), valoracion.getDniVolunteer(), valoracion.getDni());
     }
 
+    public List<Valoracion> getMisValoraciones(String dniVolunteer) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM volunteerValoration WHERE dnivolunteer=?", new ValoracionRowMapper(), dniVolunteer);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Valoracion>();
+        }
+    }
+
 }
