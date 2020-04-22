@@ -132,4 +132,20 @@ public class VolunteerController extends Controlador {
         //return "socialWorker/elderlyListSW";
     }
 
+    @RequestMapping("/listVolunteer")
+    public String listVolunteersElderly(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+        model.addAttribute("volunteers", volunteerDao.getVolunteers());
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
+        return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listVolunteer");
+    }
+
+    @RequestMapping("/listMisVoluntarios")
+    public String listVolunteersElderlyQ(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+        model.addAttribute("volunteers", volunteerDao.getVolunteerAsigned());//getVolunteerAsigned()
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
+        return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listMisVoluntarios");
+    }
+
 }
