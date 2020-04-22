@@ -38,12 +38,12 @@ public class ValoracionDao {
 
     //añadir
     public void addValoracion(Valoracion valoracion) {
-        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?,?,?)", valoracion.getDniVolunteer(), valoracion.getDni(), valoracion.getComments(), valoracion.getValoration(), LocalDate.now());
+        jdbcTemplate.update("INSERT INTO VolunteerValoration VALUES(?,?,?,?,?)", valoracion.getDniVolunteer(), valoracion.getDni(), valoracion.getComments(), valoracion.getValoration(), LocalDate.now());
     }
 
     //eliminar
     public void deleteValoracion(String dniVolunteer, String dniElderly) {
-        jdbcTemplate.update("DELETE FROM Volunteer WHERE WHERE dni=? AND dniVolunteer=?", dniElderly, dniVolunteer);
+        jdbcTemplate.update("DELETE FROM VolunteerValoration WHERE WHERE dni=? AND dniVolunteer=?", dniElderly, dniVolunteer);
     }
 
     //editar

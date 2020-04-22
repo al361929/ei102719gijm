@@ -32,7 +32,7 @@ public class ValoracionController extends Controlador {
     }
 
     @RequestMapping(value = "/add")
-    public String addSocialWorker(Model model) {
+    public String addValoracion(Model model) {
         model.addAttribute("valoracion", new Valoracion());
         return "valoraciones/add";
     }
