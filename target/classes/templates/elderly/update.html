@@ -37,8 +37,9 @@
             <td><label>Alergias</label></td>
             <!--            <td><input type="text" class="form-control" th:field="*{alergias}"/></td>-->
             <td>
-                <li th:each="allergie : *{alergias}">
-                    <input type="checkbox" name="allergies" th:value="${allergie}" th:field="*{alergias}"/>
+                <li th:each="allergie : ${allergies}">
+                    <input type="checkbox" name="allergies" th:value="${allergie}"
+                           th:checked="${#lists.contains(allergies, alergiasEld)}" th:field="*{alergias}"/>
                     <label th:text="${allergie}"></label>
                 </li>
             </td>

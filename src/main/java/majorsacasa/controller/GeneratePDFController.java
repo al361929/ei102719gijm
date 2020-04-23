@@ -6,7 +6,6 @@ import com.itextpdf.kernel.events.PdfDocumentEvent;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
@@ -94,7 +93,7 @@ public class GeneratePDFController {
             // First page
             // Primera página
             // We add an linea_h (Añadimos una imagen)
-            Chapter chapter = new Chapter(0);
+            Chapter chapter = new Chapter("Factura", 0);
             Image linea_h;
             try {
                 linea_h = Image.getInstance(linea);
@@ -110,23 +109,22 @@ public class GeneratePDFController {
             Image image;
             try {
                 image = Image.getInstance(logo);
-                PdfContentByte under = writer.getDirectContentUnder();
-                image.setAbsolutePosition(0, 800);
+                image.setWidthPercentage(100F);
+                image.setAbsolutePosition(100, 700);
                 image.setAlignment(Element.ALIGN_LEFT);
-                under.saveState();
-                under.addImage(image);
-                under.restoreState();
                 chapter.add(image);
             } catch (BadElementException ex) {
                 System.out.println("Image BadElementException" + ex);
             } catch (IOException ex) {
                 System.out.println("Image IOException " + ex);
             }
-            Paragraph empresa = new Paragraph("Conselleria de Asuntos Sociales", paragraphFont);
-            empresa.add("Av. dels Germans Bou, 81, 12100 Castelló de la Plana, Castelló");
-            empresa.add("964 72 62 00");
+            Paragraph empresa = new Paragraph();
+            empresa.setFont(paragraphFont);
+            empresa.setAlignment(Element.ALIGN_CENTER);
+            empresa.add("Conselleria de Asuntos Sociales\n");
+            empresa.add("Av. dels Germans Bou, 81, 12100 Castelló de la Plana, Castelló\n");
+            empresa.add("964 72 62 00\n");
             empresa.add("http://www.inclusio.gva.es");
-            empresa.setAlignment(Element.ALIGN_LEFT);
             chapter.add(empresa);
             Paragraph fact = new Paragraph("Factura Nº - " + invoice.getInvoiceNumber(), chapterFont);
             fact.setAlignment(Element.ALIGN_RIGHT);
