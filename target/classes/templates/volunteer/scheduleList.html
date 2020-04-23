@@ -16,8 +16,8 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>DNI Voluntario</th>
-                <th>DNI Persona Mayor</th>
+                <th>Voluntario</th>
+                <th>Persona Mayor</th>
                 <th>Dia</th>
                 <th>Mes</th>
                 <th>Hora Inicio</th>
@@ -30,8 +30,8 @@
             <tbody>
             <tr th:each="voluntario: ${scheduleList}"
                 th:class="${#strings.equals(nuevo,voluntario.getIdVolunteerTime())}?'bg-info text-white'">
-                <td th:text="${voluntario.dniVolunteer}"></td>
-                <td th:text="${voluntario.dniElderly}"></td>
+                <td th:text="${usuario.get(voluntario.dniVolunteer)}"></td>
+                <td th:text="${usuario.get(voluntario.dniElderly)}"></td>
                 <td th:text="${voluntario.dia}"></td>
                 <td th:text="${voluntario.mes}"></td>
                 <td th:text="${voluntario.startTime}"></td>

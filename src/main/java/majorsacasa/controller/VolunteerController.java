@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Optional;
 
 
@@ -19,6 +20,7 @@ import java.util.Optional;
 public class VolunteerController extends Controlador {
 
     private VolunteerDao volunteerDao;
+
     private ValoracionDao valoracionDao;
 
     @Autowired
@@ -108,6 +110,8 @@ public class VolunteerController extends Controlador {
     public String getScheduleList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("scheduleList", volunteerDao.getScheduleList(user.getDni()));
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("usuario",u);
         return "volunteer/scheduleList";
     }
 

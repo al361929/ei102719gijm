@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
 @RequestMapping("/request")
 public class RequestController extends Controlador{
     private ContractDao contractDao;
+    private ValoracionDao valoracionDao;
 
     private RequestDao requestDao;
     private OffersDao offersDao;
@@ -27,13 +29,14 @@ public class RequestController extends Controlador{
     private List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada", "Cancelada");
 
     @Autowired
-    public void setRequestDao(RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao,ContractDao contractDao,OffersDao offersDao) {
+    public void setRequestDao(ValoracionDao valoracionDao,RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao,ContractDao contractDao,OffersDao offersDao) {
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
         this.companyDao = companyDao;
         this.elderlyDao = elderlyDao;
         this.contractDao = contractDao;
         this.offersDao= offersDao;
+        this.valoracionDao =valoracionDao;
     }
 
     @RequestMapping("/list")
@@ -116,6 +119,8 @@ public class RequestController extends Controlador{
         model.addAttribute("requests", requestDao.getRequestsElderly(user.getDni()));
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("usuario",u);
         return gestionarAcceso(session,model,"ElderlyPeople","request/listRequestElderly");
 
     }
