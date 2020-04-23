@@ -22,8 +22,7 @@ public class ElderlyController  extends Controlador{
 
     private ElderlyDao elderlyDao;
     private SocialWorkerDao socialWorkerDao;
-
-    private List alergias = Arrays.asList("Polen", "Frutos secos", "Gluten", "Pepinillo");
+    private List<String> alergias = Arrays.asList("Polen", "Frutos secos", "Gluten", "Pepinillo");
 
     @Autowired
     public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao) {
@@ -93,7 +92,9 @@ public class ElderlyController  extends Controlador{
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
     public String editElderly(HttpSession session, Model model, @PathVariable String dni) {
-
+        Elderly eld = elderlyDao.getElderly(dni);
+        List<String> alergiasEld = Arrays.asList(eld.getAlergias().split(","));
+        model.addAttribute("alergiasEld", alergiasEld);
         model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", elderlyDao.getElderly(dni));
         return gestionarAcceso(session, model, "SocialWorker", "elderly/update");
