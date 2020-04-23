@@ -41,6 +41,8 @@ public class CompanyController extends Controlador{
     public String processAddSubmit(@ModelAttribute("company") Company company, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "company/add";
+
+
         companyDao.addCompany(company);
         return "redirect:list?nuevo=" + company.getNif();
     }
@@ -55,6 +57,21 @@ public class CompanyController extends Controlador{
     public String processAddSubmitRegister(@ModelAttribute("company") Company company, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "company/addRegister";
+        Boolean check = companyDao.checkDNI(company.getNif());
+        Boolean checkUser = companyDao.checkUser(company.getNombreUsuario());
+
+        if (!check) {
+
+            bindingResult.rejectValue("nif", "nif", "Ya existe una empresa con este NIF");
+
+            return "company/addRegister";
+        }
+        if (!checkUser) {
+
+            bindingResult.rejectValue("nombreUsuario", "nombreUsuario", company.getNombreUsuario()+" ya esta se esta utilizando");
+
+            return "company/addRegister";
+        }
         companyDao.addCompany(company);
         return "redirect:../login";
     }

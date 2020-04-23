@@ -14,7 +14,17 @@
     <div class="container">
         <h2>Añadir persona mayor</h2>
         <form action="#" th:action="@{/elderly/addRegister}"
+
               th:object="${elderly}" method="post">
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('dni')}"
+                     th:errors="*{dni}"></div>
+            </td>
+
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('usuario')}"
+                     th:errors="*{usuario}"></div>
+            </td>
             <table>
                 <tr>
                     <td><label>DNI</label></td>

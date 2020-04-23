@@ -16,6 +16,15 @@
         <form action="#" th:action="@{/volunteer/addRegister}"
               th:object="${volunteer}" method="post">
             <table>
+                <td>
+                    <div class="error" th:if="${#fields.hasErrors('dni')}"
+                         th:errors="*{dni}"></div>
+                </td>
+
+                <td>
+                    <div class="error" th:if="${#fields.hasErrors('usuario')}"
+                         th:errors="*{usuario}"></div>
+                </td>
                 <tr>
                     <td><label>DNI</label></td>
                     <td><input type="text" class="form-control" th:field="*{dni}" required/></td>

@@ -60,6 +60,21 @@ public class VolunteerController extends Controlador {
     public String processAddSubmitRegister(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "volunteer/addRegister";
+        Boolean check = volunteerDao.checkDNI(volunteer.getDni());
+        Boolean checkUser = volunteerDao.checkUser(volunteer.getUsuario());
+
+        if (!check) {
+
+            bindingResult.rejectValue("dni", "dni", "Ya existe un usuario con este DNI");
+
+            return "volunteer/addRegister";
+        }
+        if (!checkUser) {
+
+            bindingResult.rejectValue("usuario", "usuario", volunteer.getUsuario()+" ya esta se esta utilizando");
+
+            return "volunteer/addRegister";
+        }
         volunteerDao.addVolunteer(volunteer);
         return "redirect:../login";
     }

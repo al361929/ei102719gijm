@@ -3,7 +3,6 @@ package majorsacasa.controller;
 import majorsacasa.dao.ElderlyDao;
 import majorsacasa.dao.SocialWorkerDao;
 import majorsacasa.model.Elderly;
-import majorsacasa.model.Service;
 import majorsacasa.model.SocialWorker;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,9 +67,26 @@ public class ElderlyController  extends Controlador{
     }
 
     @RequestMapping(value = "/addRegister", method = RequestMethod.POST)
-    public String processAddSubmitRegister(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
+    public String processAddSubmitRegister(@ModelAttribute("elderly") Elderly elderly,Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/addRegister";
+        Boolean check = socialWorkerDao.checkDNI(elderly.getDni());
+        Boolean checkUser = socialWorkerDao.checkUser(elderly.getUsuario());
+
+        if (!check) {
+
+            bindingResult.rejectValue("dni", "dni", "Ya existe un usuario con este DNI");
+            List<SocialWorker> social = socialWorkerDao.getSocialWorkers();
+            model.addAttribute("SocialWorkers", social);
+            return "elderly/addRegister";
+        }
+        if (!checkUser) {
+
+            bindingResult.rejectValue("usuario", "usuario", elderly.getUsuario()+" ya esta se esta utilizando");
+            List<SocialWorker> social = socialWorkerDao.getSocialWorkers();
+            model.addAttribute("SocialWorkers", social);
+            return "elderly/addRegister";
+        }
         elderlyDao.addElderly(elderly);
         return "redirect:/login";
     }

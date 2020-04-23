@@ -15,6 +15,15 @@
         <h2>Añadir Empresa</h2>
         <form action="#" th:action="@{/company/addRegister}"
               th:object="${company}" method="post">
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('nif')}"
+                     th:errors="*{nif}"></div>
+            </td>
+
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('nombreUsuario')}"
+                     th:errors="*{nombreUsuario}"></div>
+            </td>
             <table>
                 <tr>
                     <td><label>NIF</label></td>
