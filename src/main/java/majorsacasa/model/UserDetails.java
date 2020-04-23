@@ -6,6 +6,7 @@ public class UserDetails {
     String tipo;
     String dni;
     int code;
+    String name;
 
     public int getCode() {
         return code;
@@ -49,6 +50,14 @@ public class UserDetails {
         this.dni = dni;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "UserDetails{" +
@@ -57,6 +66,7 @@ public class UserDetails {
                 ", tipo='" + tipo + '\'' +
                 ", dni='" + dni + '\'' +
                 ", code=" + code +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

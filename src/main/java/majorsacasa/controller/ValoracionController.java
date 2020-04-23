@@ -79,6 +79,8 @@ public class ValoracionController extends Controlador {
         HashMap<String ,Float> v=valoracionDao.getPromedio();
         Float promedio=v.get(user.getDni());
         model.addAttribute("puntuacion",promedio);
+        model.addAttribute("datos",valoracionDao.getUsersInfo());
+
 
 
         return gestionarAcceso(session, model, "Volunteer", "valoraciones/listMisValoraciones");
@@ -104,6 +106,7 @@ public class ValoracionController extends Controlador {
     public String ListMisValoraciones2(HttpSession session, Model model,@PathVariable String dniVolunteer) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("listMisValoraciones", valoracionDao.getMisValoraciones(dniVolunteer));//getVolunteerAsigned()
+        model.addAttribute("datos",valoracionDao.getUsersInfo());
         HashMap<String ,Float> v=valoracionDao.getPromedio();
         Float promedio=v.get(dniVolunteer);
         if(promedio==null){

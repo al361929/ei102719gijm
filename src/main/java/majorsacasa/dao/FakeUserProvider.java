@@ -1,8 +1,6 @@
 package majorsacasa.dao;
 
 import majorsacasa.model.UserDetails;
-import majorsacasa.model.Volunteer;
-import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -45,16 +43,16 @@ public class FakeUserProvider implements UserDao {
         }
         String tipo = "Volunteer";
         int code=1;
-        List userList = jdbcTemplate.query("SELECT user_name, password, dnivolunteer FROM Volunteer WHERE user_name=?", new UserRowMapper(), username);
+        List userList = jdbcTemplate.query("SELECT user_name, password,name, dnivolunteer FROM Volunteer WHERE user_name=?", new UserRowMapper(), username);
         if (userList.isEmpty()) {
             tipo="ElderlyPeople"; code=2;
-            userList = jdbcTemplate.query("SELECT user_name, password, dni FROM ElderlyPeople WHERE user_name=?", new UserRowMapper(), username);
+            userList = jdbcTemplate.query("SELECT user_name, password, dni,name FROM ElderlyPeople WHERE user_name=?", new UserRowMapper(), username);
             if (userList.isEmpty()) {
                 tipo = "SocialWorker"; code=3;
-                userList = jdbcTemplate.query("SELECT user_name, password,dnisocialworker FROM SocialWorker WHERE user_name=?", new UserRowMapper(), username);
+                userList = jdbcTemplate.query("SELECT user_name, password,dnisocialworker,name FROM SocialWorker WHERE user_name=?", new UserRowMapper(), username);
                 if (userList.isEmpty()) {
                     tipo="Company"; code= 4;
-                    userList = jdbcTemplate.query("SELECT user_name, password, nif FROM Company WHERE user_name=?", new UserRowMapper(), username);
+                    userList = jdbcTemplate.query("SELECT user_name, password, nif,name FROM Company WHERE user_name=?", new UserRowMapper(), username);
                     if (userList.isEmpty()) {
                         return null; // Usuari no trobat
                     }

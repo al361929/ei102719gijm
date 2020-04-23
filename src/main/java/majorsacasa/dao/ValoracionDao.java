@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 
-public class ValoracionDao {
+public class ValoracionDao extends GeneralDao{
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
