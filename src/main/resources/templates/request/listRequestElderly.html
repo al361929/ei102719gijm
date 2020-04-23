@@ -17,8 +17,7 @@
         <tr>
             <th>Id solicitud</th>
             <th>Id servicio</th>
-            <th>DNI</th>
-            <th>NIF</th>
+            <th>Empresa</th>
             <th>Estado</th>
             <th>Fecha de solicitud</th>
             <th>Fecha de aceptación</th>
@@ -31,8 +30,7 @@
             th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info text-white'">
             <td th:text="${request.idRequest}"></td>
             <td th:text="${request.idService}"></td>
-            <td th:text="${request.dni}"></td>
-            <td th:text="${request.nif}"></td>
+            <td th:text="${usuario.get(request.nif)}"></td>
             <td th:text="${request.state}"></td>
             <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
             <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>

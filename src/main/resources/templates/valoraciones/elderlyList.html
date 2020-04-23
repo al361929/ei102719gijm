@@ -16,8 +16,8 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>DNI Voluntario</th>
-                <th>DNI Elderly</th>
+                <th>Voluntario</th>
+                <th>Elderly</th>
                 <th>Valoracion</th>
                 <th>Comentarios</th>
                 <th>Fecha</th>
@@ -25,8 +25,8 @@
             </thead>
             <tbody>
             <tr th:each="valoracion: ${listMisValoraciones}">
-                <td th:text="${valoracion.dniVolunteer}"></td>
-                <td th:text="${valoracion.dni}"></td>
+                <td th:text="${usuario.get(valoracion.dniVolunteer)}"></td>
+                <td th:text="${usuario.get(valoracion.dni)}"></td>
                 <td th:text="${valoracion.valoration}"></td>
                 <td th:text="${valoracion.comments}"></td>
                 <td th:text="${valoracion.dateValoration}"></td>

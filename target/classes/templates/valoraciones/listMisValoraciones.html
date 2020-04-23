@@ -25,8 +25,9 @@
             </thead>
             <tbody>
             <tr th:each="valoracion: ${listMisValoraciones}">
-                <td th:text="${datos.get(valoracion.dniVolunteer)}"></td>
-                <td th:text="${datos.get(valoracion.dni)}"></td>
+                <!--                 <td th:text="${datos.get(valoracion.dniVolunteer)}"></td>-->
+                <td th:text="${users.get(valoracion.dniVolunteer)}"></td>
+                <td th:text="${users.get(valoracion.dni)}"></td>
                 <td th:text="${valoracion.valoration}"></td>
                 <td th:text="${valoracion.comments}"></td>
                 <td th:text="${valoracion.dateValoration}"></td>

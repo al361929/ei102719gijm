@@ -28,8 +28,8 @@ public class ContractDao {
     }
 
     public void addContract(Contract contract) {
-        jdbcTemplate.update("INSERT INTO Contract VALUES(DEFAULT,?,?,?,?,?,?,?,?)", contract.getFirma(), LocalDate.now(), contract.getDateDown(),
-                contract.getCantidad(), contract.getDescripcion(), contract.getNifcompany(), contract.getDnielderly(), contract.getContractPDF());
+        jdbcTemplate.update("INSERT INTO Contract VALUES(DEFAULT,?,?,?,?,?,?,?)", contract.getFirma(), LocalDate.now(), contract.getDateDown(),
+                contract.getCantidad(), contract.getDescripcion(), contract.getNifcompany(), contract.getContractPDF());
     }
 
     public void deleteContract(Integer idContract) {
@@ -37,7 +37,7 @@ public class ContractDao {
     }
 
     public void updateContract(Contract contract) {
-        jdbcTemplate.update("UPDATE Contract SET dni=?, nif=?, firma=?, releaseDate=?, dateDown=?, quantity=?, description=?, pdf=? WHERE idContract=?", contract.getDnielderly(),
+        jdbcTemplate.update("UPDATE Contract SET  nif=?, firma=?, releaseDate=?, dateDown=?, quantity=?, description=?, pdf=? WHERE idContract=?",
                 contract.getNifcompany(), contract.getFirma(), contract.getReleaseDate(), contract.getDateDown(), contract.getCantidad(), contract.getDescripcion(), contract.getContractPDF(), contract.getIdContract());
     }
 

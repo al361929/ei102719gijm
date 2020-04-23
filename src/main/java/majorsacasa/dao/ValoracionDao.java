@@ -1,5 +1,6 @@
 package majorsacasa.dao;
 
+import majorsacasa.model.UserDetails;
 import majorsacasa.model.Valoracion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -84,5 +85,26 @@ public class ValoracionDao extends GeneralDao{
         //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer, avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
 
         return  promedio;
+    }
+    public HashMap<String,String> getUsersInfo(){
+
+        List<UserDetails> usuarios = jdbcTemplate.query("SELECT user_name, password,name, dnivolunteer FROM Volunteer", new UserRowMapper());
+
+        usuarios.addAll(jdbcTemplate.query("SELECT user_name, password, dni,name FROM ElderlyPeople", new UserRowMapper()));
+
+        usuarios.addAll(jdbcTemplate.query("SELECT user_name, password,dnisocialworker,name FROM SocialWorker ", new UserRowMapper()));
+
+        usuarios.addAll(jdbcTemplate.query("SELECT user_name, password, nif,name FROM Company", new UserRowMapper()));
+
+        HashMap <String,String> info=new HashMap<>();
+        for (UserDetails u: usuarios){
+            info.put(u.getDni(),u.getName());
+
+        }
+
+        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer","select avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
+        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer, avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
+
+        return  info;
     }
 }

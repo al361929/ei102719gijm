@@ -79,7 +79,9 @@ public class ValoracionController extends Controlador {
         HashMap<String ,Float> v=valoracionDao.getPromedio();
         Float promedio=v.get(user.getDni());
         model.addAttribute("puntuacion",promedio);
-        model.addAttribute("datos",valoracionDao.getUsersInfo());
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("users",u);
+
 
 
 
@@ -91,6 +93,8 @@ public class ValoracionController extends Controlador {
         model.addAttribute("listMisValoraciones", valoracionDao.getMisValoracionesElderly(user.getDni()));//getVolunteerAsigned()
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("usuario",u);
         return gestionarAcceso(session, model, "ElderlyPeople", "valoraciones/elderlyList");
     }
     @RequestMapping(value = "/addValoracion/{dniVolunteer}")
@@ -116,6 +120,8 @@ public class ValoracionController extends Controlador {
             model.addAttribute("puntuacion",promedio);
 
         }
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("users",u);
         return gestionarAcceso(session, model, "ElderlyPeople", "valoraciones/listMisValoraciones");
     }
 

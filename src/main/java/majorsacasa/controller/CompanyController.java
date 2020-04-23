@@ -1,6 +1,7 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.CompanyDao;
+import majorsacasa.dao.ValoracionDao;
 import majorsacasa.model.Company;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Optional;
 
 @Controller
@@ -17,10 +19,12 @@ import java.util.Optional;
 public class CompanyController extends Controlador{
 
     private CompanyDao companyDao;
-
+    private ValoracionDao valoracionDao;
     @Autowired
-    public void setCompanyDao(CompanyDao companyDao) {
+    public void setCompanyDao(ValoracionDao valoracionDao,CompanyDao companyDao) {
+
         this.companyDao = companyDao;
+        this.valoracionDao= valoracionDao;
     }
 
     @RequestMapping("/list")
@@ -138,6 +142,8 @@ public class CompanyController extends Controlador{
     public String getContractList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("contractList", companyDao.getContractsList(user.getDni()));
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("usuario",u);
         return gestionarAcceso(session, model, "Company", "company/contractList");
     }
 

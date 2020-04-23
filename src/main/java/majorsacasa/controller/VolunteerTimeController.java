@@ -1,32 +1,34 @@
 package majorsacasa.controller;
 
 
+import majorsacasa.dao.ValoracionDao;
 import majorsacasa.dao.VolunteerTimeDao;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 @RequestMapping("/volunteertime")
 public class VolunteerTimeController {
+    private ValoracionDao valoracionDao;
 
     private VolunteerTimeDao volunteerTimeDao;
     private List<String> meses = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
 
     @Autowired
-    public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao) {
+    public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao,ValoracionDao valoracionDao) {
+       this.valoracionDao =valoracionDao;
         this.volunteerTimeDao = volunteerTimeDao;
     }
 
@@ -110,6 +112,8 @@ public class VolunteerTimeController {
     public String getScheduleList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("scheduleList", volunteerTimeDao.getScheduleList(user.getDni()));
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("usuario",u);
         return "volunteer/scheduleList";
     }
     @RequestMapping(value = "/solicitar/{idVolunteerTime}")
