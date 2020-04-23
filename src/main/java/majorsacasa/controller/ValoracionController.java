@@ -91,7 +91,6 @@ public class ValoracionController extends Controlador {
         Valoracion v= new Valoracion();
         v.setDniVolunteer(dniVolunteer);
         model.addAttribute("valoracion", v);
-        System.out.println(v.toString());
 
         return "valoraciones/addValoracion";
     }
@@ -113,7 +112,8 @@ public class ValoracionController extends Controlador {
             return "valoraciones/addValoracion";
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracion.setDni(user.getDni());
-        Boolean checkValoracion = valoracionDao.checkValoracion(user.getDni(),valoracion.getDni());
+        Boolean checkValoracion = valoracionDao.checkValoracion(user.getDni(),valoracion.getDniVolunteer());
+        System.out.println("estado: "+checkValoracion+ "INFO:"+valoracion.toString());
         if (!checkValoracion) {
 
             bindingResult.rejectValue("dniVolunteer", "dniVolunteer", "Ya ha valorado ha este voluntario");
