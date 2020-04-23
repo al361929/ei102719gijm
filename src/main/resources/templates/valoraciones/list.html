@@ -29,20 +29,7 @@
                 <td th:text="${valoracion.valoration}"></td>
                 <td th:text="${valoracion.comments}"></td>
                 <td th:text="${#temporals.format(valoracion.dateValoration,'dd/MM/yyyy')}"></td>
-                <td>
-                    <a th:href="@{/valoraciones/update/{dniVolunteer}(dniVolunteer=${valoracion.dniVolunteer})/{dni}(dni=${valoracion.dni})}"
-                       class="btn btn btn-secondary"
-                       role="button"
-                       aria-pressed="true">Editar</a>
 
-                </td>
-                <td>
-                    <a th:href="@{/valoraciones/delete/{dniVolunteer}(dniVolunteer=${valoracion.dniVolunteer})/{dni}(dni=${valoracion.dni})}"
-                       class="btn btn btn-danger"
-                       role="button"
-                       aria-pressed="true">Borrar</a>
-
-                </td>
             </tr>
             </tbody>
         </table>

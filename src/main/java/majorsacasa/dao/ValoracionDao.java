@@ -44,7 +44,7 @@ public class ValoracionDao {
 
     //eliminar
     public void deleteValoracion(String dniVolunteer, String dniElderly) {
-        jdbcTemplate.update("DELETE FROM VolunteerValoration WHERE WHERE dni=? AND dniVolunteer=?", dniElderly, dniVolunteer);
+        jdbcTemplate.update("DELETE FROM VolunteerValoration  WHERE dni=? AND dniVolunteer=?", dniElderly, dniVolunteer);
     }
 
     //editar

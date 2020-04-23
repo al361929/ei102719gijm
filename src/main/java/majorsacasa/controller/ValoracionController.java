@@ -44,9 +44,10 @@ public class ValoracionController extends Controlador {
         return "redirect:list?nuevo=" + valoracion.getDni();
     }
 
-    @RequestMapping(value = "/update/{dniVolunteer}/{dni}", method = RequestMethod.GET)
-    public String editValoracion(Model model, @PathVariable String dniVolunteer, @PathVariable String dni) {
-        model.addAttribute("valoracion", valoracionDao.getValoracion(dniVolunteer, dni));
+    @RequestMapping(value = "/update/{dniVolunteer}", method = RequestMethod.GET)
+    public String editValoracion(HttpSession session,Model model, @PathVariable String dniVolunteer) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("valoracion", valoracionDao.getValoracion(dniVolunteer, user.getDni()));
         return "valoraciones/update";
     }
 
@@ -56,13 +57,15 @@ public class ValoracionController extends Controlador {
         if (bindingResult.hasErrors())
             return "valoraciones/update";
         valoracionDao.updateValoracion(valoracion);
-        return "redirect:list?nuevo=" + valoracion.getDni();
+        return "redirect:elderlyList?nuevo=" + valoracion.getDni();
     }
 
-    @RequestMapping(value = "/delete/{dniVolunteer}/{dni}")
-    public String processDelete(@PathVariable String dniVolunteer, @PathVariable String dni) {
-        valoracionDao.deleteValoracion(dniVolunteer, dni);
-        return "redirect:../list";
+    @RequestMapping(value = "/delete/{dniVolunteer}")
+    public String processDelete(HttpSession session,@PathVariable String dniVolunteer) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        System.out.println("V: "+dniVolunteer+" E: "+user.getDni());
+        valoracionDao.deleteValoracion(dniVolunteer, user.getDni());
+        return "redirect:../elderlyList";
     }
 
     @RequestMapping(value = "/listMisValoraciones")
@@ -101,7 +104,13 @@ public class ValoracionController extends Controlador {
         model.addAttribute("listMisValoraciones", valoracionDao.getMisValoraciones(dniVolunteer));//getVolunteerAsigned()
         HashMap<String ,Float> v=valoracionDao.getPromedio();
         Float promedio=v.get(dniVolunteer);
-        model.addAttribute("puntuacion",promedio);
+        if(promedio==null){
+            model.addAttribute("puntuacion","No disponible");
+
+        }else{
+            model.addAttribute("puntuacion",promedio);
+
+        }
         return gestionarAcceso(session, model, "ElderlyPeople", "valoraciones/listMisValoraciones");
     }
 
