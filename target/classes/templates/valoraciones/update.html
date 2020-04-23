@@ -8,7 +8,7 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <h1>Valora el voluntario</h1>
+    <h1>Modificar valoración</h1>
 
     <form action="#"  th:object="${valoracion}" th:action="@{/valoraciones/update}"
           method="post">
@@ -22,7 +22,7 @@
                 <td><input type="text" class="form-control " th:field="*{dniVolunteer}"/></td>
             </tr>
             <tr>
-                <td><label>Comments</label></td>
+                <td><label>Comentario</label></td>
                 <td><input type="text" class="form-control" th:field="*{comments}"/></td>
             </tr>
             <tr>
