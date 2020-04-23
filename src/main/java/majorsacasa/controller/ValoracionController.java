@@ -52,10 +52,12 @@ public class ValoracionController extends Controlador {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("valoracion") Valoracion valoracion,
+    public String processUpdateSubmit(HttpSession session,@ModelAttribute("valoracion") Valoracion valoracion,
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "valoraciones/update";
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        valoracion.setDni(user.getDni());
         valoracionDao.updateValoracion(valoracion);
         return "redirect:elderlyList?nuevo=" + valoracion.getDni();
     }
