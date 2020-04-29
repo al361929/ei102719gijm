@@ -73,9 +73,11 @@ public class RequestController extends Controlador{
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String editRequest(Model model, @PathVariable int id) {
+        Request request = requestDao.getRequest(id);
         model.addAttribute("estados", estados);
-        model.addAttribute("request", requestDao.getRequest(id));
-        List<Company> company = companyDao.getCompanyServiceOffer(id);
+        model.addAttribute("request", request);
+        List<Company> company = companyDao.getCompanyServiceOffer(request.getIdService());
+        System.out.println(company.toString());
         model.addAttribute("companyies", company);
         return "request/update";
 
