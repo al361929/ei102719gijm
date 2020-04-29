@@ -70,4 +70,12 @@ public class CompanyDao extends GeneralDao{
         }
     }
 
+    public List<Company> getCompanyServiceOffer(String idservicio) {
+        try {
+            return jdbcTemplate.query("SELECT c.* FROM company AS c JOIN offers AS o USING(nif) WHERE o.idService=?", new CompanyRowMapper(), idservicio);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Company>();
+        }
+    }
+
 }
