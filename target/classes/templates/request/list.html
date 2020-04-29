@@ -31,8 +31,8 @@
             th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info text-white'">
             <td th:text="${request.idRequest}"></td>
             <td th:text="${request.idService}"></td>
-            <td th:text="${request.dni}"></td>
-            <td th:text="${request.nif}"></td>
+            <td th:text="${usuario.get(request.dni)}"></td>
+            <td th:text="${usuario.get(request.nif)}"></td>
             <td th:text="${request.state}"></td>
             <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
             <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
@@ -49,7 +49,6 @@
         </tr>
         </tbody>
     </table>
-    <a href="add" class="btn btn btn-success" role="button">Añadir Solicitud</a>
    <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a>
 </div>
 </div>

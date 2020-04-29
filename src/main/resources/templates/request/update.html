@@ -29,8 +29,16 @@
                     <td><input type="text" class="form-control" th:field="*{dni}" required/></td>
                 </tr>
                 <tr>
-                    <td><label>NIF</label></td>
-                    <td><input type="text" class="form-control" th:field="*{nif}" required/></td>
+                    <td><label>Empresa: </label></td>
+                    <td><select th:field="*{nif}" class="select-css">
+                        <option value="" selected disabled>-&#45;&#45; Selecciona Empresa -&#45;&#45;</option>
+                        <option th:each="company : ${companyies}" th:value="${company.nif}"
+                                th:utext="${company.nombre}"></option>
+                    </select></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('nif')}"
+                             th:errors="*{nif}"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Fecha de solicitud</label></td>
@@ -38,7 +46,7 @@
                 </tr>
                 <tr>
                     <td><label>Estado</label></td>
-                    <td><select th:field="*{state}">
+                    <td><select  class="select-css" th:field="*{state}">
                         <option th:each="estado : ${estados}" th:value="${estado}" th:selected="${request.state}"
                                 th:utext="${estado}"></option>
                     </select></td>

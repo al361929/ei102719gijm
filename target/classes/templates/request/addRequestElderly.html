@@ -29,10 +29,10 @@
             </td>
         </tr>
 
-        <tr>
+<!--        <tr>
             <td><label>Empresa: </label></td>
             <td><select th:field="*{nif}" class="select-css">
-                <option value="" selected disabled>--- Selecciona Empresa ---</option>
+                <option value="" selected disabled>-&#45;&#45; Selecciona Empresa -&#45;&#45;</option>
                 <option th:each="company : ${companyies}" th:value="${company.nif}"
                         th:utext="${company.nombre}"></option>
             </select></td>
@@ -40,7 +40,7 @@
                 <div class="error" th:if="${#fields.hasErrors('nif')}"
                      th:errors="*{nif}"></div>
             </td>
-        </tr>
+        </tr>-->
 
       <!--  <tr>
             <td><label>Fecha de aceptación</label></td>

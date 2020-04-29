@@ -75,11 +75,14 @@ public class RequestController extends Controlador{
     public String editRequest(Model model, @PathVariable int id) {
         model.addAttribute("estados", estados);
         model.addAttribute("request", requestDao.getRequest(id));
+        List<Company> company = companyDao.getCompanies();
+        model.addAttribute("companyies", company);
         return "request/update";
+
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("request") Request request,
+    public String processUpdateSubmit(@ModelAttribute("request") Request request,Model model,
                                       BindingResult bindingResult) {
 
         if (bindingResult.hasErrors())
@@ -101,10 +104,26 @@ public class RequestController extends Controlador{
             if(request.getState().equals("Rechazada")) request.setDateReject(LocalDate.now());
 
         }
+        List<Company> company = companyDao.getCompanies();
+        model.addAttribute("companyies", company);
 
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("usuario",u);
 
         requestDao.updateRequest(request);
-        return "redirect:list?nuevo=" + request.getIdRequest();
+        //return "redirect:list?nuevo=" + request.getIdRequest();
+        return "redirect:../elderly/list";
+
+    }
+
+    @RequestMapping(value = "/list/{dni}")
+    public String listRequestsPersonalizado(@PathVariable String dni,Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+        model.addAttribute("requests", requestDao.getRequestsElderly(dni));
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("usuario",u);
+        return "request/list";
     }
 
     @RequestMapping(value = "/delete/{id}")
@@ -139,6 +158,7 @@ public class RequestController extends Controlador{
     public String processAddSubmitRequestElderly(HttpSession session,@ModelAttribute("request") Request request,Model model, BindingResult bindingResult) {
         Service servicio = serviceDao.getService(request.getIdService());
         UserDetails user = (UserDetails) session.getAttribute("user");
+        request.setNif("0");
         if (requestDao.checkService(servicio.getServiceType(), user.getDni())) {
             bindingResult.rejectValue("idService", "badserv", " Ya has solicitado este servicio");
             List<Service> servicios = serviceDao.getServices();
@@ -147,7 +167,7 @@ public class RequestController extends Controlador{
             model.addAttribute("companyies", company);
             return "request/addRequestElderly";
         }
-        if (offersDao.checkService(request.getNif(),request.getIdService())){
+        if (!request.getNif().equals("0") && offersDao.checkService(request.getNif(),request.getIdService())){
             bindingResult.rejectValue("nif", "badOffer", " Esta empresa no ofrece ese servicio.");
             List<Service> servicios = serviceDao.getServices();
             model.addAttribute("servicios", servicios);
