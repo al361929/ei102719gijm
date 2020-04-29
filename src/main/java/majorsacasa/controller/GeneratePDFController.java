@@ -27,7 +27,8 @@ public class GeneratePDFController {
     private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
     private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
-    private static final String iTextExampleImage = "src/main/resources/static/img/linea-roja.png";
+    private static final String linea = "src/main/resources/static/img/linea-roja.png";
+    private static final String logo = "src/main/resources/static/img/logo.png";
 
 
     private class EventoPagina implements IEventHandler {
@@ -62,10 +63,11 @@ public class GeneratePDFController {
         try {
             Document document = new Document();
             PdfDocument pdfDocument = null;
+            com.itextpdf.text.pdf.PdfWriter writer = null;
             try {
                 PdfWriter pdfWriter = new PdfWriter(pdfNewFile);
                 pdfDocument = new PdfDocument(pdfWriter);
-                com.itextpdf.text.pdf.PdfWriter.getInstance(document, new FileOutputStream(pdfNewFile));
+                writer = com.itextpdf.text.pdf.PdfWriter.getInstance(document, new FileOutputStream(pdfNewFile));
             } catch (FileNotFoundException fileNotFoundException) {
                 System.out.println("No such file was found to generate the PDF "
                         + "(No se encontró el fichero para generar el pdf)" + fileNotFoundException);
@@ -78,7 +80,6 @@ public class GeneratePDFController {
             // Indicamos que el manejador se encargara del evento END_PAGE
             pdfDocument.addEventHandler(PdfDocumentEvent.END_PAGE, evento);
             // Establecemos los margenes
-            document.setMargins(75, 50, 0, 0);
 
             // We add metadata to PDF
             // Añadimos los metadatos del PDF
@@ -88,26 +89,50 @@ public class GeneratePDFController {
             document.addAuthor("Majors a Casa");
             document.addCreator("Majors a Casa");
 
-            Image image;
+            document.setMargins(70, 50, 35, 35);
+            // First page
+            // Primera página
+            // We add an linea_h (Añadimos una imagen)
+            Chapter chapter = new Chapter("Factura", 0);
+            Image linea_h;
             try {
-                image = Image.getInstance(iTextExampleImage);
-                image.setAlignment(4);
-                document.add(image);
+                linea_h = Image.getInstance(linea);
+                linea_h.setAbsolutePosition(0, 822);
+                //linea_h.setAlignment(4);
+                chapter.add(linea_h);
             } catch (BadElementException ex) {
                 System.out.println("Image BadElementException" + ex);
             } catch (IOException ex) {
                 System.out.println("Image IOException " + ex);
             }
 
-            // First page
-            // Primera página
-            Chunk chunk = new Chunk("Factura-" + invoice.getInvoiceNumber(), chapterFont);
-            chunk.setBackground(BaseColor.WHITE);
+            Image image;
+            try {
+                image = Image.getInstance(logo);
+                image.setWidthPercentage(100F);
+                image.setAbsolutePosition(100, 700);
+                image.setAlignment(Element.ALIGN_LEFT);
+                chapter.add(image);
+            } catch (BadElementException ex) {
+                System.out.println("Image BadElementException" + ex);
+            } catch (IOException ex) {
+                System.out.println("Image IOException " + ex);
+            }
+            Paragraph empresa = new Paragraph();
+            empresa.setFont(paragraphFont);
+            empresa.setAlignment(Element.ALIGN_CENTER);
+            empresa.add("Conselleria de Asuntos Sociales\n");
+            empresa.add("Av. dels Germans Bou, 81, 12100 Castelló de la Plana, Castelló\n");
+            empresa.add("964 72 62 00\n");
+            empresa.add("http://www.inclusio.gva.es");
+            chapter.add(empresa);
+            Paragraph fact = new Paragraph("Factura Nº - " + invoice.getInvoiceNumber(), chapterFont);
+            fact.setAlignment(Element.ALIGN_RIGHT);
+            chapter.add(fact);
+            System.out.println(chapter.toString());
             // Let's create de first Chapter (Creemos el primer capítulo)
-            Chapter chapter = new Chapter(new Paragraph(chunk), 1);
             chapter.setNumberDepth(0);
-            chapter.add(new Paragraph("This is the paragraph", paragraphFont));
-            // We add an image (Añadimos una imagen)
+
 
             document.add(chapter);
 
