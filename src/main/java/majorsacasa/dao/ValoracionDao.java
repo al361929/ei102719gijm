@@ -99,8 +99,9 @@ public class ValoracionDao extends GeneralDao{
         HashMap <String,String> info=new HashMap<>();
         for (UserDetails u: usuarios){
             info.put(u.getDni(),u.getName());
-
         }
+
+        info.put("0"," ");
 
         //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer","select avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
         //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer, avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
