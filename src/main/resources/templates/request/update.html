@@ -16,7 +16,18 @@
         <form action="#" th:action="@{/request/update}"
               th:object="${request}" method="post">
             <table>
-                              <tr>
+
+                <tr class="oculto">
+                    <td><label>ID Request</label></td>
+                    <td><input type="text" class="form-control" th:field="*{idRequest}" readonly/></td>
+
+                    <td><label>ID Service</label></td>
+                    <td><input type="text" class="form-control" th:field="*{idService}" required/></td>
+
+                    <td><label>DNI</label></td>
+                    <td><input type="text" class="form-control" th:field="*{dni}" required/></td>
+                </tr>
+                <tr>
                     <td><label>Empresa: </label></td>
                     <td><select th:field="*{nif}" class="select-css">
                         <option value="" selected disabled>-&#45;&#45; Selecciona Empresa -&#45;&#45;</option>

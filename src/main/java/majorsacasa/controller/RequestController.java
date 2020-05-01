@@ -92,17 +92,21 @@ public class RequestController extends Controlador{
         if (bindingResult.hasErrors())
             return "request/update";
         if(request.getState().equals("Aceptada")) {
+            System.out.println("request: "+request.toString());
+
             request.setDateAccept(LocalDate.now());
 
             Invoice factura =new Invoice();
-            factura.setDateInvoice(request.getDateAccept());
+            factura.setDateInvoice(LocalDate.now());
             factura.setInvoicePDF(false);
 
             Service service=serviceDao.getService(request.getIdService());
+            System.out.println("service: "+service.toString());
+
             factura.setDniElderly(request.getDni());
 
             factura.setTotalPrice(service.getPrice());
-            System.out.println(factura.toString());
+            System.out.println("factura: "+factura.toString());
 
             invoiceDao.addInvoice(factura);
 

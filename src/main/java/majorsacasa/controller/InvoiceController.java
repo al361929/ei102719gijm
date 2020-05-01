@@ -82,13 +82,17 @@ public class InvoiceController extends Controlador {
         return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
     }
     @RequestMapping(value = "/generatePDF/{idInvoice}", method = RequestMethod.GET)
-    public String generatePDF(Model model, @PathVariable Integer idInvoice) {
+    public String generatePDF(HttpSession session, Model model, @PathVariable Integer idInvoice) {
         GeneratePDFController generatePDF = new GeneratePDFController();
         String path = uploadDirectory + "/invoice/" + idInvoice + ".pdf";
         Invoice invoice = invoiceDao.getInvoice(idInvoice);
         Elderly elderly = elderlyDao.getElderly(invoiceDao.getInvoice(idInvoice).getDniElderly());
         generatePDF.createPDF(new File(path), invoice, elderly);
         invoiceDao.updloadInvoice(idInvoice, true);
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        if (user.getTipo().equals("ElderlyPeople")) return "redirect:../invoiceListElderly?nuevo=" + idInvoice;
+
+
         return "redirect:../list?nuevo=" + idInvoice;
     }
 
