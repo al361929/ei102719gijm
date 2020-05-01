@@ -77,7 +77,7 @@ public class VolunteerTimeController {
         if (bindingResult.hasErrors())
             return "volunteertime/update";
         volunteerTimeDao.updateVolunteerTime(volunteertime);
-        return "redirect:list?nuevo=" + volunteertime.getIdVolunteerTime();
+        return "redirect:../volunteer/scheduleList";
     }
 
     @RequestMapping(value = "/delete/{idVolunteerTime}")
