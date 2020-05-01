@@ -1,13 +1,11 @@
 package majorsacasa.controller;
 
-import com.itextpdf.kernel.events.Event;
-import com.itextpdf.kernel.events.IEventHandler;
-import com.itextpdf.kernel.events.PdfDocumentEvent;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
+
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import majorsacasa.model.Elderly;
 import majorsacasa.model.Invoice;
@@ -20,7 +18,7 @@ import java.io.IOException;
 public class GeneratePDFController {
 
     private static final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 26, Font.BOLD);
-    private static final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
+    private static final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 9, Font.NORMAL);
 
     private static final Font categoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static final Font subcategoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
@@ -30,20 +28,6 @@ public class GeneratePDFController {
     private static final String linea = "src/main/resources/static/img/linea-roja.png";
     private static final String logo = "src/main/resources/static/img/logo.png";
 
-
-    private class EventoPagina implements IEventHandler {
-
-        private final Document documento;
-
-        public EventoPagina(Document doc) {
-            documento = doc;
-        }
-
-        @Override
-        public void handleEvent(Event event) {
-
-        }
-    }
 
     /**
      * We create a PDF document with iText using different elements to learn
@@ -62,11 +46,11 @@ public class GeneratePDFController {
         // Creamos el documento e indicamos el nombre del fichero.
         try {
             Document document = new Document();
-            PdfDocument pdfDocument = null;
-            com.itextpdf.text.pdf.PdfWriter writer = null;
+            //PdfDocument pdfDocument = null;
+            PdfWriter writer = null;
             try {
-                PdfWriter pdfWriter = new PdfWriter(pdfNewFile);
-                pdfDocument = new PdfDocument(pdfWriter);
+                //PdfWriter pdfWriter = new PdfWriter(pdfNewFile);
+                //pdfDocument = new PdfDocument(pdfWriter);
                 writer = com.itextpdf.text.pdf.PdfWriter.getInstance(document, new FileOutputStream(pdfNewFile));
             } catch (FileNotFoundException fileNotFoundException) {
                 System.out.println("No such file was found to generate the PDF "
@@ -76,9 +60,9 @@ public class GeneratePDFController {
 
             // Creamos el manejador de evento de pagina, el cual agregara
             // el encabezado y pie de pagina
-            EventoPagina evento = new EventoPagina(document);
+            //EventoPagina evento = new EventoPagina(document);
             // Indicamos que el manejador se encargara del evento END_PAGE
-            pdfDocument.addEventHandler(PdfDocumentEvent.END_PAGE, evento);
+            //pdfDocument.addEventHandler(PdfDocumentEvent.END_PAGE, evento);
             // Establecemos los margenes
 
             // We add metadata to PDF
@@ -92,8 +76,8 @@ public class GeneratePDFController {
             document.setMargins(70, 50, 35, 35);
             // First page
             // Primera página
-            // We add an linea_h (Añadimos una imagen)
-            Chapter chapter = new Chapter("Factura", 0);
+            // Añadimos la linea roja de arriba
+            Chapter chapter = new Chapter(0);
             Image linea_h;
             try {
                 linea_h = Image.getInstance(linea);
@@ -106,36 +90,67 @@ public class GeneratePDFController {
                 System.out.println("Image IOException " + ex);
             }
 
+            //Añadimos el logo de la empresa
             Image image;
             try {
                 image = Image.getInstance(logo);
                 image.setWidthPercentage(100F);
-                image.setAbsolutePosition(100, 700);
-                image.setAlignment(Element.ALIGN_LEFT);
+                image.setAbsolutePosition(70, 700);
+                //image.setAlignment(Element.ALIGN_LEFT);
                 chapter.add(image);
             } catch (BadElementException ex) {
                 System.out.println("Image BadElementException" + ex);
             } catch (IOException ex) {
                 System.out.println("Image IOException " + ex);
             }
-            Paragraph empresa = new Paragraph();
-            empresa.setFont(paragraphFont);
-            empresa.setAlignment(Element.ALIGN_CENTER);
-            empresa.add("Conselleria de Asuntos Sociales\n");
-            empresa.add("Av. dels Germans Bou, 81, 12100 Castelló de la Plana, Castelló\n");
-            empresa.add("964 72 62 00\n");
-            empresa.add("http://www.inclusio.gva.es");
-            chapter.add(empresa);
+
+
             Paragraph fact = new Paragraph("Factura Nº - " + invoice.getInvoiceNumber(), chapterFont);
             fact.setAlignment(Element.ALIGN_RIGHT);
             chapter.add(fact);
             System.out.println(chapter.toString());
-            // Let's create de first Chapter (Creemos el primer capítulo)
-            chapter.setNumberDepth(0);
-
 
             document.add(chapter);
 
+            //Añadimos los datos de la empresa
+            PdfContentByte over = writer.getDirectContent();
+            try {
+                over.saveState();
+
+                over.beginText();
+                over.setFontAndSize(paragraphFont.getBaseFont(), 9);
+                over.setTextMatrix(140, 740);
+                over.showText("Conselleria de Asuntos Sociales");
+                over.endText();
+
+                over.beginText();
+                over.setFontAndSize(paragraphFont.getBaseFont(), 9);
+                over.setTextMatrix(140, 730);
+                over.showText("Av. dels Germans Bou, 81");
+                over.endText();
+
+                over.beginText();
+                over.setFontAndSize(paragraphFont.getBaseFont(), 9);
+                over.setTextMatrix(140, 720);
+                over.showText("12100 Castelló de la Plana, Castelló");
+                over.endText();
+
+                over.beginText();
+                over.setFontAndSize(paragraphFont.getBaseFont(), 9);
+                over.setTextMatrix(140, 710);
+                over.showText("964 72 62 00");
+                over.endText();
+
+                over.beginText();
+                over.setFontAndSize(paragraphFont.getBaseFont(), 9);
+                over.setTextMatrix(140, 700);
+                over.showText("http://www.inclusio.gva.es");
+                over.endText();
+
+                over.restoreState();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             // Second page - some elements
             // Segunda página - Algunos elementos
             Chapter chapSecond = new Chapter(new Paragraph(new Anchor("Some elements (Añadimos varios elementos)")), 1);
@@ -218,8 +233,6 @@ public class GeneratePDFController {
             System.out.println("Your PDF file has been generated!(¡Se ha generado tu hoja PDF!");
 
 
-            document.close();
-            System.out.println("Your PDF file has been generated!(¡Se ha generado tu hoja PDF!");
         } catch (DocumentException documentException) {
             System.out.println("The file not exists (Se ha producido un error al generar un documento): " + documentException);
         }
