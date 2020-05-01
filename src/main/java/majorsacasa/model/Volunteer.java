@@ -21,8 +21,18 @@ public class Volunteer {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate birthday;
     String email;
+    String estado;
+
 
     public Volunteer() {
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getNombre() {
@@ -127,6 +137,7 @@ public class Volunteer {
                 ", dataDown=" + dataDown +
                 ", birthday=" + birthday +
                 ", email='" + email + '\'' +
+                ", estado='" + estado + '\'' +
                 '}';
     }
 }

@@ -59,6 +59,15 @@ public class LoginController {
                     if (user.getTipo().equals("SocialWorker")) {
                         return "redirect:/socialWorker/elderlyList";
                     }else{
+                        if (user.getCode()==6) {
+                            return "redirect:/company/list";
+                        }
+                        if (user.getCode()==7) {
+                            return "redirect:/elderly/list";
+                        }
+                        if (user.getCode()==8) {
+                            return "redirect:/volunteer/list";
+                        }
                         if (user.getTipo().equals("Admin")) {
                             return "redirect:/contract/list";
                         }

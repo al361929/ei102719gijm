@@ -41,6 +41,33 @@ public class FakeUserProvider implements UserDao {
             return user;
 
         }
+        if (username.equals("casManager") && password.equals("casManager")){
+            UserDetails user = new UserDetails();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setTipo("Admin");
+            user.setCode(6);
+            return user;
+
+        }
+        if (username.equals("casComite") && password.equals("casComite")){
+            UserDetails user = new UserDetails();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setTipo("Admin");
+            user.setCode(7);
+            return user;
+
+        }
+        if (username.equals("casVolunteer") && password.equals("casVolunteer")){
+            UserDetails user = new UserDetails();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setTipo("Admin");
+            user.setCode(8);
+            return user;
+
+        }
         String tipo = "Volunteer";
         int code=1;
         List userList = jdbcTemplate.query("SELECT user_name, password,name, dnivolunteer FROM Volunteer WHERE user_name=?", new UserRowMapper(), username);

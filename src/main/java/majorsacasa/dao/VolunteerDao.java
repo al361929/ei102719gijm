@@ -28,6 +28,17 @@ public class VolunteerDao extends GeneralDao{
     public List<Volunteer> getVolunteers() {
         try {
             return jdbcTemplate.query(
+                    "SELECT * FROM Volunteer WHERE state='Aceptado'",
+                    new VolunteerRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Volunteer>();
+        }
+    }
+
+    public List<Volunteer> getVolunteersAll() {
+        try {
+            return jdbcTemplate.query(
                     "SELECT * FROM Volunteer",
                     new VolunteerRowMapper());
         }
@@ -43,8 +54,8 @@ public class VolunteerDao extends GeneralDao{
 
     //añadir
     public void addVolunteer(Volunteer volunteer) {
-        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?,?,?,?,?,?,?,?,?)", volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getDni(),
-                volunteer.getTelefono(), volunteer.getUsuario(), volunteer.getContraseña(), LocalDate.now(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getEmail());
+        jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getDni(),
+                volunteer.getTelefono(), volunteer.getUsuario(), volunteer.getContraseña(), LocalDate.now(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getEmail(),"Pendiente");
     }
 
     //eliminar
@@ -57,6 +68,11 @@ public class VolunteerDao extends GeneralDao{
         jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, address=?, phonenumber=?, user_name=?, password=?, releaseDate=?, dateDown=?, birthday=?, email=? WHERE dnivolunteer=?",
                 volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getTelefono(), volunteer.getUsuario(),
                 volunteer.getContraseña(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getEmail(), volunteer.getDni());
+    }
+    //editar Estado
+    public void updateVolunteerEstado(String dni,String estado) {
+        jdbcTemplate.update("UPDATE Volunteer SET state=? WHERE dnivolunteer=?",
+             estado,dni);
     }
 
     //listar horarios para el usuario
@@ -85,7 +101,7 @@ public class VolunteerDao extends GeneralDao{
     }
         public List<VolunteerTime> getScheduleListDisponibles(String dnivolunteer) {
             try {
-                return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ? AND dni IS NULL", new VolunteerTimeRowMapper(), dnivolunteer);
+                return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ? AND dni IS NULL AND availability = 'True'", new VolunteerTimeRowMapper(), dnivolunteer);
             } catch (EmptyResultDataAccessException e) {
                 return new ArrayList<VolunteerTime>();
             }

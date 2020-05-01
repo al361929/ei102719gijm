@@ -32,7 +32,7 @@ public class VolunteerController extends Controlador {
 
     @RequestMapping("/list")
     public String listVolunteers(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
-        model.addAttribute("volunteers", volunteerDao.getVolunteers());
+        model.addAttribute("volunteers", volunteerDao.getVolunteersAll());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
         return gestionarAcceso(session, model, "SocialWorker", "volunteer/list");
@@ -80,7 +80,14 @@ public class VolunteerController extends Controlador {
         volunteerDao.addVolunteer(volunteer);
         return "redirect:../login";
     }
+    @RequestMapping(value = "/updateAcepted/{dni}")
+    public String editVolunteerEstado(Model model, @PathVariable String dni) {
+        Volunteer v= volunteerDao.getVolunteer(dni);
+        v.setEstado("Aceptado");
+        volunteerDao.updateVolunteerEstado(v.getDni(),v.getEstado());
 
+        return "redirect:../list";
+    }
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
     public String editVolunteer(Model model, @PathVariable String dni) {
         model.addAttribute("volunteer", volunteerDao.getVolunteer(dni));
@@ -95,7 +102,6 @@ public class VolunteerController extends Controlador {
             System.out.println(volunteer.toString());
             return "volunteer/update";
         }
-        System.out.println(volunteer.toString());
         volunteerDao.updateVolunteer(volunteer);
         return "redirect:list?nuevo=" + volunteer.getDni();
     }
@@ -140,7 +146,7 @@ public class VolunteerController extends Controlador {
         }
         System.out.println(volunteer.toString());
         volunteerDao.updateVolunteer(volunteer);
-        return "redirect:/";
+        return "redirect:/volunteer/scheduleList";
     }
 
     @RequestMapping(value = "/elderlyList")

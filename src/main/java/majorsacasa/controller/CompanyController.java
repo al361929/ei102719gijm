@@ -121,7 +121,7 @@ public class CompanyController extends Controlador{
         if (bindingResult.hasErrors())
             return "company/perfil";
         companyDao.updateCompany(company);
-        return "redirect:/";
+        return "redirect:/company/contractList";
     }
 
    /* @RequestMapping(value = "/invoiceListComapny")

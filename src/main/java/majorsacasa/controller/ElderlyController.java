@@ -69,7 +69,7 @@ public class ElderlyController  extends Controlador{
     public String processAddSubmitRegister(@ModelAttribute("elderly") Elderly elderly,Model model, BindingResult bindingResult) {
        if (bindingResult.hasErrors())
             return "elderly/addRegister";
-        Boolean check = socialWorkerDao.checkDNI(elderly.getDni());
+        Boolean check = elderlyDao.checkDNI(elderly.getDni());
 
         if (!check) {
 
@@ -77,7 +77,7 @@ public class ElderlyController  extends Controlador{
 
             return "elderly/addRegister";
         }
-             Boolean checkUser = socialWorkerDao.checkUser(elderly.getUsuario());
+             Boolean checkUser = elderlyDao.checkUser(elderly.getUsuario());
 
       if (!checkUser) {
 
@@ -96,6 +96,8 @@ public class ElderlyController  extends Controlador{
         model.addAttribute("alergiasEld", alergiasEld);
         model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", elderlyDao.getElderly(dni));
+        List<SocialWorker> social = socialWorkerDao.getSocialWorkers();
+        model.addAttribute("SocialWorkers", social);
         return gestionarAcceso(session, model, "SocialWorker", "elderly/update");
     }
 
@@ -138,8 +140,8 @@ public class ElderlyController  extends Controlador{
                                             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/updatePerfil";
-        elderlyDao.updateElderly(elderly);
-        return "redirect:/";
+        elderlyDao.updateElderlySinSocialWorker(elderly);
+        return "redirect:/request/listElderly";
     }
 
 

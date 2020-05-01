@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class VolunteerTimeDao {
     public List<VolunteerTime> getVolunteersTime() {
         try {
             return jdbcTemplate.query(
-                    "SELECT * FROM VolunteerTime",
+                    "SELECT * FROM VolunteerTime WHERE availability = 'True'",
                     new VolunteerTimeRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<VolunteerTime>();
@@ -51,7 +50,7 @@ public class VolunteerTimeDao {
     }
     public List<VolunteerTime> getScheduleList(String dnivolunteer) {
         try {
-            return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ?", new VolunteerTimeRowMapper(), dnivolunteer);
+            return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ? AND availability = 'True' ", new VolunteerTimeRowMapper(), dnivolunteer);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<VolunteerTime>();
         }
@@ -59,7 +58,7 @@ public class VolunteerTimeDao {
 
     public List<VolunteerTime> getScheduleListDisponibles(String dnivolunteer) {
         try {
-            return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ? AND dni=null", new VolunteerTimeRowMapper(), dnivolunteer);
+            return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ? AND dni=null AND availability = 'True'", new VolunteerTimeRowMapper(), dnivolunteer);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<VolunteerTime>();
         }

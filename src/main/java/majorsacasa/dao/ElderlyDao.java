@@ -47,7 +47,11 @@ public class ElderlyDao extends GeneralDao{
                 elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(),
                 elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria(), elderly.getSocialWorker(), elderly.getEmail(), elderly.getDni());
     }
-
+    public void updateElderlySinSocialWorker(Elderly elderly) {
+        jdbcTemplate.update("UPDATE ElderlyPeople SET name=?, surname=?, address=?, allergies=?, phonenumber=?, user_name=?, password=?, releasedate=?, datedown=?, birthday=?, bankaccount=?,  email=? WHERE dni=?",
+                elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(),
+                elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria(), elderly.getEmail(), elderly.getDni());
+    }
     public void deleteElderly(String elderly) {
         jdbcTemplate.update("DELETE FROM ElderlyPeople WHERE dni=?", elderly);
     }
@@ -55,6 +59,31 @@ public class ElderlyDao extends GeneralDao{
     public Boolean checkElderly(String dni) {
         List<String> elderlys = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople", String.class);
         return elderlys.contains(dni);
+    }
+
+    public Boolean checkDNI(String dni){
+        List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where dni=?", String.class,dni);
+        if (!dnis.isEmpty()) return false;
+        dnis = jdbcTemplate.queryForList("SELECT dnivolunteer FROM volunteer where dnivolunteer=?", String.class,dni);
+        if (!dnis.isEmpty()) return false;
+        dnis = jdbcTemplate.queryForList("SELECT dnisocialworker FROM socialworker where dnisocialworker=?", String.class,dni);
+        if (!dnis.isEmpty()) return false;
+        dnis = jdbcTemplate.queryForList("SELECT nif FROM company where nif=?", String.class,dni);
+        if (!dnis.isEmpty()) return false;
+        return true;
+
+    }
+    public Boolean checkUser(String user){
+        List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where user_name=?", String.class,user);
+        if (!dnis.isEmpty()) return false;
+        dnis = jdbcTemplate.queryForList("SELECT dnivolunteer FROM volunteer where user_name=?", String.class,user);
+        if (!dnis.isEmpty()) return false;
+        dnis = jdbcTemplate.queryForList("SELECT dnisocialworker FROM socialworker where user_name=?", String.class,user);
+        if (!dnis.isEmpty()) return false;
+        dnis = jdbcTemplate.queryForList("SELECT nif FROM company where user_name=?", String.class,user);
+        if (!dnis.isEmpty()) return false;
+        return true;
+
     }
 
 

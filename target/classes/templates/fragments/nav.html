@@ -20,6 +20,18 @@
     <div th:if="*{user.code == 1}">
         <div th:replace="fragments/navVolunteer"></div>
     </div>
+<!-- Gestió del CAS-->
+    <div th:if="*{user.code == 6}">
+        <div th:replace="fragments/nav6"></div>
+    </div>
+
+    <div th:if="*{user.code == 7}">
+        <div th:replace="fragments/nav7"></div>
+    </div>
+
+    <div th:if="*{user.code == 8}">
+        <div th:replace="fragments/nav8"></div>
+    </div>
 
 
 

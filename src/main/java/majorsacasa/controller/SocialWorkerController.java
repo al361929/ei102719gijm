@@ -95,7 +95,7 @@ public class SocialWorkerController extends Controlador{
         if (bindingResult.hasErrors())
             return "socialWorker/perfil";
         socialWorkerDao.updateSocialWorker(socialWorker);
-        return "redirect:/";
+        return "redirect:/socialWorker/elderlyList";
     }
 
 
