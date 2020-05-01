@@ -81,13 +81,6 @@ public class InvoiceController extends Controlador {
         invoiceDao.updateInvoice(invoice);
         return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
     }
-
-    @RequestMapping(value = "/upload/{idInvoice}", method = RequestMethod.GET)
-    public String prepareUploadInvoice(Model model, @PathVariable Integer idInvoice) {
-        model.addAttribute("invoice", invoiceDao.getInvoice(idInvoice));
-        return "invoice/upload";
-    }
-
     @RequestMapping(value = "/generatePDF/{idInvoice}", method = RequestMethod.GET)
     public String generatePDF(Model model, @PathVariable Integer idInvoice) {
         GeneratePDFController generatePDF = new GeneratePDFController();
@@ -98,6 +91,14 @@ public class InvoiceController extends Controlador {
         invoiceDao.updloadInvoice(idInvoice, true);
         return "redirect:../list?nuevo=" + idInvoice;
     }
+
+    @RequestMapping(value = "/upload/{idInvoice}", method = RequestMethod.GET)
+    public String prepareUploadInvoice(Model model, @PathVariable Integer idInvoice) {
+        model.addAttribute("invoice", invoiceDao.getInvoice(idInvoice));
+        return "invoice/upload";
+    }
+
+
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("invoice") Invoice invoice) {
@@ -132,7 +133,7 @@ public class InvoiceController extends Controlador {
     @RequestMapping(value = "/invoiceListElderly")
     public String getInvoiceCompanyList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
-        model.addAttribute("invoiceList", invoiceDao.getInvoiceElderly(user.getDni()));
+        model.addAttribute("invoices", invoiceDao.getInvoiceElderly(user.getDni()));
         return gestionarAcceso(session, model, "ElderlyPeople", "invoice/invoiceListElderly");
     }
 

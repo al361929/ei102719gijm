@@ -4,7 +4,6 @@ import majorsacasa.dao.OffersDao;
 import majorsacasa.dao.ServiceDao;
 import majorsacasa.model.Offer;
 import majorsacasa.model.Service;
-import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,25 +36,27 @@ public class OffersController extends Controlador{
         return "offer/list";
     }
 
-    @RequestMapping(value = "/addService")
-    public String addOffer(Model model) {
+    @RequestMapping(value = "/addService/{nif}")
+    public String addOffer(Model model, @PathVariable String nif) {
         model.addAttribute("offer", new Offer());
         List<Service> servicios = serviceDao.getServices();
-        System.out.println(servicios.toString());
 
         model.addAttribute("servicios", servicios);
+        Offer offer = new Offer();
+        offer.setNif(nif);
+        model.addAttribute("offer", offer);
 
+        System.out.println(nif);
         return "offer/addService";
     }
 
     @RequestMapping(value = "/addService", method = RequestMethod.POST)
-    public String processAddSubmit(HttpSession session,Model model, @ModelAttribute("offer") Offer offers, BindingResult bindingResult) {
+    public String processAddSubmit(HttpSession session,Model model, @ModelAttribute("offer") Offer offer, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "offer/addService";
-        UserDetails user = (UserDetails) session.getAttribute("user");
-        Boolean checkCompany = offersDao.checkService(user.getDni(),offers.getIdService());
+        Boolean checkCompany = offersDao.checkService(offer.getNif());
         if (!checkCompany) {
-            bindingResult.rejectValue("idService", "badnif", " Ya estas ofreciendo este servicio");
+            bindingResult.rejectValue("idService", "badnif", " Ya estas ofreciendo un servicio");
 
             List<Service> servicios = serviceDao.getServices();
             model.addAttribute("servicios", servicios);
@@ -63,10 +64,10 @@ public class OffersController extends Controlador{
 
             return "offer/addService";
         }
-        offers.setNif(user.getDni());
-        offersDao.addOffers(offers);
+        offersDao.addOffers(offer);
+        System.out.println(offer.toString());
        // return "redirect:list?nuevo=" + offers.getIdService();
-        return gestionarAcceso(session,model,"Company","redirect:../service/serviceList?nuevo=" + offers.getIdService());
+        return gestionarAcceso(session,model,"Admin","redirect:../company/list");
 
     }
 

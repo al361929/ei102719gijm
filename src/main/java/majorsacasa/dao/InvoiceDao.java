@@ -30,7 +30,7 @@ public class InvoiceDao {
     }
 
     public void addInvoice(Invoice invoice) {
-        jdbcTemplate.update("INSERT INTO Invoice VALUES(DEFAULT,?,?,?,?)", invoice.getDniElderly(), invoice.getDateInvoice(), invoice.getTotalPrice());
+        jdbcTemplate.update("INSERT INTO Invoice VALUES(DEFAULT,?,?,?,?)", invoice.getDniElderly(), invoice.getDateInvoice(), invoice.getTotalPrice(),invoice.getInvoicePDF());
     }
 
     public Invoice getInvoice(Integer idInvoice) {

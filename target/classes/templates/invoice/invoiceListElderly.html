@@ -2,17 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="~{fragments/base}">
 <head>
-    <title>Listado de Facturas de la co</title>
+    <title>Listado de Facturas</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
-</head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
 <body>
 <div layout:fragment="content">
 
     <div class="container">
-        <h1>Lista de mis facturas</h1>
+        <h1>Lista de Mis Facturas</h1>
 
         <table class="table table-striped">
             <thead>
@@ -24,12 +23,26 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="invoice: ${invoiceList}"
+            <tr th:each="invoice: ${invoices}"
                 th:class="${#strings.equals(nuevo,invoice.invoiceNumber)}?'bg-info text-white'">
                 <td th:text="${invoice.invoiceNumber}"></td>
                 <td th:text="${#temporals.format(invoice.dateInvoice,'dd/MM/yyyy')}"></td>
                 <td th:text="${invoice.totalPrice}"></td>
                 <td th:text="${invoice.dniElderly}"></td>
+                <td>
+                    <div th:if="${!invoice.invoicePDF}">
+                        <a th:href="@{/invoice/generatePDF/{idInvoice}(idInvoice=${invoice.invoiceNumber})}"
+                           class="btn btn btn-default"
+                           role="button"
+                           aria-pressed="true">Generar PDF</a>
+                    </div>
+                    <div th:if="${invoice.invoicePDF}">
+                        <a th:href="@{/invoice/verPDF/{idInvoice}(idInvoice=${invoice.invoiceNumber})}"
+                           class="btn btn btn-default"
+                           role="button"
+                           aria-pressed="true">Ver PDF</a>
+                    </div>
+                </td>
 
             </tr>
             </tbody>

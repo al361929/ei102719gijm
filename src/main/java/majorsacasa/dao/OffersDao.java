@@ -45,8 +45,8 @@ public class OffersDao {
         jdbcTemplate.update("SELECT * FROM Offers WHERE idService=? AND nif=?", idService, nif);
     }
 
-    public Boolean checkService(String nif,int id) {
-        List<String> servicios = jdbcTemplate.queryForList("select idservice from offers where nif=? AND idservice=?", String.class,nif,id);
+    public Boolean checkService(String nif) {
+        List<String> servicios = jdbcTemplate.queryForList("select idservice from offers where nif=?", String.class,nif);
       // System.out.println(servicios.contains(id)+" id-"+id);
         return servicios.isEmpty();
     }

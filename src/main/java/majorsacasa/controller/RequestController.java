@@ -20,6 +20,7 @@ import java.util.Optional;
 public class RequestController extends Controlador{
     private ContractDao contractDao;
     private ValoracionDao valoracionDao;
+    private InvoiceDao invoiceDao;
 
     private RequestDao requestDao;
     private OffersDao offersDao;
@@ -29,7 +30,7 @@ public class RequestController extends Controlador{
     private List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada", "Cancelada");
 
     @Autowired
-    public void setRequestDao(ValoracionDao valoracionDao,RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao,ContractDao contractDao,OffersDao offersDao) {
+    public void setRequestDao( InvoiceDao invoiceDao,ValoracionDao valoracionDao,RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao,ContractDao contractDao,OffersDao offersDao) {
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
         this.companyDao = companyDao;
@@ -37,6 +38,7 @@ public class RequestController extends Controlador{
         this.contractDao = contractDao;
         this.offersDao= offersDao;
         this.valoracionDao =valoracionDao;
+        this.invoiceDao = invoiceDao;
     }
 
     @RequestMapping("/list")
@@ -90,18 +92,20 @@ public class RequestController extends Controlador{
         if (bindingResult.hasErrors())
             return "request/update";
         if(request.getState().equals("Aceptada")) {
-            Contract contract =new Contract();
-            contract.setNifcompany(request.getNif());
-            contract.setDnielderly(request.getDni());
-            contract.setCantidad(1);
-            Service service=serviceDao.getService(request.getIdService());
-            contract.setDescripcion(service.getDescription()+" Comentario: "+request.getComments());
-            contract.setDateDown(LocalDate.now().plusMonths(6));
-            String elderly = elderlyDao.getElderly(request.getDni()).getNombre();
-            contract.setFirma(elderly);
-            contractDao.addContract(contract);
-
             request.setDateAccept(LocalDate.now());
+
+            Invoice factura =new Invoice();
+            factura.setDateInvoice(request.getDateAccept());
+            factura.setInvoicePDF(false);
+
+            Service service=serviceDao.getService(request.getIdService());
+            factura.setDniElderly(request.getDni());
+
+            factura.setTotalPrice(service.getPrice());
+            System.out.println(factura.toString());
+
+            invoiceDao.addInvoice(factura);
+
         }else{
             if(request.getState().equals("Rechazada")) request.setDateReject(LocalDate.now());
 
@@ -169,14 +173,14 @@ public class RequestController extends Controlador{
             model.addAttribute("companyies", company);
             return "request/addRequestElderly";
         }
-        if (!request.getNif().equals("0") && offersDao.checkService(request.getNif(),request.getIdService())){
+        /*if (!request.getNif().equals("0") && offersDao.checkService(request.getNif(),request.getIdService())){
             bindingResult.rejectValue("nif", "badOffer", " Esta empresa no ofrece ese servicio.");
             List<Service> servicios = serviceDao.getServices();
             model.addAttribute("servicios", servicios);
             List<Company> company = companyDao.getCompanies();
             model.addAttribute("companyies", company);
             return "request/addRequestElderly";
-        }
+        }*/
 
         if (bindingResult.hasErrors())
             return "request/addRequestElderly";
