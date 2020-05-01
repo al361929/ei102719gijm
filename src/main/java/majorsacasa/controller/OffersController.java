@@ -65,7 +65,6 @@ public class OffersController extends Controlador{
             return "offer/addService";
         }
         offersDao.addOffers(offer);
-        System.out.println(offer.toString());
        // return "redirect:list?nuevo=" + offers.getIdService();
         return gestionarAcceso(session,model,"Admin","redirect:../company/list");
 
