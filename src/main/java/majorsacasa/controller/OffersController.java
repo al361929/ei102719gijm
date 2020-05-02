@@ -1,7 +1,9 @@
 package majorsacasa.controller;
 
+import majorsacasa.dao.ContractDao;
 import majorsacasa.dao.OffersDao;
 import majorsacasa.dao.ServiceDao;
+import majorsacasa.model.Contract;
 import majorsacasa.model.Offer;
 import majorsacasa.model.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,12 +22,14 @@ import java.util.Optional;
 public class OffersController extends Controlador{
     private OffersDao offersDao;
     private ServiceDao serviceDao;
+    private ContractDao contractDao;
+
 
 
     @Autowired
-    public void setOffersDao(OffersDao offersDao, ServiceDao serviceDao) {
+    public void setOffersDao(OffersDao offersDao, ServiceDao serviceDao, ContractDao contractDao) {
         this.serviceDao = serviceDao;
-
+        this.contractDao = contractDao;
         this.offersDao = offersDao;
     }
 
@@ -55,6 +60,7 @@ public class OffersController extends Controlador{
         if (bindingResult.hasErrors())
             return "offer/addService";
         Boolean checkCompany = offersDao.checkService(offer.getNif());
+
         if (!checkCompany) {
             List<Service>servicios=serviceDao.getServiceList(offer.getNif());
             String name = servicios.get(0).getDescription();
@@ -66,6 +72,15 @@ public class OffersController extends Controlador{
 
             return "offer/addService";
         }
+        Contract contract = new Contract();
+        contract.setFirma(offer.getNif());
+        contract.setReleaseDate(LocalDate.now());
+        contract.setReleaseDate(LocalDate.now().plusMonths(12));
+        contract.setCantidad(1);
+        contract.setDescripcion(serviceDao.getService(offer.getIdService()).getDescription());
+        contract.setNifcompany(offer.getNif());
+        contract.setContractPDF(false);
+        contractDao.addContract(contract);
         offersDao.addOffers(offer);
        // return "redirect:list?nuevo=" + offers.getIdService();
         return gestionarAcceso(session,model,"Admin","redirect:../company/list");
