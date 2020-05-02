@@ -101,7 +101,7 @@ public class ContractController extends Controlador {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("contrato") Contract contract) {
+    public String singleFileUpload(HttpSession session,@RequestParam("file") MultipartFile file, @ModelAttribute("contrato") Contract contract) {
         if (file.isEmpty()) {
             return "contract/upload";
         }
@@ -114,6 +114,9 @@ public class ContractController extends Controlador {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        if (user.getTipo().equals("Company"))     return "redirect:../company/contractList?nuevo=" + contract.getIdContract();
+
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
 
