@@ -22,52 +22,9 @@
                         <option th:each="company : ${companyies}" th:value="${company.nif}"
                                 th:utext="${company.nombre}"></option>
                     </select></td>
-                    <td colspan="2"><a href="/company/add" class="btn btn btn-primary" role="button" aria-pressed="true">Añadir empresa</a></td>
+                    <td colspan="2"><a href="/company/add" class="btn btn btn-primary" role="button"
+                                       aria-pressed="true">Añadir empresa</a></td>
                 </tr>
-                 <!--   <td><label>NIF Empresa</label></td>
-                    <td><input type="text" class="form-control" th:field="*{nifcompany}"/></td>
-                    <td>
-                        <div class="error" th:if="${#fields.hasErrors('nifcompany')}"
-                             th:errors="*{nifcompany}"></div>
-                    </td>
-                    <td>
-                        <div class="error" th:if="${#fields.hasErrors('nifcompany')}"><a href="/company/add"
-                                                                                         class="btn btn btn-danger"
-                                                                                         role="button"
-                                                                                         aria-pressed="true">Añadir
-                            nueva
-                            empresa</a></div></td>
-                            -->
-
-
-<!--                <tr>-->
-<!--                    <td><label>Persona Mayor</label></td>-->
-<!--                    <td><select class="select-css" th:field="*{dnielderly}">-->
-<!--                        <option value="" selected disabled>-&#45;&#45; Selecciona Persona -&#45;&#45;</option>-->
-<!--                        <option th:each="elderly : ${elderlys}" th:value="${elderly.dni}"-->
-<!--                                th:utext="${elderly.getDatos()}"></option>-->
-<!--                    </select></td>-->
-<!--                </tr>-->
-               <!-- <tr>
-                    <td><label>DNI Persona Mayor</label></td>
-                    <td><input type="text" class="form-control" th:field="*{dnielderly}"/></td>
-                    <td>
-                        <div class="error" th:if="${#fields.hasErrors('dnielderly')}"
-                             th:errors="*{dnielderly}"></div>
-                    </td>
-                    <td>
-                        <div class="error" th:if="${#fields.hasErrors('dnielderly')}"><a href="/elderly/add"
-                                                                                         class="btn btn btn-danger"
-                                                                                         role="button"
-                                                                                         aria-pressed="true">Añadir
-                            nueva
-                            persona mayor</a></div>
-                    </td>
-                </tr>-->
-                <!--        <tr>-->
-                <!--            <td><label>Fecha de alta</label></td>-->
-                <!--            <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>-->
-                <!--        </tr>-->
                 <tr>
                     <td><label>Fecha de baja</label></td>
                     <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
