@@ -19,13 +19,14 @@
         <tr>
             <th>NIF</th>
             <th>Nombre</th>
-            <th>Responsable de la empresa</th>
+            <th>Responsable</th>
             <th>Dirección</th>
-            <th>Número de teléfono</th>
-            <th>Nombre de usuario</th>
+            <th>Teléfono</th>
+            <th>Usuario</th>
             <th>Contraseña</th>
             <th>Fecha Alta</th>
             <th>Cuneta bancaria</th>
+            <th>Servicio</th>
             <th></th>
             <th></th>
         </tr>
@@ -42,6 +43,8 @@
             <td th:text="${empresa.password}"></td>
             <td th:text="${#temporals.format(empresa.fechaAlta,'dd/MM/yyyy')}"></td>
             <td th:text="${empresa.cuentaBancaria}"></td>
+            <td th:text="${mapa.get(empresa.nif)}"></td>
+
             <td>
                 <a th:href="@{/company/update/{nif}(nif=${empresa.nif})}" class="btn btn btn-secondary" role="button"
                    aria-pressed="true">Editar</a>
@@ -53,8 +56,10 @@
 
             </td>
             <td>
+                <div th:if="${mapa.get(empresa.nif)==NULL}">
                 <a th:href="@{../offer/addService/{nif}(nif=${empresa.nif})}"  class="btn btn btn-success" role="button"
                    aria-pressed="true">Añadir Servicio</a>
+                </div>
             </td>
         </tr>
         </tbody>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -59,5 +60,16 @@ public class ServiceDao {
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Service>();
         }
+    }
+    public HashMap<String,String> getMapServiceCompany(){
+        List<String> key = jdbcTemplate.queryForList("SELECT o.nif FROM service AS s JOIN offers AS o USING(idservice);", String.class);
+        List<String> value = jdbcTemplate.queryForList("SELECT s.description FROM service AS s JOIN offers AS o USING(idservice);", String.class);
+        HashMap <String,String> servicio=new HashMap<>();
+
+        for (int i=0; i<key.size();i++){
+            servicio.put(key.get(i),value.get(i));
+        }
+        return servicio;
+
     }
 }

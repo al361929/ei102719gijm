@@ -56,9 +56,11 @@ public class OffersController extends Controlador{
             return "offer/addService";
         Boolean checkCompany = offersDao.checkService(offer.getNif());
         if (!checkCompany) {
-            bindingResult.rejectValue("idService", "badnif", " Ya estas ofreciendo un servicio");
+            List<Service>servicios=serviceDao.getServiceList(offer.getNif());
+            String name = servicios.get(0).getDescription();
+            bindingResult.rejectValue("idService", "badnif", " Ya estas ofreciendo: "+name);
 
-            List<Service> servicios = serviceDao.getServices();
+            servicios = serviceDao.getServices();
             model.addAttribute("servicios", servicios);
 
 

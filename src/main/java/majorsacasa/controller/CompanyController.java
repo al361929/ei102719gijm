@@ -1,14 +1,15 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.CompanyDao;
+import majorsacasa.dao.ServiceDao;
 import majorsacasa.dao.ValoracionDao;
 import majorsacasa.model.Company;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -20,11 +21,13 @@ public class CompanyController extends Controlador{
 
     private CompanyDao companyDao;
     private ValoracionDao valoracionDao;
+    private ServiceDao serviceDao;
     @Autowired
-    public void setCompanyDao(ValoracionDao valoracionDao,CompanyDao companyDao) {
+    public void setCompanyDao(ValoracionDao valoracionDao,CompanyDao companyDao,ServiceDao serviceDao) {
 
         this.companyDao = companyDao;
         this.valoracionDao= valoracionDao;
+        this.serviceDao = serviceDao;
     }
 
     @RequestMapping("/list")
@@ -32,6 +35,7 @@ public class CompanyController extends Controlador{
         model.addAttribute("companies", companyDao.getCompanies());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        model.addAttribute("mapa",serviceDao.getMapServiceCompany());
         return "company/list";
     }
 
