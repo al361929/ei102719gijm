@@ -7,6 +7,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
+import com.itextpdf.text.pdf.draw.LineSeparator;
 import majorsacasa.model.Elderly;
 import majorsacasa.model.Invoice;
 
@@ -23,7 +24,7 @@ public class GeneratePDFController {
     private static final Font categoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static final Font subcategoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
     private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
-    private static final Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+    private static final Font smallBold = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, BaseColor.BLUE);
 
     private static final String linea = "src/main/resources/static/img/linea-roja.png";
     private static final String logo = "src/main/resources/static/img/logo.png";
@@ -104,12 +105,59 @@ public class GeneratePDFController {
                 System.out.println("Image IOException " + ex);
             }
 
-            Paragraph fact = new Paragraph("Factura Nº - " + invoice.getInvoiceNumber(), chapterFont);
+            Paragraph fact = new Paragraph("Factura", chapterFont);
             fact.setAlignment(Element.ALIGN_RIGHT);
             chapter.add(fact);
+
+            LineSeparator lineSeparator = new LineSeparator();
+            lineSeparator.setAlignment(Element.ALIGN_RIGHT);
+            lineSeparator.setOffset(-2);
+            lineSeparator.setLineWidth(1);
+            lineSeparator.setLineColor(BaseColor.BLACK);
+            lineSeparator.setPercentage(20);
+
+            Paragraph fecha = new Paragraph("\nFecha", smallBold);
+            fecha.setAlignment(Element.ALIGN_RIGHT);
+            fecha.add(lineSeparator);
+            chapter.add(fecha);
+
+            Paragraph fechaInvoice = new Paragraph(invoice.getDateInvoice().toString());
+            fechaInvoice.setAlignment(Element.ALIGN_RIGHT);
+            chapter.add(fechaInvoice);
+
+            Paragraph nFactura = new Paragraph("\nNº de factura", smallBold);
+            nFactura.setAlignment(Element.ALIGN_RIGHT);
+            nFactura.add(lineSeparator);
+            chapter.add(nFactura);
+
+            Paragraph factura = new Paragraph(invoice.getInvoiceNumber().toString());
+            factura.setAlignment(Element.ALIGN_RIGHT);
+            chapter.add(factura);
+
+            LineSeparator lineCliente = new LineSeparator();
+            lineCliente.setAlignment(0);
+            lineCliente.setOffset(-2);
+            lineCliente.setLineWidth(1);
+            lineCliente.setLineColor(BaseColor.BLACK);
+            lineCliente.setPercentage(100);
+
+            Paragraph cliente = new Paragraph(" ", smallBold);
+            cliente.setPaddingTop(300);
+            cliente.add("\n\nCliente");
+            cliente.setAlignment(Element.ALIGN_LEFT);
+            cliente.add(lineCliente);
+            cliente.setFont(paragraphFont);
+            cliente.add("\n" + elderly.getNombre() + " " + elderly.getApellidos() + "\n");
+            cliente.add(elderly.getDni() + "\n");
+            cliente.add(elderly.getDireccion() + "\n");
+            cliente.add(elderly.getTelefono() + "\n");
+            cliente.add(elderly.getEmail());
+            chapter.add(cliente);
+
             System.out.println(chapter.toString());
 
             document.add(chapter);
+
 
             //Añadimos los datos de la empresa
             PdfContentByte over = writer.getDirectContent();
@@ -160,8 +208,9 @@ public class GeneratePDFController {
             // Underline a paragraph by iText (subrayando un párrafo por iText)
             Paragraph paragraphE = new Paragraph("This line will be underlined with a dotted line (Está línea será subrayada con una línea de puntos).");
             DottedLineSeparator dottedline = new DottedLineSeparator();
-            dottedline.setOffset(-2);
-            dottedline.setGap(2f);
+            dottedline.setAlignment(2);
+            dottedline.setOffset(10);
+            dottedline.setGap(0);
             paragraphE.add(dottedline);
             chapSecond.addSection(paragraphE);
 
