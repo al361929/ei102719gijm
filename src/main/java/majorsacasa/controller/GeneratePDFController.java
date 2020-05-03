@@ -104,7 +104,6 @@ public class GeneratePDFController {
                 System.out.println("Image IOException " + ex);
             }
 
-
             Paragraph fact = new Paragraph("Factura Nº - " + invoice.getInvoiceNumber(), chapterFont);
             fact.setAlignment(Element.ALIGN_RIGHT);
             chapter.add(fact);
@@ -151,6 +150,8 @@ public class GeneratePDFController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+
             // Second page - some elements
             // Segunda página - Algunos elementos
             Chapter chapSecond = new Chapter(new Paragraph(new Anchor("Some elements (Añadimos varios elementos)")), 1);

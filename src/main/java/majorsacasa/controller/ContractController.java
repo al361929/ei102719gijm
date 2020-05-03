@@ -74,7 +74,7 @@ public class ContractController extends Controlador {
             bindingResult.rejectValue("dnielderly", "baddni", "No existe la persona mayor");
             return "contract/add";
         }*/
-        System.out.println(contract.toString());
+        //System.out.println(contract.toString());
         contractDao.addContract(contract);
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
