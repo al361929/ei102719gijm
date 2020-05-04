@@ -16,7 +16,7 @@
         <thead>
         <tr>
             <th>Id solicitud</th>
-            <th>Id servicio</th>
+            <th>Servicio</th>
             <th>DNI</th>
             <th>NIF</th>
             <th>Estado</th>
@@ -30,7 +30,7 @@
         <tr th:each="request: ${requests}"
             th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info text-white'">
             <td th:text="${request.idRequest}"></td>
-            <td th:text="${request.idService}"></td>
+            <td th:text="${servicios.get(request.idService)}"></td>
             <td th:text="${usuario.get(request.dni)}"></td>
             <td th:text="${usuario.get(request.nif)}"></td>
             <td th:text="${request.state}"></td>

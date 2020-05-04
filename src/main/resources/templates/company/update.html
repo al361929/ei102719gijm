@@ -41,10 +41,16 @@
             <td><label>Usuario</label></td>
             <td><input type="text" class="form-control" th:field="*{nombreUsuario}" required/></td>
         </tr>
-        <tr>
-            <td><label>Contraseña</label></td>
-            <td><input type="password" class="form-control" th:field="*{password}" required/></td>
-        </tr>
+        <div class="loggeduser" th:object="${session}">
+
+            <div th:if="*{user.code == 4}">
+
+                <tr>
+                    <td><label>Contraseña</label></td>
+                    <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
+                </tr>
+            </div>
+        </div>
         <tr>
             <td><label>Fecha de alta</label></td>
             <td><input type="date" class="form-control" th:field="*{fechaAlta}"/></td>

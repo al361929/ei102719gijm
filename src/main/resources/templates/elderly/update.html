@@ -52,10 +52,16 @@
             <td><label>Usuario</label></td>
             <td><input type="text" class="form-control" th:field="*{usuario}" required/></td>
         </tr>
-        <tr>
-            <td><label>Contraseña</label></td>
-            <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
-        </tr>
+        <div class="loggeduser" th:object="${session}">
+
+            <div th:if="*{user.code == 3}">
+
+                <tr>
+                    <td><label>Contraseña</label></td>
+                    <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
+                </tr>
+            </div>
+        </div>
         <tr>
             <td><label>Email</label></td>
             <td><input type="text" class="form-control" th:field="*{email}"/></td>

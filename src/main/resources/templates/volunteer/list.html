@@ -50,8 +50,11 @@
                aria-pressed="true">Borrar</a>
         </td>
         <td>
+            <div th:if="${!voluntario.getAceptado()}">
+
             <a th:href="@{/volunteer/updateAcepted/{dni}(dni=${voluntario.dni})}" class="btn btn btn-success" role="button"
                aria-pressed="true">Aceptar Voluntario</a>
+            </div>
         </td>
     </tr>
     </tbody>

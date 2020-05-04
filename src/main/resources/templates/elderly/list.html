@@ -42,7 +42,7 @@
             <td th:text="${elderly.telefono}"></td>
             <td th:text="${#temporals.format(elderly.birthday,'dd/MM/yyyy')}"></td>
             <td th:text="${elderly.cuentaBancaria}"></td>
-            <td th:text="${elderly.socialWorker}"></td>
+            <td th:text="${usuario.get(elderly.socialWorker)}"></td>
             <td th:text="${elderly.email}"></td>
             <td>
                 <a th:href="@{/request/list/{dni}(dni=${elderly.dni})}" class="btn btn btn-info" role="button"

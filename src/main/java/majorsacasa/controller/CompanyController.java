@@ -95,7 +95,7 @@ public class CompanyController extends Controlador{
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "company/update";
-        companyDao.updateCompany(company);
+        companyDao.updateCompanySINpw(company);
         return "redirect:list?nuevo=" + company.getNif();
     }
 

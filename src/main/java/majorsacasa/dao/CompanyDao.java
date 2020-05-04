@@ -48,6 +48,11 @@ public class CompanyDao extends GeneralDao{
                 company.getNumeroTelf(), company.getNombreUsuario(), company.getPassword(), company.getFechaAlta(), company.getCuentaBancaria(), company.getEmail(), company.getNif());
     }
 
+    public void updateCompanySINpw(Company company) {
+        jdbcTemplate.update("UPDATE Company SET name=?, responsiblename=?, address=?, phonenumber=?, user_name=?, releaseDate=?, bankaccount=?, email=? WHERE nif=?", company.getNombre(), company.getNombreResponsable(), company.getDireccion(),
+                company.getNumeroTelf(), company.getNombreUsuario(), company.getFechaAlta(), company.getCuentaBancaria(), company.getEmail(), company.getNif());
+    }
+
     public Boolean checkCompany(String nif) {
         List<String> compañias = jdbcTemplate.queryForList("SELECT nif FROM Company", String.class);
         return compañias.contains(nif);

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,8 @@ public class ElderlyController  extends Controlador{
         model.addAttribute("elderlys", elderlyDao.getElderlys());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        HashMap<String ,String> u=elderlyDao.getUsersInfo();
+        model.addAttribute("usuario",u);
         return gestionarAcceso(session, model, "SocialWorker", "elderly/list");
     }
 
@@ -106,7 +109,7 @@ public class ElderlyController  extends Controlador{
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/update";
-        elderlyDao.updateElderly(elderly);
+        elderlyDao.updateElderlySINpw(elderly);
         return "redirect:list?nuevo=" + elderly.getDni();
     }
 

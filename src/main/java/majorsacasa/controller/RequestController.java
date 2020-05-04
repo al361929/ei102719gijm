@@ -124,6 +124,8 @@ public class RequestController extends Controlador{
         model.addAttribute("nuevo", newVolunteerTime);
         HashMap<String ,String> u=valoracionDao.getUsersInfo();
         model.addAttribute("usuario",u);
+        HashMap <Integer,String> servicios = requestDao.getMapServiceElderly();
+        model.addAttribute("servicios", servicios);
         return "request/list";
     }
 
@@ -141,6 +143,8 @@ public class RequestController extends Controlador{
         model.addAttribute("nuevo", newVolunteerTime);
         HashMap<String ,String> u=valoracionDao.getUsersInfo();
         model.addAttribute("usuario",u);
+        HashMap <Integer,String> servicios = requestDao.getMapServiceElderly();
+        model.addAttribute("servicios", servicios);
         return gestionarAcceso(session,model,"ElderlyPeople","request/listRequestElderly");
 
     }

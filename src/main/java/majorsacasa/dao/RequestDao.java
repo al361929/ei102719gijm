@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -68,5 +69,16 @@ public class RequestDao {
         //System.out.println(dni);
        // System.out.println(servicios.toString());
         return servicios.contains(servicio);
+    }
+    public HashMap<Integer,String> getMapServiceElderly(){
+        List<String> key = jdbcTemplate.queryForList("SELECT request.idService FROM service JOIN request  USING(idservice);", String.class);
+        List<String> value = jdbcTemplate.queryForList("SELECT service.description FROM service JOIN request USING(idservice);", String.class);
+        HashMap <Integer,String> servicio=new HashMap<>();
+
+        for (int i=0; i<key.size();i++){
+            servicio.put(Integer.parseInt(key.get(i)),value.get(i));
+        }
+        return servicio;
+
     }
 }

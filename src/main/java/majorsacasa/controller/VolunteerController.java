@@ -98,11 +98,9 @@ public class VolunteerController extends Controlador {
     public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.toString());
-            System.out.println(volunteer.toString());
             return "volunteer/update";
         }
-        volunteerDao.updateVolunteer(volunteer);
+        volunteerDao.updateVolunteerSINpw(volunteer);
         return "redirect:list?nuevo=" + volunteer.getDni();
     }
 

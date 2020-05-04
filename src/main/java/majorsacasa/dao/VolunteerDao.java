@@ -69,6 +69,11 @@ public class VolunteerDao extends GeneralDao{
                 volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getTelefono(), volunteer.getUsuario(),
                 volunteer.getContraseña(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getEmail(), volunteer.getDni());
     }
+
+    public void updateVolunteerSINpw(Volunteer volunteer) {
+        jdbcTemplate.update("UPDATE Volunteer SET name=?, surname=?, address=?, phonenumber=?, user_name=?, releaseDate=?, dateDown=?, birthday=?, email=? WHERE dnivolunteer=?",
+                volunteer.getNombre(), volunteer.getApellidos(), volunteer.getDireccion(), volunteer.getTelefono(), volunteer.getUsuario(), volunteer.getReleaseDate(), volunteer.getDataDown(), volunteer.getBirthday(), volunteer.getEmail(), volunteer.getDni());
+    }
     //editar Estado
     public void updateVolunteerEstado(String dni,String estado) {
         jdbcTemplate.update("UPDATE Volunteer SET state=? WHERE dnivolunteer=?",
