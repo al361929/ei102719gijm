@@ -127,6 +127,7 @@ public class ElderlyController  extends Controlador{
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
     public String editElderlyPerfil(HttpSession session,Model model) {
         String destino= sesionAbierta(session,model,"elderly/perfil");
+
         if (destino!=null) return destino;
 
         model.addAttribute("allergies", alergias);
