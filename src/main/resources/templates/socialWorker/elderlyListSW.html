@@ -44,6 +44,9 @@
                 <td th:text="${socialWorker.socialWorker}"></td>
                 <td th:text="${socialWorker.email}"></td>
                 <td>
+
+                    <a th:href="@{/request/list/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-info" role="button"
+                       aria-pressed="true">Solicitudes</a>
                 </td>
             </tr>
             </tbody>
