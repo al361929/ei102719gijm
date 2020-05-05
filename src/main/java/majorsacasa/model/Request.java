@@ -94,7 +94,9 @@ public class Request {
     public void setDateRequest(LocalDate dateRequest) {
         this.dateRequest = dateRequest;
     }
-
+    public boolean isCancelada(){
+        return state.equals("Cancelada");
+    }
     @Override
     public String toString() {
         return "Request{" +

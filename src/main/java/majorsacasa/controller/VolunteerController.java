@@ -151,6 +151,8 @@ public class VolunteerController extends Controlador {
     public String getElderlyList(HttpSession session,Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("elderlyList", volunteerDao.getElderlyList(user.getDni()));
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("usuario",u);
         return gestionarAcceso(session,model,"Volunteer","volunteer/elderlyListV");
 
         //return "socialWorker/elderlyListSW";

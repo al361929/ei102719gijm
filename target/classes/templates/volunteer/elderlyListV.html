@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="~{fragments/base}">
 <head>
-    <title>Gestionar Trabajadores Sociales</title>
+    <title>Lista de mis Personas Mayores</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
@@ -11,7 +11,7 @@
 <body>
 <div layout:fragment="content">
     <div class="container">
-        <h1>Lista de Personas mayores asociadas al voluntario</h1>
+        <h1>Lista de mis Personas Mayores</h1>
 
         <table class="table table-striped">
             <thead>
@@ -37,7 +37,7 @@
                 <td th:text="${elderly.alergias}"></td>
                 <td th:text="${elderly.telefono}"></td>
                 <td th:text="${#temporals.format(elderly.birthday,'dd/MM/yyyy')}"></td>
-                <td th:text="${elderly.socialWorker}"></td>
+                <td th:text="${usuario.get(elderly.socialWorker)}"></td>
                 <td th:text="${elderly.email}"></td>
                 <td>
                 </td>
