@@ -1,10 +1,7 @@
 package majorsacasa.controller;
 
-import majorsacasa.dao.ElderlyDao;
-import majorsacasa.dao.InvoiceDao;
-import majorsacasa.model.Elderly;
-import majorsacasa.model.Invoice;
-import majorsacasa.model.UserDetails;
+import majorsacasa.dao.*;
+import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,14 +25,20 @@ public class InvoiceController extends Controlador {
 
     private InvoiceDao invoiceDao;
     private ElderlyDao elderlyDao;
+    private ProduceDao produceDao;
+    private RequestDao requestDao;
+    private ServiceDao serviceDao;
 
     @Value("${upload.file.directory}")
     private String uploadDirectory;
 
     @Autowired
-    public void setInvoiceDao(InvoiceDao invoiceDao, ElderlyDao elderlyDao) {
+    public void setInvoiceDao(InvoiceDao invoiceDao, ElderlyDao elderlyDao, ProduceDao produceDao, RequestDao requestDao, ServiceDao serviceDao) {
         this.invoiceDao = invoiceDao;
         this.elderlyDao = elderlyDao;
+        this.produceDao = produceDao;
+        this.requestDao = requestDao;
+        this.serviceDao = serviceDao;
 
     }
 
@@ -88,7 +91,11 @@ public class InvoiceController extends Controlador {
         String path = uploadDirectory + "/invoice/" + idInvoice + ".pdf";
         Invoice invoice = invoiceDao.getInvoice(idInvoice);
         Elderly elderly = elderlyDao.getElderly(invoiceDao.getInvoice(idInvoice).getDniElderly());
-        generatePDF.createPDF(new File(path), invoice, elderly);
+        Integer idRequest = produceDao.getProduce(idInvoice).getIdRequest();
+        Request request = requestDao.getRequest(idRequest);
+        Integer idService = request.getIdService();
+        Service service = serviceDao.getService(idService);
+        generatePDF.createPDF(new File(path), invoice, elderly, request, service);
         invoiceDao.updloadInvoice(idInvoice, true);
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (user.getTipo().equals("ElderlyPeople")) return "redirect:../invoiceListElderly?nuevo=" + idInvoice;

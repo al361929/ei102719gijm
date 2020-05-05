@@ -10,21 +10,27 @@ import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import majorsacasa.model.Elderly;
 import majorsacasa.model.Invoice;
+import majorsacasa.model.Request;
+import majorsacasa.model.Service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GeneratePDFController {
 
     private static final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 26, Font.BOLD);
     private static final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 9, Font.NORMAL);
 
+    private static final BaseColor granate = new BaseColor(203, 62, 62);
+
     private static final Font categoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static final Font subcategoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-    private static final Font blueFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
-    private static final Font smallBold = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, BaseColor.BLUE);
+    private static final Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
+    private static final Font smallBold = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, granate);
 
     private static final String linea = "src/main/resources/static/img/linea-roja.png";
     private static final String logo = "src/main/resources/static/img/logo.png";
@@ -39,8 +45,10 @@ public class GeneratePDFController {
      * @param pdfNewFile <code>String</code>
      *                   pdf File we are going to write.
      *                   Fichero pdf en el que vamos a escribir.
+     * @param request
+     * @param service
      */
-    public void createPDF(File pdfNewFile, Invoice invoice, Elderly elderly) {
+    public void createPDF(File pdfNewFile, Invoice invoice, Elderly elderly, Request request, Service service) {
         // Aquí introduciremos el código para crear el PDF.
         // We create the document and set the file name.
 
@@ -75,16 +83,17 @@ public class GeneratePDFController {
             document.addCreator("Majors a Casa");
 
             document.setMargins(70, 50, 35, 35);
+
             // First page
             // Primera página
             // Añadimos la linea roja de arriba
             Chapter chapter = new Chapter(0);
-            Image linea_h;
+            Image lineaArriba;
             try {
-                linea_h = Image.getInstance(linea);
-                linea_h.setAbsolutePosition(0, 822);
-                //linea_h.setAlignment(4);
-                chapter.add(linea_h);
+                lineaArriba = Image.getInstance(linea);
+                lineaArriba.setAbsolutePosition(0, 822);
+                //lineaArriba.setAlignment(4);
+                chapter.add(lineaArriba);
             } catch (BadElementException ex) {
                 System.out.println("Image BadElementException" + ex);
             } catch (IOException ex) {
@@ -141,9 +150,7 @@ public class GeneratePDFController {
             lineCliente.setLineColor(BaseColor.BLACK);
             lineCliente.setPercentage(100);
 
-            Paragraph cliente = new Paragraph(" ", smallBold);
-            cliente.setPaddingTop(300);
-            cliente.add("\n\nCliente");
+            Paragraph cliente = new Paragraph("\n\nDatos Cliente", smallBold);
             cliente.setAlignment(Element.ALIGN_LEFT);
             cliente.add(lineCliente);
             cliente.setFont(paragraphFont);
@@ -154,7 +161,43 @@ public class GeneratePDFController {
             cliente.add(elderly.getEmail());
             chapter.add(cliente);
 
+            Paragraph parrafoTabla = new Paragraph();
+            PdfPTable tabla = new PdfPTable(4);
+            List<String> lista = new ArrayList<>();
+            lista.add("Descripción");
+            lista.add("Unidades");
+            lista.add("Precio Unitario");
+            lista.add("Precio");
+            PdfPCell headerColumn;
+            for (String header : lista) {
+                Phrase encabezado = new Phrase(header);
+                encabezado.setFont(headerFont);
+                headerColumn = new PdfPCell(encabezado);
+                headerColumn.setHorizontalAlignment(Element.ALIGN_CENTER);
+                headerColumn.setBackgroundColor(granate);
+                tabla.addCell(headerColumn);
+            }
+            tabla.setHeaderRows(1);
+            for (int row = 0; row < 4; row++) {
+                for (int column = 0; column < 4; column++) {
+                    tabla.addCell("Row " + row + " - Col" + column);
+                }
+            }
+            parrafoTabla.add(tabla);
+            chapter.add(parrafoTabla);
+
             System.out.println(chapter.toString());
+
+            try {
+                lineaArriba = Image.getInstance(linea);
+                lineaArriba.setAbsolutePosition(0, 0);
+                //lineaArriba.setAlignment(4);
+                chapter.add(lineaArriba);
+            } catch (BadElementException ex) {
+                System.out.println("Image BadElementException" + ex);
+            } catch (IOException ex) {
+                System.out.println("Image IOException " + ex);
+            }
 
             document.add(chapter);
 
@@ -220,7 +263,7 @@ public class GeneratePDFController {
             for (int i = 0; i < 5; i++) {
                 text = text + text;
             }
-            List list = new List(List.UNORDERED);
+            /*List list = new List(List.UNORDERED);
             ListItem item = new ListItem(text);
             item.setAlignment(Element.ALIGN_JUSTIFIED);
             list.add(item);
@@ -240,7 +283,7 @@ public class GeneratePDFController {
             list.add(item);
             paragraphMoreS.add(list);
             document.add(chapSecond);
-
+*/
             // How to use PdfPTable
             // Utilización de PdfPTable
             // We use various elements to add title and subtitle

@@ -1,8 +1,6 @@
 package majorsacasa.dao;
 
 import majorsacasa.model.Produce;
-import majorsacasa.model.Request;
-import org.apache.tomcat.jni.Proc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,8 +33,8 @@ public class ProduceDao {
 
     }
 
-    public Produce getProduce(int idInvoice, int idRequest) {
-        return jdbcTemplate.queryForObject("SELECT * FROM Produce WHERE idInvoice_pro=? AND idRequest_pro=?", new ProduceRowMapper(), idInvoice, idRequest);
+    public Produce getProduce(int idInvoice) {
+        return jdbcTemplate.queryForObject("SELECT * FROM Produce WHERE idInvoice=? ", new ProduceRowMapper(), idInvoice);
     }
 
 
