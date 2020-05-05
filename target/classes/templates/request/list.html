@@ -38,6 +38,9 @@
             <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
             <td th:text="${#temporals.format(request.dateReject,'dd/MM/yyyy')}"></td>
             <td th:text="${request.comments}"></td>
+            <div class="loggeduser" th:object="${session}">
+
+            <div th:if="*{user.code == 7}">
             <td>
                 <a th:href="@{/request/update/{id}(id=${request.idRequest})}"
                    class="btn btn btn-secondary" role="button">Editar</a>
@@ -46,6 +49,8 @@
                 <a th:href="@{/request/delete/{id}(id=${request.idRequest})}"
                    class="btn btn btn-danger" role="button">Borrar</a>
             </td>
+            </div>
+            </div>
         </tr>
         </tbody>
     </table>
