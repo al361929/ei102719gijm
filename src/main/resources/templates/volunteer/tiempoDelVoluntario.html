@@ -12,17 +12,15 @@
 <div layout:fragment="content">
 
     <div class="container">
-        <h1>Lista de mis horarios</h1>
+        <h1 th:text="*{name}"></h1>
+
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>DNI Voluntario</th>
-                <th>DNI Persona Mayor</th>
                 <th>Dia</th>
                 <th>Mes</th>
                 <th>Hora Inicio</th>
                 <th>Hora Fin</th>
-                <th>Disponibilidad</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -30,13 +28,12 @@
             <tbody>
             <tr th:each="voluntario: ${scheduleList}"
                 th:class="${#strings.equals(nuevo,voluntario.getIdVolunteerTime())}?'bg-info text-white'">
-                <td th:text="${voluntario.dniVolunteer}"></td>
-                <td th:text="${voluntario.dniElderly}"></td>
+
                 <td th:text="${voluntario.dia}"></td>
                 <td th:text="${voluntario.mes}"></td>
                 <td th:text="${voluntario.startTime}"></td>
                 <td th:text="${voluntario.endTime}"></td>
-                <td th:text="${voluntario.availability}"></td>
+
                 <td>
                     <a th:href="@{/volunteertime/solicitar/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
                        class="btn btn btn-secondary"

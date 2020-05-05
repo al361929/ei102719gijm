@@ -184,7 +184,8 @@ public class VolunteerController extends Controlador {
     @RequestMapping(value = "/tiempoDelVoluntario/{dni}")
     public String getScheduleList9(@PathVariable String dni,HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
-
+        Volunteer v = volunteerDao.getVolunteer(dni);
+        model.addAttribute("name","Horarios de "+v.getNombre());
         model.addAttribute("scheduleList", volunteerDao.getScheduleListDisponibles(dni));
         return "volunteer/tiempoDelVoluntario";
     }

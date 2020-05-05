@@ -152,10 +152,11 @@ public class CompanyController extends Controlador{
     }
     @RequestMapping(value = "/contractList/{nif}")
     public String getContractListP(HttpSession session, Model model, @PathVariable String nif) {
-        model.addAttribute("contractList", companyDao.getContractsList(nif));
+        model.addAttribute("contracts", companyDao.getContractsList(nif));
         HashMap<String ,String> u=valoracionDao.getUsersInfo();
         model.addAttribute("usuario",u);
-        return gestionarAcceso(session, model, "admin", "company/contractList");
+        //return gestionarAcceso(session, model, "admin", "../contract/list");
+        return "contract/list";
     }
 
 }

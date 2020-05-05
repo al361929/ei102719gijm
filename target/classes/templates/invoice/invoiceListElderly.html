@@ -32,7 +32,7 @@
                 <td>
                     <div th:if="${!invoice.invoicePDF}">
                         <a th:href="@{/invoice/generatePDF/{idInvoice}(idInvoice=${invoice.invoiceNumber})}"
-                           class="btn btn btn-default"
+                           class="btn btn btn-secondary"
                            role="button"
                            aria-pressed="true">Generar PDF</a>
                     </div>
