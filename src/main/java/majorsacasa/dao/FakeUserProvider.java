@@ -50,7 +50,7 @@ public class FakeUserProvider implements UserDao {
             return user;
 
         }
-        if (username.equals("casComite") && password.equals("casComite")){
+        if (username.equals("casCommitee") && password.equals("casCommitee")){
             UserDetails user = new UserDetails();
             user.setUsername(username);
             user.setPassword(password);
