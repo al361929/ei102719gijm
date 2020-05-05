@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Añadir Tipo de servicio</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+<body>
+<div layout:fragment="content">
+
+    <div class="container">
+        <h2>Añadir Tipo de servicio</h2>
+        <form action="#" th:action="@{/typeService/add}"
+              th:object="${TypeService}" method="POST">
+            <table>
+                <tr>
+                    <td><label>Tipo de servicio: </label></td>
+                    <td><input type="text" class="form-control" th:field="*{serviceType}"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input  id="estilo2" type="submit" value="Añadir Tipo de Servicio" class="btn btn btn-success" role="button"
+                                            aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2">  <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a></td>
+
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

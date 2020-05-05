@@ -22,6 +22,8 @@
                 <option th:each="type : ${typosServicios}" th:value="${type.serviceType}"
                         th:utext="${type.serviceType}"></option>
             </select></td>
+            <td colspan="2"><a href="/typeService/add" class="btn btn btn-primary" role="button"
+                               aria-pressed="true">Añadir Tipo Servicio</a></td>
 <!--
             <td><select type="text"  th:field="*{serviceType}"class="select-css"/>
                 <option>Catering</option>
