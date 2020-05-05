@@ -72,4 +72,9 @@ public class ServiceDao {
         return servicio;
 
     }
+    public int ultimoIdService(){
+        List<String> ids = jdbcTemplate.queryForList("select Max(idService)  from service;", String.class);
+        int id = Integer.parseInt(ids.get(0));
+        return id;
+    }
 }

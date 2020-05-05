@@ -51,7 +51,8 @@ public class ServiceController extends Controlador {
             return "service/add";
         }
         serviceDao.addService(service);
-        return "redirect:list?nuevo=" + service.getIdService();
+        int id = serviceDao.ultimoIdService();
+        return "redirect:list?nuevo=" + id;
     }
 
     @RequestMapping(value = "/update/{idService}", method = RequestMethod.GET)

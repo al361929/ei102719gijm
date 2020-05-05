@@ -76,7 +76,8 @@ public class ContractController extends Controlador {
         }*/
         //System.out.println(contract.toString());
         contractDao.addContract(contract);
-        return "redirect:list?nuevo=" + contract.getIdContract();
+        int id = contractDao.getUltimoContrato();
+        return "redirect:list?nuevo=" + id;
     }
 
     @RequestMapping(value = "/update/{idContract}", method = RequestMethod.GET)

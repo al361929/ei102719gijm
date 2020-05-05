@@ -121,7 +121,8 @@ public class VolunteerTimeController {
         UserDetails user = (UserDetails) session.getAttribute("user");
 
         volunteerTimeDao.solicitar(idVolunteerTime,user.getDni());
-        return "redirect:../../volunteer/listVolunteer";
+        VolunteerTime vTime= volunteerTimeDao.getVolunteerTime(idVolunteerTime);
+        return "redirect:../../volunteer/listVolunteer?nuevo="+vTime.getDniVolunteer();
     }
 
 }

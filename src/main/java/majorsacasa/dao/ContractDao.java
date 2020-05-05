@@ -52,4 +52,10 @@ public class ContractDao {
             return new ArrayList<Contract>();
         }
     }
+
+    public int getUltimoContrato() {
+        List<String> ids = jdbcTemplate.queryForList("Select MAX(idcontract) from Contract;", String.class);
+        int id = Integer.parseInt(ids.get(0));
+        return id;
+    }
 }

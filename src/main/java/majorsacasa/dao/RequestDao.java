@@ -81,4 +81,9 @@ public class RequestDao {
         return servicio;
 
     }
+    public int ultimoIdRequest(){
+        List<String> ids = jdbcTemplate.queryForList("Select MAX(idrequest) from Request;", String.class);
+        int id = Integer.parseInt(ids.get(0));
+        return id;
+    }
 }

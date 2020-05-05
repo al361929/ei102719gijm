@@ -23,7 +23,7 @@ public class ElderlyController  extends Controlador{
 
     private ElderlyDao elderlyDao;
     private SocialWorkerDao socialWorkerDao;
-    private List<String> alergias = Arrays.asList("Polen", "Frutos secos", "Gluten", "Pepinillo");
+    private List<String> alergias = Arrays.asList("Ninguna", "Polen", "Frutos secos", "Gluten", "Pepinillo");
 
     @Autowired
     public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao) {
@@ -53,6 +53,7 @@ public class ElderlyController  extends Controlador{
     public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/add";
+        if (elderly.getAlergias()==null) elderly.setAlergias("");
         elderlyDao.addElderly(elderly);
         return "redirect:list?nuevo=" + elderly.getDni();
     }
@@ -95,8 +96,10 @@ public class ElderlyController  extends Controlador{
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
     public String editElderly(HttpSession session, Model model, @PathVariable String dni) {
         Elderly eld = elderlyDao.getElderly(dni);
-        List<String> alergiasEld = Arrays.asList(eld.getAlergias().split(","));
-        model.addAttribute("alergiasEld", alergiasEld);
+        if(eld.Alergias()) {
+            List<String> alergiasEld = Arrays.asList(eld.getAlergias().split(","));
+            model.addAttribute("alergiasEld", alergiasEld);
+        }
         model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", elderlyDao.getElderly(dni));
         List<SocialWorker> social = socialWorkerDao.getSocialWorkers();
@@ -109,6 +112,7 @@ public class ElderlyController  extends Controlador{
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/update";
+
         elderlyDao.updateElderlySINpw(elderly);
         return "redirect:list?nuevo=" + elderly.getDni();
     }

@@ -141,4 +141,7 @@ public class Elderly {
     public void setSocialWorker(String socialWorker) {
         this.socialWorker = socialWorker;
     }
+    public boolean Alergias(){
+        return  (alergias.length()>1);
+    }
 }

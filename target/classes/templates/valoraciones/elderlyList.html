@@ -24,7 +24,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="valoracion: ${listMisValoraciones}">
+            <tr th:each="valoracion: ${listMisValoraciones}"
+                th:class="${#strings.equals(nuevo,valoracion.dniVolunteer)}?'bg-info text-white'">
+
                 <td th:text="${usuario.get(valoracion.dniVolunteer)}"></td>
                 <td th:text="${usuario.get(valoracion.dni)}"></td>
                 <td th:text="${valoracion.valoration}"></td>

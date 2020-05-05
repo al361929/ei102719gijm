@@ -59,7 +59,7 @@ public class ValoracionController extends Controlador {
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracion.setDni(user.getDni());
         valoracionDao.updateValoracion(valoracion);
-        return "redirect:elderlyList?nuevo=" + valoracion.getDni();
+        return "redirect:elderlyList?nuevo=" + valoracion.getDniVolunteer();
     }
 
     @RequestMapping(value = "/delete/{dniVolunteer}")
@@ -81,9 +81,6 @@ public class ValoracionController extends Controlador {
         model.addAttribute("puntuacion",promedio);
         HashMap<String ,String> u=valoracionDao.getUsersInfo();
         model.addAttribute("users",u);
-
-
-
 
         return gestionarAcceso(session, model, "Volunteer", "valoraciones/listMisValoraciones");
     }

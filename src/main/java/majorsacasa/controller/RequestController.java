@@ -113,7 +113,7 @@ public class RequestController extends Controlador{
 
         requestDao.updateRequest(request);
         //return "redirect:list?nuevo=" + request.getIdRequest();
-        return "redirect:../elderly/list";
+        return "redirect:../elderly/list?nuevo="+request.getDni();
 
     }
 
@@ -181,18 +181,25 @@ public class RequestController extends Controlador{
             return "request/addRequestElderly";
         }*/
 
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
+            System.out.println("error");
             return "request/addRequestElderly";
+        }
         request.setDni(user.getDni());
+
         requestDao.addRequest(request);
 
+        int id = requestDao.ultimoIdRequest();
 
-        return "redirect:listElderly?nuevo=" + request.getIdRequest();
+
+        return "redirect:/request/listElderly?nuevo=" + id;
+      //  return "redirect:listElderly?nuevo="+id;
+
     }
     @RequestMapping(value = "/cancelarRequest/{id}")
     public String processUpdateEstadp(@PathVariable int id) {
         requestDao.updateEstado(id,"Cancelada");
-        return "redirect:../listElderly";
+        return "redirect:../listElderly?nuevo="+id;
     }
 
 }

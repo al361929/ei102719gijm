@@ -45,8 +45,8 @@
                 <tr>
                     <td><label>Alergias</label></td>
                     <td>
-                        <p th:each="allergie : ${allergies}">
-                            <input type="checkbox" name="allergies" th:value="${allergie}" th:field="*{alergias}"/>
+                        <p th:each="allergie : ${allergies}" >
+                            <input type="checkbox" name="allergies" th:value="${allergie}" th:field="*{alergias}" />
                             <label th:text="${allergie}"></label>
                         </p>
                     </td>
