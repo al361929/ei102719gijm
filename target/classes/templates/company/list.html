@@ -22,10 +22,11 @@
             <th>Responsable</th>
             <th>Dirección</th>
             <th>Teléfono</th>
-            <th>Usuario</th>
-            <th>Contraseña</th>
             <th>Fecha Alta</th>
-            <th>Cuneta bancaria</th>
+
+            <!--  <th>Usuario</th>
+              <th>Contraseña</th>
+            <th>Cuneta bancaria</th> -->
             <th>Servicio</th>
             <th></th>
             <th></th>
@@ -39,11 +40,12 @@
             <td th:text="${empresa.nombreResponsable}"></td>
             <td th:text="${empresa.direccion}"></td>
             <td th:text="${empresa.numeroTelf}"></td>
-            <td th:text="${empresa.nombreUsuario}"></td>
-            <td th:text="${empresa.password}"></td>
             <td th:text="${#temporals.format(empresa.fechaAlta,'dd/MM/yyyy')}"></td>
-            <td th:text="${empresa.cuentaBancaria}"></td>
-            <td th:text="${mapa.get(empresa.nif)}"></td>
+
+            <!--  <td th:text="${empresa.nombreUsuario}"></td>
+              <td th:text="${empresa.password}"></td>
+            <td th:text="${empresa.cuentaBancaria}"></td>-->
+            <td th:text="${mapa.get(empresa.nif)}"></td> <!-- Mapa de los servicios-->
 
             <td>
                 <a th:href="@{/company/update/{nif}(nif=${empresa.nif})}" class="btn btn btn-secondary" role="button"
@@ -56,11 +58,19 @@
 
             </td>
             <td>
+                <div th:if="${mapa.get(empresa.nif)!=NULL}">
+
+                <a th:href="@{/company/contractList/{nif}(nif=${empresa.nif})}" class="btn btn btn-default" role="button"
+                   aria-pressed="true">Contratos</a>
+                </div>
+
+
                 <div th:if="${mapa.get(empresa.nif)==NULL}">
-                <a th:href="@{../offer/addService/{nif}(nif=${empresa.nif})}"  class="btn btn btn-success" role="button"
+                <a th:href="@{../offer/addService/{nif}(nif=${empresa.nif})}"  class="btn btn btn-warning" role="button"
                    aria-pressed="true">Añadir Servicio</a>
                 </div>
             </td>
+
         </tr>
         </tbody>
     </table>
