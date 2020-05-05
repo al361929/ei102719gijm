@@ -1,8 +1,8 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.ServiceDao;
+import majorsacasa.dao.TypeServiceDao;
 import majorsacasa.model.Service;
-import majorsacasa.model.SocialWorker;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +18,13 @@ import java.util.Optional;
 public class ServiceController extends Controlador {
 
     private ServiceDao serviceDao;
+    private TypeServiceDao typeserviceDao;
+
 
     @Autowired
-    public void setServiceDao(ServiceDao serviceDao) {
+    public void setServiceDao(ServiceDao serviceDao,TypeServiceDao typeserviceDao) {
         this.serviceDao = serviceDao;
+        this.typeserviceDao = typeserviceDao;
     }
 
     @RequestMapping("/list")
@@ -35,13 +38,18 @@ public class ServiceController extends Controlador {
     @RequestMapping(value = "/add")
     public String addService(Model model) {
         model.addAttribute("service", new Service());
+        model.addAttribute("typosServicios", typeserviceDao.getTypeServices());
+
         return "service/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("service") Service service, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+    public String processAddSubmit(@ModelAttribute("service") Service service,Model model, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("typosServicios", typeserviceDao.getTypeServices());
+
             return "service/add";
+        }
         serviceDao.addService(service);
         return "redirect:list?nuevo=" + service.getIdService();
     }
@@ -49,13 +57,17 @@ public class ServiceController extends Controlador {
     @RequestMapping(value = "/update/{idService}", method = RequestMethod.GET)
     public String editService(Model model, @PathVariable Integer idService) {
         model.addAttribute("service", serviceDao.getService(idService));
+        model.addAttribute("typosServicios", typeserviceDao.getTypeServices());
+
         return "service/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("service") Service service,
-                                      BindingResult bindingResult) {
+                                      BindingResult bindingResult,Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("typosServicios", typeserviceDao.getTypeServices());
+
             return "service/update";
         }
         serviceDao.updateService(service);
