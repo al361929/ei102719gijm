@@ -23,6 +23,8 @@
             <th>Fecha de aceptación</th>
             <th>Fecha de rechazo</th>
             <th>Comentarios</th>
+            <th>Dias</th>
+
         </tr>
         </thead>
         <tbody>
@@ -36,6 +38,8 @@
             <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
             <td th:text="${#temporals.format(request.dateReject,'dd/MM/yyyy')}"></td>
             <td th:text="${request.comments}"></td>
+            <td th:text="${request.dias}"></td>
+
             <div th:if="${!request.isCancelada()}">
             <td >
                 <a th:href="@{/request/cancelarRequest/{id}(id=${request.idRequest})}"
