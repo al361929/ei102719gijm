@@ -8,10 +8,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import com.itextpdf.text.pdf.draw.LineSeparator;
-import majorsacasa.model.Elderly;
-import majorsacasa.model.Invoice;
-import majorsacasa.model.Request;
-import majorsacasa.model.Service;
+import majorsacasa.model.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -161,8 +158,9 @@ public class GeneratePDFController {
             cliente.add(elderly.getEmail());
             chapter.add(cliente);
 
-            Paragraph parrafoTabla = new Paragraph();
+            Paragraph parrafoTabla = new Paragraph("\n");
             PdfPTable tabla = new PdfPTable(4);
+            tabla.setWidthPercentage(100);
             List<String> lista = new ArrayList<>();
             lista.add("Descripción");
             lista.add("Unidades");
@@ -172,17 +170,23 @@ public class GeneratePDFController {
             for (String header : lista) {
                 Phrase encabezado = new Phrase(header);
                 encabezado.setFont(headerFont);
-                headerColumn = new PdfPCell(encabezado);
+                headerColumn = new PdfPCell();
+                headerColumn.setPhrase(encabezado);
                 headerColumn.setHorizontalAlignment(Element.ALIGN_CENTER);
                 headerColumn.setBackgroundColor(granate);
+                headerColumn.setBorder(0);
                 tabla.addCell(headerColumn);
             }
             tabla.setHeaderRows(1);
-            for (int row = 0; row < 4; row++) {
+            tabla.addCell(service.getDescription());
+            tabla.addCell(invoice.getInvoiceNumber().toString());
+            tabla.addCell(service.getPrice().toString());
+            tabla.addCell(invoice.getTotalPrice().toString());
+            /*for (int row = 0; row < 4; row++) {
                 for (int column = 0; column < 4; column++) {
                     tabla.addCell("Row " + row + " - Col" + column);
                 }
-            }
+            }*/
             parrafoTabla.add(tabla);
             chapter.add(parrafoTabla);
 

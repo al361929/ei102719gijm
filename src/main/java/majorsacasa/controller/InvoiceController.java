@@ -28,17 +28,19 @@ public class InvoiceController extends Controlador {
     private ProduceDao produceDao;
     private RequestDao requestDao;
     private ServiceDao serviceDao;
+    private ContractDao contractDao;
 
     @Value("${upload.file.directory}")
     private String uploadDirectory;
 
     @Autowired
-    public void setInvoiceDao(InvoiceDao invoiceDao, ElderlyDao elderlyDao, ProduceDao produceDao, RequestDao requestDao, ServiceDao serviceDao) {
+    public void setInvoiceDao(InvoiceDao invoiceDao, ElderlyDao elderlyDao, ProduceDao produceDao, RequestDao requestDao, ServiceDao serviceDao, ContractDao contractDao) {
         this.invoiceDao = invoiceDao;
         this.elderlyDao = elderlyDao;
         this.produceDao = produceDao;
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
+        this.contractDao = contractDao;
 
     }
 
@@ -90,22 +92,15 @@ public class InvoiceController extends Controlador {
         GeneratePDFController generatePDF = new GeneratePDFController();
         String path = uploadDirectory + "/invoice/" + idInvoice + ".pdf";
         Invoice invoice = invoiceDao.getInvoice(idInvoice);
-        Elderly elderly = elderlyDao.getElderly(invoice.getDniElderly());
-
-        Integer idRequest = produceDao.getProduce(idInvoice).getIdRequest();
-
-        Request request = requestDao.getRequest(idRequest);
-
-        Integer idService = request.getIdService();
-        Service service = serviceDao.getService(idService);
-
+        Elderly elderly = elderlyDao.getElderly(invoiceDao.getInvoice(idInvoice).getDniElderly());
+        Request request = requestDao.getRequest(produceDao.getProduce(idInvoice).getIdRequest());
+        Service service = serviceDao.getService(requestDao.getRequest(produceDao.getProduce(idInvoice).getIdRequest()).getIdService());
+        //Integer idContract = contractDao.getContract();
+        //Contract contract = contractDao.);
         generatePDF.createPDF(new File(path), invoice, elderly, request, service);
-
         invoiceDao.updloadInvoice(idInvoice, true);
-
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (user.getTipo().equals("ElderlyPeople")) return "redirect:../invoiceListElderly?nuevo=" + idInvoice;
-
 
         return "redirect:../list?nuevo=" + idInvoice;
     }
