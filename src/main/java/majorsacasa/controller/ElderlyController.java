@@ -112,7 +112,7 @@ public class ElderlyController  extends Controlador{
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/update";
-
+        elderly.actualizarAlergias();
         elderlyDao.updateElderlySINpw(elderly);
         return "redirect:list?nuevo=" + elderly.getDni();
     }
@@ -148,6 +148,8 @@ public class ElderlyController  extends Controlador{
                                             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/updatePerfil";
+        elderly.actualizarAlergias();
+
         elderlyDao.updateElderlySinSocialWorker(elderly);
         return "redirect:/request/listElderly";
     }

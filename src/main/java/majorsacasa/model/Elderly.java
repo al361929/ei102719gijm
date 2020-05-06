@@ -3,6 +3,8 @@ package majorsacasa.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class Elderly {
 
@@ -11,6 +13,7 @@ public class Elderly {
     String direccion;
     String dni;
     String alergias;
+    String nuevasAlergias;
     String telefono;
     String usuario;
     String contraseña;
@@ -23,6 +26,14 @@ public class Elderly {
     String cuentaBancaria;
     String email;
     String socialWorker;
+
+    public String getNuevasAlergias() {
+        return nuevasAlergias;
+    }
+
+    public void setNuevasAlergias(String nuevasAlergias) {
+        this.nuevasAlergias = nuevasAlergias;
+    }
 
     public Elderly() {
     }
@@ -143,5 +154,28 @@ public class Elderly {
     }
     public boolean Alergias(){
         return  (alergias.length()>1);
+    }
+    public void actualizarAlergias(){
+        Collection <String> col = new HashSet<>();
+        String todas="";
+        if (getNuevasAlergias()!=null){
+             todas=getAlergias()+","+getNuevasAlergias();
+        }else {
+             todas = getAlergias();
+        }
+        String[] alergias=todas.split(",");
+        for (String a: alergias){
+            col.add(a);
+        }
+        todas="";
+        Object[] ab=col.toArray();
+        todas= (String) ab[0];
+        for (int i=1; i<ab.length;i++){
+            todas=todas+","+ab[i];
+
+        }
+        setAlergias(todas);
+        setNuevasAlergias("");
+
     }
 }
