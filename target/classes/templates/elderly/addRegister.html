@@ -43,14 +43,23 @@
                     <td><input type="text" class="form-control" th:field="*{direccion}"/></td>
                 </tr>
                 <tr>
+
+                <td><label>Alergias: </label></td>
+                <td><select th:field="*{alergias}" class="select-css" multiple required>
+                    <option value="" selected disabled>--- Selecciona las Alergias ---</option>
+                    <option th:each="allergie : ${allergies}" th:value="${allergie}"
+                            th:utext="${allergie}"></option>
+                </select></td>
+<!--                <tr>
                     <td><label>Alergias</label></td>
                     <td>
                         <p th:each="allergie : ${allergies}" >
                             <input type="checkbox" name="allergies" th:value="${allergie}" th:field="*{alergias}" />
                             <label th:text="${allergie}"></label>
                         </p>
-                    </td>
+                    </td>-->
                 </tr>
+
                 <tr>
                     <td><label>Telefono</label></td>
                     <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="9" required/></td>
