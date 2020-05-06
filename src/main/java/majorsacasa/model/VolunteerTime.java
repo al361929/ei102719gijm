@@ -24,7 +24,9 @@ public class VolunteerTime {
     public Integer getIdVolunteerTime() {
         return idVolunteerTime;
     }
-
+    public String getId() {
+        return idVolunteerTime+"";
+    }
     public void setIdVolunteerTime(Integer idVolunteerTime) {
         this.idVolunteerTime = idVolunteerTime;
     }

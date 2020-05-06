@@ -56,4 +56,9 @@ public class InvoiceDao {
             return new ArrayList<Invoice>();
         }
     }
+    public int getUltimoInvoice() {
+        List<String> ids = jdbcTemplate.queryForList("select MAX(idinvoice) from Invoice;", String.class);
+        int id = Integer.parseInt(ids.get(0));
+        return id;
+    }
 }

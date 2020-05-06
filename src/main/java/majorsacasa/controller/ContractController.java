@@ -116,8 +116,9 @@ public class ContractController extends Controlador {
             e.printStackTrace();
         }
         UserDetails user = (UserDetails) session.getAttribute("user");
-        if (user.getTipo().equals("Company"))     return "redirect:../company/contractList?nuevo=" + contract.getIdContract();
-
+        if (user.getTipo().equals("Company")) {
+            return "redirect:../company/contractList?nuevo=" + contract.getIdContract();
+        }
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
 

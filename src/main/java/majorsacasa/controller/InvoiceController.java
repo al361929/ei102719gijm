@@ -90,15 +90,22 @@ public class InvoiceController extends Controlador {
         GeneratePDFController generatePDF = new GeneratePDFController();
         String path = uploadDirectory + "/invoice/" + idInvoice + ".pdf";
         Invoice invoice = invoiceDao.getInvoice(idInvoice);
-        Elderly elderly = elderlyDao.getElderly(invoiceDao.getInvoice(idInvoice).getDniElderly());
+        Elderly elderly = elderlyDao.getElderly(invoice.getDniElderly());
+
         Integer idRequest = produceDao.getProduce(idInvoice).getIdRequest();
+
         Request request = requestDao.getRequest(idRequest);
+
         Integer idService = request.getIdService();
         Service service = serviceDao.getService(idService);
+
         generatePDF.createPDF(new File(path), invoice, elderly, request, service);
+
         invoiceDao.updloadInvoice(idInvoice, true);
+
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (user.getTipo().equals("ElderlyPeople")) return "redirect:../invoiceListElderly?nuevo=" + idInvoice;
+
 
         return "redirect:../list?nuevo=" + idInvoice;
     }

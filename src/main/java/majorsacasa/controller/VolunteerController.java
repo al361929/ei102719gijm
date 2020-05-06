@@ -86,7 +86,8 @@ public class VolunteerController extends Controlador {
         v.setEstado("Aceptado");
         volunteerDao.updateVolunteerEstado(v.getDni(),v.getEstado());
 
-        return "redirect:../list";
+        return "redirect:../list?nuevo=" +dni;
+
     }
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
     public String editVolunteer(Model model, @PathVariable String dni) {

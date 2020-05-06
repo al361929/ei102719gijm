@@ -57,10 +57,10 @@ public class VolunteerTimeController {
         volunteertime.setDniVolunteer(user.getDni());
         System.out.println(volunteertime.toString());
         volunteerTimeDao.addVolunteerTime(volunteertime);
-        if (user.getTipo().equals("Volunteer")){
-            return "redirect:../volunteer/scheduleList";
-        }
-        return "redirect:list?nuevo=" + volunteertime.getIdVolunteerTime();
+        int id = volunteerTimeDao.ultimoIdService();
+
+        return "redirect:../volunteer/scheduleList?nuevo=" + id;
+
 
     }
 
@@ -77,7 +77,7 @@ public class VolunteerTimeController {
         if (bindingResult.hasErrors())
             return "volunteertime/update";
         volunteerTimeDao.updateVolunteerTime(volunteertime);
-        return "redirect:../volunteer/scheduleList";
+        return "redirect:../volunteer/scheduleList?nuevo="+volunteertime.getIdVolunteerTime();
     }
 
     @RequestMapping(value = "/delete/{idVolunteerTime}")

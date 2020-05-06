@@ -22,6 +22,8 @@ public class RequestController extends Controlador{
     private ValoracionDao valoracionDao;
     private InvoiceDao invoiceDao;
 
+    private ProduceDao produceDao;
+
     private RequestDao requestDao;
     private OffersDao offersDao;
     private ServiceDao serviceDao;
@@ -30,7 +32,7 @@ public class RequestController extends Controlador{
     private List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada", "Cancelada");
 
     @Autowired
-    public void setRequestDao( InvoiceDao invoiceDao,ValoracionDao valoracionDao,RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao,ContractDao contractDao,OffersDao offersDao) {
+    public void setRequestDao(ProduceDao produceDao, InvoiceDao invoiceDao,ValoracionDao valoracionDao,RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao,ContractDao contractDao,OffersDao offersDao) {
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
         this.companyDao = companyDao;
@@ -39,6 +41,7 @@ public class RequestController extends Controlador{
         this.offersDao= offersDao;
         this.valoracionDao =valoracionDao;
         this.invoiceDao = invoiceDao;
+        this.produceDao =produceDao;
     }
 
     @RequestMapping("/list")
@@ -100,6 +103,10 @@ public class RequestController extends Controlador{
             factura.setDniElderly(request.getDni());
             factura.setTotalPrice(service.getPrice());
             invoiceDao.addInvoice(factura);
+            Produce p = new Produce();
+            p.setIdInvoice(invoiceDao.getUltimoInvoice());
+            p.setIdRequest(request.getIdRequest());
+            produceDao.addProduce(p);
 
         }else{
             if(request.getState().equals("Rechazada")) request.setDateReject(LocalDate.now());
