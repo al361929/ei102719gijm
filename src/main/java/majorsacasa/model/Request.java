@@ -24,6 +24,12 @@ public class Request {
 
     }
 
+    public Integer getNumDias() {
+        String dias = getDias();
+        String[] vDias = dias.split(",");
+        return vDias.length;
+    }
+
     public String getDias() {
         return dias;
     }

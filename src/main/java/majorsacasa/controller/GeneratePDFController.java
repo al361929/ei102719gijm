@@ -8,7 +8,10 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import com.itextpdf.text.pdf.draw.LineSeparator;
-import majorsacasa.model.*;
+import majorsacasa.model.Elderly;
+import majorsacasa.model.Invoice;
+import majorsacasa.model.Request;
+import majorsacasa.model.Service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,7 +29,7 @@ public class GeneratePDFController {
 
     private static final Font categoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static final Font subcategoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
-    private static final Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
+    private static final Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, granate);
     private static final Font smallBold = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, granate);
 
     private static final String linea = "src/main/resources/static/img/linea-roja.png";
@@ -159,34 +162,33 @@ public class GeneratePDFController {
             chapter.add(cliente);
 
             Paragraph parrafoTabla = new Paragraph("\n");
+            parrafoTabla.setFont(headerFont);
+            List<String> listaHeader = new ArrayList<>();
+            parrafoTabla.add("Descripción\n");
+            listaHeader.add("Unidades\t");
+            listaHeader.add("Precio Unitario\t");
+            listaHeader.add("Precio\n");
+            for (String header : listaHeader) {
+                parrafoTabla.add(header);
+            }
+            parrafoTabla.add(lineCliente);
+
             PdfPTable tabla = new PdfPTable(4);
+            PdfPCell casillas = new PdfPCell();
             tabla.setWidthPercentage(100);
-            List<String> lista = new ArrayList<>();
-            lista.add("Descripción");
-            lista.add("Unidades");
-            lista.add("Precio Unitario");
-            lista.add("Precio");
-            PdfPCell headerColumn;
-            for (String header : lista) {
-                Phrase encabezado = new Phrase(header);
-                encabezado.setFont(headerFont);
-                headerColumn = new PdfPCell();
-                headerColumn.setPhrase(encabezado);
-                headerColumn.setHorizontalAlignment(Element.ALIGN_CENTER);
-                headerColumn.setBackgroundColor(granate);
-                headerColumn.setBorder(0);
-                tabla.addCell(headerColumn);
+            List<String> celdas = new ArrayList<>();
+            celdas.add(service.getDescription());
+            celdas.add(request.getNumDias().toString());
+            celdas.add(service.getPrice().toString());
+            celdas.add(invoice.getTotalPrice().toString());
+            for (String cell : celdas) {
+                casillas.setBorder(0);
+                casillas.setPhrase(new Phrase(cell));
+
             }
             tabla.setHeaderRows(1);
-            tabla.addCell(service.getDescription());
-            tabla.addCell(invoice.getInvoiceNumber().toString());
-            tabla.addCell(service.getPrice().toString());
-            tabla.addCell(invoice.getTotalPrice().toString());
-            /*for (int row = 0; row < 4; row++) {
-                for (int column = 0; column < 4; column++) {
-                    tabla.addCell("Row " + row + " - Col" + column);
-                }
-            }*/
+            tabla.addCell(casillas);
+
             parrafoTabla.add(tabla);
             chapter.add(parrafoTabla);
 
