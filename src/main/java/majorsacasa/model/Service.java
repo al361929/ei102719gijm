@@ -35,7 +35,7 @@ public class Service {
     }
 
     public String getDescription() {
-        return description;
+        return description+" Precio: "+price;
     }
 
     public void setDescription(String description) {

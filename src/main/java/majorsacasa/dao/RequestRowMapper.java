@@ -20,6 +20,8 @@ public final class RequestRowMapper implements RowMapper<Request> {
         request.setComments(rs.getString("comments"));
         request.setDni(rs.getString("dni"));
         request.setNif(rs.getString("nif"));
+        request.setDias(rs.getString("days"));
+
         return request;
     }
 }

@@ -163,6 +163,7 @@ public class RequestController extends Controlador{
 
         List<Company> company = companyDao.getCompanies();
         model.addAttribute("companyies", company);
+
         return "request/addRequestElderly";
     }
 
@@ -177,6 +178,7 @@ public class RequestController extends Controlador{
             model.addAttribute("servicios", servicios);
             List<Company> company = companyDao.getCompanies();
             model.addAttribute("companyies", company);
+
             return "request/addRequestElderly";
         }
         /*if (!request.getNif().equals("0") && offersDao.checkService(request.getNif(),request.getIdService())){
@@ -198,6 +200,7 @@ public class RequestController extends Controlador{
 
         int id = requestDao.ultimoIdRequest();
 
+        System.out.println("Dias: "+request.getDias());
 
         return "redirect:/request/listElderly?nuevo=" + id;
       //  return "redirect:listElderly?nuevo="+id;

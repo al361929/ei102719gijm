@@ -33,8 +33,8 @@ public class RequestDao {
     }
 
     public void addRequest(Request request) {
-        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?,?,?)", request.getIdService(), LocalDate.now(), "Pendiente",
-                request.getDateAccept(), request.getDateReject(), request.getComments(), request.getDni(), request.getNif());
+        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?,?,?,?)", request.getIdService(), LocalDate.now(), "Pendiente",
+                request.getDateAccept(), request.getDateReject(), request.getComments(), request.getDni(), request.getNif(), request.getDias());
 
     }
 
@@ -43,8 +43,8 @@ public class RequestDao {
     }
 
     public void updateRequest(Request request) {
-        jdbcTemplate.update("UPDATE Request SET idService=?, state=?, comments=?, dateRequest=?, dateAccept=?, dateReject=?, dni=?, nif=? WHERE idRequest=? ",
-                request.getIdService(), request.getState(), request.getComments(), request.getDateRequest(), request.getDateAccept(), request.getDateReject(), request.getDni(), request.getNif(), request.getIdRequest());
+        jdbcTemplate.update("UPDATE Request SET idService=?, state=?, comments=?, dateRequest=?, dateAccept=?, dateReject=?, dni=?, nif=?,days=? WHERE idRequest=? ",
+                request.getIdService(), request.getState(), request.getComments(), request.getDateRequest(), request.getDateAccept(), request.getDateReject(), request.getDni(), request.getNif(), request.getIdRequest(),request.getDias());
     }
 
     public void deleteRequest(int idRequest) {

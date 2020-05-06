@@ -18,9 +18,18 @@ public class Request {
     LocalDate dateAccept;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate dateReject;
+    String dias;
 
     public Request() {
 
+    }
+
+    public String getDias() {
+        return dias;
+    }
+
+    public void setDias(String dias) {
+        this.dias = dias;
     }
 
     public Integer getIdRequest() {
@@ -109,6 +118,8 @@ public class Request {
                 ", dateRequest=" + dateRequest +
                 ", dateAccept=" + dateAccept +
                 ", dateReject=" + dateReject +
+                ", dias=" + dias +
+
                 '}';
     }
 }
