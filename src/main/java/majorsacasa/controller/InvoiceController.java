@@ -95,8 +95,6 @@ public class InvoiceController extends Controlador {
         Elderly elderly = elderlyDao.getElderly(invoiceDao.getInvoice(idInvoice).getDniElderly());
         Request request = requestDao.getRequest(produceDao.getProduce(idInvoice).getIdRequest());
         Service service = serviceDao.getService(requestDao.getRequest(produceDao.getProduce(idInvoice).getIdRequest()).getIdService());
-        //Integer idContract = contractDao.getContract();
-        //Contract contract = contractDao.);
         generatePDF.createPDF(new File(path), invoice, elderly, request, service);
         invoiceDao.updloadInvoice(idInvoice, true);
         UserDetails user = (UserDetails) session.getAttribute("user");
