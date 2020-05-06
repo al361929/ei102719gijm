@@ -92,16 +92,20 @@ public class RequestController extends Controlador{
     public String processUpdateSubmit(@ModelAttribute("request") Request request,Model model,
                                       BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.toString());
+            System.out.println(request.toString());
             return "request/update";
-        if(request.getState().equals("Aceptada")) {
+        }
+
+        if (request.getState().equals("Aceptada")) {
             request.setDateAccept(LocalDate.now());
-            Invoice factura =new Invoice();
+            Invoice factura = new Invoice();
             factura.setDateInvoice(LocalDate.now());
             factura.setInvoicePDF(false);
-            Service service=serviceDao.getService(request.getIdService());
+            Service service = serviceDao.getService(request.getIdService());
             factura.setDniElderly(request.getDni());
-            factura.setTotalPrice(service.getPrice());
+            factura.setTotalPrice(service.getPrice() * request.getNumDias());
             invoiceDao.addInvoice(factura);
             Produce p = new Produce();
             p.setIdInvoice(invoiceDao.getUltimoInvoice());

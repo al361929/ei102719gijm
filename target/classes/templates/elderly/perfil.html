@@ -38,7 +38,8 @@
                     <!--            <td><input type="text" class="form-control" th:field="*{alergias}"/></td>-->
                     <td><select th:field="*{alergias}" class="select-css" multiple required>
                         <option value="" selected disabled>--- Selecciona las Alergias ---</option>
-                        <option th:each="allergie : ${allergies}" th:value="${allergie}" th:selected="${elderly.alergias}"
+                        <option th:each="allergie : ${allergies}" th:value="${allergie}"
+                                th:selected="${elderly.alergias}"
                                 th:utext="${allergie}"></option>
                     </select></td>
                 </tr>
