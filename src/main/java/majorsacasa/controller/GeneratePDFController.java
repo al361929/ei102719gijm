@@ -164,26 +164,30 @@ public class GeneratePDFController {
             Paragraph parrafoTabla = new Paragraph("\n");
             parrafoTabla.setFont(headerFont);
             List<String> listaHeader = new ArrayList<>();
-            listaHeader.add("Descripción");
-            listaHeader.add("Unidades");
-            listaHeader.add("Precio Unitario");
-            listaHeader.add("Precio");
+            parrafoTabla.add("Descripción\n");
+            listaHeader.add("Unidades\t");
+            listaHeader.add("Precio Unitario\t");
+            listaHeader.add("Precio\n");
             for (String header : listaHeader) {
                 parrafoTabla.add(header);
             }
             parrafoTabla.add(lineCliente);
 
             PdfPTable tabla = new PdfPTable(4);
-            //PdfPCell headerColumn = new PdfPCell();
+            PdfPCell casillas = new PdfPCell();
             tabla.setWidthPercentage(100);
             List<String> celdas = new ArrayList<>();
             celdas.add(service.getDescription());
             celdas.add(request.getNumDias().toString());
             celdas.add(service.getPrice().toString());
             celdas.add(invoice.getTotalPrice().toString());
-            for (String cell : listaHeader) {
-                tabla.addCell(cell);
+            for (String cell : celdas) {
+                casillas.setBorder(0);
+                casillas.setPhrase(new Phrase(cell));
+
             }
+            tabla.setHeaderRows(1);
+            tabla.addCell(casillas);
 
             parrafoTabla.add(tabla);
             chapter.add(parrafoTabla);
