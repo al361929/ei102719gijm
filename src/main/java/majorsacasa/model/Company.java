@@ -100,5 +100,21 @@ public class Company {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "nombre='" + nombre + '\'' +
+                ", nombreResponsable='" + nombreResponsable + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", nif='" + nif + '\'' +
+                ", numeroTelf='" + numeroTelf + '\'' +
+                ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", password='" + password + '\'' +
+                ", fechaAlta=" + fechaAlta +
+                ", cuentaBancaria='" + cuentaBancaria + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
 

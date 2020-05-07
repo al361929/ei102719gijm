@@ -81,9 +81,9 @@ public class RequestController extends Controlador{
         Request request = requestDao.getRequest(id);
         model.addAttribute("estados", estados);
         model.addAttribute("request", request);
-        List<Company> company = companyDao.getCompanyServiceOffer(request.getIdService());
-        System.out.println(company.toString());
-        model.addAttribute("companyies", company);
+        List<Company> companies = companyDao.getCompanyServiceOffer(request.getIdService());
+        System.out.println(companies.toString());
+        model.addAttribute("companyies", companies);
         return "request/update";
 
     }
@@ -92,16 +92,19 @@ public class RequestController extends Controlador{
     public String processUpdateSubmit(@ModelAttribute("request") Request request,Model model,
                                       BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
             return "request/update";
-        if(request.getState().equals("Aceptada")) {
+        }
+
+        if (request.getState().equals("Aceptada")) {
             request.setDateAccept(LocalDate.now());
-            Invoice factura =new Invoice();
+            Invoice factura = new Invoice();
             factura.setDateInvoice(LocalDate.now());
             factura.setInvoicePDF(false);
-            Service service=serviceDao.getService(request.getIdService());
+            Service service = serviceDao.getService(request.getIdService());
             factura.setDniElderly(request.getDni());
-            factura.setTotalPrice(service.getPrice());
+            Integer precioTotal = service.getPrice() * requestDao.getRequest(request.getIdRequest()).getNumDias();
+            factura.setTotalPrice(precioTotal);
             invoiceDao.addInvoice(factura);
             Produce p = new Produce();
             p.setIdInvoice(invoiceDao.getUltimoInvoice());

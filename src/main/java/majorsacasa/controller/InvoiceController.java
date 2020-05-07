@@ -142,9 +142,11 @@ public class InvoiceController extends Controlador {
     }
 
     @RequestMapping(value = "/invoiceListElderly")
-    public String getInvoiceCompanyList(HttpSession session, Model model) {
+    public String getInvoiceCompanyList(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("invoices", invoiceDao.getInvoiceElderly(user.getDni()));
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return gestionarAcceso(session, model, "ElderlyPeople", "invoice/invoiceListElderly");
     }
 

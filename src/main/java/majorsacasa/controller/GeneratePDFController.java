@@ -6,7 +6,6 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import majorsacasa.model.Elderly;
 import majorsacasa.model.Invoice;
@@ -26,6 +25,8 @@ public class GeneratePDFController {
     private static final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 9, Font.NORMAL);
 
     private static final BaseColor granate = new BaseColor(203, 62, 62);
+    private static final BaseColor gris = new BaseColor(215, 215, 215);
+
 
     private static final Font categoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static final Font subcategoryFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
@@ -86,13 +87,12 @@ public class GeneratePDFController {
 
             // First page
             // Primera página
-            // Añadimos la linea roja de arriba
+            // AÑADIMOS LA FRANJA GRANATE DE ARRIBA
             Chapter chapter = new Chapter(0);
             Image lineaArriba;
             try {
                 lineaArriba = Image.getInstance(linea);
                 lineaArriba.setAbsolutePosition(0, 822);
-                //lineaArriba.setAlignment(4);
                 chapter.add(lineaArriba);
             } catch (BadElementException ex) {
                 System.out.println("Image BadElementException" + ex);
@@ -100,7 +100,7 @@ public class GeneratePDFController {
                 System.out.println("Image IOException " + ex);
             }
 
-            //Añadimos el logo de la empresa
+            // AÑADIMOS EL LOGO DE LA EMPRESA
             Image image;
             try {
                 image = Image.getInstance(logo);
@@ -125,6 +125,7 @@ public class GeneratePDFController {
             lineSeparator.setLineColor(BaseColor.BLACK);
             lineSeparator.setPercentage(20);
 
+            // PONEMOS LA FECHA Y EL Nº DE FACTURA
             Paragraph fecha = new Paragraph("\nFecha", smallBold);
             fecha.setAlignment(Element.ALIGN_RIGHT);
             fecha.add(lineSeparator);
@@ -150,6 +151,7 @@ public class GeneratePDFController {
             lineCliente.setLineColor(BaseColor.BLACK);
             lineCliente.setPercentage(100);
 
+            // DATOS DEL CLIENTE
             Paragraph cliente = new Paragraph("\n\nDatos Cliente", smallBold);
             cliente.setAlignment(Element.ALIGN_LEFT);
             cliente.add(lineCliente);
@@ -161,43 +163,75 @@ public class GeneratePDFController {
             cliente.add(elderly.getEmail());
             chapter.add(cliente);
 
+            // AÑADIMOS EL PÁRRAFO AL CUAL TIENE QUE ALMACENAR LA TABLA
             Paragraph parrafoTabla = new Paragraph("\n");
             parrafoTabla.setFont(headerFont);
+
+            //LISTA DE LA CABECERA DE LA TABLA
             List<String> listaHeader = new ArrayList<>();
-            parrafoTabla.add("Descripción\n");
+            listaHeader.add("Descripción\n");
             listaHeader.add("Unidades\t");
             listaHeader.add("Precio Unitario\t");
-            listaHeader.add("Precio\n");
-            for (String header : listaHeader) {
-                parrafoTabla.add(header);
-            }
-            parrafoTabla.add(lineCliente);
+            listaHeader.add("Precio Total\n");
 
-            PdfPTable tabla = new PdfPTable(4);
-            PdfPCell casillas = new PdfPCell();
-            tabla.setWidthPercentage(100);
+            //DATOS DE LA FACTURA QUE SE VAN A MOSTRAR MENOS LA DESCRIPCIÓN
             List<String> celdas = new ArrayList<>();
-            celdas.add(service.getDescription());
             celdas.add(request.getNumDias().toString());
             celdas.add(service.getPrice().toString());
-            celdas.add(invoice.getTotalPrice().toString());
-            for (String cell : celdas) {
-                casillas.setBorder(0);
-                casillas.setPhrase(new Phrase(cell));
+            celdas.add(invoice.getTotalPrice().doubleValue() + " €");
 
+            //CREAMOS LA TABLA Y AÑADIMOS LA CABECERA
+            PdfPTable tabla = new PdfPTable(4);
+            tabla.setWidthPercentage(100);
+
+            PdfPCell casillas;
+            for (String header : listaHeader) {
+                casillas = new PdfPCell(new Phrase(header));
+                casillas.setBorder(5);
+                casillas.setBorderColor(granate);
+                casillas.setBackgroundColor(granate);
+
+                casillas.setHorizontalAlignment(Element.ALIGN_CENTER);
+                tabla.addCell(casillas);
             }
             tabla.setHeaderRows(1);
+
+            // EL CAMPO DESCRIPCIÓN TIENE ALINEACIÓN A LA IZQUIERDA
+            casillas = new PdfPCell(new Phrase(service.getDescription()));
+            casillas.setBackgroundColor(gris);
+            casillas.setBorder(5);
+            casillas.setBorderColorRight(BaseColor.BLACK);
+            casillas.setBorderColorLeft(BaseColor.BLACK);
+            casillas.setHorizontalAlignment(Element.ALIGN_LEFT);
             tabla.addCell(casillas);
 
+            // SE AÑADEN LOS CAMPOS DE LA TABLA
+            for (String cell : celdas) {
+                casillas = new PdfPCell(new Phrase(cell));
+                casillas.setBorder(5);
+                casillas.setBackgroundColor(gris);
+                casillas.setBorderColorRight(BaseColor.BLACK);
+                casillas.setBorderColorLeft(BaseColor.BLACK);
+                casillas.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                tabla.addCell(casillas);
+            }
             parrafoTabla.add(tabla);
             chapter.add(parrafoTabla);
 
+            Paragraph observaciones = new Paragraph("\n\n\n\n\n\n");
+            observaciones.add(lineCliente);
+            observaciones.add("Observaciones / Instrucciones de pago:\n");
+            observaciones.setFont(paragraphFont);
+            observaciones.setAlignment(Element.ALIGN_LEFT);
+            observaciones.add(request.getComments());
+            chapter.add(observaciones);
+
             System.out.println(chapter.toString());
 
+            // AÑADIMOS LA FRANJA GRANATE ABAJO IGUAL QUE ARRIBA
             try {
                 lineaArriba = Image.getInstance(linea);
                 lineaArriba.setAbsolutePosition(0, 0);
-                //lineaArriba.setAlignment(4);
                 chapter.add(lineaArriba);
             } catch (BadElementException ex) {
                 System.out.println("Image BadElementException" + ex);
@@ -248,86 +282,6 @@ public class GeneratePDFController {
                 e.printStackTrace();
             }
 
-
-            // Second page - some elements
-            // Segunda página - Algunos elementos
-            Chapter chapSecond = new Chapter(new Paragraph(new Anchor("Some elements (Añadimos varios elementos)")), 1);
-            Paragraph paragraphS = new Paragraph("Do it by Xules (Realizado por Xules)", subcategoryFont);
-
-            // Underline a paragraph by iText (subrayando un párrafo por iText)
-            Paragraph paragraphE = new Paragraph("This line will be underlined with a dotted line (Está línea será subrayada con una línea de puntos).");
-            DottedLineSeparator dottedline = new DottedLineSeparator();
-            dottedline.setAlignment(2);
-            dottedline.setOffset(10);
-            dottedline.setGap(0);
-            paragraphE.add(dottedline);
-            chapSecond.addSection(paragraphE);
-
-            Section paragraphMoreS = chapSecond.addSection(paragraphS);
-            // List by iText (listas por iText)
-            String text = "test 1 2 3 ";
-            for (int i = 0; i < 5; i++) {
-                text = text + text;
-            }
-            /*List list = new List(List.UNORDERED);
-            ListItem item = new ListItem(text);
-            item.setAlignment(Element.ALIGN_JUSTIFIED);
-            list.add(item);
-            text = "a b c align ";
-            for (int i = 0; i < 5; i++) {
-                text = text + text;
-            }
-            item = new ListItem(text);
-            item.setAlignment(Element.ALIGN_JUSTIFIED);
-            list.add(item);
-            text = "supercalifragilisticexpialidocious ";
-            for (int i = 0; i < 3; i++) {
-                text = text + text;
-            }
-            item = new ListItem(text);
-            item.setAlignment(Element.ALIGN_JUSTIFIED);
-            list.add(item);
-            paragraphMoreS.add(list);
-            document.add(chapSecond);
-*/
-            // How to use PdfPTable
-            // Utilización de PdfPTable
-            // We use various elements to add title and subtitle
-            // Usamos varios elementos para añadir título y subtítulo
-            Anchor anchor = new Anchor("Table export to PDF (Exportamos la tabla a PDF)", categoryFont);
-            anchor.setName("Table export to PDF (Exportamos la tabla a PDF)");
-            Chapter chapTitle = new Chapter(new Paragraph(anchor), 1);
-            Paragraph paragraph = new Paragraph("Do it by Xules (Realizado por Xules)", subcategoryFont);
-            Section paragraphMore = chapTitle.addSection(paragraph);
-            paragraphMore.add(new Paragraph("This is a simple example (Este es un ejemplo sencillo)"));
-            Integer numColumns = 6;
-            Integer numRows = 120;
-
-            // We create the table (Creamos la tabla).
-            PdfPTable table = new PdfPTable(numColumns);
-            // Now we fill the PDF table
-            // Ahora llenamos la tabla del PDF
-            PdfPCell columnHeader;
-            // Fill table rows (rellenamos las filas de la tabla).
-            for (int column = 0; column < numColumns; column++) {
-                columnHeader = new PdfPCell(new Phrase("COL " + column));
-                columnHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table.addCell(columnHeader);
-            }
-            table.setHeaderRows(1);
-
-            // Fill table rows (rellenamos las filas de la tabla).
-            for (int row = 0; row < numRows; row++) {
-                for (int column = 0; column < numColumns; column++) {
-                    table.addCell("Row " + row + " - Col" + column);
-                }
-            }
-
-            // We add the table (Añadimos la tabla)
-            paragraphMore.add(table);
-
-            // We add the paragraph with the table (Añadimos el elemento con la tabla).
-            document.add(chapTitle);
             document.close();
             System.out.println("Your PDF file has been generated!(¡Se ha generado tu hoja PDF!");
 
