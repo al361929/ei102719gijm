@@ -5,21 +5,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="Puesto boton actualizar PDF">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/pdfs/invoice/10.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/pdfs/invoice/3.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/pdfs/invoice/4.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/pdfs/invoice/5.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/pdfs/invoice/6.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/pdfs/invoice/7.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/pdfs/invoice/9.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/pdfs/contract/7.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/pdfs/contract/7.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/request/addRequestElderly.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/request/addRequestElderly.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/listVolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/listVolunteer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/invoice/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/invoice/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/verPDF.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/verPDF.html" afterDir="false" />
-    </list>
+    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -142,6 +128,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.MajorsACasaApplication" />
+      <item itemvalue="Spring Boot.MajorsACasaApplication" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -428,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588504203331</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Css retocados">
+      <created>1588849314739</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1588849314739</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -453,7 +447,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="retoques" />
     <MESSAGE value="Todo funcional" />
     <MESSAGE value="Cositas" />
     <MESSAGE value="Sin fallos" />
@@ -478,7 +471,8 @@
     <MESSAGE value="Genera PDF, falta modificarlo a nuestro gusto para mostrar los datos" />
     <MESSAGE value="Creado Valoraciones." />
     <MESSAGE value="Puesto boton actualizar PDF" />
-    <option name="LAST_COMMIT_MESSAGE" value="Puesto boton actualizar PDF" />
+    <MESSAGE value="Css retocados" />
+    <option name="LAST_COMMIT_MESSAGE" value="Css retocados" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
