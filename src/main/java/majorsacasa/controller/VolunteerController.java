@@ -2,6 +2,7 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.ValoracionDao;
 import majorsacasa.dao.VolunteerDao;
+import majorsacasa.dao.VolunteerTimeDao;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.Volunteer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,14 @@ import java.util.Optional;
 public class VolunteerController extends Controlador {
 
     private VolunteerDao volunteerDao;
-
+    private VolunteerTimeDao volunteerTimeDao;
     private ValoracionDao valoracionDao;
 
     @Autowired
-    public void setVolunteerDao(VolunteerDao volunteerDao,ValoracionDao valoracionDao ) {
+    public void setVolunteerDao(VolunteerDao volunteerDao, ValoracionDao valoracionDao, VolunteerTimeDao volunteerTimeDao) {
         this.volunteerDao = volunteerDao;
-        this.valoracionDao =valoracionDao;
+        this.valoracionDao = valoracionDao;
+        this.volunteerTimeDao = volunteerTimeDao;
     }
 
 
@@ -164,8 +166,8 @@ public class VolunteerController extends Controlador {
         model.addAttribute("volunteers", volunteerDao.getVolunteers());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-
-        model.addAttribute("promedio",valoracionDao.getPromedio());
+        model.addAttribute("horarios", volunteerTimeDao.getVolunteersTime());
+        model.addAttribute("promedio", valoracionDao.getPromedio());
 
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listVolunteer");
     }

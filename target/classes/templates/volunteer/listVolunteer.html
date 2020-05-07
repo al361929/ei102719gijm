@@ -16,10 +16,10 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Dirección</th>
-
+        <th>Dia</th>
+        <th>Mes</th>
+        <th>Hora inicio</th>
+        <th>Hora fin</th>
         <th>Puntuación</th>
 
         <th></th>
@@ -27,20 +27,21 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="voluntario: ${volunteers}"
-        th:class="${#strings.equals(nuevo,voluntario.dni)}?'bg-info text-white'">
-        <td th:text="${voluntario.nombre}"></td>
-        <td th:text="${voluntario.apellidos}"></td>
-        <td th:text="${voluntario.direccion}"></td>
-        <td th:text="${promedio.get(voluntario.dni)}"></td>
+    <tr th:each="horario: ${horarios}"
+        th:class="${#strings.equals(nuevo,horario.idVolunteerTime)}?'bg-info text-white'">
+        <td th:text="${horario.dia}"></td>
+        <td th:text="${horario.mes}"></td>
+        <td th:text="${horario.startTime}"></td>
+        <td th:text="${horario.endTime}"></td>
+        <td th:text="${promedio.get(horario.dniVolunteer)}"></td>
             <td>
-                <div th:if="${promedio.get(voluntario.dni)}">
+                <div th:if="${promedio.get(horario.dniVolunteer)}">
 
-                <a th:href="@{/valoraciones/listMisValoraciones/{dni}(dni=${voluntario.dni})}" class="btn btn btn-secondary" role="button"
+                <a th:href="@{/valoraciones/listMisValoraciones/{dni}(dni=${horario.dniVolunteer})}" class="btn btn btn-secondary" role="button"
                aria-pressed="true">Ver reseñas</a>
                 </div>
         <td>
-        <a th:href="@{/volunteer/tiempoDelVoluntario/{dni}(dni=${voluntario.dni})}" class="btn btn btn-default" role="button"
+        <a th:href="@{/volunteer/tiempoDelVoluntario/{dni}(dni=${horario.dniVolunteer})}" class="btn btn btn-default" role="button"
            aria-pressed="true">Solicitar</a>
     </td>
 
