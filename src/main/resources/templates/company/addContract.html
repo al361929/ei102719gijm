@@ -13,17 +13,9 @@
 
     <div class="container">
         <h2>Añadir Empresa</h2>
-        <form action="#" th:action="@{/company/addRegister}"
+        <form action="#" th:action="@{/company/addContract}"
               th:object="${company}" method="post">
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('nif')}"
-                     th:errors="*{nif}"></div>
-            </td>
 
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('nombreUsuario')}"
-                     th:errors="*{nombreUsuario}"></div>
-            </td>
             <table>
                 <tr>
                     <td><label>CIF</label></td>
@@ -64,12 +56,13 @@
                                MAXLENGTH="29" required/>
                 </tr>
                 <tr>
-                    <td colspan="2"><input  id="estilo2" type="submit" value="Añadir compañia" class="btn btn btn-success"
-                                           role="button"
+                    <td colspan="2"><input id="estilo2" type="submit" value="Añadir compañia"
+                                           class="btn btn btn-success" role="button"
                                            aria-pressed="true"/></td>
                 </tr>
                 <tr>
-                    <td colspan="2">  <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a></td>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
+                    </td>
 
                 </tr>
             </table>

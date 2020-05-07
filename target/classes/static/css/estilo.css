@@ -5,7 +5,7 @@ body {
     color: #181717;
 }
 h1 {
-   /* background-color: #CB3E3E;*/
+    /* background-color: #CB3E3E;*/
     font-family: 'Arimo', sans-serif;
     font-weight: bold;
     text-align: center;
@@ -37,8 +37,7 @@ h5 {
     color: #CB3E3E;
 }
 
-label{
-    background-color: #FFFFFF;
+label {
     font-family: 'Raleway', serif;
     color: #181717;
 }

@@ -76,12 +76,41 @@ public class CompanyController extends Controlador{
         }
         if (!checkUser) {
 
-            bindingResult.rejectValue("nombreUsuario", "nombreUsuario", company.getNombreUsuario()+" ya esta se esta utilizando");
+            bindingResult.rejectValue("nombreUsuario", "nombreUsuario", company.getNombreUsuario() + " ya esta se esta utilizando");
 
             return "company/addRegister";
         }
         companyDao.addCompany(company);
         return "redirect:../login";
+    }
+
+    @RequestMapping(value = "/addContract")
+    public String addCompanyContract(Model model) {
+        model.addAttribute("company", new Company());
+        return "company/addContract";
+    }
+
+    @RequestMapping(value = "/addContract", method = RequestMethod.POST)
+    public String processAddSubmitContract(@ModelAttribute("company") Company company, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "company/addContract";
+        Boolean check = companyDao.checkDNI(company.getNif());
+        Boolean checkUser = companyDao.checkUser(company.getNombreUsuario());
+
+        if (!check) {
+
+            bindingResult.rejectValue("nif", "nif", "Ya existe una empresa con este NIF");
+
+            return "company/addContract";
+        }
+        if (!checkUser) {
+
+            bindingResult.rejectValue("nombreUsuario", "nombreUsuario", company.getNombreUsuario() + " ya esta se esta utilizando");
+
+            return "company/addContract";
+        }
+        companyDao.addCompany(company);
+        return "redirect:../contract/addCompany";
     }
 
     @RequestMapping(value = "/update/{nif}", method = RequestMethod.GET)

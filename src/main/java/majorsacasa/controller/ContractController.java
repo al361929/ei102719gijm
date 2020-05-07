@@ -3,6 +3,7 @@ package majorsacasa.controller;
 import majorsacasa.dao.CompanyDao;
 import majorsacasa.dao.ContractDao;
 import majorsacasa.dao.ElderlyDao;
+import majorsacasa.dao.ValoracionDao;
 import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,15 +28,17 @@ public class ContractController extends Controlador {
     private ContractDao contractDao;
     private CompanyDao companyDao;
     private ElderlyDao elderlyDao;
+    private ValoracionDao valoracionDao;
 
     @Value("${upload.file.directory}")
     private String uploadDirectory;
 
     @Autowired
-    public void setContractDao(ContractDao contractDao, CompanyDao companyDao, ElderlyDao elderlyDao) {
+    public void setContractDao(ContractDao contractDao, CompanyDao companyDao, ElderlyDao elderlyDao, ValoracionDao valoracionDao) {
         this.contractDao = contractDao;
         this.companyDao = companyDao;
         this.elderlyDao = elderlyDao;
+        this.valoracionDao = valoracionDao;
     }
 
 
@@ -43,6 +46,7 @@ public class ContractController extends Controlador {
     public String listContracts(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("contracts", contractDao.getContracts());
         String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("usuarios", valoracionDao.getUsersInfo());
         model.addAttribute("nuevo", newVolunteerTime);
         return "contract/list";
     }
