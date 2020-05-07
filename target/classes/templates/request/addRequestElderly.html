@@ -30,7 +30,7 @@
         <tr>
 
             <td><label>Servicio: </label></td>
-            <td><select th:field="*{idService}" class="select-css">
+            <td><select th:field="*{idService}" class="select-css" required>
                 <option value="" selected disabled>--- Selecciona servicio ---</option>
                 <option th:each="servicio : ${servicios}" th:value="${servicio.idService}"
                         th:utext="${servicio.getInfo()}"></option>

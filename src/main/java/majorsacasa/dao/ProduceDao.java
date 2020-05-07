@@ -39,6 +39,6 @@ public class ProduceDao {
 
 
     public void deleteProduce(int idInvoice, int idRequest) {
-        jdbcTemplate.update("DELETE FROM Produce WHERE idInvoice_pro=? AND idRequest_pro=?", idInvoice, idRequest);
+        jdbcTemplate.update("DELETE FROM Produce WHERE idInvoice=? AND idRequest=?", idInvoice, idRequest);
     }
 }
