@@ -33,11 +33,11 @@
         </tr>
         <tr>
             <td><label>Precio</label></td>
-            <td><input type="number" class="form-control" th:field="*{price}" min="0"/></td>
+            <td><input type="number" class="form-control" th:field="*{price}" min="0" required/></td>
         </tr>
         <tr>
             <td><label>Descripción</label></td>
-            <td><input type="text" class="form-control" th:field="*{description}"/></td>
+            <td><input type="text" class="form-control" th:field="*{description}" required/></td>
         </tr>
         <tr>
             <td colspan="2"><input  id="estilo2" type="submit" value="Añadir servicio" class="btn btn btn-success" role="button"

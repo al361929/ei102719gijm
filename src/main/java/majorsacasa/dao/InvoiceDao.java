@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -60,5 +61,20 @@ public class InvoiceDao {
         List<String> ids = jdbcTemplate.queryForList("select MAX(idinvoice) from Invoice;", String.class);
         int id = Integer.parseInt(ids.get(0));
         return id;
+    }
+
+    public HashMap<Integer,String> getDescriptionInvoice(){
+        List<String> key = jdbcTemplate.queryForList("select produce.idinvoice from produce JOIN request USING(idRequest)  JOIN service USING(idservice);", String.class);
+        List<String> value = jdbcTemplate.queryForList("select service.description from produce JOIN request USING(idRequest)  JOIN service USING(idservice);", String.class);
+
+        HashMap <Integer,String> info=new HashMap<>();
+        for (int i =0; i<key.size();i++){
+
+
+            info.put(Integer.parseInt(key.get(i)),value.get(i));
+        }
+
+
+        return  info;
     }
 }
