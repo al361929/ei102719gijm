@@ -5,7 +5,7 @@
  */
 
 body {
-  font-family: 'Raleway';
+  font-family: 'Raleway', serif;
 }
 
 h1,
@@ -14,7 +14,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Arimo';
+  font-family: 'Raleway', serif;
   font-weight: 800 !important;
 }
 

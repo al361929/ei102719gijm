@@ -17,16 +17,18 @@
                         <div class="card" style="width: 25rem;">
                             <img class="img-fluid " src="img/anciano1.jpg" alt="">
                             <div class="card-body">
-                                <p class="card-text">Entra y distruta de todos los servicios que ofrecemos, con la maxima atención y calidad que te mereces.</p>
+                                <p class="card-text">Entra y distruta de todos los servicios que ofrecemos, con la
+                                    maxima atención y calidad que te mereces.</p>
                             </div>
-                        </div>                        </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="p-5">
                         <form action="#" th:action="@{/login}"
                               th:object="${user}" method="post">
                             <div>
-
+                                <h1>MAJORS A CASA</h1>
                                 <label for="inputUser">Usuario</label>
                                 <input class="form-control" id="inputUser" type="text" th:field="*{username}"
                                        placeholder="Usuario"
@@ -62,7 +64,6 @@
                     </div>
                 </div>
             </div>
-
         </section>
         <footer>
             <hr>
