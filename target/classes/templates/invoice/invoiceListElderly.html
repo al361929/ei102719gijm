@@ -17,18 +17,20 @@
             <thead>
             <tr>
                 <th>Número de factura</th>
+                <th>Servicio</th>
+
                 <th>Fecha</th>
                 <th>Precio total</th>
-                <th>DNI Persona mayor</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="invoice: ${invoices}"
                 th:class="${#strings.equals(nuevo,invoice.invoiceNumber)}?'bg-info text-white'">
                 <td th:text="${invoice.invoiceNumber}"></td>
+                <td th:text="${info.get(invoice.invoiceNumber)}"></td>
+
                 <td th:text="${#temporals.format(invoice.dateInvoice,'dd/MM/yyyy')}"></td>
                 <td th:text="${invoice.totalPrice}"></td>
-                <td th:text="${invoice.dniElderly}"></td>
                 <td>
                     <div th:if="${!invoice.invoicePDF}">
                         <a th:href="@{/invoice/generatePDF/{idInvoice}(idInvoice=${invoice.invoiceNumber})}"

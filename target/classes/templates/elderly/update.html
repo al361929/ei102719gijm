@@ -52,6 +52,8 @@
             </td>
 
 
+
+
         </tr>
         <tr>
             <td><label>Telefono</label></td>
@@ -89,6 +91,9 @@
                    <option th:each="Social : ${SocialWorkers}" th:value="${Social.dni}"
                            th:utext="${Social.nombre}"></option>
                </select></td>
+
+            <td colspan="2"><a href="../../socialWorker/add" class="btn btn btn-primary" role="button"
+                               aria-pressed="true">Añadir Trabajador Social</a></td>
        <tr>
            <td><label>Cumpleaños</label></td>
            <td><input type="date" class="form-control" th:field="*{birthday}"/></td>

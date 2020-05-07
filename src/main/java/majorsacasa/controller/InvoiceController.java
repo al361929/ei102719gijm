@@ -147,6 +147,7 @@ public class InvoiceController extends Controlador {
         model.addAttribute("invoices", invoiceDao.getInvoiceElderly(user.getDni()));
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        model.addAttribute("info",invoiceDao.getDescriptionInvoice());
         return gestionarAcceso(session, model, "ElderlyPeople", "invoice/invoiceListElderly");
     }
 

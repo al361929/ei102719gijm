@@ -38,10 +38,15 @@ public class SocialWorkerController extends Controlador{
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("socialWorker") SocialWorker socialWorker, BindingResult bindingResult) {
+    public String processAddSubmit(HttpSession session,@ModelAttribute("socialWorker") SocialWorker socialWorker, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "socialWorker/add";
         socialWorkerDao.addSocialWorker(socialWorker);
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        if (user.getCode()==7) {
+            return "redirect:../elderly/list";
+
+        }
         return "redirect:list?nuevo=" + socialWorker.getDni();
     }
 
