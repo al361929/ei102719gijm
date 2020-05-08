@@ -21,6 +21,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.Collections.reverse;
+
 @Controller
 @RequestMapping("/contract")
 public class ContractController extends Controlador {
@@ -60,6 +62,7 @@ public class ContractController extends Controlador {
         model.addAttribute("elderlys", elderly);
 
         List<Company> company = companyDao.getCompanies();
+        reverse(company);
         model.addAttribute("companyies", company);
 
 
