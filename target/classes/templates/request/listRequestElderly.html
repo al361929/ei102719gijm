@@ -35,8 +35,10 @@
 
 
             <td>
-            <a  id="estilo2" href="@{/request/info/{id}(id=${request.idRequest})}" class="btn btn btn-default" role="button">Mas detalles</a>
-            </td>
+            <td>
+                <a th:href="@{/request/info/{id}(id=${request.idRequest})}"
+                   class="btn btn btn-default" role="button">Mas detalles</a>
+            </td>            </td>
             <div th:if="${!request.isCancelada()}">
                 <td >
                     <a th:href="@{/request/cancelarRequest/{id}(id=${request.idRequest})}"

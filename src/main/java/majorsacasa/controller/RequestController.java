@@ -75,7 +75,17 @@ public class RequestController extends Controlador{
         requestDao.addRequest(request);
         return "redirect:list?nuevo=" + request.getIdRequest();
     }
+    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    public String infoRequest(Model model, @PathVariable int id) {
+        Request request = requestDao.getRequest(id);
+        model.addAttribute("request", request);
+        HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("usuario",u);
+        HashMap <Integer,String> servicios = requestDao.getMapServiceElderly();
+        model.addAttribute("servicios", servicios);
+        return "request/info";
 
+    }
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String editRequest(Model model, @PathVariable int id) {
         Request request = requestDao.getRequest(id);
