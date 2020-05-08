@@ -17,7 +17,7 @@
             <table>
                 <tr>
                     <td><label>Empresa</label></td>
-                    <td><select class="select-css" th:field="*{nifcompany}">
+                    <td><select class="select-css" th:field="*{nifcompany}" required>
                         <option value="" selected disabled>--- Selecciona Empresa ---</option>
                         <option th:each="company : ${companyies}" th:value="${company.nif}"
                                 th:utext="${company.nombre}"></option>
@@ -27,19 +27,19 @@
                 </tr>
                 <tr>
                     <td><label>Fecha de baja</label></td>
-                    <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
+                    <td><input type="date" class="form-control" th:field="*{dateDown}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Cantidad</label></td>
-                    <td><input type="number" class="form-control" th:field="*{cantidad}" min="1"/></td>
+                    <td><input type="number" class="form-control" th:field="*{cantidad}" min="1" required/></td>
                 </tr>
                 <tr>
                     <td><label>Descripción</label></td>
-                    <td><input type="text" class="form-control" th:field="*{descripcion}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{descripcion}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Firma</label></td>
-                    <td><input type="text" class="form-control" th:field="*{firma}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{firma}" required/></td>
                 </tr>
 
                 <tr>

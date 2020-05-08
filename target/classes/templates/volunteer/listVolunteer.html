@@ -34,16 +34,18 @@
         <td th:text="${horario.startTime}"></td>
         <td th:text="${horario.endTime}"></td>
         <td th:text="${promedio.get(horario.dniVolunteer)}"></td>
-            <td>
-                <div th:if="${promedio.get(horario.dniVolunteer)}">
-
-                <a th:href="@{/valoraciones/listMisValoraciones/{dni}(dni=${horario.dniVolunteer})}" class="btn btn btn-secondary" role="button"
-               aria-pressed="true">Ver reseñas</a>
-                </div>
         <td>
-        <a th:href="@{/volunteer/tiempoDelVoluntario/{dni}(dni=${horario.dniVolunteer})}" class="btn btn btn-default" role="button"
-           aria-pressed="true">Solicitar</a>
-    </td>
+            <div th:if="${promedio.get(horario.dniVolunteer)}">
+
+                <a th:href="@{/valoraciones/listMisValoraciones/{dni}(dni=${horario.dniVolunteer})}"
+                   class="btn btn btn-secondary" role="button"
+                   aria-pressed="true">Ver reseñas</a>
+            </div>
+        <td>
+            <a th:href="@{/volunteer/tiempoDelVoluntario/{dni}(dni=${horario.dniVolunteer})}"
+               class="btn btn btn-default" role="button"
+               aria-pressed="true">Solicitar</a>
+        </td>
 
 
 
