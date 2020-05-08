@@ -6,7 +6,16 @@
     </div>
     <div th:unless="*{user == null}">
     <!--<p th:replace="fragments/nav"></p>-->
-           <br>
+        <div th:if="*{user.code == 2}">
+            <br>
+            <br>
+            <a id="estilo1" href="/logout" th:href="@{/logout}"> Salir</a>
+
+        </div>
+
+        <div th:unless="*{user.code == 2}">
+
+        <br>
 
         <b>Autenticado como: </b> <span th:text="*{user.username}"></span>
 
@@ -15,5 +24,6 @@
 
         <b>|</b>
         <a id="estilo1" href="/logout" th:href="@{/logout}"> Salir</a>
+        </div>
     </div>
 </div>
