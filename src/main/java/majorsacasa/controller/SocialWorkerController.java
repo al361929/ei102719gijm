@@ -41,6 +41,21 @@ public class SocialWorkerController extends Controlador{
     public String processAddSubmit(HttpSession session,@ModelAttribute("socialWorker") SocialWorker socialWorker, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "socialWorker/add";
+        Boolean check = socialWorkerDao.checkDNI(socialWorker.getDni());
+        Boolean checkUser = socialWorkerDao.checkUser(socialWorker.getUsuario());
+
+        if (!check) {
+
+            bindingResult.rejectValue("dni", "dni", "Ya existe un usuario con este DNI");
+
+            return "socialworker/add";
+        }
+        if (!checkUser) {
+
+            bindingResult.rejectValue("usuario", "usuario", socialWorker.getUsuario()+" ya esta se esta utilizando");
+
+            return "socialworker/add";
+        }
         socialWorkerDao.addSocialWorker(socialWorker);
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (user.getCode()==7) {

@@ -70,7 +70,7 @@ public class ElderlyController  extends Controlador{
     }
 
     @RequestMapping(value = "/addRegister", method = RequestMethod.POST)
-    public String processAddSubmitRegister(@ModelAttribute("elderly") Elderly elderly,Model model, BindingResult bindingResult) {
+    public String processAddSubmitRegister(HttpSession session, @ModelAttribute("elderly") Elderly elderly,Model model, BindingResult bindingResult) {
        if (bindingResult.hasErrors())
             return "elderly/addRegister";
         Boolean check = elderlyDao.checkDNI(elderly.getDni());
@@ -78,6 +78,7 @@ public class ElderlyController  extends Controlador{
         if (!check) {
 
             bindingResult.rejectValue("dni", "dni", "Ya existe un usuario con este DNI");
+            model.addAttribute("allergies", alergias);
 
             return "elderly/addRegister";
         }
@@ -86,10 +87,16 @@ public class ElderlyController  extends Controlador{
       if (!checkUser) {
 
             bindingResult.rejectValue("usuario", "usuario", elderly.getUsuario()+" ya esta se esta utilizando");
+            model.addAttribute("allergies", alergias);
 
             return "elderly/addRegister";
         }
         elderlyDao.addElderly(elderly);
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        if (user.getTipo().equals("Admin"))
+        return "redirect:../elderly/list?nuevo="+elderly.getDni();
+
         return "redirect:/login";
     }
 

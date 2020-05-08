@@ -110,7 +110,7 @@ public class CompanyController extends Controlador{
             return "company/addContract";
         }
         companyDao.addCompany(company);
-        return "redirect:../contract/addCompany";
+        return "redirect:../contract/add";
     }
 
     @RequestMapping(value = "/update/{nif}", method = RequestMethod.GET)
