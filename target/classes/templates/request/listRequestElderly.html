@@ -15,13 +15,9 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Id solicitud</th>
-            <th>servicio</th>
-            <th>Empresa</th>
+            <th>Servicio</th>
             <th>Estado</th>
             <th>Fecha de solicitud</th>
-            <th>Fecha de aceptación</th>
-            <th>Fecha de rechazo</th>
             <th>Comentarios</th>
             <th>Dias</th>
 
@@ -30,25 +26,28 @@
         <tbody>
         <tr th:each="request: ${requests}"
             th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info text-white'">
-            <td th:text="${request.idRequest}"></td>
             <td th:text="${servicios.get(request.idService)}"></td>
-            <td th:text="${usuario.get(request.nif)}"></td>
             <td th:text="${request.state}"></td>
             <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
-            <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
-            <td th:text="${#temporals.format(request.dateReject,'dd/MM/yyyy')}"></td>
+
             <td th:text="${request.comments}"></td>
             <td th:text="${request.dias}"></td>
 
-            <div th:if="${!request.isCancelada()}">
-            <td >
-                <a th:href="@{/request/cancelarRequest/{id}(id=${request.idRequest})}"
-                   class="btn btn btn-danger" role="button">Cancelar</a>
+
+            <td>
+            <a  id="estilo2" href="@{/request/info/{id}(id=${request.idRequest})}" class="btn btn btn-default" role="button">Mas detalles</a>
             </td>
+            <div th:if="${!request.isCancelada()}">
+                <td >
+                    <a th:href="@{/request/cancelarRequest/{id}(id=${request.idRequest})}"
+                       class="btn btn btn-danger" role="button">Cancelar</a>
+                </td>
             </div>
+
         </tr>
         </tbody>
     </table>
+
     <a  id="estilo2" href="addRequestElderly" class="btn btn btn-success" role="button">Añadir Solicitud</a>
    <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a>
 </div>

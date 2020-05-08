@@ -16,7 +16,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Número de factura</th>
                 <th>Servicio</th>
 
                 <th>Fecha</th>
@@ -26,7 +25,6 @@
             <tbody>
             <tr th:each="invoice: ${invoices}"
                 th:class="${#strings.equals(nuevo,invoice.invoiceNumber)}?'bg-info text-white'">
-                <td th:text="${invoice.invoiceNumber}"></td>
                 <td th:text="${info.get(invoice.invoiceNumber)}"></td>
 
                 <td th:text="${#temporals.format(invoice.dateInvoice,'dd/MM/yyyy')}"></td>

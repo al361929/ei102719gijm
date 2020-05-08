@@ -17,7 +17,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Nº Contrato</th>
                 <th>Empresa</th>
                 <th>Firma</th>
                 <th>Cantidad</th>
@@ -27,7 +26,6 @@
             <tbody>
             <tr th:each="contrato: ${contractList}"
                 th:class="${#strings.equals(nuevo,contrato.idContract)}?'bg-info text-white'">
-                <td th:text="${contrato.idContract}"></td>
                 <td th:text="${usuario.get(contrato.nifcompany)}"></td>
                 <td th:text="${contrato.firma}"></td>
                 <td th:text="${contrato.cantidad}"></td>

@@ -16,7 +16,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Número de servicio</th>
                 <th>Descripción</th>
                 <th>Precio</th>
                 <th>Tipo de servicio</th>
@@ -25,7 +24,6 @@
             <tbody>
             <tr th:each="service: ${elderlyList}"
                 th:class="${#strings.equals(nuevo,service.getIdService())}?'bg-info text-white'">
-                <td th:text="${service.getIdService()}"></td>
                 <td th:text="${service.getDescription()}"></td>
                 <td th:text="${service.getPrice()}"></td>
                 <td th:text="${service.getServiceType()}"></td>

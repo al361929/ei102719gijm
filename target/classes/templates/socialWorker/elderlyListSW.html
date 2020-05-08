@@ -16,15 +16,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>DNI</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Dirección</th>
                 <th>Alergias</th>
                 <th>Telefono</th>
                 <th>Cumpleaños</th>
-                <th>Cuenta Bancaria</th>
-                <th>Trabajador Social</th>
                 <th>Email</th>
                 <th></th>
                 <th></th>
@@ -33,15 +30,12 @@
             <tbody>
             <tr th:each="socialWorker: ${elderlyList}"
                 th:class="${#strings.equals(nuevo,socialWorker.dni)}?'bg-info text-white'">
-                <td th:text="${socialWorker.dni}"></td>
                 <td th:text="${socialWorker.nombre}"></td>
                 <td th:text="${socialWorker.apellidos}"></td>
                 <td th:text="${socialWorker.direccion}"></td>
                 <td th:text="${socialWorker.alergias}"></td>
                 <td th:text="${socialWorker.telefono}"></td>
                 <td th:text="${#temporals.format(socialWorker.birthday,'dd/MM/yyyy')}"></td>
-                <td th:text="${socialWorker.cuentaBancaria}"></td>
-                <td th:text="${socialWorker.socialWorker}"></td>
                 <td th:text="${socialWorker.email}"></td>
                 <td>
 

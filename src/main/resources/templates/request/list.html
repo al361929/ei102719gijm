@@ -15,7 +15,6 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Id solicitud</th>
             <th>Servicio</th>
             <th>DNI</th>
             <th>Empresa</th>
@@ -31,7 +30,6 @@
         <tbody>
         <tr th:each="request: ${requests}"
             th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info text-white'">
-            <td th:text="${request.idRequest}"></td>
             <td th:text="${servicios.get(request.idService)}"></td>
             <td th:text="${usuario.get(request.dni)}"></td>
             <td th:text="${usuario.get(request.nif)}"></td>
