@@ -163,13 +163,11 @@ public class VolunteerController extends Controlador {
 
     @RequestMapping("/listVolunteer")
     public String listVolunteersElderly(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
-        //model.addAttribute("volunteers", volunteerDao.getVolunteers());
         UserDetails user = (UserDetails) session.getAttribute("user");
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
         model.addAttribute("horarios", volunteerDao.getScheduleListDisponibles());
         model.addAttribute("promedio", valoracionDao.getPromedio());
-        System.out.println(volunteerDao.getScheduleListDisponibles());
 
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listVolunteer");
     }

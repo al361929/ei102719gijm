@@ -116,6 +116,7 @@ public class VolunteerTimeController {
         model.addAttribute("usuario",u);
         return "volunteer/scheduleList";
     }
+
     @RequestMapping(value = "/solicitar/{idVolunteerTime}")
     public String solicitar(HttpSession session,@PathVariable Integer idVolunteerTime) {
         UserDetails user = (UserDetails) session.getAttribute("user");
