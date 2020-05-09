@@ -104,13 +104,14 @@ public class VolunteerDao extends GeneralDao{
             return new ArrayList<Volunteer>();
         }
     }
-        public List<VolunteerTime> getScheduleListDisponibles(String dnivolunteer) {
-            try {
-                return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ? AND dni IS NULL AND availability = 'True'", new VolunteerTimeRowMapper(), dnivolunteer);
-            } catch (EmptyResultDataAccessException e) {
-                return new ArrayList<VolunteerTime>();
-            }
+
+    public List<VolunteerTime> getScheduleListDisponibles() {
+        try {
+            return jdbcTemplate.query("Select * From volunteertime Where  dni IS NULL AND availability = 'True'", new VolunteerTimeRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<VolunteerTime>();
         }
+    }
 
     public Boolean checkDNI(String dni){
         List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where dni=?", String.class,dni);
