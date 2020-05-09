@@ -226,7 +226,7 @@ public class GeneratePDFController {
             observaciones.add(request.getComments());
             chapter.add(observaciones);
 
-            System.out.println(chapter.toString());
+            //System.out.println(chapter.toString());
 
             // AÑADIMOS LA FRANJA GRANATE ABAJO IGUAL QUE ARRIBA
             try {

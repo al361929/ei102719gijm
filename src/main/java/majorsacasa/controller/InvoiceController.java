@@ -130,6 +130,7 @@ public class InvoiceController extends Controlador {
 
     @RequestMapping(value = "/verPDF/{idInvoice}", method = RequestMethod.GET)
     public String seePDF(Model model, @PathVariable Integer idInvoice) {
+
         String ruta = "/pdfs/invoice/" + idInvoice + ".pdf";
         model.addAttribute("filename", ruta);
         return "verPDF";
