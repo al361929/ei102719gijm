@@ -16,7 +16,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-
                 <th>Voluntario</th>
                 <th>Persona Mayor</th>
                 <th>Dia</th>
@@ -46,7 +45,8 @@
                        aria-pressed="true">Editar</a>
                 </td>
                 <td>
-                    <a th:href="@{/volunteertime/delete/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
+                    <a th:if="${usuario.get(voluntario.dniElderly) == null}"
+                       th:href="@{/volunteertime/delete/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
                        class="btn btn btn-danger"
                        role="button"
                        aria-pressed="true">Borrar</a>
