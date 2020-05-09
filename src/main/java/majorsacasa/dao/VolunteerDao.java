@@ -112,6 +112,13 @@ public class VolunteerDao extends GeneralDao{
             return new ArrayList<VolunteerTime>();
         }
     }
+    public List<VolunteerTime> getMisHorariosElderly(String dniV,String dni) {
+        try {
+            return jdbcTemplate.query("select * from VolunteerTime Where DNIVolunteer=? AND dni=?", new VolunteerTimeRowMapper(),dniV,dni);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<VolunteerTime>();
+        }
+    }
 
     public Boolean checkDNI(String dni){
         List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where dni=?", String.class,dni);

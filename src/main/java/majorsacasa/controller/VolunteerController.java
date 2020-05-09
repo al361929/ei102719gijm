@@ -169,9 +169,17 @@ public class VolunteerController extends Controlador {
         model.addAttribute("nuevo", newVolunteerTime);
         model.addAttribute("horarios", volunteerDao.getScheduleListDisponibles());
         model.addAttribute("promedio", valoracionDao.getPromedio());
-        System.out.println(volunteerDao.getScheduleListDisponibles());
 
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listVolunteer");
+    }
+
+    @RequestMapping("/misHorariosElderly/{dni}")
+    public String listVolunteersElderly2(HttpSession session, Model model,@PathVariable String dni) {
+        //model.addAttribute("volunteers", volunteerDao.getVolunteers());
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("horarios", volunteerDao.getMisHorariosElderly(dni,user.getDni()));
+        model.addAttribute("promedio", valoracionDao.getPromedio());
+        return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listVolunteerElderly");
     }
 
     @RequestMapping("/listMisVolunteer")

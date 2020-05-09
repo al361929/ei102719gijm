@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Voluntarios</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+<body>
+<div layout:fragment="content">
+
+<div class="container">
+<h1>Lista de Voluntarios</h1>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Dia</th>
+        <th>Mes</th>
+        <th>Hora inicio</th>
+        <th>Hora fin</th>
+        <th>Puntuación</th>
+
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="horario: ${horarios}">
+        <td th:text="${horario.dia}"></td>
+        <td th:text="${horario.mes}"></td>
+        <td th:text="${horario.startTime}"></td>
+        <td th:text="${horario.endTime}"></td>
+        <td th:text="${promedio.get(horario.dniVolunteer)}"></td>
+
+    </tr>
+    </tbody>
+</table>
+    <td colspan="2">  <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a></td>
+</div>
+</div>
+
+</body>
+</html>
