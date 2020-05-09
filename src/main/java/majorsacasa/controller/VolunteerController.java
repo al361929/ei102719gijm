@@ -171,7 +171,6 @@ public class VolunteerController extends Controlador {
 
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listVolunteer");
     }
-
     @RequestMapping("/misHorariosElderly/{dni}")
     public String listVolunteersElderly2(HttpSession session, Model model,@PathVariable String dni) {
         //model.addAttribute("volunteers", volunteerDao.getVolunteers());
@@ -180,6 +179,7 @@ public class VolunteerController extends Controlador {
         model.addAttribute("promedio", valoracionDao.getPromedio());
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listVolunteerElderly");
     }
+
 
     @RequestMapping("/listMisVolunteer")
     public String listVolunteersElderlyQ(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
