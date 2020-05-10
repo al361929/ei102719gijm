@@ -14,7 +14,7 @@
 <div class="container">
     <h1>Lista de Personas Mayores</h1>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-responsive">
         <thead>
         <tr>
             <th>Nombre</th>
@@ -30,11 +30,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="elderly: ${elderlys}"
+        <tr th:each="elderly: ${#lists.sort(elderlys)}"
             th:class="${#strings.equals(nuevo,elderly.dni)}?'bg-info text-white'">
-<!--
-            <td th:text="${elderly.dni}"></td>
--->
+            <!--<td th:text="${elderly.dni}"></td>-->
             <td th:text="${elderly.nombre}"></td>
             <td th:text="${elderly.apellidos}"></td>
             <td th:text="${elderly.direccion}"></td>
