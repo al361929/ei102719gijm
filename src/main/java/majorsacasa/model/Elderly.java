@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class Elderly {
+public class Elderly implements Comparable<Elderly> {
 
     String nombre;
     String apellidos;
@@ -168,14 +168,19 @@ public class Elderly {
             col.add(a);
         }
         todas="";
-        Object[] ab=col.toArray();
-        todas= (String) ab[0];
-        for (int i=1; i<ab.length;i++){
-            todas=todas+","+ab[i];
+        Object[] ab = col.toArray();
+        todas = (String) ab[0];
+        for (int i = 1; i < ab.length; i++) {
+            todas = todas + "," + ab[i];
 
         }
         setAlergias(todas);
         setNuevasAlergias("");
 
+    }
+
+    @Override
+    public int compareTo(Elderly otro) {
+        return this.getNombre().compareTo(otro.getNombre());
     }
 }
