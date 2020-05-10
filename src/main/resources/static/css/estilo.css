@@ -42,6 +42,10 @@ label {
     color: #181717;
 }
 
+.table-responsive {
+    width: auto;
+}
+
 .form-label-group {
     width: 30%;
 }
