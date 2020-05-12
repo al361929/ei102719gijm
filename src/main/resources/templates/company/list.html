@@ -54,7 +54,8 @@
             <td>
                 <div th:if="${mapa.get(empresa.nif)!=NULL}">
 
-                <a th:href="@{/company/contractList/{nif}(nif=${empresa.nif})}" class="btn btn btn-default" role="button"
+                <a th:href="@{/company/contractListCompany/{nif}(nif=${empresa.nif})}" class="btn btn btn-default"
+                   role="button"
                    aria-pressed="true">Contratos</a>
                 </div>
 

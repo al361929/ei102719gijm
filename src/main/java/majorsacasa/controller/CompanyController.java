@@ -179,13 +179,13 @@ public class CompanyController extends Controlador{
         model.addAttribute("usuario",u);
         return gestionarAcceso(session, model, "Company", "company/contractList");
     }
-    @RequestMapping(value = "/contractList/{nif}")
+    @RequestMapping(value = "/contractListCompany/{nif}")
     public String getContractListP(HttpSession session, Model model, @PathVariable String nif) {
         model.addAttribute("contracts", companyDao.getContractsList(nif));
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("usuario",u);
+        //HashMap<String ,String> u=valoracionDao.getUsersInfo();
+        model.addAttribute("usuario", valoracionDao.getUsersInfo());
         //return gestionarAcceso(session, model, "admin", "../contract/list");
-        return "contract/list";
+        return "/company/contractList";
     }
 
 }
