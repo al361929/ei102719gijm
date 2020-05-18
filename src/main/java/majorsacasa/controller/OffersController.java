@@ -3,7 +3,6 @@ package majorsacasa.controller;
 import majorsacasa.dao.ContractDao;
 import majorsacasa.dao.OffersDao;
 import majorsacasa.dao.ServiceDao;
-import majorsacasa.model.Contract;
 import majorsacasa.model.Offer;
 import majorsacasa.model.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,7 +70,7 @@ public class OffersController extends Controlador{
 
             return "offer/addService";
         }
-        Contract contract = new Contract();
+        /*Contract contract = new Contract();
         contract.setFirma(offer.getNif());
         contract.setReleaseDate(LocalDate.now());
         contract.setReleaseDate(LocalDate.now().plusMonths(12));
@@ -81,6 +79,8 @@ public class OffersController extends Controlador{
         contract.setNifcompany(offer.getNif());
         contract.setContractPDF(false);
         contractDao.addContract(contract);
+
+         */
         offersDao.addOffers(offer);
        // return "redirect:list?nuevo=" + offers.getIdService();
         return gestionarAcceso(session,model,"Admin","redirect:../company/list");
