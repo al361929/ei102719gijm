@@ -133,7 +133,7 @@ public class RequestController extends Controlador{
 
         requestDao.updateRequest(request);
         //return "redirect:list?nuevo=" + request.getIdRequest();
-        return "redirect:../elderly/list?nuevo="+request.getDni();
+        return "redirect:../request/list?nuevo=" + request.getDni();
 
     }
 

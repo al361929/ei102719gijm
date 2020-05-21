@@ -185,7 +185,7 @@ public class CompanyController extends Controlador{
         //HashMap<String ,String> u=valoracionDao.getUsersInfo();
         model.addAttribute("usuario", valoracionDao.getUsersInfo());
         //return gestionarAcceso(session, model, "admin", "../contract/list");
-        return "/company/contractList";
+        return "/company/contractList   ";
     }
 
 }
