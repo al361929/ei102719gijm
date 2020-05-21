@@ -16,7 +16,7 @@
         <thead>
         <tr>
             <th>Servicio</th>
-            <th>DNI</th>
+            <th>Persona Mayor</th>
             <th>Empresa</th>
             <th>Estado</th>
             <th>Fecha de solicitud</th>
@@ -43,10 +43,11 @@
             <div class="loggeduser" th:object="${session}">
 
             <div th:if="*{user.code == 7}">
-            <td>
-                <a th:href="@{/request/update/{id}(id=${request.idRequest})}"
-                   class="btn btn btn-secondary" role="button">Editar</a>
-            </td>
+                <td>
+                    <a th:unless="${request.state == 'Rechazada'}"
+                       th:href="@{/request/update/{id}(id=${request.idRequest})}"
+                       class="btn btn btn-secondary" role="button">Editar</a>
+                </td>
             <td>
                 <a th:href="@{/request/delete/{id}(id=${request.idRequest})}"
                    class="btn btn btn-danger" role="button">Borrar</a>
