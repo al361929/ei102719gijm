@@ -15,14 +15,14 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/service")
-public class ServiceController extends Controlador {
+public class ServiceController extends ManageAccessController {
 
     private ServiceDao serviceDao;
     private TypeServiceDao typeserviceDao;
 
 
     @Autowired
-    public void setServiceDao(ServiceDao serviceDao,TypeServiceDao typeserviceDao) {
+    public void setServiceDao(ServiceDao serviceDao, TypeServiceDao typeserviceDao) {
         this.serviceDao = serviceDao;
         this.typeserviceDao = typeserviceDao;
     }

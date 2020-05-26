@@ -17,16 +17,17 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/company")
-public class CompanyController extends Controlador{
+public class CompanyController extends ManageAccessController {
 
     private CompanyDao companyDao;
     private ValoracionDao valoracionDao;
     private ServiceDao serviceDao;
+
     @Autowired
-    public void setCompanyDao(ValoracionDao valoracionDao,CompanyDao companyDao,ServiceDao serviceDao) {
+    public void setCompanyDao(ValoracionDao valoracionDao, CompanyDao companyDao, ServiceDao serviceDao) {
 
         this.companyDao = companyDao;
-        this.valoracionDao= valoracionDao;
+        this.valoracionDao = valoracionDao;
         this.serviceDao = serviceDao;
     }
 

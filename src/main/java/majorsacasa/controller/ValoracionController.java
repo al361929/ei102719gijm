@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/valoraciones")
-public class ValoracionController extends Controlador {
+public class ValoracionController extends ManageAccessController {
 
     private ValoracionDao valoracionDao;
 

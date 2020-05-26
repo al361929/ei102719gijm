@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 
-public class Controlador {
-    public String gestionarAcceso(HttpSession session, Model model, String categoria, String url){
+public class ManageAccessController {
+    public String gestionarAcceso(HttpSession session, Model model, String categoria, String url) {
 
-        String destino= sesionAbierta(session,model,url);
-        if (destino!=null) return destino;
+        String destino = sesionAbierta(session, model, url);
+        if (destino != null) return destino;
 
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (!user.getTipo().equals(categoria) && !user.getTipo().equals("Admin")) {

@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/request")
-public class RequestController extends Controlador{
+public class RequestController extends ManageAccessController {
     private ContractDao contractDao;
     private ValoracionDao valoracionDao;
     private InvoiceDao invoiceDao;

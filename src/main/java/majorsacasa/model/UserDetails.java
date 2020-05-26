@@ -32,8 +32,6 @@ public class UserDetails {
         this.password = password;
     }
 
-
-
     public String getTipo() {
         return tipo;
     }

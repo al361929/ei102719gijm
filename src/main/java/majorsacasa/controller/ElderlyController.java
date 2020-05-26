@@ -19,11 +19,12 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/elderly")
-public class ElderlyController  extends Controlador{
+public class ElderlyController extends ManageAccessController {
 
     private ElderlyDao elderlyDao;
     private SocialWorkerDao socialWorkerDao;
     private List<String> alergias = Arrays.asList("Ninguna", "Polen", "Frutos secos", "Gluten", "Pepinillo");
+    private MailController mailController;
 
     @Autowired
     public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao) {

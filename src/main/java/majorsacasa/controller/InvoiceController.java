@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/invoice")
-public class InvoiceController extends Controlador {
+public class InvoiceController extends ManageAccessController {
 
     private InvoiceDao invoiceDao;
     private ElderlyDao elderlyDao;

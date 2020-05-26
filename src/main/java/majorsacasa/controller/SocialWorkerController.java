@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/socialWorker")
-public class SocialWorkerController extends Controlador{
+public class SocialWorkerController extends ManageAccessController {
 
     private SocialWorkerDao socialWorkerDao;
 

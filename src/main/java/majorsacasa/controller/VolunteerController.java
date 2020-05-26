@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/volunteer")
-public class VolunteerController extends Controlador {
+public class VolunteerController extends ManageAccessController {
 
     private VolunteerDao volunteerDao;
     private VolunteerTimeDao volunteerTimeDao;

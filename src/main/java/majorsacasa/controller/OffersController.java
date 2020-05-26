@@ -17,11 +17,10 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/offer")
-public class OffersController extends Controlador{
+public class OffersController extends ManageAccessController {
     private OffersDao offersDao;
     private ServiceDao serviceDao;
     private ContractDao contractDao;
-
 
 
     @Autowired

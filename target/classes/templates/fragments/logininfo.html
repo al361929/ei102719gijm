@@ -2,14 +2,14 @@
     <div th:if="*{user == null}">
              <div th:replace="fragments/navVacio"></div>
           <br>
-          No autenticat <a id="estilo1" href="/login" th:href="@{/login}">Entrar</a>
+          No autenticat <a class="btn btn btn-success" role="button" href="/login" th:href="@{/login}">Entrar</a>
     </div>
     <div th:unless="*{user == null}">
     <!--<p th:replace="fragments/nav"></p>-->
         <div th:if="*{user.code == 2}">
             <br>
             <br>
-            <a id="estilo1" href="/logout" th:href="@{/logout}"> Salir</a>
+            <a href="/logout" th:href="@{/logout}" class="btn btn btn-danger" role="button"> Salir</a>
 
         </div>
 
@@ -23,7 +23,7 @@
         <b> | Tipo de usuario: </b> <span th:text="*{user.tipo}"></span>
 
         <b>|</b>
-        <a id="estilo1" href="/logout" th:href="@{/logout}"> Salir</a>
+        <a class="btn btn btn-danger" role="button" href="/logout" th:href="@{/logout}"> Salir</a>
         </div>
     </div>
 </div>
