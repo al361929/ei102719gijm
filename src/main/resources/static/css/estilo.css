@@ -151,11 +151,28 @@ button {
     color: #FFFFFF;
     font-weight: bold;
 }
- .navbar-custom{padding-top:1rem;padding-bottom:1rem;background-color:rgba(0,0,0,.7)}
- .navbar-custom
- .navbar-brand{text-transform:uppercase;font-size:1rem;letter-spacing:.1rem;font-weight:700}
- .navbar-custom .navbar-nav .nav-item
- .nav-link{text-transform:uppercase;font-size:.8rem;font-weight:700;letter-spacing:.1rem}
+
+.navbar-custom {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: rgba(0, 0, 0, .7)
+}
+
+.navbar-custom.navbar-brand {
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: .1rem;
+    font-weight: 700
+}
+
+.navbar-custom .navbar-nav .nav-item .nav-link {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .1rem;
+    color: white;
+}
+
 
 :root {
     -btn-primary: #4285f4;

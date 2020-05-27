@@ -14,21 +14,17 @@
     <div class="container">
         <h2>Añadir persona mayor</h2>
         <form action="#" th:action="@{/elderly/addRegister}"
-
               th:object="${elderly}" method="post">
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('dni')}"
-                     th:errors="*{dni}"></div>
-            </td>
 
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('usuario')}"
-                     th:errors="*{usuario}"></div>
-            </td>
+
             <table>
                 <tr>
                     <td><label>DNI</label></td>
                     <td><input type="text" class="form-control" th:field="*{dni}" required/></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('dni')}"
+                             th:errors="*{dni}"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Nombre</label></td>
@@ -40,25 +36,26 @@
                 </tr>
                 <tr>
                     <td><label>Direccion</label></td>
-                    <td><input type="text" class="form-control" th:field="*{direccion}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{direccion}" required/></td>
                 </tr>
                 <tr>
 
-                <td><label>Alergias: </label></td>
-                <td><select th:field="*{alergias}" class="select-css" multiple required>
-                    <option value="" selected disabled>--- Selecciona las Alergias ---</option>
-                    <option th:each="allergie : ${allergies}" th:value="${allergie}"
-                            th:utext="${allergie}"></option>
-                </select></td>
-<!--                <tr>
-                    <td><label>Alergias</label></td>
-                    <td>
-                        <p th:each="allergie : ${allergies}" >
-                            <input type="checkbox" name="allergies" th:value="${allergie}" th:field="*{alergias}" />
-                            <label th:text="${allergie}"></label>
-                        </p>
-                    </td>-->
-                </tr>
+                    <td><label>Alergias: </label></td>
+                    <td><select th:field="*{alergias}" class="select-css" multiple required>
+                        <option value="" selected disabled>--- Selecciona las Alergias ---</option>
+                        <option th:each="allergie : ${allergies}" th:value="${allergie}"
+                                th:utext="${allergie}"></option>
+                    </select>
+                    </td>
+                    <!--                <tr>-->
+                    <!--                    <td><label>Alergias</label></td>-->
+                    <!--                    <td>-->
+                    <!--                        <p th:each="allergie : ${allergies}" >-->
+                    <!--                            <input type="checkbox" name="allergies" th:value="${allergie}" th:field="*{alergias}" />-->
+                    <!--                            <label th:text="${allergie}"></label>-->
+                    <!--                        </p>-->
+                    <!--                    </td>-->
+                    <!--                </tr>-->
 
                 <tr>
                     <td><label>Telefono</label></td>
@@ -67,6 +64,10 @@
                 <tr>
                     <td><label>Usuario</label></td>
                     <td><input type="text" class="form-control" th:field="*{usuario}" required/></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('usuario')}"
+                             th:errors="*{usuario}"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Contraseña</label></td>
@@ -82,7 +83,7 @@
                 <!--                </tr>-->
                 <tr>
                     <td><label>Email</label></td>
-                    <td><input type="text" class="form-control" th:field="*{email}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{email}" required/></td>
                 </tr>
               <!--  <tr><td><label>Trabajador Social: </label></td>
                     <td><select class="select-css" th:field="*{socialWorker}">
@@ -96,7 +97,7 @@
                 </tr>
                 <tr>
                     <td><label>Cumpleaños</label></td>
-                    <td><input type="date" class="form-control" th:field="*{birthday}"/></td>
+                    <td><input type="date" class="form-control" th:field="*{birthday}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Cuenta Bancaria</label></td>

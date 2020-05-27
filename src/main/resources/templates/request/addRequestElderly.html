@@ -19,63 +19,37 @@
 
         <tr>
             <td>
-
+                <h5 class="error" th:if="${#fields.hasErrors('idService')}"
+                    th:errors="*{idService}"></h5>
             </td>
-
-            <td>
-            <h5 class="error" th:if="${#fields.hasErrors('idService')}"
-                th:errors="*{idService}"></h5>
-        </td>
         </tr>
         <tr>
-
             <td><label>Servicio: </label></td>
             <td><select th:field="*{idService}" class="select-css" required>
                 <option value="" selected disabled>--- Selecciona servicio ---</option>
                 <option th:each="servicio : ${servicios}" th:value="${servicio.idService}"
                         th:utext="${servicio.getInfo()}"></option>
-            </select></td>
-
-        </tr>
-<tr>
-    <td><label>Dias de la Semana:</label></td>
-    <td><select th:field="*{dias}"  class="select-css" multiple>
-        <option value="Lunes">Lunes</option>
-        <option value="Martes">Martes</option>
-        <option value="Miercoles">Miercoles</option>
-        <option value="Jueves">Jueves</option>
-        <option value="Viernes">Viernes</option>
-
-    </select></td>
-</tr>
-<!--        <tr>
-            <td><label>Empresa: </label></td>
-            <td><select th:field="*{nif}" class="select-css">
-                <option value="" selected disabled>-&#45;&#45; Selecciona Empresa -&#45;&#45;</option>
-                <option th:each="company : ${companyies}" th:value="${company.nif}"
-                        th:utext="${company.nombre}"></option>
-            </select></td>
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('nif')}"
-                     th:errors="*{nif}"></div>
+            </select>
             </td>
-        </tr>-->
-
-      <!--  <tr>
-            <td><label>Fecha de aceptación</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateAccept}"/></td>
         </tr>
         <tr>
-            <td><label>Fecha de rechazo</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateReject}"/></td>
+            <td><label>Dias de la Semana:</label></td>
+            <td><select th:field="*{dias}" class="select-css" multiple required>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+
+            </select></td>
         </tr>
-        -->
         <tr>
             <td><label>Comentarios</label></td>
-            <td><input type="text" class="form-control" th:field="*{comments}"/></td>
+            <td><input type="text" class="form-control" th:field="*{comments}" required/></td>
         </tr>
         <tr>
-            <td colspan="2"><input id="estilo2" type="submit" value="Añadir solicitud" class="btn btn btn-success" role="button"
+            <td colspan="2"><input id="estilo2" type="submit" value="Añadir solicitud" class="btn btn btn-success"
+                                   role="button"
                                    aria-pressed="true"/></td>
         </tr>
         <tr>

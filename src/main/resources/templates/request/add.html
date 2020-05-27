@@ -18,7 +18,7 @@
             <table>
                 <tr>
                     <td><label>Servicio</label></td>
-                    <td><select th:field="*{idService}">
+                    <td><select th:field="*{idService}" required>
                         <option value="" selected disabled>--- Selecciona servicio ---</option>
                         <option th:each="servicio : ${servicios}" th:value="${servicio.idService}"
                                 th:utext="${servicio.getDescription()}"></option>
@@ -26,35 +26,20 @@
                 </tr>
                 <tr>
                     <td><label>Persona Mayor</label></td>
-                    <td><select th:field="*{dni}">
+                    <td><select th:field="*{dni}" required>
                         <option value="" selected disabled>--- Selecciona Persona ---</option>
                         <option th:each="elderly : ${elderlys}" th:value="${elderly.dni}"
                                 th:utext="${elderly.getDatos()}"></option>
                     </select></td>
-             <tr>
-               <!--        <td><label>DNI</label></td>
-                    <td><input type="text" class="form-control" th:field="*{dni}" required/></td>
                 </tr>
                 <tr>
-                    <td><label>NIF</label></td>
-                    <td><input type="text" class="form-control" th:field="*{nif}" required/></td>
-                </tr>-->
-                <!--        <tr>-->
-                <!--            <td><label>Estado</label></td>-->
-                <!--            <td><input type="text" class="form-control" th:field="*{state}"/></td>-->
-                <!--        </tr>-->
-                <!--        <tr>-->
-                <!--            <td><label>Fecha de solicitud</label></td>-->
-                <!--            <td><input type="date" class="form-control" th:field="*{dateRequest}"/></td>-->
-                <!--        </tr>-->
-                <tr>
-                <td><label>Empresa</label></td>
-                <td><select th:field="*{nif}">
-                    <option value="" selected disabled>--- Selecciona Empresa ---</option>
-                    <option th:each="company : ${companyies}" th:value="${company.nif}"
-                            th:utext="${company.nombre}"></option>
-                </select></td>
-            </tr>
+                    <td><label>Empresa</label></td>
+                    <td><select th:field="*{nif}">
+                        <option value="" selected disabled>--- Selecciona Empresa ---</option>
+                        <option th:each="company : ${companyies}" th:value="${company.nif}"
+                                th:utext="${company.nombre}"></option>
+                    </select></td>
+                </tr>
                 <tr>
                     <td><label>Fecha de aceptación</label></td>
                     <td><input type="date" class="form-control" th:field="*{dateAccept}"/></td>
@@ -65,7 +50,7 @@
                 </tr>
                 <tr>
                     <td><label>Comentarios</label></td>
-                    <td><input type="text" class="form-control" th:field="*{comments}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{comments}" required/></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input  id="estilo2" type="submit" value="Añadir solicitud" class="btn btn btn-success"

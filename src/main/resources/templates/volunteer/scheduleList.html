@@ -16,7 +16,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Voluntario</th>
+<!--                <th>Voluntario</th>-->
                 <th>Persona Mayor</th>
                 <th>Dia</th>
                 <th>Mes</th>
@@ -31,7 +31,7 @@
             <tr th:each="voluntario: ${scheduleList}"
                 th:class="${#strings.equals(nuevo,voluntario.getId())}?'bg-info text-white'">
 
-                <td th:text="${usuario.get(voluntario.dniVolunteer)}"></td>
+                <!--                <td th:text="${usuario.get(voluntario.dniVolunteer)}"></td>-->
                 <td th:text="${usuario.get(voluntario.dniElderly)}"></td>
                 <td th:text="${voluntario.dia}"></td>
                 <td th:text="${voluntario.mes}"></td>

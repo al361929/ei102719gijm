@@ -10,26 +10,27 @@
 <div layout:fragment="content">
     <h1>Modificar valoración</h1>
 
-    <form action="#"  th:object="${valoracion}" th:action="@{/valoraciones/update}"
+    <form action="#" th:object="${valoracion}" th:action="@{/valoraciones/update}"
           method="post">
-        <td>
-            <div class="error" th:if="${#fields.hasErrors('dniVolunteer')}"
-                 th:errors="*{dniVolunteer}"></div>
-        </td>
+
         <table>
             <tr class="oculto">
                 <td><label>DNI Voluntario</label></td>
-                <td><input type="text" class="form-control " th:field="*{dniVolunteer}"/></td>
+                <td><input type="text" class="form-control " th:field="*{dniVolunteer}" required/></td>
+                <td>
+                    <div class="error" th:if="${#fields.hasErrors('dniVolunteer')}"
+                         th:errors="*{dniVolunteer}"></div>
+                </td>
             </tr>
             <tr>
                 <td><label>Comentario</label></td>
-                <td><input type="text" class="form-control" th:field="*{comments}"/></td>
+                <td><input type="text" class="form-control" th:field="*{comments}" required/></td>
             </tr>
             <tr>
                 <td><label>Puntuación</label></td>
                 <td>
                     <p class="clasificacion">
-                        <input id="radio1" type="radio" name="estrellas" value="5" th:field="*{valoration}"><!--
+                        <input id="radio1" type="radio" name="estrellas" value="5" th:field="*{valoration}" required><!--
     --><label for="radio1">★</label><!--
     --><input id="radio2" type="radio" name="estrellas" value="4" th:field="*{valoration}"><!--
     --><label for="radio2">★</label><!--

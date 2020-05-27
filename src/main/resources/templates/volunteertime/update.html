@@ -24,44 +24,40 @@
                 </tr>
                 <tr>
                     <td><label>Mes</label></td>
-                    <td><select th:field="*{mes}">
+                    <td><select th:field="*{mes}" required>
                         <option th:each="mes : ${meses}" th:value="${mes}" th:selected="${volunteertime.mes}"
                                 th:utext="${mes}"></option>
                     </select></td>
                 </tr>
                 <tr>
                     <td><label>Día</label></td>
-                    <td><input type="number" class="form-control" th:field="*{dia}"/></td>
+                    <td><input type="number" class="form-control" th:field="*{dia}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Hora inicial</label></td>
-                    <td><input type="time" class="form-control" th:field="*{startTime}"/></td>
+                    <td><input type="time" class="form-control" th:field="*{startTime}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Hora final</label></td>
-                    <td><input type="time" class="form-control" th:field="*{endTime}"/></td>
+                    <td><input type="time" class="form-control" th:field="*{endTime}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Disponibilidad</label></td>
                     <td>
                         <div><input type="radio" class="form-control" name="disponibilidad" value="True"
-                                    th:field="*{availability}"/>Disponible
+                                    th:field="*{availability}" required/>Disponible
                         </div>
                     </td>
                     <td>
                         <div><input type="radio" class="form-control" name="disponibilidad" value="False"
-                                    th:field="*{availability}"/>No Disponible
+                                    th:field="*{availability}" required/>No Disponible
                         </div>
                     </td>
                 </tr>
                 <tr class="oculto">
                     <td><label>DNI Voluntario</label></td>
-                    <td><input type="text" class="form-control" th:field="*{dniVolunteer}" required/></td>
+                    <td><input type="text" class="form-control" th:field="*{dniVolunteer}"/></td>
                 </tr>
-            <!--    <tr>
-                    <td><label>DNI Persona Mayor</label></td>
-                    <td><input type="text" class="form-control" th:field="*{dniElderly}"/></td>
-                </tr>-->
                 <tr>
                     <td colspan="2"><input id="estilo2" type="submit" value="Modifica voluntario"
                                            class="btn btn btn-warning" role="button"

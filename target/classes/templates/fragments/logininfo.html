@@ -1,8 +1,8 @@
 <div class="loggeduser" th:object="${session}" xmlns:th="http://www.w3.org/1999/xhtml">
     <div th:if="*{user == null}">
-             <div th:replace="fragments/navVacio"></div>
-          <br>
-          No autenticat <a class="btn btn btn-success" role="button" href="/login" th:href="@{/login}">Entrar</a>
+        <div th:replace="fragments/navVacio"></div>
+        <br>
+        No autenticat <a class="btn btn btn-success" role="button" href="/login" th:href="@{/login}">Entrar</a>
     </div>
     <div th:unless="*{user == null}">
     <!--<p th:replace="fragments/nav"></p>-->
@@ -23,7 +23,7 @@
         <b> | Tipo de usuario: </b> <span th:text="*{user.tipo}"></span>
 
         <b>|</b>
-        <a class="btn btn btn-danger" role="button" href="/logout" th:href="@{/logout}"> Salir</a>
+            <a class="btn btn btn-danger" role="button" href="/logout" th:href="@{/logout}"> Salir</a>
         </div>
     </div>
 </div>

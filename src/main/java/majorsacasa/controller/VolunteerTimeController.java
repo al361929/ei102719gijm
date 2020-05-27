@@ -83,7 +83,7 @@ public class VolunteerTimeController {
     @RequestMapping(value = "/delete/{idVolunteerTime}")
     public String processDelete(@PathVariable Integer idVolunteerTime) {
         volunteerTimeDao.deleteVolunteerTime(idVolunteerTime);
-        return "redirect:../list";
+        return "redirect:/volunteer/scheduleList";
     }
     @RequestMapping(value = "/addTime")
     public String addVolunteerTimeVolunteer(HttpSession session,Model model) {
