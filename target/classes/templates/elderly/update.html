@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <td><label>Direccion</label></td>
-            <td><input type="text" class="form-control" th:field="*{direccion}"/>
+            <td><input type="text" class="form-control" th:field="*{direccion}" required/>
         </tr>
         <tr>
 
@@ -75,11 +75,11 @@
         </div>
         <tr>
             <td><label>Email</label></td>
-            <td><input type="text" class="form-control" th:field="*{email}"/></td>
+            <td><input type="text" class="form-control" th:field="*{email}" required/></td>
         </tr>
         <tr>
             <td><label>Fecha de alta</label></td>
-            <td><input type="date" class="form-control" th:field="*{releaseDate}"/></td>
+            <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>
         </tr>
         <tr>
             <td><label>Fecha de baja</label></td>
@@ -96,7 +96,7 @@
                                aria-pressed="true">Añadir Trabajador Social</a></td>
        <tr>
            <td><label>Cumpleaños</label></td>
-           <td><input type="date" class="form-control" th:field="*{birthday}"/></td>
+        <td><input type="date" class="form-control" th:field="*{birthday}" required/></td>
        </tr>
        <tr>
            <td><label>Cuenta Bancaria</label></td>

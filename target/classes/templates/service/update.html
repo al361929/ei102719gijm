@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td><label>Tipo de servicio</label></td>
-            <td><select class="select-css" th:field="*{serviceType}">
+            <td><select class="select-css" th:field="*{serviceType}" required>
                 <option value="" selected disabled>-&#45;&#45; Selecciona Typo de Servicio -&#45;&#45;</option>
                 <option th:each="type : ${typosServicios}" th:value="${type.serviceType}"
                         th:utext="${type.serviceType}"></option>
@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td><label>Precio</label></td>
-            <td><input type="number" class="form-control" th:field="*{price}" min="0"/></td>
+            <td><input type="number" class="form-control" th:field="*{price}" min="0" required/></td>
         </tr>
         <tr>
             <td><label>Descripción</label></td>

@@ -15,18 +15,13 @@
 <form action="#" th:action="@{/socialWorker/add}"
       th:object="${socialWorker}" method="post">
     <table>
-        <td>
-            <div class="error" th:if="${#fields.hasErrors('dni')}"
-                 th:errors="*{dni}"></div>
-        </td>
-
-        <td>
-            <div class="error" th:if="${#fields.hasErrors('usuario')}"
-                 th:errors="*{usuario}"></div>
-        </td>
         <tr>
             <td><label>DNI</label></td>
             <td><input type="text" class="form-control" th:field="*{dni}" required/></td>
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('dni')}"
+                     th:errors="*{dni}"></div>
+            </td>
         </tr>
         <tr>
             <td><label>Nombre</label></td>
@@ -38,19 +33,23 @@
         </tr>
         <tr>
             <td><label>Telefono</label></td>
-            <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="9"/></td>
+            <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="9" required/></td>
         </tr>
         <tr>
             <td><label>Usuario</label></td>
             <td><input type="text" class="form-control" th:field="*{usuario}" required/></td>
+            <td>
+                <div class="error" th:if="${#fields.hasErrors('usuario')}"
+                     th:errors="*{usuario}"></div>
+            </td>
         </tr>
         <tr>
             <td><label>Contraseña</label></td>
-            <td><input type="password" class="form-control" th:field="*{contrasena}"/></td>
+            <td><input type="password" class="form-control" th:field="*{contrasena}" required></td>
         </tr>
         <tr>
             <td><label>Email</label></td>
-            <td><input type="text" class="form-control" th:field="*{email}"/></td>
+            <td><input type="text" class="form-control" th:field="*{email}" required/></td>
         </tr>
         <tr>
             <td colspan="2"><input  id="estilo2" type="submit" value="Añadir trabajador social" class="btn btn btn-success"

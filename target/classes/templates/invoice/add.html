@@ -18,7 +18,7 @@
             <table>
                 <tr>
                     <td><label>Persona Mayor</label></td>
-                    <td><select class="select-css" th:field="*{dniElderly}">
+                    <td><select class="select-css" th:field="*{dniElderly}" required>
                         <option value="" selected disabled>--- Selecciona Persona ---</option>
                         <option th:each="elderly : ${elderlys}" th:value="${elderly.dni}"
                                 th:utext="${elderly.getDatos()}"></option>
@@ -26,11 +26,11 @@
                 </tr>
                 <tr>
                     <td><label>Fecha de facturación</label></td>
-                    <td><input type="date" class="form-control" th:field="*{dateInvoice}"/></td>
+                    <td><input type="date" class="form-control" th:field="*{dateInvoice}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Precio Total</label></td>
-                    <td><input type="number" class="form-control" th:field="*{totalPrice}" min="0"/></td>
+                    <td><input type="number" class="form-control" th:field="*{totalPrice}" min="0" required/></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input id="estilo2" type="submit" value="Añadir factura" class="btn btn btn-success"

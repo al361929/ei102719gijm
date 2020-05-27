@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td><label>Direccion</label></td>
-            <td><input type="text" class="form-control" th:field="*{direccion}"/></td>
+            <td><input type="text" class="form-control" th:field="*{direccion}" required/></td>
         </tr>
         <tr>
             <td><label>Alergias</label></td>
@@ -56,21 +56,21 @@
         <!--            <td><label>Fecha de alta</label></td>-->
         <!--            <td><input type="date" class="form-control" th:field="*{releaseDate}"/></td>-->
         <!--        </tr>-->
-        <tr>
-            <td><label>Fecha de baja</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
-        </tr>
+        <!--        <tr>-->
+        <!--            <td><label>Fecha de baja</label></td>-->
+        <!--            <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>-->
+        <!--        </tr>-->
         <tr>
             <td><label>Email</label></td>
-            <td><input type="text" class="form-control" th:field="*{email}"/></td>
+            <td><input type="text" class="form-control" th:field="*{email}" required/></td>
         </tr>
         <tr>
             <td><label>Trabajador Social</label></td>
-            <td><input type="text" class="form-control" th:field="*{socialWorker}" required/></td>
+            <td><input type="text" class="form-control" th:field="*{socialWorker}"/></td>
         </tr>
         <tr>
             <td><label>Cumpleaños</label></td>
-            <td><input type="date" class="form-control" th:field="*{birthday}"/></td>
+            <td><input type="date" class="form-control" th:field="*{birthday}" required/></td>
         </tr>
         <tr>
             <td><label>Cuenta Bancaria</label></td>

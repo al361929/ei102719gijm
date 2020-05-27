@@ -20,7 +20,6 @@
             <th>Fecha de solicitud</th>
             <th>Comentarios</th>
             <th>Dias</th>
-
         </tr>
         </thead>
         <tbody>
@@ -29,12 +28,8 @@
             <td th:text="${servicios.get(request.idService)}"></td>
             <td th:text="${request.state}"></td>
             <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
-
             <td th:text="${request.comments}"></td>
             <td th:text="${request.dias}"></td>
-
-
-            <td>
             <td>
                 <a th:href="@{/request/info/{id}(id=${request.idRequest})}"
                    class="btn btn btn-default" role="button">Mas detalles</a>
@@ -45,7 +40,6 @@
                        class="btn btn btn-danger" role="button">Cancelar</a>
                 </td>
             </div>
-
         </tr>
         </tbody>
     </table>

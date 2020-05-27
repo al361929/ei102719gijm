@@ -6,21 +6,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="Botones de salir y entrar">
-      <change afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/MailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/pdfs/invoice/6.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/pdfs/invoice/7.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/CompanyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ContractController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/Controlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ManageAccessController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ElderlyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ElderlyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/InvoiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/InvoiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/OffersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/OffersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/RequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/SocialWorkerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/SocialWorkerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ValoracionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ValoracionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/VolunteerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/VolunteerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/model/UserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/model/UserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/logininfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/logininfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/estilo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/estilo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/elderly/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/elderly/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fragments/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fragments/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/request/listRequestElderly.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/request/listRequestElderly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/socialWorker/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/socialWorker/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/controller/CompanyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/controller/CompanyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/majorsacasa/controller/ElderlyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/majorsacasa/controller/ElderlyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/estilo.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/estilo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/company/addContract.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/company/addContract.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/company/addRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/company/addRegister.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/company/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/company/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/company/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/company/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/contract/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/contract/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/contract/addCompany.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/contract/addCompany.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/contract/contractElderlyList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/contract/contractElderlyList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/contract/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/contract/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/contract/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/contract/upload.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/elderly/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/elderly/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/elderly/addRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/elderly/addRegister.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/elderly/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/elderly/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/elderly/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/elderly/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/navElderly.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/fragments/navElderly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/invoice/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/invoice/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/invoice/invoiceListElderly.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/invoice/invoiceListElderly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/invoice/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/invoice/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/offer/addService.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/offer/addService.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/request/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/request/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/request/addRequestElderly.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/request/addRequestElderly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/request/listRequestElderly.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/request/listRequestElderly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/request/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/request/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/service/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/service/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/service/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/service/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/socialWorker/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/socialWorker/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/socialWorker/elderlyListSW.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/socialWorker/elderlyListSW.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/socialWorker/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/socialWorker/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/socialWorker/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/socialWorker/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/typeService/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/typeService/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/valoraciones/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/valoraciones/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/valoraciones/addValoracion.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/valoraciones/addValoracion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/valoraciones/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/valoraciones/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/addRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/addRegister.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/perfil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/scheduleList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/scheduleList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteertime/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteertime/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteertime/addTime.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteertime/addTime.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteertime/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteertime/update.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,9 +85,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="HTML File" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -183,6 +221,8 @@
       <workItem from="1589105650120" duration="12293000" />
       <workItem from="1589982839085" duration="385000" />
       <workItem from="1590487743303" duration="9083000" />
+      <workItem from="1590568368058" duration="8884000" />
+      <workItem from="1590588118916" duration="4181000" />
     </task>
     <task id="LOCAL-00001" summary="hola">
       <created>1583004478200</created>
@@ -675,93 +715,93 @@
     <state x="327" y="95" key="FileChooserDialogImpl/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587228498816" />
     <state x="368" y="106" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588160880641" />
     <state x="460" y="134" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587587975274" />
-    <state width="1237" height="338" key="GridCell.Tab.0.bottom" timestamp="1590092694241">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="316" key="GridCell.Tab.0.bottom" timestamp="1590591819233">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="137" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1588845129412" />
     <state width="1323" height="154" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
     <state width="1237" height="338" key="GridCell.Tab.0.bottom/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1590092694241" />
     <state width="1493" height="391" key="GridCell.Tab.0.bottom/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1493" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588161568401" />
-    <state width="1877" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588868395309" />
+    <state width="1877" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1590591819233" />
     <state width="1464" height="215" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588440576871" />
     <state width="908" height="293" key="GridCell.Tab.0.bottom/0.0.1920.1046@0.0.1920.1046" timestamp="1583261135360" />
     <state width="1877" height="267" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583783261384" />
     <state width="1877" height="267" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583710516715" />
-    <state width="1237" height="338" key="GridCell.Tab.0.center" timestamp="1590092694241">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="316" key="GridCell.Tab.0.center" timestamp="1590591819233">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="137" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1588845129412" />
     <state width="1323" height="154" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
     <state width="1237" height="338" key="GridCell.Tab.0.center/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1590092694241" />
     <state width="1493" height="391" key="GridCell.Tab.0.center/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1493" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588161568401" />
-    <state width="1877" height="316" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588868395309" />
+    <state width="1877" height="316" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1590591819233" />
     <state width="1464" height="215" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588440576871" />
     <state width="908" height="293" key="GridCell.Tab.0.center/0.0.1920.1046@0.0.1920.1046" timestamp="1583261135359" />
     <state width="1877" height="267" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583783261383" />
     <state width="1877" height="267" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583710516715" />
-    <state width="1237" height="338" key="GridCell.Tab.0.left" timestamp="1590092694241">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="316" key="GridCell.Tab.0.left" timestamp="1590591819233">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="137" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1588845129412" />
     <state width="1323" height="154" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
     <state width="1237" height="338" key="GridCell.Tab.0.left/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1590092694241" />
     <state width="1493" height="391" key="GridCell.Tab.0.left/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703076" />
     <state width="1493" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588161568401" />
-    <state width="1877" height="316" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588868395309" />
+    <state width="1877" height="316" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1590591819233" />
     <state width="1464" height="215" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588440576871" />
     <state width="908" height="293" key="GridCell.Tab.0.left/0.0.1920.1046@0.0.1920.1046" timestamp="1583261135359" />
     <state width="1877" height="267" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583783261383" />
     <state width="1877" height="267" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583710516715" />
-    <state width="1237" height="338" key="GridCell.Tab.0.right" timestamp="1590092694241">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="316" key="GridCell.Tab.0.right" timestamp="1590591819233">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="137" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1588845129412" />
     <state width="1323" height="154" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
     <state width="1237" height="338" key="GridCell.Tab.0.right/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1590092694241" />
     <state width="1493" height="391" key="GridCell.Tab.0.right/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1493" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588161568401" />
-    <state width="1877" height="316" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1588868395309" />
+    <state width="1877" height="316" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1590591819233" />
     <state width="1464" height="215" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588440576871" />
     <state width="908" height="293" key="GridCell.Tab.0.right/0.0.1920.1046@0.0.1920.1046" timestamp="1583261135360" />
     <state width="1877" height="267" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583783261384" />
     <state width="1877" height="267" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583710516715" />
-    <state width="1237" height="338" key="GridCell.Tab.1.bottom" timestamp="1590092694251">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="316" key="GridCell.Tab.1.bottom" timestamp="1590591819234">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="154" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
     <state width="1237" height="338" key="GridCell.Tab.1.bottom/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1590092694251" />
     <state width="1493" height="391" key="GridCell.Tab.1.bottom/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1493" height="2" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588161568402" />
-    <state width="1877" height="275" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
+    <state width="1877" height="316" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1590591819234" />
     <state width="1865" height="330" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587044565280" />
-    <state width="1237" height="338" key="GridCell.Tab.1.center" timestamp="1590092694251">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="316" key="GridCell.Tab.1.center" timestamp="1590591819234">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="154" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
     <state width="1237" height="338" key="GridCell.Tab.1.center/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1590092694251" />
     <state width="1493" height="391" key="GridCell.Tab.1.center/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1493" height="2" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588161568402" />
-    <state width="1877" height="275" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
+    <state width="1877" height="316" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1590591819234" />
     <state width="1865" height="330" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587044565279" />
-    <state width="1237" height="338" key="GridCell.Tab.1.left" timestamp="1590092694251">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="316" key="GridCell.Tab.1.left" timestamp="1590591819233">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="154" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
     <state width="1237" height="338" key="GridCell.Tab.1.left/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1590092694251" />
     <state width="1493" height="391" key="GridCell.Tab.1.left/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1493" height="2" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588161568402" />
-    <state width="1877" height="275" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
+    <state width="1877" height="316" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1590591819233" />
     <state width="1865" height="330" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587044565279" />
-    <state width="1237" height="338" key="GridCell.Tab.1.right" timestamp="1590092694251">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state width="1877" height="316" key="GridCell.Tab.1.right" timestamp="1590591819234">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1323" height="154" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587254416939" />
     <state width="1237" height="338" key="GridCell.Tab.1.right/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1590092694251" />
     <state width="1493" height="391" key="GridCell.Tab.1.right/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878703077" />
     <state width="1493" height="2" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588161568402" />
-    <state width="1877" height="275" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1587569670068" />
+    <state width="1877" height="316" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1590591819234" />
     <state width="1865" height="330" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587044565280" />
     <state x="299" y="34" key="Maven.ArtifactSearchDialog" timestamp="1587587597948">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -810,8 +850,8 @@
     </state>
     <state x="445" y="271" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587228229320" />
     <state x="625" y="382" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1587587966759" />
-    <state x="1827" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590514335436">
-      <screen x="1366" y="0" width="1280" height="994" />
+    <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590588209101">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="381" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.984@0.0.1280.984" timestamp="1588844669480" />
     <state x="492" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587237884691" />
@@ -819,7 +859,7 @@
     <state x="492" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1583334076632" />
     <state x="553" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586876407997" />
     <state x="553" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1583337547636" />
-    <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1586540119667" />
+    <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1590588209101" />
     <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588412499322" />
     <state x="691" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583764025781" />
     <state x="2611" y="403" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1920.1040/0.0.1920.1040@1920.0.1920.1040" timestamp="1583767104097" />

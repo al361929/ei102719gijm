@@ -15,23 +15,23 @@
         <h2>Añadir Empresa</h2>
         <form action="#" th:action="@{/company/addRegister}"
               th:object="${company}" method="post">
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('nif')}"
-                     th:errors="*{nif}"></div>
-            </td>
 
-            <td>
-                <div class="error" th:if="${#fields.hasErrors('nombreUsuario')}"
-                     th:errors="*{nombreUsuario}"></div>
-            </td>
             <table>
                 <tr>
                     <td><label>CIF</label></td>
                     <td><input type="text" class="form-control" th:field="*{nif}" required/></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('nif')}"
+                             th:errors="*{nif}"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Nombre de la empresa</label></td>
                     <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('nombreUsuario')}"
+                             th:errors="*{nombreUsuario}"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Persona de contacto</label></td>

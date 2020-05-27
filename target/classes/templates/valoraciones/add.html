@@ -22,13 +22,13 @@
             </tr>
             <tr>
                 <td><label>Comentario</label></td>
-                <td><input type="text" class="form-control" th:field="*{comments}"/></td>
+                <td><input type="text" class="form-control" th:field="*{comments}" required/></td>
             </tr>
             <tr>
                 <td><label>Puntuación</label></td>
                 <td>
                     <p class="clasificacion">
-                        <input id="radio1" type="radio" name="estrellas" value="5" th:field="*{valoration}"><!--
+                        <input id="radio1" type="radio" name="estrellas" value="5" th:field="*{valoration}" required><!--
     --><label for="radio1">★</label><!--
     --><input id="radio2" type="radio" name="estrellas" value="4" th:field="*{valoration}"><!--
     --><label for="radio2">★</label><!--

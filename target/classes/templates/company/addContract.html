@@ -17,34 +17,33 @@
               th:object="${company}" method="post">
 
             <table>
-                <td>
-                    <div class="error" th:if="${#fields.hasErrors('nif')}"
-                         th:errors="*{nif}"></div>
-                </td>
-
-                <td>
-                    <div class="error" th:if="${#fields.hasErrors('nombreUsuario')}"
-                         th:errors="*{nombreUsuario}"></div>
-                </td>
                 <tr>
                     <td><label>CIF</label></td>
                     <td><input type="text" class="form-control" th:field="*{nif}" required/></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('nif')}"
+                             th:errors="*{nif}"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Nombre de la empresa</label></td>
                     <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('nombreUsuario')}"
+                             th:errors="*{nombreUsuario}"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Persona de contacto</label></td>
-                    <td><input type="text" class="form-control" th:field="*{nombreResponsable}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{nombreResponsable}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Dirección</label></td>
-                    <td><input type="text" class="form-control" th:field="*{direccion}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{direccion}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Teléfono</label></td>
-                    <td><input type="tel" class="form-control" th:field="*{numeroTelf}" maxlength="9"/></td>
+                    <td><input type="tel" class="form-control" th:field="*{numeroTelf}" maxlength="9" required/></td>
                 </tr>
                 <tr>
                     <td><label>Usuario</label></td>
@@ -56,7 +55,7 @@
                 </tr>
                 <tr>
                     <td><label>Email</label></td>
-                    <td><input type="text" class="form-control" th:field="*{email}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{email}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Cuenta bancaria</label></td>

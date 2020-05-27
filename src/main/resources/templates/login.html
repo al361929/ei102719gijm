@@ -39,15 +39,13 @@
                                 <div class="error" th:if="${#fields.hasErrors('username')}"
                                      th:errors="*{username}"></div>
 
-
+                                <br>
                                 <label for="inputPassword">Contraseña</label>
                                 <input class="form-control" id="inputPassword" type="password"
                                        th:field="*{password}" placeholder="Contraseña" required/>
                                 <div class="error" th:if="${#fields.hasErrors('password')}"
-                                     th:errors="*{password}"></div>
-
-                                <!-- <input type="password" id="inputPassword" class="form-control"
-                                        placeholder="Contraseña" required> -->
+                                     th:errors="*{password}">
+                                </div>
 
                                 <div class="custom-control custom-checkbox mb-3">
                                     <input type="checkbox" class="custom-control-input" id="customCheck1">

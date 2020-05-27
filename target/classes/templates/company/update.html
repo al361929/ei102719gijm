@@ -17,7 +17,7 @@
       th:object="${company}" method="post">
     <table>
         <tr>
-            <td><label>NIF</label></td>
+            <td><label>CIF</label></td>
             <td><input type="text" class="form-control" th:field="*{nif}" readonly
                        style="background-color: rgb(170, 170, 170)"/></td>
         </tr>
@@ -26,16 +26,16 @@
             <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
         </tr>
         <tr>
-            <td><label>Nombre del responsable</label></td>
-            <td><input type="text" class="form-control" th:field="*{nombreResponsable}"/></td>
+            <td><label>Persona de contacto</label></td>
+            <td><input type="text" class="form-control" th:field="*{nombreResponsable}" required/></td>
         </tr>
         <tr>
             <td><label>Dirección</label></td>
-            <td><input type="text" class="form-control" th:field="*{direccion}"/></td>
+            <td><input type="text" class="form-control" th:field="*{direccion}" required/></td>
         </tr>
         <tr>
             <td><label>Teléfono</label></td>
-            <td><input type="tel" class="form-control" th:field="*{numeroTelf}" maxlength="9"/></td>
+            <td><input type="tel" class="form-control" th:field="*{numeroTelf}" maxlength="9" required/></td>
         </tr>
         <tr>
             <td><label>Usuario</label></td>
@@ -53,11 +53,11 @@
         </div>
         <tr>
             <td><label>Fecha de alta</label></td>
-            <td><input type="date" class="form-control" th:field="*{fechaAlta}"/></td>
+            <td><input type="date" class="form-control" th:field="*{fechaAlta}" required/></td>
         </tr>
         <tr>
             <td><label>Email</label></td>
-            <td><input type="text" class="form-control" th:field="*{email}"/></td>
+            <td><input type="text" class="form-control" th:field="*{email}" required/></td>
         </tr>
         <tr>
             <td><label>Cuenta bancaria</label></td>

@@ -17,24 +17,20 @@
               th:object="${offer}" method="post">
             <table>
                 <tr class="oculto">
-                    <td><label>DNI Empresa</label></td>
-                    <td><input type="text" class="form-control " th:field="*{nif}"/></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <h5 class="error" th:if="${#fields.hasErrors('idService')}"
-                             th:errors="*{idService}"></h5>
-                    </td>
+                    <td><label>CIF Empresa</label></td>
+                    <td><input type="text" class="form-control " th:field="*{nif}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Servicio: </label></td>
-                    <td><select class="select-css" th:field="*{idService}">
+                    <td><select class="select-css" th:field="*{idService}" required>
                         <option value="" selected disabled>--- Selecciona servicio ---</option>
                         <option th:each="servicio : ${servicios}" th:value="${servicio.idService}"
                                 th:utext="${servicio.getDescription()}"></option>
                     </select></td>
-
+                    <td>
+                        <h5 class="error" th:if="${#fields.hasErrors('idService')}"
+                            th:errors="*{idService}"></h5>
+                    </td>
                 </tr>
                 <tr>
 

@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <td><label>Estado</label></td>
-                    <td><select  class="select-css" th:field="*{state}">
+                    <td><select class="select-css" th:field="*{state}" required>
                         <option th:each="estado : ${estados}" th:value="${estado}" th:selected="${request.state}"
                                 th:utext="${estado}"></option>
                     </select></td>
@@ -60,7 +60,7 @@
                 </tr>-->
                 <tr>
                     <td><label>Comentarios</label></td>
-                    <td><input type="text" class="form-control" th:field="*{comments}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{comments}" required/></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input  id="estilo2" type="submit" value="Modificar solicitud" class="btn btn btn-success"
