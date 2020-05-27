@@ -22,6 +22,7 @@ public class CompanyController extends ManageAccessController {
     private CompanyDao companyDao;
     private ValoracionDao valoracionDao;
     private ServiceDao serviceDao;
+    private MailController mailController;
 
     @Autowired
     public void setCompanyDao(ValoracionDao valoracionDao, CompanyDao companyDao, ServiceDao serviceDao) {
@@ -50,9 +51,9 @@ public class CompanyController extends ManageAccessController {
     public String processAddSubmit(@ModelAttribute("company") Company company, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "company/add";
-
-
         companyDao.addCompany(company);
+        mailController = new MailController(company.getEmail());
+        mailController.addMail("El CAS ha registrado su cuenta correctamente");
         return "redirect:list?nuevo=" + company.getNif();
     }
 
@@ -82,6 +83,10 @@ public class CompanyController extends ManageAccessController {
             return "company/addRegister";
         }
         companyDao.addCompany(company);
+
+        mailController = new MailController(company.getEmail());
+        mailController.addMail("Se ha registrado su cuenta correctamente");
+
         return "redirect:../login";
     }
 
@@ -111,6 +116,10 @@ public class CompanyController extends ManageAccessController {
             return "company/addContract";
         }
         companyDao.addCompany(company);
+
+        mailController = new MailController(company.getEmail());
+        mailController.updateMail("El CAS ha añadido su contrato correctamente y lo puede ver en su perfil");
+
         return "redirect:../contract/add";
     }
 
@@ -126,11 +135,16 @@ public class CompanyController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "company/update";
         companyDao.updateCompanySINpw(company);
+
+        mailController = new MailController(company.getEmail());
+        mailController.addMail("Se han actualizado los datos de su cuenta correctamente");
+
         return "redirect:list?nuevo=" + company.getNif();
     }
 
     @RequestMapping(value = "/delete/{nif}")
     public String processDelete(@PathVariable String nif) {
+
         companyDao.deleteCompany(nif);
         return "redirect:../list";
     }

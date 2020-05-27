@@ -56,6 +56,8 @@ public class ElderlyController extends ManageAccessController {
             return "elderly/add";
         if (elderly.getAlergias()==null) elderly.setAlergias("");
         elderlyDao.addElderly(elderly);
+        mailController = new MailController(elderly.getEmail());
+        mailController.addMail("El CAS ha registrado su cuenta correctamente");
         return "redirect:list?nuevo=" + elderly.getDni();
     }
 
@@ -94,7 +96,8 @@ public class ElderlyController extends ManageAccessController {
         }
         elderlyDao.addElderly(elderly);
         UserDetails user = (UserDetails) session.getAttribute("user");
-
+        mailController = new MailController(elderly.getEmail());
+        mailController.addMail("Se ha creado su cuenta correctamente");
         if (user.getTipo().equals("Admin"))
         return "redirect:../elderly/list?nuevo="+elderly.getDni();
 
@@ -122,6 +125,8 @@ public class ElderlyController extends ManageAccessController {
             return "elderly/update";
         elderly.actualizarAlergias();
         elderlyDao.updateElderlySINpw(elderly);
+        mailController = new MailController(elderly.getEmail());
+        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente");
         return "redirect:list?nuevo=" + elderly.getDni();
     }
 
@@ -131,6 +136,8 @@ public class ElderlyController extends ManageAccessController {
         if (!user.getTipo().equals("SocialWorker") && !user.getTipo().equals("Admin")) {
             return "error/sinPermiso";
         }
+        mailController = new MailController(elderlyDao.getElderly(dni).getEmail());
+        mailController.deleteMail("Se ha suprimido su cuenta permanentemente");
         elderlyDao.deleteElderly(dni);
         return "redirect:../list";
     }
@@ -159,6 +166,8 @@ public class ElderlyController extends ManageAccessController {
         elderly.actualizarAlergias();
 
         elderlyDao.updateElderlySinSocialWorker(elderly);
+        mailController = new MailController(elderly.getEmail());
+        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente");
         return "redirect:/request/listElderly";
     }
 
