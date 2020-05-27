@@ -37,21 +37,24 @@
                     <td><label>Usuario</label></td>
                     <td><input type="text" class="form-control" th:field="*{usuario}" required/></td>
                 </tr>
-                <tr>
-                    <td><label>Contraseña</label></td>
-                    <td><input type="password" class="form-control" th:field="*{contrasena}" required/></td>
-                </tr>
+
                 <tr>
                     <td><label>Email</label></td>
                     <td><input type="text" class="form-control" th:field="*{email}" required/></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input  id="estilo2" type="submit" value="Modifica mis datos" class="btn btn btn-secondary"
+                    <td><label>Contraseña</label></td>
+                    <td><input type="password" class="form-control" th:field="*{contrasena}" required/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input id="estilo2" type="submit" value="Modifica mis datos"
+                                           class="btn btn btn-secondary"
                                            role="button"
                                            aria-pressed="true"/></td>
                 </tr>
                 <tr>
-                    <td colspan="2">  <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a></td>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
+                    </td>
                     </td>
                 </tr>
             </table>

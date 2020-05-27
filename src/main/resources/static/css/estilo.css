@@ -1,10 +1,9 @@
 /* Estil aplicat al cos de la pàgina */
 body {
     background-color: #FFFFFF;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     color: #181717;
 }
-
 h1 {
     /* background-color: #CB3E3E;*/
     font-family: 'Arimo', sans-serif;
@@ -38,15 +37,13 @@ h5 {
     color: #CB3E3E;
 }
 
-label, td, tr {
-    font-family: 'Source Sans Pro', sans-serif;
+label {
+    font-family: 'Raleway', serif;
     color: #181717;
 }
 
-
 .table-responsive {
     width: auto;
-    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .form-label-group {
@@ -296,7 +293,7 @@ button {
 .select-css {
     display: block;
     font-size: 12px;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     color: #444;
     line-height: 1.3;
