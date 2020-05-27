@@ -61,16 +61,17 @@
 
 
                 <div th:if="${mapa.get(empresa.nif)==NULL}">
-                <a th:href="@{../offer/addService/{nif}(nif=${empresa.nif})}"  class="btn btn btn-warning" role="button"
-                   aria-pressed="true">Añadir Servicio</a>
+                    <a th:href="@{../offer/addService/{nif}(nif=${empresa.nif})}" class="btn btn btn-warning"
+                       role="button"
+                       aria-pressed="true">Añadir Servicio</a>
                 </div>
             </td>
 
         </tr>
         </tbody>
     </table>
-    <a href="addRegister"  id="estilo2" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Empresa</a>
-    <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a>
+    <a href="addRegister" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Empresa</a>
+    <a onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
 </div>
 </div>
 

@@ -124,18 +124,16 @@ label, td, tr {
 /*Estilo del link*/
 a:link {
     font-family: 'Arimo', sans-serif;
-    color: #FFFFFF;
-        font-weight: bold;
+    font-weight: bold;
 
 }
 
 /* visited link */
 a:visited {
- font-family: 'Arimo', sans-serif;
- color: #FFFFFF;
-     font-weight: bold;
+    font-family: 'Arimo', sans-serif;
+    font-weight: bold;
 
- }
+}
 
 button {
     font-family: 'Arimo', sans-serif;
@@ -209,7 +207,7 @@ button {
     text-transform: uppercase;
     white-space: normal;
     word-wrap: break-word;
-    color: #fff;
+    transition-duration: 0.4s;
 }
 
 .btn:focus, .btn:hover {
@@ -238,14 +236,15 @@ button {
 }
 
 .btn-primary {
-    background-color: #4285f4 !important;
-    color: #fff;
+    background-color: white !important;
+    border: 5px solid #4285f4;
+    color: #4285f4;
 }
 
 .btn-primary:hover {
-    color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc;
+    background-color: #4285f4 !important;
+    border: 5px solid #4285f4;
+    color: white;
 }
 
 .btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
@@ -254,39 +253,115 @@ button {
     background-color: #0b51c5 !important;
 }
 
-.btn-default {
+.btn-default:hover {
     background-color: #2bbbad !important;
-    color: #fff;
+    border: 5px solid #2bbbad;
+    color: white;
+}
+
+.btn-default {
+    background-color: #fff !important;
+    border: 5px solid #2bbbad;
+    border-radius: 25px;
+    color: #2bbbad;
 }
 
 .btn-secondary {
+    background-color: #fff !important;
+    border: 5px solid #a6c;
+    color: #a6c;
+    border-radius: 25px;
+}
+
+.btn-secondary:hover {
     background-color: #a6c !important;
-    color: #fff;
+    border: 5px solid #a6c;
+    color: white;
 }
 
 .btn-success {
+    background-color: #fff !important;
+    border: 5px solid #00c851;
+    color: #00c851;
+    border-radius: 25px;
+}
+
+.btn-success:hover {
     background-color: #00c851 !important;
-    color: #fff;
+    border: 5px solid #00c851;
+    color: white;
 }
 
 .btn-info {
+    background-color: #fff !important;
+    border: 5px solid #33b5e5;
+    color: #33b5e5;
+    border-radius: 25px;
+}
+
+.btn-info:hover {
     background-color: #33b5e5 !important;
-    color: #fff;
+    border: 5px solid #33b5e5;
+    color: white;
 }
 
 .btn-warning {
+    background-color: #fff !important;
+    border: 5px solid #fb3;
+    color: #fb3;
+    border-radius: 25px;
+}
+
+.btn-warning:hover {
     background-color: #fb3 !important;
-    color: #fff;
+    border: 5px solid #fb3;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #ff3547 !important;
+    border: 5px solid #ff3547;
+    color: white;
 }
 
 .btn-danger {
+    background-color: #fff !important;
+    border: 5px solid #ff3547;
+    color: #ff3547;
+    border-radius: 25px;
+}
+
+.btn-exit {
     background-color: #ff3547 !important;
-    color: #fff;
+    border: 5px solid #ff3547;
+    color: white;
+    border-radius: 25px;
 }
-.centrado{
-  margin-left: auto;
-  margin-right: auto;
+
+.btn-exit:hover {
+    background-color: #ff3547 !important;
+    border: 5px solid #ff3547;
+    color: white;
+    box-shadow: black 0px 0px 15px;
 }
+
+.btn-enter {
+    background-color: #00c851 !important;
+    border: 5px solid #00c851;
+    color: white;
+}
+
+.btn-enter:hover {
+    color: white;
+    box-shadow: black 0px 0px 15px;
+}
+
+
+.centrado {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .oculto {
     opacity: 0;
 }

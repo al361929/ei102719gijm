@@ -32,7 +32,7 @@
             <td th:text="${request.dias}"></td>
             <td>
                 <a th:href="@{/request/info/{id}(id=${request.idRequest})}"
-                   class="btn btn btn-default" role="button">Mas detalles</a>
+                   class="btn btn btn-default" role="button">Más detalles</a>
             </td>            </td>
             <div th:if="${!request.isCancelada()}">
                 <td >
@@ -44,8 +44,8 @@
         </tbody>
     </table>
 
-    <a  id="estilo2" href="addRequestElderly" class="btn btn btn-success" role="button">Añadir Solicitud</a>
-   <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a>
+    <a href="addRequestElderly" class="btn btn btn-success" role="button">Añadir Solicitud</a>
+   <a onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a>
 </div>
 </div>
 
