@@ -35,3 +35,7 @@ label:hover ~ label {
 input[type="radio"]:checked ~ label {
     color: orange;
 }
+
+.estrella {
+    font-size: 40px;
+}

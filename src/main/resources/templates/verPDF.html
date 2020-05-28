@@ -11,7 +11,7 @@
 <body>
 <div layout:fragment="content">
     <embed th:if="${!filename.isEmpty()}" th:src="@{${filename}}" width="100%" height="1200px" type="application/pdf"/>
-    <a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
+    <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
 </div>
 </body>
 </html>
