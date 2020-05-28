@@ -358,6 +358,7 @@ button {
     background-color: #00c851 !important;
     border: 3px solid #00c851;
     color: white;
+    border-radius: 15px;
 }
 
 .btn-enter:hover {
@@ -374,8 +375,6 @@ button {
 .oculto {
     opacity: 0;
 }
-
-
 
 .select-css {
     display: block;

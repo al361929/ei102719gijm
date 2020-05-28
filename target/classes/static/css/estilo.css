@@ -157,11 +157,9 @@ button {
 
 .loggeduser {
     display: block;
-    /*margin-left: auto;
-    margin-right: 5%;
-    width: auto;*/
     text-align: right;
 }
+
 .navbar-custom {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -360,6 +358,7 @@ button {
     background-color: #00c851 !important;
     border: 3px solid #00c851;
     color: white;
+    border-radius: 15px;
 }
 
 .btn-enter:hover {
@@ -376,8 +375,6 @@ button {
 .oculto {
     opacity: 0;
 }
-
-
 
 .select-css {
     display: block;
@@ -421,7 +418,7 @@ button {
     font-weight:normal;
 }
 
-.error{
+.error {
     color: red;
     font-weight: bold;
 }
