@@ -10,7 +10,7 @@ h1 {
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
-    color: #000000;
+    color: #33b5e5;
 }
 
 h2 {
@@ -142,19 +142,26 @@ button {
 }
 
 #estilo1 {
-
-    color: #ff3547;
-
-}
-
-#estilo2 {
-
     font-family: 'IBM Plex Sans', sans-serif;
     color: #FFFFFF;
-    background-color: #ff3547;
     font-weight: bold;
 }
 
+#estilo2 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #FFFFFF;
+    background-color: #ff3547;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.loggeduser {
+    display: block;
+    /*margin-left: auto;
+    margin-right: 5%;
+    width: auto;*/
+    text-align: right;
+}
 .navbar-custom {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -414,6 +421,10 @@ button {
     font-weight:normal;
 }
 
+.error{
+    color: red;
+    font-weight: bold;
+}
 
 .classOfElementToColor:hover {background-color:red; color:black}
 
