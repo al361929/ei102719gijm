@@ -142,19 +142,26 @@ button {
 }
 
 #estilo1 {
-
-    color: #ff3547;
-
-}
-
-#estilo2 {
-
     font-family: 'IBM Plex Sans', sans-serif;
     color: #FFFFFF;
-    background-color: #ff3547;
     font-weight: bold;
 }
 
+#estilo2 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #FFFFFF;
+    background-color: #ff3547;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.loggeduser {
+    display: block;
+    /*margin-left: auto;
+    margin-right: 5%;
+    width: auto;*/
+    text-align: right;
+}
 .navbar-custom {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -414,6 +421,10 @@ button {
     font-weight:normal;
 }
 
+.error{
+    color: red;
+    font-weight: bold;
+}
 
 .classOfElementToColor:hover {background-color:red; color:black}
 

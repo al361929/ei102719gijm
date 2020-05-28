@@ -2,28 +2,22 @@
     <div th:if="*{user == null}">
         <div th:replace="fragments/navVacio"></div>
         <br>
-        No autenticat <a class="btn btn btn-success" role="button" href="/login" th:href="@{/login}">Entrar</a>
+        No autenticat <a id="estilo1" class="btn btn btn-enter" role="button" href="/login"
+                         th:href="@{/login}">Entrar</a>
     </div>
     <div th:unless="*{user == null}">
     <!--<p th:replace="fragments/nav"></p>-->
         <div th:if="*{user.code == 2}">
             <br>
-            <br>
-            <a href="/logout" th:href="@{/logout}" class="btn btn btn-exit" role="button"> Salir</a>
-
+            <a id="estilo2" href="/logout" th:href="@{/logout}" class="btn btn btn-exit" role="button"> Salir</a>
         </div>
 
         <div th:unless="*{user.code == 2}">
-
-        <br>
-
-        <b>Autenticado como: </b> <span th:text="*{user.username}"></span>
-
-
-        <b> | Tipo de usuario: </b> <span th:text="*{user.tipo}"></span>
-
-        <b>|</b>
-            <a class="btn btn btn-exit" role="button" href="/logout" th:href="@{/logout}"> Salir</a>
+            <br>
+            <b>Autenticado como: </b> <span th:text="*{user.username}"></span>
+            <b> | Tipo de usuario: </b> <span th:text="*{user.tipo}"></span>
+            <b>|</b>
+            <a id="estilo2" class="btn btn btn-exit" role="button" href="/logout" th:href="@{/logout}"> Salir</a>
         </div>
     </div>
 </div>
