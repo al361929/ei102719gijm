@@ -81,12 +81,12 @@ label {
 desplegable de valoraciones*/
 
 .dropbtn {
-  background-color: #181717;
+    background-color: transparent;
 
-  color: white;
-  padding: 16px;
-  border: none;
-  cursor: pointer;
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
 }
 
 .dropdown {
@@ -117,7 +117,7 @@ desplegable de valoraciones*/
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+    background-color: #CB3E3E;
 }
 /* */
 
