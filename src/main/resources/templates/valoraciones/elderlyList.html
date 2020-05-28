@@ -21,8 +21,14 @@
                 <th>Valoracion</th>
                 <th>Comentarios</th>
                 <th>Fecha</th>
-                <th></th>
-                <th></th>
+                <th><a th:href="@{/valoraciones/serviceValoration}"
+                       class="btn btn btn-secondary"
+                       role="button"
+                       aria-pressed="true">Servicios</a></th>
+                <th><a th:href="@{/valoraciones/elderlyList}"
+                       class="btn btn btn-secondary"
+                       role="button"
+                       aria-pressed="true">Voluntarios</a></th>
             </tr>
             </thead>
             <tbody>
@@ -39,14 +45,12 @@
                        class="btn btn btn-secondary"
                        role="button"
                        aria-pressed="true">Editar</a>
-
                 </td>
                 <td>
                     <a th:href="@{/valoraciones/delete/{dniVolunteer}(dniVolunteer=${valoracion.dniVolunteer})}"
                        class="btn btn btn-danger"
                        role="button"
                        aria-pressed="true">Borrar</a>
-
                 </td>
             </tr>
             </tbody>
