@@ -1,9 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="container">
-
-        <a class="nav-link" href="/" th:href="@{/}">MAJORS A CASA</a>
-        <a class="nav-link" href="volunteer/list" th:href="@{/volunteer/list}">VOLUNTARIOS</a>
-
-    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav m-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/" th:href="@{/}">MAJORS A CASA</a>
+            </li>
+            <li>
+                <a class="nav-link">|</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="volunteer/list" th:href="@{/volunteer/list}">VOLUNTARIOS</a>
+            </li>
+        </ul>
     </div>
 </nav>

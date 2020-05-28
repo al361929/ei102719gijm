@@ -20,12 +20,13 @@ h1 {
     color: #B32121;
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
     background-color: white;
     border-width: 3px;
     border-style: solid;
     border-color: #B32121;
+    margin-left: 35px;
 }
 
 .botonReg:hover {
@@ -47,14 +48,18 @@ h1 {
     flex-direction: row;
     margin-top: 100px;
 }
-#estilo1 {
 
-    color: #B32121;
 
+.btn-danger:hover {
+    background-color: #ff3547 !important;
+    border: 5px solid #ff3547;
+    color: white;
 }
-#estilo2{
 
-    font-family: 'Arimo', sans-serif;
-    color: #F4F4F4;
+.btn-danger {
+    background-color: #fff !important;
+    border: 5px solid #ff3547;
+    color: #ff3547;
+    border-radius: 25px;
     font-weight: bold;
 }
