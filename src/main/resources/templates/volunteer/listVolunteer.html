@@ -24,35 +24,32 @@
 
             <th></th>
             <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="horario: ${horarios}"
-        th:class="${#strings.equals(nuevo,horario.idVolunteerTime)}?'bg-info text-white'">
-        <td th:text="${horario.dia}"></td>
-        <td th:text="${horario.mes}"></td>
-        <td th:text="${horario.startTime}"></td>
-        <td th:text="${horario.endTime}"></td>
-        <td th:text="${promedio.get(horario.dniVolunteer)}"></td>
-        <td>
-            <div th:if="${promedio.get(horario.dniVolunteer)}">
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="horario: ${horarios}"
+            th:class="${#strings.equals(nuevo,horario.idVolunteerTime)}?'bg-info text-white'">
+            <td th:text="${horario.dia}"></td>
+            <td th:text="${horario.mes}"></td>
+            <td th:text="${horario.startTime}"></td>
+            <td th:text="${horario.endTime}"></td>
+            <td th:text="${promedio.get(horario.dniVolunteer)}"></td>
+            <td>
+                <div th:if="${promedio.get(horario.dniVolunteer)}">
 
-                <a th:href="@{/valoraciones/listMisValoraciones/{dni}(dni=${horario.dniVolunteer})}"
-                   class="btn btn btn-secondary" role="button"
-                   aria-pressed="true">Ver reseñas</a>
-            </div>
-        <td>
-            <a th:href="@{/volunteertime/solicitar/{idVolunteerTime}(idVolunteerTime=${horario.idVolunteerTime})}"
-               class="btn btn btn-default" role="button"
-               aria-pressed="true">Solicitar</a>
-        </td>
-
-
-
-    </tr>
+                    <a th:href="@{/valoraciones/listMisValoraciones/{dni}(dni=${horario.dniVolunteer})}"
+                       class="btn btn btn-secondary" role="button"
+                       aria-pressed="true">Ver reseñas</a>
+                </div>
+            <td>
+                <a th:href="@{/volunteertime/solicitar/{idVolunteerTime}(idVolunteerTime=${horario.idVolunteerTime})}"
+                   class="btn btn btn-default" role="button"
+                   aria-pressed="true">Solicitar</a>
+            </td>
+        </tr>
     </tbody>
 </table>
-    <td colspan="2"><a onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a></td>
+    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a></td>
 </div>
 </div>
 

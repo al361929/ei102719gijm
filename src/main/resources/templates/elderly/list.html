@@ -27,6 +27,7 @@
             <th>Email</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -50,16 +51,11 @@
                 <div th:if="${elderly.socialWorker==null}">
                     <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni})}" class="btn btn btn-warning" role="button"
                        aria-pressed="true">Añdadir SocialWorker</a>
-
                 </div>
-
-
-
             </td>
             <td>
                 <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni})}" class="btn btn btn-secondary" role="button"
                    aria-pressed="true">Editar</a>
-
             </td>
             <td>
                 <a th:href="@{/elderly/delete/{dni}(dni=${elderly.dni})}" class="btn btn btn-danger" role="button"
@@ -71,7 +67,7 @@
     </table>
     <a href="addRegister" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Persona Mayor</a>
 
-    <a id="estilo1" onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
+    <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
 
 </div>
 </div>
