@@ -38,7 +38,7 @@ h5 {
 }
 
 label {
-    font-family: 'Raleway', serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     color: #181717;
 }
 
@@ -265,14 +265,14 @@ button {
 
 .btn-secondary {
     background-color: #fff !important;
-    border: 5px solid #a6c;
+    border: 3px solid #a6c;
     color: #a6c;
-    border-radius: 25px;
+    border-radius: 15px;
 }
 
 .btn-secondary:hover {
     background-color: #a6c !important;
-    border: 5px solid #a6c;
+    border: 3px solid #a6c;
     color: white;
 }
 

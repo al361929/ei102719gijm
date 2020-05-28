@@ -84,6 +84,7 @@ public class ContractController extends ManageAccessController {
         //System.out.println(contract.toString());
         contractDao.addContract(contract);
         int id = contractDao.getUltimoContrato();
+
         return "redirect:list?nuevo=" + id;
     }
 

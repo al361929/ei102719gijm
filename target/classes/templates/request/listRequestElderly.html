@@ -35,7 +35,7 @@
                    class="btn btn btn-default" role="button">Más detalles</a>
             </td>            </td>
             <div th:if="${!request.isCancelada()}">
-                <td >
+                <td>
                     <a th:href="@{/request/cancelarRequest/{id}(id=${request.idRequest})}"
                        class="btn btn btn-danger" role="button">Cancelar</a>
                 </td>
@@ -45,7 +45,7 @@
     </table>
 
     <a href="addRequestElderly" class="btn btn btn-success" role="button">Añadir Solicitud</a>
-   <a onclick="history.back()" class="btn btn btn-danger" role="button" >Atrás</a>
+    <a onclick="history.back()" class="btn btn btn-danger" role="button">Atrás</a>
 </div>
 </div>
 
