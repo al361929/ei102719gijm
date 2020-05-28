@@ -6,34 +6,38 @@ body {
 }
 h1 {
     /* background-color: #CB3E3E;*/
-    font-family: 'Arimo', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: bold;
     text-align: center;
+    text-transform: uppercase;
     color: #33b5e5;
 }
 
 h2 {
-   font-family: 'Arimo', sans-serif;
-   font-weight: bold;
-
-    color: #545151;
-}
-h3 {
-    font-family: 'Arimo', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: bold;
     color: #545151;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: bold;
+    color: #545151;
+    text-transform: uppercase;
 }
 
 h4 {
-    font-family: 'Arimo', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: bold;
     color: #33b5e5;
+    text-transform: uppercase;
 }
 
 h5 {
-    font-family: 'Arimo', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: bold;
-
+    text-transform: uppercase;
     color: #CB3E3E;
 }
 
