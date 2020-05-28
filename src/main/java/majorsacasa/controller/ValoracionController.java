@@ -1,8 +1,10 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.ValoracionDao;
+import majorsacasa.dao.ValoracionServiceDao;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.Valoracion;
+import majorsacasa.model.ValoracionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +20,12 @@ import java.util.Optional;
 public class ValoracionController extends ManageAccessController {
 
     private ValoracionDao valoracionDao;
+    private ValoracionServiceDao valoracionServiceDao;
 
     @Autowired
-    public void setValoracionDao(ValoracionDao valoracionDao) {
+    public void setValoracionDao(ValoracionDao valoracionDao, ValoracionServiceDao valoracionServiceDao) {
         this.valoracionDao = valoracionDao;
+        this.valoracionServiceDao = valoracionServiceDao;
     }
 
     @RequestMapping("/list")
@@ -30,12 +34,49 @@ public class ValoracionController extends ManageAccessController {
         return "valoraciones/list";
     }
 
-    @RequestMapping(value = "/add")
-    public String addValoracion(Model model) {
-        model.addAttribute("valoracion", new Valoracion());
-        return "valoraciones/add";
+    @RequestMapping("/serviceValoration")
+    public String listValoracionesServicios(HttpSession session,Model model) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("listMisValoraciones", valoracionServiceDao.getMisValoraciones(user.getDni()));
+        model.addAttribute("service",valoracionServiceDao.getServices());
+        return "valoraciones/serviceValoration";
     }
 
+    @RequestMapping(value = "/addValorationService/{id}")
+    public String addValoracionService(@PathVariable int id ,Model model,HttpSession session) {
+        ValoracionService v= new ValoracionService();
+        v.setIdService(id);
+        model.addAttribute("valoracionService", v);
+
+        return "valoraciones/addValorationService";
+    }
+
+    @RequestMapping(value = "/addValorationService", method = RequestMethod.POST)
+    public String processAddSubmitValoracionService(HttpSession session,Model model,@ModelAttribute("valoracionService") ValoracionService valoracion, BindingResult bindingResult) {
+        System.out.println("Añadiendo");
+       // if (bindingResult.hasErrors())
+         //   return "valoraciones/addValoracionService";
+        System.out.println("2");
+
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        valoracion.setDni(user.getDni());
+        System.out.println("3");
+        System.out.println("INFO:"+valoracion.toString());
+
+        Boolean checkValoracion = valoracionServiceDao.checkValoracion (user.getDni(),valoracion.getIdService());
+        System.out.println("4");
+
+        System.out.println("estado: "+checkValoracion+ "INFO:"+valoracion.toString());
+        if (!checkValoracion) {
+
+            bindingResult.rejectValue("idService", "idService", "Ya ha valorado  este servicio");
+
+            return "valoraciones/addValorationService";
+        }
+
+        valoracionServiceDao.addValoracion(valoracion);
+        return "redirect:serviceValoration?nuevo=" + valoracion.getIdService();
+    }
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("valoracion") Valoracion valoracion, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
@@ -44,6 +85,23 @@ public class ValoracionController extends ManageAccessController {
         return "redirect:list?nuevo=" + valoracion.getDni();
     }
 
+    @RequestMapping(value = "/updateService/{idService}", method = RequestMethod.GET)
+    public String editValoracionService(HttpSession session,Model model, @PathVariable int idService) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        model.addAttribute("valoracionService", valoracionServiceDao.getValoracion(idService, user.getDni()));
+        return "valoraciones/updateService";
+    }
+
+    @RequestMapping(value = "/updateService", method = RequestMethod.POST)
+    public String processUpdateSubmitService(HttpSession session,@ModelAttribute("valoracionService") ValoracionService valoracion,
+                                      BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "valoraciones/updateService";
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        valoracion.setDni(user.getDni());
+        valoracionServiceDao.updateValoracion(valoracion);
+        return "redirect:serviceValoration?nuevo=" + valoracion.getIdService();
+    }
     @RequestMapping(value = "/update/{dniVolunteer}", method = RequestMethod.GET)
     public String editValoracion(HttpSession session,Model model, @PathVariable String dniVolunteer) {
         UserDetails user = (UserDetails) session.getAttribute("user");
@@ -68,6 +126,13 @@ public class ValoracionController extends ManageAccessController {
         System.out.println("V: "+dniVolunteer+" E: "+user.getDni());
         valoracionDao.deleteValoracion(dniVolunteer, user.getDni());
         return "redirect:../elderlyList";
+    }
+
+    @RequestMapping(value = "/deleteService/{idService}")
+    public String processDelete(HttpSession session,@PathVariable int idService) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
+        valoracionServiceDao.deleteValoracion(idService, user.getDni());
+        return "redirect:../serviceValoration";
     }
 
     @RequestMapping(value = "/listMisValoraciones")

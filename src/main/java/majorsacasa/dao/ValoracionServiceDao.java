@@ -1,6 +1,5 @@
 package majorsacasa.dao;
 
-import majorsacasa.model.UserDetails;
 import majorsacasa.model.ValoracionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -32,18 +31,18 @@ public class ValoracionServiceDao {
         }
     }
 
-    public ValoracionService getValoracion(String idService, String dniElderly) {
+    public ValoracionService getValoracion(int idService, String dniElderly) {
         return jdbcTemplate.queryForObject("SELECT * FROM ServiceValoration WHERE dni=? AND idService=?", new ValoracionServiceRowMapper(), dniElderly, idService);
 
     }
 
     //añadir
     public void addValoracion(ValoracionService valoracionService) {
-        jdbcTemplate.update("INSERT INTO ServiceValoration VALUES(?,?,?,?,?)", valoracionService.getIdService(), valoracionService.getDni(), valoracionService.getComments(), valoracionService.getValoration(), LocalDate.now());
+        jdbcTemplate.update("INSERT INTO ServiceValoration VALUES(?,?,?,?,?)", valoracionService.getDni(),valoracionService.getIdService(),  valoracionService.getComments(), valoracionService.getValoration(), LocalDate.now());
     }
 
     //eliminar
-    public void deleteValoracion(String idService, String dniElderly) {
+    public void deleteValoracion(int idService, String dniElderly) {
         jdbcTemplate.update("DELETE FROM ServiceValoration WHERE dni=? AND idService=?", dniElderly, idService);
     }
 
@@ -53,9 +52,9 @@ public class ValoracionServiceDao {
                 LocalDate.now(), valoracionService.getIdService(), valoracionService.getDni());
     }
 
-    public List<ValoracionService> getMisValoraciones(String idService) {
+    public List<ValoracionService> getMisValoraciones(String dni) {
         try {
-            return jdbcTemplate.query("SELECT * FROM ServiceValoration WHERE idService=?", new ValoracionServiceRowMapper(), idService);
+            return jdbcTemplate.query("SELECT * FROM ServiceValoration WHERE dni=?", new ValoracionServiceRowMapper(), dni);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<ValoracionService>();
         }
@@ -69,10 +68,16 @@ public class ValoracionServiceDao {
         }
     }
 
-    public boolean checkValoracion(String dniElderly, String idService) {
-        List<String> valoracion = jdbcTemplate.queryForList(" SELECT dni FROM ServiceValoration WHERE dni=? AND idService=?", String.class, dniElderly, idService);
+    public boolean checkValoracion(String dniElderly, int idService) {
+        try {
 
-        return valoracion.isEmpty();
+            List<String> valoracion = jdbcTemplate.queryForList(" SELECT dni FROM ServiceValoration WHERE dni=? AND idService=?", String.class, dniElderly, idService);
+            return valoracion.isEmpty();
+        } catch (EmptyResultDataAccessException e) {
+
+            return true;
+        }
+
     }
 
     public HashMap<String, Float> getPromedio() {
@@ -89,22 +94,18 @@ public class ValoracionServiceDao {
         return promedio;
     }
 
-    public HashMap<String, String> getUsersInfo() {
+    public HashMap<Integer, String> getServices() {
 
-        List<UserDetails> usuarios = jdbcTemplate.query("SELECT user_name, password,name, dnivolunteer FROM Volunteer", new UserRowMapper());
+        List<String> id = jdbcTemplate.queryForList("SELECT idService FROM Service", String.class);
+        List<String> descripcion = jdbcTemplate.queryForList("SELECT description FROM Service", String.class);
 
-        usuarios.addAll(jdbcTemplate.query("SELECT user_name, password, dni,name FROM ElderlyPeople", new UserRowMapper()));
 
-        usuarios.addAll(jdbcTemplate.query("SELECT user_name, password,dnisocialworker,name FROM SocialWorker ", new UserRowMapper()));
-
-        usuarios.addAll(jdbcTemplate.query("SELECT user_name, password, nif,name FROM Company", new UserRowMapper()));
-
-        HashMap<String, String> info = new HashMap<>();
-        for (UserDetails u : usuarios) {
-            info.put(u.getDni(), u.getName());
+        HashMap<Integer, String> info = new HashMap<>();
+        for (int i=0; i<id.size();i++) {
+            int cod= Integer.parseInt(id.get(i));
+            info.put(cod, descripcion.get(i));
         }
 
-        info.put("0", " ");
 
         //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer","select avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
         //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer, avg(valoration) from volunteerValoration GROUP BY dniVolunteer");

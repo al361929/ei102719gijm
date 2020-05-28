@@ -12,7 +12,7 @@ public class ValoracionServiceRowMapper implements RowMapper<ValoracionService> 
     @Override
     public ValoracionService mapRow(ResultSet rs, int i) throws SQLException {
         ValoracionService valoracionService = new ValoracionService();
-        valoracionService.setIdService(rs.getString("idService"));
+        valoracionService.setIdService(rs.getInt("idService"));
         valoracionService.setDni(rs.getString("dni"));
         valoracionService.setComments(rs.getString("comments"));
         valoracionService.setValoration(rs.getInt("valoration"));

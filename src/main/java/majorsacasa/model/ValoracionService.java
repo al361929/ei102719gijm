@@ -3,17 +3,17 @@ package majorsacasa.model;
 import java.time.LocalDate;
 
 public class ValoracionService {
-    String idService;
+    int idService;
     String dni;
     String comments;
     Integer valoration;
     LocalDate dateValoration;
 
-    public String getIdService() {
+    public int getIdService() {
         return idService;
     }
 
-    public void setIdService(String idService) {
+    public void setIdService(int idService) {
         this.idService = idService;
     }
 

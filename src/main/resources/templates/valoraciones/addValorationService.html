@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir Valoración</title>
+    <link rel="stylesheet" type="text/css" href="/css/valoraciones.css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Valora el Servicio</h1>
+
+    <form action="#" th:object="${valoracionService}" th:action="@{/valoraciones/addValorationService}"
+          method="post">
+
+        <table> <div class="error" th:if="${#fields.hasErrors('idService')}"
+                     th:errors="*{idService}"></div>
+            </td>
+            <tr class="oculto">
+                <td><label>Servicio</label></td>
+                <td><input type="text" class="form-control " th:field="*{idService}" required/></td>
+                <td>
+
+            </tr>
+            <tr>
+                <td><label>Comentario</label></td>
+                <td><input type="text" class="form-control" th:field="*{comments}" required/></td>
+            </tr>
+            <tr>
+                <td><label>Puntuación</label></td>
+                <td>
+                    <p class="clasificacion">
+                        <input id="radio1" type="radio" name="estrellas" value="5" th:field="*{valoration}" required><!--
+    --><label for="radio1" class="estrella">★</label><!--
+    --><input id="radio2" type="radio" name="estrellas" value="4" th:field="*{valoration}"><!--
+    --><label for="radio2" class="estrella">★</label><!--
+    --><input id="radio3" type="radio" name="estrellas" value="3" th:field="*{valoration}"><!--
+    --><label for="radio3" class="estrella">★</label><!--
+    --><input id="radio4" type="radio" name="estrellas" value="2" th:field="*{valoration}"><!--
+    --><label for="radio4" class="estrella">★</label><!--
+    --><input id="radio5" type="radio" name="estrellas" value="1" th:field="*{valoration}"><!--
+    --><label for="radio5" class="estrella">★</label>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Añadir valoracion" class="btn btn btn-success"
+                                       role="button"
+                                       aria-pressed="true"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
