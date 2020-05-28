@@ -204,7 +204,7 @@ button {
     text-transform: uppercase;
     white-space: normal;
     word-wrap: break-word;
-    transition-duration: 0.4s;
+    transition-duration: 0.2s;
 }
 
 .btn:focus, .btn:hover {
