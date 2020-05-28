@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav m-auto">
@@ -20,10 +22,16 @@
             <li>
                 <a class="nav-link">|</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="valoraciones/elderlyList" th:href="@{/valoraciones/elderlyList}">MIS
-                    VALORACIONES</a>
-            </li>
+            <div class="dropdown">
+<!--                <a class="nav-link" href="valoraciones/elderlyList" th:href="@{/valoraciones/elderlyList}">MIS
+                    VALORACIONES</a>-->
+                    <button class="dropbtn">VALORACIONES</button>
+                    <div class="dropdown-content">
+                        <a th:href="@{/valoraciones/elderlyList}">Voluntarios</a>
+                        <a th:href="@{/valoraciones/serviceValoration}">Servicios</a>
+
+                </div>
+            </div>
             <li>
                 <a class="nav-link">|</a>
             </li>
