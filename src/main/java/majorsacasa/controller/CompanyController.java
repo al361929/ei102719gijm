@@ -189,7 +189,7 @@ public class CompanyController extends ManageAccessController {
     @RequestMapping(value = "/contractList")
     public String getContractList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
-        model.addAttribute("contractList", companyDao.getContractsList(user.getDni()));
+        model.addAttribute("contracts", companyDao.getContractsList(user.getDni()));
         HashMap<String ,String> u=valoracionDao.getUsersInfo();
         model.addAttribute("usuario",u);
         return gestionarAcceso(session, model, "Company", "company/contractList");
@@ -200,7 +200,7 @@ public class CompanyController extends ManageAccessController {
         //HashMap<String ,String> u=valoracionDao.getUsersInfo();
         model.addAttribute("usuario", valoracionDao.getUsersInfo());
         //return gestionarAcceso(session, model, "admin", "../contract/list");
-        return "/company/contractList   ";
+        return "company/contractList";
     }
 
 }
