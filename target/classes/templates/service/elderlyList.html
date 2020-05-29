@@ -24,12 +24,13 @@
             </thead>
             <tbody>
             <tr th:each="service: ${elderlyList}"
-                th:class="${#strings.equals(nuevo,service.getIdService())}?'bg-info text-white'">
+                th:class="${#strings.equals(nuevo,service.getIdService())}?'bg-info-nuevo'">
                 <td th:text="${service.getDescription()}"></td>
                 <td th:text="${service.getPrice()}"></td>
                 <td th:text="${service.getServiceType()}"></td>
                 <td>
-                    <a th:href="@{/valoraciones/addValorationService/{id}(id=${service.getIdService()})}" class="btn btn btn-secondary" role="button"
+                    <a th:href="@{/valoraciones/addValorationService/{id}(id=${service.getIdService()})}"
+                       class="btn btn btn-secondary" role="button"
                        aria-pressed="true">Añadir reseña</a>
                 </td>
             </tr>

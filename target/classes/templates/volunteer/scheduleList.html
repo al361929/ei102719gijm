@@ -29,7 +29,7 @@
             </thead>
             <tbody>
             <tr th:each="voluntario: ${scheduleList}"
-                th:class="${#strings.equals(nuevo,voluntario.getId())}?'bg-info text-white'">
+                th:class="${#strings.equals(nuevo,voluntario.getId())}?'bg-info-nuevo'">
 
                 <!--                <td th:text="${usuario.get(voluntario.dniVolunteer)}"></td>-->
                 <td th:text="${usuario.get(voluntario.dniElderly)}"></td>

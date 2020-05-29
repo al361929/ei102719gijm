@@ -487,14 +487,14 @@ button {
 
 .bg-info-nuevo {
     /*animation: blinker 1s linear infinite;*/
-    background-color: rgb(203, 212, 248);
+    background-color: #33b5e5;;
 }
 
 @keyframes blinker {
     50% {
-        background-color: rgb(215, 222, 245);
+        background-color: #33b5e5;;
     }
     100% {
-        background-color: rgba(215, 222, 245, 0);
+        background-color: #33b5e5;;
     }
 }

@@ -476,22 +476,25 @@ button {
     font-weight: bold;
 }
 
-.classOfElementToColor:hover {background-color:red; color:black}
+.classOfElementToColor:hover {
+    background-color: red;
+    color: black
+}
 
 .select-css option[selected] {
     background-color: orange;
 }
 
-.bg-info-nuevo{
+.bg-info-nuevo {
     /*animation: blinker 1s linear infinite;*/
-    background-color: rgb(203, 212, 248);
+    background-color: #33b5e5;;
 }
 
 @keyframes blinker {
     50% {
-        background-color: rgb(215, 222, 245);
+        background-color: #33b5e5;;
     }
-    100%{
-        background-color: rgba(215, 222, 245, 0);
+    100% {
+        background-color: #33b5e5;;
     }
 }

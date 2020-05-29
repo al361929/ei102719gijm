@@ -23,7 +23,7 @@
         </thead>
         <tbody>
         <tr th:each="produce: ${produces}"
-            th:class="${#strings.equals(nuevo,produce.idRequest)}?'bg-info text-white'">
+            th:class="${#strings.equals(nuevo,produce.idRequest)}?'bg-info-nuevo'">
             <td th:text="${produce.idInvoice}"></td>
             <td th:text="${produce.idRequest}"></td>
         </tr>

@@ -29,7 +29,7 @@
         </thead>
         <tbody>
         <tr th:each="socialWorker: ${socialWorkers}"
-            th:class="${#strings.equals(nuevo,socialWorker.dni)}?'bg-info text-white'">
+            th:class="${#strings.equals(nuevo,socialWorker.dni)}?'bg-info-nuevo'">
             <td th:text="${socialWorker.dni}"></td>
             <td th:text="${socialWorker.nombre}"></td>
             <td th:text="${socialWorker.apellidos}"></td>

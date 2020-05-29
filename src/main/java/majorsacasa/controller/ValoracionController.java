@@ -35,10 +35,12 @@ public class ValoracionController extends ManageAccessController {
     }
 
     @RequestMapping("/serviceValoration")
-    public String listValoracionesServicios(HttpSession session,Model model) {
+    public String listValoracionesServicios(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("listMisValoraciones", valoracionServiceDao.getMisValoraciones(user.getDni()));
-        model.addAttribute("service",valoracionServiceDao.getServices());
+        model.addAttribute("service", valoracionServiceDao.getServices());
+        String newValoration = nuevo.orElse("None");
+        model.addAttribute("nuevo", newValoration);
         return "valoraciones/serviceValoration";
     }
 
@@ -75,7 +77,7 @@ public class ValoracionController extends ManageAccessController {
         }
 
         valoracionServiceDao.addValoracion(valoracion);
-        String id=valoracion.getIdService()+"";
+        int id = valoracion.getIdService();
         return "redirect:serviceValoration?nuevo=" + id;
     }
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -101,9 +103,9 @@ public class ValoracionController extends ManageAccessController {
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracion.setDni(user.getDni());
         valoracionServiceDao.updateValoracion(valoracion);
-        String id=valoracion.getIdService()+"";
+        String id = Integer.toString(valoracion.getIdService());
 
-        return "redirect:serviceValoration?nuevo=" +id;
+        return "redirect:serviceValoration?nuevo=" + id;
     }
     @RequestMapping(value = "/update/{dniVolunteer}", method = RequestMethod.GET)
     public String editValoracion(HttpSession session,Model model, @PathVariable String dniVolunteer) {
