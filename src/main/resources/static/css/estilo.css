@@ -202,6 +202,12 @@ button {
     font-weight: bold;
 }
 
+#estilo3 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: #9a0d0d;
+    font-weight: bold;
+}
+
 .loggeduser {
     display: block;
     text-align: right;
@@ -470,8 +476,25 @@ button {
     font-weight: bold;
 }
 
-.classOfElementToColor:hover {background-color:red; color:black}
+.classOfElementToColor:hover {
+    background-color: red;
+    color: black
+}
 
 .select-css option[selected] {
     background-color: orange;
+}
+
+.bg-info-nuevo {
+    /*animation: blinker 1s linear infinite;*/
+    background-color: rgb(203, 212, 248);
+}
+
+@keyframes blinker {
+    50% {
+        background-color: rgb(215, 222, 245);
+    }
+    100% {
+        background-color: rgba(215, 222, 245, 0);
+    }
 }

@@ -25,7 +25,7 @@
             </thead>
             <tbody>
             <tr th:each="contrato: ${contracts}"
-                th:class="${#strings.equals(nuevo,contrato.idContract)}?'bg-info text-white'">
+                th:class="${#strings.equals(nuevo,contrato.idContract)}?'bg-info-nuevo'">
                 <td th:text="${usuario.get(contrato.nifcompany)}"></td>
                 <td th:text="${contrato.firma}"></td>
                 <td th:text="${contrato.cantidad}"></td>

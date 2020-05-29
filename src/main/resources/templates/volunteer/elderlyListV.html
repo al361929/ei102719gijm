@@ -30,7 +30,7 @@
             </thead>
             <tbody>
             <tr th:each="elderly: ${elderlyList}"
-                th:class="${#strings.equals(nuevo,elderly.dni)}?'bg-info text-white'">
+                th:class="${#strings.equals(nuevo,elderly.dni)}?'bg-info-nuevo'">
                 <td th:text="${elderly.nombre}"></td>
                 <td th:text="${elderly.apellidos}"></td>
                 <td th:text="${elderly.direccion}"></td>
