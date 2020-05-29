@@ -81,12 +81,12 @@ label {
 desplegable de valoraciones*/
 
 .dropbtn {
-  background-color: #181717;
+    background-color: transparent;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
 
-  color: white;
-  padding: 16px;
-  border: none;
-  cursor: pointer;
 }
 
 .dropdown {
@@ -104,20 +104,23 @@ desplegable de valoraciones*/
 }
 
 .dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {
+    background-color: #cecece
+}
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+    background-color: #4b4b4c;
 }
 /* */
 
