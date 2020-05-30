@@ -11,26 +11,26 @@
 <body>
 <div layout:fragment="content">
 
-<div class="table-responsive">
-    <h1>Produces</h1>
+    <div class="table-responsive">
+        <h1>Produces</h1>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Número de factura</th>
-            <th>Número de solicitud</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="produce: ${produces}"
-            th:class="${#strings.equals(nuevo,produce.idRequest)}?'bg-info-nuevo'">
-            <td th:text="${produce.idInvoice}"></td>
-            <td th:text="${produce.idRequest}"></td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Número de factura</th>
+                <th>Número de solicitud</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="produce: ${produces}"
+                th:class="${#strings.equals(nuevo,produce.idRequest)}?'bg-info-nuevo'">
+                <td th:text="${produce.idInvoice}"></td>
+                <td th:text="${produce.idRequest}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-</div>
 </div>
 
 </body>

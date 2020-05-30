@@ -10,51 +10,51 @@
 </head>
 <body>
 <div layout:fragment="content">
-<div class="table-responsive">
-    <h1>Trabajadores Sociales</h1>
+    <div class="table-responsive">
+        <h1>Trabajadores Sociales</h1>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>DNI</th>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Email</th>
-            <th>Telefono</th>
-            <th>Usuario</th>
-            <th>Contraseña</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="socialWorker: ${socialWorkers}"
-            th:class="${#strings.equals(nuevo,socialWorker.dni)}?'bg-info-nuevo'">
-            <td th:text="${socialWorker.dni}"></td>
-            <td th:text="${socialWorker.nombre}"></td>
-            <td th:text="${socialWorker.apellidos}"></td>
-            <td th:text="${socialWorker.email}"></td>
-            <td th:text="${socialWorker.telefono}"></td>
-            <td th:text="${socialWorker.usuario}"></td>
-            <td th:text="${socialWorker.contrasena}"></td>
-            <td>
-                <a th:href="@{/socialWorker/update/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-secondary"
-                   role="button"
-                   aria-pressed="true">Editar</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Usuario</th>
+                <th>Contraseña</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="socialWorker: ${socialWorkers}"
+                th:class="${#strings.equals(nuevo,socialWorker.dni)}?'bg-info-nuevo'">
+                <td th:text="${socialWorker.dni}"></td>
+                <td th:text="${socialWorker.nombre}"></td>
+                <td th:text="${socialWorker.apellidos}"></td>
+                <td th:text="${socialWorker.email}"></td>
+                <td th:text="${socialWorker.telefono}"></td>
+                <td th:text="${socialWorker.usuario}"></td>
+                <td th:text="${socialWorker.contrasena}"></td>
+                <td>
+                    <a th:href="@{/socialWorker/update/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-secondary"
+                       role="button"
+                       aria-pressed="true">Editar</a>
 
-            </td>
-            <td>
-                <a th:href="@{/socialWorker/delete/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-danger"
-                   role="button"
-                   aria-pressed="true">Borrar</a>
+                </td>
+                <td>
+                    <a th:href="@{/socialWorker/delete/{dni}(dni=${socialWorker.dni})}" class="btn btn btn-danger"
+                       role="button"
+                       aria-pressed="true">Borrar</a>
 
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Trabajador Social</a>
     <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a></td>
-</div>
 </div>
 </body>
 </html>

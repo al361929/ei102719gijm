@@ -4,6 +4,7 @@ body {
     font-family: 'IBM Plex Sans', sans-serif;
     color: #181717;
 }
+
 h1 {
     /* background-color: #CB3E3E;*/
     font-family: 'IBM Plex Sans', sans-serif;
@@ -77,6 +78,7 @@ label {
     letter-spacing: .1rem;
     color: white;
 }
+
 /* Desplegable de valoraciones */
 
 .dropbtn {
@@ -89,17 +91,17 @@ label {
 }
 
 .dropdown {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 .dropdown-content a {
@@ -115,12 +117,13 @@ label {
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+    display: block;
 }
 
 .dropdown:hover .dropbtn {
     background-color: #4b4b4c;
 }
+
 /* */
 
 
@@ -209,12 +212,15 @@ button {
     background-position: right .7em top 50%, 0 0;
     background-size: .65em auto, 100%;
 }
+
 .select-css::-ms-expand {
     display: none;
 }
+
 .select-css:hover {
     border-color: #888;
 }
+
 .select-css:focus {
     border-color: #aaa;
     box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
@@ -222,8 +228,9 @@ button {
     color: #222;
     outline: none;
 }
+
 .select-css option {
-    font-weight:normal;
+    font-weight: normal;
 }
 
 .select-css option[selected] {

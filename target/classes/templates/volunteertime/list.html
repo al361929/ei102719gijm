@@ -6,56 +6,57 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
-<div class="table-responsive">
-    <h1>Horarios</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID VolunteerTime</th>
-            <th>DNI Voluntario</th>
-            <th>DNI Persona Mayor</th>
-            <th>Dia</th>
-            <th>Mes</th>
-            <th>Hora Inicio</th>
-            <th>Hora Fin</th>
-            <th>Disponibilidad</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="voluntario: ${volunteerstime}"
-            th:class="${#strings.equals(nuevo,voluntario.idVolunteerTime)}?'bg-info-nuevo'">
-            <td th:text="${voluntario.idVolunteerTime}"></td>
-            <td th:text="${voluntario.dniVolunteer}"></td>
-            <td th:text="${voluntario.dniElderly}"></td>
-            <td th:text="${voluntario.dia}"></td>
-            <td th:text="${voluntario.mes}"></td>
-            <td th:text="${voluntario.startTime}"></td>
-            <td th:text="${voluntario.endTime}"></td>
-            <td th:text="${voluntario.availability}"></td>
-            <td>
-                <a th:href="@{/volunteertime/update/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
-                   class="btn btn btn-secondary"
-                   role="button"
-                   aria-pressed="true">Editar</a>
-            </td>
-            <td>
-                <a th:href="@{/volunteertime/delete/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
-                   class="btn btn btn-danger"
-                   role="button"
-                   aria-pressed="true">Borrar</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <h1>Horarios</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID VolunteerTime</th>
+                <th>DNI Voluntario</th>
+                <th>DNI Persona Mayor</th>
+                <th>Dia</th>
+                <th>Mes</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Disponibilidad</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="voluntario: ${volunteerstime}"
+                th:class="${#strings.equals(nuevo,voluntario.idVolunteerTime)}?'bg-info-nuevo'">
+                <td th:text="${voluntario.idVolunteerTime}"></td>
+                <td th:text="${voluntario.dniVolunteer}"></td>
+                <td th:text="${voluntario.dniElderly}"></td>
+                <td th:text="${voluntario.dia}"></td>
+                <td th:text="${voluntario.mes}"></td>
+                <td th:text="${voluntario.startTime}"></td>
+                <td th:text="${voluntario.endTime}"></td>
+                <td th:text="${voluntario.availability}"></td>
+                <td>
+                    <a th:href="@{/volunteertime/update/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
+                       class="btn btn btn-secondary"
+                       role="button"
+                       aria-pressed="true">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{/volunteertime/delete/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
+                       class="btn btn btn-danger"
+                       role="button"
+                       aria-pressed="true">Borrar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <a href="add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir horario</a>
     <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a></td>
-</div>
 </div>
 
 </body>

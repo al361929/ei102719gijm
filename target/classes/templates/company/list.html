@@ -11,71 +11,73 @@
 <body>
 <div layout:fragment="content">
 
-<div class="table-responsive">
-    <h1>Empresas</h1>
+    <div class="table-responsive">
+        <h1>Empresas</h1>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>CIF</th>
-            <th>Nombre Empresa</th>
-            <th>Persona de Contacto</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-            <th>Fecha Alta</th>
-            <th>Servicio</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="empresa: ${companies}"
-            th:class="${#strings.equals(nuevo,empresa.nif)}?'bg-info-nuevo'">
-            <td th:text="${empresa.nif}"></td>
-            <td th:text="${empresa.nombre}"></td>
-            <td th:text="${empresa.nombreResponsable}"></td>
-            <td th:text="${empresa.direccion}"></td>
-            <td th:text="${empresa.numeroTelf}"></td>
-            <td th:text="${#temporals.format(empresa.fechaAlta,'dd/MM/yyyy')}"></td>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>CIF</th>
+                <th>Nombre Empresa</th>
+                <th>Persona de Contacto</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Fecha Alta</th>
+                <th>Servicio</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="empresa: ${companies}"
+                th:class="${#strings.equals(nuevo,empresa.nif)}?'bg-info-nuevo'">
+                <td th:text="${empresa.nif}"></td>
+                <td th:text="${empresa.nombre}"></td>
+                <td th:text="${empresa.nombreResponsable}"></td>
+                <td th:text="${empresa.direccion}"></td>
+                <td th:text="${empresa.numeroTelf}"></td>
+                <td th:text="${#temporals.format(empresa.fechaAlta,'dd/MM/yyyy')}"></td>
 
-            <!--  <td th:text="${empresa.nombreUsuario}"></td>
-              <td th:text="${empresa.password}"></td>
-            <td th:text="${empresa.cuentaBancaria}"></td>-->
-            <td th:text="${mapa.get(empresa.nif)}"></td> <!-- Mapa de los servicios-->
+                <!--  <td th:text="${empresa.nombreUsuario}"></td>
+                  <td th:text="${empresa.password}"></td>
+                <td th:text="${empresa.cuentaBancaria}"></td>-->
+                <td th:text="${mapa.get(empresa.nif)}"></td> <!-- Mapa de los servicios-->
 
-            <td>
-                <a th:href="@{/company/update/{nif}(nif=${empresa.nif})}" class="btn btn btn-secondary" role="button"
-                   aria-pressed="true">Editar</a>
-
-            </td>
-            <td>
-                <a th:href="@{/company/delete/{nif}(nif=${empresa.nif})}" class="btn btn btn-danger" role="button"
-                   aria-pressed="true">Borrar</a>
-
-            </td>
-            <td>
-                <div th:if="${mapa.get(empresa.nif)!=NULL}">
-
-                <a th:href="@{/company/contractListCompany/{nif}(nif=${empresa.nif})}" class="btn btn btn-default"
-                   role="button"
-                   aria-pressed="true">Contratos</a>
-                </div>
-
-
-                <div th:if="${mapa.get(empresa.nif)==NULL}">
-                    <a th:href="@{../offer/addService/{nif}(nif=${empresa.nif})}" class="btn btn btn-warning"
+                <td>
+                    <a th:href="@{/company/update/{nif}(nif=${empresa.nif})}" class="btn btn btn-secondary"
                        role="button"
-                       aria-pressed="true">Añadir Servicio</a>
-                </div>
-            </td>
+                       aria-pressed="true">Editar</a>
 
-        </tr>
-        </tbody>
-    </table>
+                </td>
+                <td>
+                    <a th:href="@{/company/delete/{nif}(nif=${empresa.nif})}" class="btn btn btn-danger" role="button"
+                       aria-pressed="true">Borrar</a>
+
+                </td>
+                <td>
+                    <div th:if="${mapa.get(empresa.nif)!=NULL}">
+
+                        <a th:href="@{/company/contractListCompany/{nif}(nif=${empresa.nif})}"
+                           class="btn btn btn-default"
+                           role="button"
+                           aria-pressed="true">Contratos</a>
+                    </div>
+
+
+                    <div th:if="${mapa.get(empresa.nif)==NULL}">
+                        <a th:href="@{../offer/addService/{nif}(nif=${empresa.nif})}" class="btn btn btn-warning"
+                           role="button"
+                           aria-pressed="true">Añadir Servicio</a>
+                    </div>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <a href="addRegister" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Empresa</a>
     <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-</div>
 </div>
 
 </body>
