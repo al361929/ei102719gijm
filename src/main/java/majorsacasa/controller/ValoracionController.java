@@ -55,20 +55,15 @@ public class ValoracionController extends ManageAccessController {
 
     @RequestMapping(value = "/addValorationService", method = RequestMethod.POST)
     public String processAddSubmitValoracionService(HttpSession session,Model model,@ModelAttribute("valoracionService") ValoracionService valoracion, BindingResult bindingResult) {
-        System.out.println("Añadiendo");
        // if (bindingResult.hasErrors())
          //   return "valoraciones/addValoracionService";
-        System.out.println("2");
 
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracion.setDni(user.getDni());
-        System.out.println("3");
-        System.out.println("INFO:"+valoracion.toString());
+
 
         Boolean checkValoracion = valoracionServiceDao.checkValoracion (user.getDni(),valoracion.getIdService());
-        System.out.println("4");
 
-        System.out.println("estado: "+checkValoracion+ "INFO:"+valoracion.toString());
         if (!checkValoracion) {
 
             bindingResult.rejectValue("idService", "idService", "Ya ha valorado  este servicio");
@@ -103,8 +98,7 @@ public class ValoracionController extends ManageAccessController {
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracion.setDni(user.getDni());
         valoracionServiceDao.updateValoracion(valoracion);
-        String id = Integer.toString(valoracion.getIdService());
-
+        int id = valoracion.getIdService();
         return "redirect:serviceValoration?nuevo=" + id;
     }
     @RequestMapping(value = "/update/{dniVolunteer}", method = RequestMethod.GET)
