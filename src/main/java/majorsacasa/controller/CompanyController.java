@@ -37,7 +37,7 @@ public class CompanyController extends ManageAccessController {
         model.addAttribute("companies", companyDao.getCompanies());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-        model.addAttribute("mapa",serviceDao.getMapServiceCompany());
+        model.addAttribute("mapa", serviceDao.getMapServiceCompany());
         return "company/list";
     }
 
@@ -151,14 +151,14 @@ public class CompanyController extends ManageAccessController {
 
     @RequestMapping(value = "/perfil")
     public String getPerfil(HttpSession session, Model model) {
-        String destino= sesionAbierta(session,model,"company/perfil");
-        if (destino!=null) return destino;
+        String destino = sesionAbierta(session, model, "company/perfil");
+        if (destino != null) return destino;
 
         UserDetails user = (UserDetails) session.getAttribute("user");
-        if (user.getTipo()!="Company") return "error/sinPermiso";
+        if (user.getTipo() != "Company") return "error/sinPermiso";
 
         model.addAttribute("company", companyDao.getCompany(user.getDni()));
-        return gestionarAcceso(session,model,"Company","company/perfil");
+        return gestionarAcceso(session, model, "Company", "company/perfil");
 
         //return "socialWorker/elderlyListSW";
     }
@@ -172,28 +172,15 @@ public class CompanyController extends ManageAccessController {
         return "redirect:/company/contractList";
     }
 
-   /* @RequestMapping(value = "/invoiceListComapny")
-    public String getInvoiceCompanyList(HttpSession session, Model model) {
-        UserDetails user = (UserDetails) session.getAttribute("user");
-        model.addAttribute("invoiceCompanyList", companyDao.getInvoiceCompany(user.getDni()));
-        return gestionarAcceso(session, model, "Company", "company/invoiceListCompany");
-    }
-
-    @RequestMapping(value = "/serviceList")
-    public String getServiceCompanyList(HttpSession session, Model model) {
-        UserDetails user = (UserDetails) session.getAttribute("user");
-        model.addAttribute("serviceCompanyList", companyDao.getServiceList(user.getDni()));
-        return gestionarAcceso(session, model, "Company", "company/serviceList");
-    }
-*/
     @RequestMapping(value = "/contractList")
     public String getContractList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("contracts", companyDao.getContractsList(user.getDni()));
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("usuario",u);
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("usuario", u);
         return gestionarAcceso(session, model, "Company", "company/contractList");
     }
+
     @RequestMapping(value = "/contractListCompany/{nif}")
     public String getContractListP(HttpSession session, Model model, @PathVariable String nif) {
         model.addAttribute("contracts", companyDao.getContractsList(nif));

@@ -37,8 +37,9 @@ public class Elderly implements Comparable<Elderly> {
 
     public Elderly() {
     }
+
     public String getDatos() {
-        return nombre+" "+apellidos+" "+dni;
+        return nombre + " " + apellidos + " " + dni;
     }
 
     public String getNombre() {
@@ -152,22 +153,24 @@ public class Elderly implements Comparable<Elderly> {
     public void setSocialWorker(String socialWorker) {
         this.socialWorker = socialWorker;
     }
-    public boolean Alergias(){
-        return  (alergias.length()>1);
+
+    public boolean Alergias() {
+        return (alergias.length() > 1);
     }
-    public void actualizarAlergias(){
-        Collection <String> col = new HashSet<>();
-        String todas="";
-        if (getNuevasAlergias()!=null){
-             todas=getAlergias()+","+getNuevasAlergias();
-        }else {
-             todas = getAlergias();
+
+    public void actualizarAlergias() {
+        Collection<String> col = new HashSet<>();
+        String todas = "";
+        if (getNuevasAlergias() != null) {
+            todas = getAlergias() + "," + getNuevasAlergias();
+        } else {
+            todas = getAlergias();
         }
-        String[] alergias=todas.split(",");
-        for (String a: alergias){
+        String[] alergias = todas.split(",");
+        for (String a : alergias) {
             col.add(a);
         }
-        todas="";
+        todas = "";
         Object[] ab = col.toArray();
         todas = (String) ab[0];
         for (int i = 1; i < ab.length; i++) {

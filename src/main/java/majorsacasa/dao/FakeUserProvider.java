@@ -32,7 +32,7 @@ public class FakeUserProvider implements UserDao {
 
     @Override
     public UserDetails loadUserByUsername(String username, String password) {
-        if (username.equals("Admin") && password.equals("Admin")){
+        if (username.equals("Admin") && password.equals("Admin")) {
             UserDetails user = new UserDetails();
             user.setUsername(username);
             user.setPassword(password);
@@ -41,7 +41,7 @@ public class FakeUserProvider implements UserDao {
             return user;
 
         }
-        if (username.equals("casManager") && password.equals("casManager")){
+        if (username.equals("casManager") && password.equals("casManager")) {
             UserDetails user = new UserDetails();
             user.setUsername(username);
             user.setPassword(password);
@@ -50,7 +50,7 @@ public class FakeUserProvider implements UserDao {
             return user;
 
         }
-        if (username.equals("casCommitee") && password.equals("casCommitee")){
+        if (username.equals("casCommitee") && password.equals("casCommitee")) {
             UserDetails user = new UserDetails();
             user.setUsername(username);
             user.setPassword(password);
@@ -59,7 +59,7 @@ public class FakeUserProvider implements UserDao {
             return user;
 
         }
-        if (username.equals("casVolunteer") && password.equals("casVolunteer")){
+        if (username.equals("casVolunteer") && password.equals("casVolunteer")) {
             UserDetails user = new UserDetails();
             user.setUsername(username);
             user.setPassword(password);
@@ -69,16 +69,19 @@ public class FakeUserProvider implements UserDao {
 
         }
         String tipo = "Volunteer";
-        int code=1;
+        int code = 1;
         List userList = jdbcTemplate.query("SELECT user_name, password,name, dnivolunteer FROM Volunteer WHERE user_name=?", new UserRowMapper(), username);
         if (userList.isEmpty()) {
-            tipo="ElderlyPeople"; code=2;
+            tipo = "ElderlyPeople";
+            code = 2;
             userList = jdbcTemplate.query("SELECT user_name, password, dni,name FROM ElderlyPeople WHERE user_name=?", new UserRowMapper(), username);
             if (userList.isEmpty()) {
-                tipo = "SocialWorker"; code=3;
+                tipo = "SocialWorker";
+                code = 3;
                 userList = jdbcTemplate.query("SELECT user_name, password,dnisocialworker,name FROM SocialWorker WHERE user_name=?", new UserRowMapper(), username);
                 if (userList.isEmpty()) {
-                    tipo="Company"; code= 4;
+                    tipo = "Company";
+                    code = 4;
                     userList = jdbcTemplate.query("SELECT user_name, password, nif,name FROM Company WHERE user_name=?", new UserRowMapper(), username);
                     if (userList.isEmpty()) {
                         return null; // Usuari no trobat
@@ -89,7 +92,6 @@ public class FakeUserProvider implements UserDao {
         UserDetails user = (UserDetails) userList.get(0);
         user.setTipo(tipo);
         user.setCode(code);
-        //System.out.println(user.toString());
 
         // Contrasenya
         if (user.getPassword().equals(password)) {

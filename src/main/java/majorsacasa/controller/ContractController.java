@@ -71,17 +71,6 @@ public class ContractController extends ManageAccessController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
-       /* Boolean checkCompany = companyDao.checkCompany(contract.getNifcompany());
-        if (!checkCompany) {
-            bindingResult.rejectValue("nifcompany", "badnif", "No existe la empresa");
-            return "contract/add";
-        }
-        Boolean checkElderly = elderlyDao.checkElderly(contract.getDnielderly());
-        if (!checkElderly) {
-            bindingResult.rejectValue("dnielderly", "baddni", "No existe la persona mayor");
-            return "contract/add";
-        }*/
-        //System.out.println(contract.toString());
         contractDao.addContract(contract);
         int id = contractDao.getUltimoContrato();
 
@@ -110,7 +99,7 @@ public class ContractController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String singleFileUpload(HttpSession session,@RequestParam("file") MultipartFile file, @ModelAttribute("contrato") Contract contract) {
+    public String singleFileUpload(HttpSession session, @RequestParam("file") MultipartFile file, @ModelAttribute("contrato") Contract contract) {
         if (file.isEmpty()) {
             return "contract/upload";
         }
@@ -149,5 +138,4 @@ public class ContractController extends ManageAccessController {
         model.addAttribute("elderlyListC", contractDao.getElderlyList(user.getDni()));
         return gestionarAcceso(session, model, "ElderlyPeople", "contract/contractElderlyList");
     }
-
 }

@@ -6,7 +6,8 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
@@ -42,7 +43,7 @@
 
                        <td><input type="text" class="form-control" th:field="*{alergias}"/></td>-->
                     <td>
-                        <b>Añadir Alergias: </b>            </td>
+                        <b>Añadir Alergias: </b></td>
 
                     <td><select th:field="*{nuevasAlergias}" class="select-css" multiple>
                         <option value="" selected disabled>--- Selecciona las Alergias ---</option>
@@ -50,8 +51,6 @@
                                 th:utext="${allergie}"></option>
                     </select>
                     </td>
-
-
 
 
                 </tr>

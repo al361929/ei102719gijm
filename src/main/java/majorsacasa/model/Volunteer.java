@@ -122,9 +122,11 @@ public class Volunteer {
     public void setEmail(String email) {
         this.email = email;
     }
-    public boolean getAceptado(){
+
+    public boolean getAceptado() {
         return estado.equals("Aceptado");
     }
+
     @Override
     public String toString() {
         return "Volunteer{" +

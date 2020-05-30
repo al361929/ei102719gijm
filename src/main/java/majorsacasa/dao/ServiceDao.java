@@ -54,6 +54,7 @@ public class ServiceDao {
             return new ArrayList<Service>();
         }
     }
+
     public List<Service> getServiceList(String nif) {
         try {
             return jdbcTemplate.query("SELECT s.* FROM service AS s JOIN offers AS o USING(idservice) WHERE nif=?", new ServiceRowMapper(), nif);
@@ -61,18 +62,20 @@ public class ServiceDao {
             return new ArrayList<Service>();
         }
     }
-    public HashMap<String,String> getMapServiceCompany(){
+
+    public HashMap<String, String> getMapServiceCompany() {
         List<String> key = jdbcTemplate.queryForList("SELECT o.nif FROM service AS s JOIN offers AS o USING(idservice);", String.class);
         List<String> value = jdbcTemplate.queryForList("SELECT s.description FROM service AS s JOIN offers AS o USING(idservice);", String.class);
-        HashMap <String,String> servicio=new HashMap<>();
+        HashMap<String, String> servicio = new HashMap<>();
 
-        for (int i=0; i<key.size();i++){
-            servicio.put(key.get(i),value.get(i));
+        for (int i = 0; i < key.size(); i++) {
+            servicio.put(key.get(i), value.get(i));
         }
         return servicio;
 
     }
-    public int ultimoIdService(){
+
+    public int ultimoIdService() {
         List<String> ids = jdbcTemplate.queryForList("select Max(idService)  from service;", String.class);
         int id = Integer.parseInt(ids.get(0));
         return id;

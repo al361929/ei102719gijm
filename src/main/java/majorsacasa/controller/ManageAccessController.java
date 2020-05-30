@@ -17,7 +17,8 @@ public class ManageAccessController {
         }
         return url;
     }
-    public String sesionAbierta(HttpSession session, Model model, String url){
+
+    public String sesionAbierta(HttpSession session, Model model, String url) {
         if (session.getAttribute("user") == null) {
             model.addAttribute("user", new UserDetails());
             session.setAttribute("nextUrl", url);

@@ -16,9 +16,10 @@ public class TypeServiceController {
     private TypeServiceDao typeserviceDao;
 
     @Autowired
-    public void setServiceDao( TypeServiceDao typeserviceDao) {
+    public void setServiceDao(TypeServiceDao typeserviceDao) {
         this.typeserviceDao = typeserviceDao;
     }
+
     @RequestMapping(value = "/add")
     public String addService(Model model) {
         model.addAttribute("TypeService", new TypeService());

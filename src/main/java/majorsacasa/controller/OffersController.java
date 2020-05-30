@@ -53,15 +53,15 @@ public class OffersController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addService", method = RequestMethod.POST)
-    public String processAddSubmit(HttpSession session,Model model, @ModelAttribute("offer") Offer offer, BindingResult bindingResult) {
+    public String processAddSubmit(HttpSession session, Model model, @ModelAttribute("offer") Offer offer, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "offer/addService";
         Boolean checkCompany = offersDao.checkService(offer.getNif());
 
         if (!checkCompany) {
-            List<Service>servicios=serviceDao.getServiceList(offer.getNif());
+            List<Service> servicios = serviceDao.getServiceList(offer.getNif());
             String name = servicios.get(0).getDescription();
-            bindingResult.rejectValue("idService", "badnif", " Ya estas ofreciendo: "+name);
+            bindingResult.rejectValue("idService", "badnif", " Ya estas ofreciendo: " + name);
 
             servicios = serviceDao.getServices();
             model.addAttribute("servicios", servicios);
@@ -69,20 +69,10 @@ public class OffersController extends ManageAccessController {
 
             return "offer/addService";
         }
-        /*Contract contract = new Contract();
-        contract.setFirma(offer.getNif());
-        contract.setReleaseDate(LocalDate.now());
-        contract.setReleaseDate(LocalDate.now().plusMonths(12));
-        contract.setCantidad(1);
-        contract.setDescripcion(serviceDao.getService(offer.getIdService()).getDescription());
-        contract.setNifcompany(offer.getNif());
-        contract.setContractPDF(false);
-        contractDao.addContract(contract);
 
-         */
         offersDao.addOffers(offer);
-       // return "redirect:list?nuevo=" + offers.getIdService();
-        return gestionarAcceso(session,model,"Admin","redirect:../company/list");
+
+        return gestionarAcceso(session, model, "Admin", "redirect:../company/list");
 
     }
 

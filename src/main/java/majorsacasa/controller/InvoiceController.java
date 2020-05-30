@@ -110,7 +110,6 @@ public class InvoiceController extends ManageAccessController {
     }
 
 
-
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("invoice") Invoice invoice) {
         if (file.isEmpty()) {
@@ -148,7 +147,7 @@ public class InvoiceController extends ManageAccessController {
         model.addAttribute("invoices", invoiceDao.getInvoiceElderly(user.getDni()));
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-        model.addAttribute("info",invoiceDao.getDescriptionInvoice());
+        model.addAttribute("info", invoiceDao.getDescriptionInvoice());
         return gestionarAcceso(session, model, "ElderlyPeople", "invoice/invoiceListElderly");
     }
 

@@ -6,59 +6,60 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
-<div class="table-responsive">
-    <h1>Solicitudes</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Servicio</th>
-            <th>Persona Mayor</th>
-            <th>Empresa</th>
-            <th>Estado</th>
-            <th>Fecha de solicitud</th>
-            <th>Fecha de aceptación</th>
-            <th>Fecha de rechazo</th>
-            <th>Comentarios</th>
-            <th>Dias</th>
+    <div class="table-responsive">
+        <h1>Solicitudes</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Servicio</th>
+                <th>Persona Mayor</th>
+                <th>Empresa</th>
+                <th>Estado</th>
+                <th>Fecha de solicitud</th>
+                <th>Fecha de aceptación</th>
+                <th>Fecha de rechazo</th>
+                <th>Comentarios</th>
+                <th>Dias</th>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="request: ${requests}"
-            th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info-nuevo'">
-            <td th:text="${servicios.get(request.idService)}"></td>
-            <td th:text="${usuario.get(request.dni)}"></td>
-            <td th:text="${usuario.get(request.nif)}"></td>
-            <td th:text="${request.state}"></td>
-            <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
-            <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
-            <td th:text="${#temporals.format(request.dateReject,'dd/MM/yyyy')}"></td>
-            <td th:text="${request.comments}"></td>
-            <td th:text="${request.dias}"></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="request: ${requests}"
+                th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info-nuevo'">
+                <td th:text="${servicios.get(request.idService)}"></td>
+                <td th:text="${usuario.get(request.dni)}"></td>
+                <td th:text="${usuario.get(request.nif)}"></td>
+                <td th:text="${request.state}"></td>
+                <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(request.dateReject,'dd/MM/yyyy')}"></td>
+                <td th:text="${request.comments}"></td>
+                <td th:text="${request.dias}"></td>
 
-            <div class="loggeduser" th:object="${session}">
+                <div class="loggeduser" th:object="${session}">
 
-            <div th:if="*{user.code == 7}">
-                <td>
-                    <a th:unless="${request.state == 'Rechazada'}"
-                       th:href="@{/request/update/{id}(id=${request.idRequest})}"
-                       class="btn btn btn-secondary" role="button">Editar</a>
-                </td>
-            <td>
-                <a th:href="@{/request/delete/{id}(id=${request.idRequest})}"
-                   class="btn btn btn-danger" role="button">Borrar</a>
-            </td>
-            </div>
-            </div>
-        </tr>
-        </tbody>
-    </table>
-   <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-</div>
+                    <div th:if="*{user.code == 7}">
+                        <td>
+                            <a th:unless="${request.state == 'Rechazada'}"
+                               th:href="@{/request/update/{id}(id=${request.idRequest})}"
+                               class="btn btn btn-secondary" role="button">Editar</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/request/delete/{id}(id=${request.idRequest})}"
+                               class="btn btn btn-danger" role="button">Borrar</a>
+                        </td>
+                    </div>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+        <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
+    </div>
 </div>
 
 </body>

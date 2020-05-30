@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CompanyDao extends GeneralDao{
+public class CompanyDao extends GeneralDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -83,28 +83,27 @@ public class CompanyDao extends GeneralDao{
         }
     }
 
-    public Boolean checkDNI(String dni){
-        List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where dni=?", String.class,dni);
+    public Boolean checkDNI(String dni) {
+        List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where dni=?", String.class, dni);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT dnivolunteer FROM volunteer where dnivolunteer=?", String.class,dni);
+        dnis = jdbcTemplate.queryForList("SELECT dnivolunteer FROM volunteer where dnivolunteer=?", String.class, dni);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT dnisocialworker FROM socialworker where dnisocialworker=?", String.class,dni);
+        dnis = jdbcTemplate.queryForList("SELECT dnisocialworker FROM socialworker where dnisocialworker=?", String.class, dni);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT nif FROM company where nif=?", String.class,dni);
-        if (!dnis.isEmpty()) return false;
-        return true;
+        dnis = jdbcTemplate.queryForList("SELECT nif FROM company where nif=?", String.class, dni);
+        return dnis.isEmpty();
 
     }
-    public Boolean checkUser(String user){
-        List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where user_name=?", String.class,user);
+
+    public Boolean checkUser(String user) {
+        List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where user_name=?", String.class, user);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT dnivolunteer FROM volunteer where user_name=?", String.class,user);
+        dnis = jdbcTemplate.queryForList("SELECT dnivolunteer FROM volunteer where user_name=?", String.class, user);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT dnisocialworker FROM socialworker where user_name=?", String.class,user);
+        dnis = jdbcTemplate.queryForList("SELECT dnisocialworker FROM socialworker where user_name=?", String.class, user);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT nif FROM company where user_name=?", String.class,user);
-        if (!dnis.isEmpty()) return false;
-        return true;
+        dnis = jdbcTemplate.queryForList("SELECT nif FROM company where user_name=?", String.class, user);
+        return dnis.isEmpty();
 
     }
 

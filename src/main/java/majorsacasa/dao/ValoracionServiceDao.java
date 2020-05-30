@@ -38,7 +38,7 @@ public class ValoracionServiceDao {
 
     //añadir
     public void addValoracion(ValoracionService valoracionService) {
-        jdbcTemplate.update("INSERT INTO ServiceValoration VALUES(?,?,?,?,?)", valoracionService.getDni(),valoracionService.getIdService(),  valoracionService.getComments(), valoracionService.getValoration(), LocalDate.now());
+        jdbcTemplate.update("INSERT INTO ServiceValoration VALUES(?,?,?,?,?)", valoracionService.getDni(), valoracionService.getIdService(), valoracionService.getComments(), valoracionService.getValoration(), LocalDate.now());
     }
 
     //eliminar
@@ -88,8 +88,6 @@ public class ValoracionServiceDao {
             promedio.put(key.get(i), Float.parseFloat(value.get(i)));
 
         }
-        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer","select avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
-        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer, avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
 
         return promedio;
     }
@@ -101,14 +99,10 @@ public class ValoracionServiceDao {
 
 
         HashMap<Integer, String> info = new HashMap<>();
-        for (int i=0; i<id.size();i++) {
-            int cod= Integer.parseInt(id.get(i));
+        for (int i = 0; i < id.size(); i++) {
+            int cod = Integer.parseInt(id.get(i));
             info.put(cod, descripcion.get(i));
         }
-
-
-        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer","select avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
-        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer, avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
 
         return info;
     }

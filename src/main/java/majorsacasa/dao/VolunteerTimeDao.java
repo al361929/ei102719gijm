@@ -48,6 +48,7 @@ public class VolunteerTimeDao {
     public void deleteVolunteerTime(Integer idVolunteerTime) {
         jdbcTemplate.update("DELETE FROM VolunteerTime WHERE idVolunteerTime=?", idVolunteerTime);
     }
+
     public List<VolunteerTime> getScheduleList(String dnivolunteer) {
         try {
             return jdbcTemplate.query("Select * From volunteertime Where dniVolunteer = ? AND availability = 'True' ", new VolunteerTimeRowMapper(), dnivolunteer);
@@ -67,7 +68,8 @@ public class VolunteerTimeDao {
     public void solicitar(Integer id, String dni) {
         jdbcTemplate.update("UPDATE VolunteerTime SET  dni=? WHERE idVolunteerTime=?", dni, id);
     }
-    public int ultimoIdService(){
+
+    public int ultimoIdService() {
         List<String> ids = jdbcTemplate.queryForList("select MAX(idVolunteerTime) from VolunteerTime;", String.class);
         int id = Integer.parseInt(ids.get(0));
         return id;

@@ -44,7 +44,7 @@ public class ServiceController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("service") Service service,Model model, BindingResult bindingResult) {
+    public String processAddSubmit(@ModelAttribute("service") Service service, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("typosServicios", typeserviceDao.getTypeServices());
 
@@ -65,7 +65,7 @@ public class ServiceController extends ManageAccessController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("service") Service service,
-                                      BindingResult bindingResult,Model model) {
+                                      BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("typosServicios", typeserviceDao.getTypeServices());
 
@@ -87,6 +87,7 @@ public class ServiceController extends ManageAccessController {
         model.addAttribute("elderlyList", serviceDao.getElderlyList(user.getDni()));
         return gestionarAcceso(session, model, "ElderlyPeople", "/service/elderlyList");
     }
+
     @RequestMapping(value = "/serviceList")
     public String getServiceCompanyList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");

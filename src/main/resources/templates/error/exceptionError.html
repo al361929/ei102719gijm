@@ -8,20 +8,22 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
     <div class="container">
-    <div class="alert" th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'alert-danger' : 'alert-info'">
-        <h5 th:text="${message}"></h5>
-        <!--<p>Pulsa el botó per anar a l'inici o el botó del navegador per anar cap enrere</p>
+        <div class="alert"
+             th:classappend="${#strings.equals(errorName, 'CPduplicada')} ? 'alert-danger' : 'alert-info'">
+            <h5 th:text="${message}"></h5>
+            <!--<p>Pulsa el botó per anar a l'inici o el botó del navegador per anar cap enrere</p>
+        </div>
+        <div th:align="center">
+            <a href="/" class="btn btn-primary" th:align="left">Inici</a>
+            -->
+        </div>
     </div>
-    <div th:align="center">
-        <a href="/" class="btn btn-primary" th:align="left">Inici</a>
-        -->
-    </div>
-</div>
 </div>
 
 </body>

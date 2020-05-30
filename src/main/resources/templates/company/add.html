@@ -12,61 +12,62 @@
 <div layout:fragment="content">
 
     <div class="container">
-<h2>Añadir Empresa</h2>
-<form action="#" th:action="@{/company/add}"
-      th:object="${company}" method="post">
+        <h2>Añadir Empresa</h2>
+        <form action="#" th:action="@{/company/add}"
+              th:object="${company}" method="post">
 
-    <table>
-        <tr>
-            <td><label>CIF</label></td>
-            <td><input type="text" class="form-control" th:field="*{nif}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Nombre de la empresa</label></td>
-            <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Persona de contacto</label></td>
-            <td><input type="text" class="form-control" th:field="*{nombreResponsable}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Dirección</label></td>
-            <td><input type="text" class="form-control" th:field="*{direccion}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Teléfono</label></td>
-            <td><input type="tel" class="form-control" th:field="*{numeroTelf}" maxlength="9" required/></td>
-        </tr>
-        <tr>
-            <td><label>Usuario</label></td>
-            <td><input type="text" class="form-control" th:field="*{nombreUsuario}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Contraseña</label></td>
-            <td><input type="password" class="form-control" th:field="*{password}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Email</label></td>
-            <td><input type="text" class="form-control" th:field="*{email}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Cuenta bancaria</label></td>
-            <td><input type="text" class="form-control" th:field="*{cuentaBancaria}"
-                       placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="32"
-                       MAXLENGTH="29" required/>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Añadir compañia" class="btn btn btn-success" role="button"
-                                   aria-pressed="true"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-            </td>
+            <table>
+                <tr>
+                    <td><label>CIF</label></td>
+                    <td><input type="text" class="form-control" th:field="*{nif}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Nombre de la empresa</label></td>
+                    <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Persona de contacto</label></td>
+                    <td><input type="text" class="form-control" th:field="*{nombreResponsable}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Dirección</label></td>
+                    <td><input type="text" class="form-control" th:field="*{direccion}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Teléfono</label></td>
+                    <td><input type="tel" class="form-control" th:field="*{numeroTelf}" maxlength="9" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Usuario</label></td>
+                    <td><input type="text" class="form-control" th:field="*{nombreUsuario}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Contraseña</label></td>
+                    <td><input type="password" class="form-control" th:field="*{password}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Email</label></td>
+                    <td><input type="text" class="form-control" th:field="*{email}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Cuenta bancaria</label></td>
+                    <td><input type="text" class="form-control" th:field="*{cuentaBancaria}"
+                               placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="32"
+                               MAXLENGTH="29" required/>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Añadir compañia" class="btn btn btn-success"
+                                           role="button"
+                                           aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
+                    </td>
 
-        </tr>
-    </table>
-</form>
-</div>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 </body>
 </html>

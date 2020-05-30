@@ -23,7 +23,7 @@ public class ElderlyController extends ManageAccessController {
 
     private ElderlyDao elderlyDao;
     private SocialWorkerDao socialWorkerDao;
-    private List<String> alergias = Arrays.asList("Ninguna", "Polen", "Frutos secos", "Gluten", "Pepinillo");
+    private final List<String> alergias = Arrays.asList("Ninguna", "Polen", "Frutos secos", "Gluten", "Pepinillo");
     private MailController mailController;
 
     @Autowired
@@ -37,16 +37,16 @@ public class ElderlyController extends ManageAccessController {
         model.addAttribute("elderlys", elderlyDao.getElderlys());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-        HashMap<String ,String> u=elderlyDao.getUsersInfo();
-        model.addAttribute("usuario",u);
+        HashMap<String, String> u = elderlyDao.getUsersInfo();
+        model.addAttribute("usuario", u);
         return gestionarAcceso(session, model, "SocialWorker", "elderly/list");
     }
 
     @RequestMapping(value = "/add")
-    public String addElderly(HttpSession session,Model model) {
+    public String addElderly(HttpSession session, Model model) {
         model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", new Elderly());
-        return gestionarAcceso(session,model,"SocialWorker","elderly/add");
+        return gestionarAcceso(session, model, "SocialWorker", "elderly/add");
 
     }
 
@@ -54,7 +54,7 @@ public class ElderlyController extends ManageAccessController {
     public String processAddSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/add";
-        if (elderly.getAlergias()==null) elderly.setAlergias("");
+        if (elderly.getAlergias() == null) elderly.setAlergias("");
         elderlyDao.addElderly(elderly);
         mailController = new MailController(elderly.getEmail());
         mailController.addMail("El CAS ha registrado su cuenta correctamente");
@@ -73,8 +73,8 @@ public class ElderlyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addRegister", method = RequestMethod.POST)
-    public String processAddSubmitRegister(HttpSession session, @ModelAttribute("elderly") Elderly elderly,Model model, BindingResult bindingResult) {
-       if (bindingResult.hasErrors())
+    public String processAddSubmitRegister(HttpSession session, @ModelAttribute("elderly") Elderly elderly, Model model, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
             return "elderly/addRegister";
         Boolean check = elderlyDao.checkDNI(elderly.getDni());
 
@@ -85,11 +85,11 @@ public class ElderlyController extends ManageAccessController {
 
             return "elderly/addRegister";
         }
-             Boolean checkUser = elderlyDao.checkUser(elderly.getUsuario());
+        Boolean checkUser = elderlyDao.checkUser(elderly.getUsuario());
 
-      if (!checkUser) {
+        if (!checkUser) {
 
-            bindingResult.rejectValue("usuario", "usuario", elderly.getUsuario()+" ya esta se esta utilizando");
+            bindingResult.rejectValue("usuario", "usuario", elderly.getUsuario() + " ya esta se esta utilizando");
             model.addAttribute("allergies", alergias);
 
             return "elderly/addRegister";
@@ -99,7 +99,7 @@ public class ElderlyController extends ManageAccessController {
         mailController = new MailController(elderly.getEmail());
         mailController.addMail("Se ha creado su cuenta correctamente");
         if (user.getTipo().equals("Admin"))
-        return "redirect:../elderly/list?nuevo="+elderly.getDni();
+            return "redirect:../elderly/list?nuevo=" + elderly.getDni();
 
         return "redirect:/login";
     }
@@ -107,7 +107,7 @@ public class ElderlyController extends ManageAccessController {
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
     public String editElderly(HttpSession session, Model model, @PathVariable String dni) {
         Elderly eld = elderlyDao.getElderly(dni);
-        if(eld.Alergias()) {
+        if (eld.Alergias()) {
             List<String> alergiasEld = Arrays.asList(eld.getAlergias().split(","));
             model.addAttribute("alergiasEld", alergiasEld);
         }
@@ -131,7 +131,7 @@ public class ElderlyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/delete/{dni}")
-    public String processDelete(HttpSession session,@PathVariable String dni) {
+    public String processDelete(HttpSession session, @PathVariable String dni) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (!user.getTipo().equals("SocialWorker") && !user.getTipo().equals("Admin")) {
             return "error/sinPermiso";
@@ -144,18 +144,18 @@ public class ElderlyController extends ManageAccessController {
 
 
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public String editElderlyPerfil(HttpSession session,Model model) {
-        String destino= sesionAbierta(session,model,"elderly/perfil");
+    public String editElderlyPerfil(HttpSession session, Model model) {
+        String destino = sesionAbierta(session, model, "elderly/perfil");
 
-        if (destino!=null) return destino;
+        if (destino != null) return destino;
 
         model.addAttribute("allergies", alergias);
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        if (user.getTipo()!="ElderlyPeople") return "error/sinPermiso";
+        if (user.getTipo() != "ElderlyPeople") return "error/sinPermiso";
 
         model.addAttribute("elderly", elderlyDao.getElderly(user.getDni()));
-        return gestionarAcceso(session,model,"ElderlyPeople","elderly/perfil");
+        return gestionarAcceso(session, model, "ElderlyPeople", "elderly/perfil");
     }
 
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)

@@ -6,49 +6,50 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
-<div class="table-responsive">
-    <h1>Mis solicitudes</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Servicio</th>
-            <th>Estado</th>
-            <th>Fecha de solicitud</th>
-            <th>Comentarios</th>
-            <th>Dias</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="request: ${requests}"
-            th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info-nuevo'">
-            <td th:text="${servicios.get(request.idService)}"></td>
-            <td th:text="${request.state}"></td>
-            <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
-            <td th:text="${request.comments}"></td>
-            <td th:text="${request.dias}"></td>
-            <td>
-                <a th:href="@{/request/info/{id}(id=${request.idRequest})}"
-                   class="btn btn btn-default" role="button">Más detalles</a>
-            </td>
-            <td>
-                <div th:if="${!request.isCancelada()}">
-                    <a th:href="@{/request/cancelarRequest/{id}(id=${request.idRequest})}"
-                       class="btn btn btn-danger" role="button">Cancelar</a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <h1>Mis solicitudes</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Servicio</th>
+                <th>Estado</th>
+                <th>Fecha de solicitud</th>
+                <th>Comentarios</th>
+                <th>Dias</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="request: ${requests}"
+                th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info-nuevo'">
+                <td th:text="${servicios.get(request.idService)}"></td>
+                <td th:text="${request.state}"></td>
+                <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
+                <td th:text="${request.comments}"></td>
+                <td th:text="${request.dias}"></td>
+                <td>
+                    <a th:href="@{/request/info/{id}(id=${request.idRequest})}"
+                       class="btn btn btn-default" role="button">Más detalles</a>
+                </td>
+                <td>
+                    <div th:if="${!request.isCancelada()}">
+                        <a th:href="@{/request/cancelarRequest/{id}(id=${request.idRequest})}"
+                           class="btn btn btn-danger" role="button">Cancelar</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-    <a href="addRequestElderly" class="btn btn btn-success" role="button">Añadir Solicitud</a>
-    <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-</div>
+        <a href="addRequestElderly" class="btn btn btn-success" role="button">Añadir Solicitud</a>
+        <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
+    </div>
 </div>
 
 </body>

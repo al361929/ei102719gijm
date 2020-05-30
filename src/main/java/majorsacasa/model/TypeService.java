@@ -3,8 +3,10 @@ package majorsacasa.model;
 public class TypeService {
     Integer idType;
     String serviceType;
+
     public TypeService() {
     }
+
     public Integer getIdType() {
         return idType;
     }

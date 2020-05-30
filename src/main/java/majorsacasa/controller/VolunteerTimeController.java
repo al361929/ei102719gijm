@@ -23,12 +23,12 @@ public class VolunteerTimeController {
     private ValoracionDao valoracionDao;
 
     private VolunteerTimeDao volunteerTimeDao;
-    private List<String> meses = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+    private final List<String> meses = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
 
     @Autowired
-    public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao,ValoracionDao valoracionDao) {
-       this.valoracionDao =valoracionDao;
+    public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao, ValoracionDao valoracionDao) {
+        this.valoracionDao = valoracionDao;
         this.volunteerTimeDao = volunteerTimeDao;
     }
 
@@ -48,7 +48,7 @@ public class VolunteerTimeController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(HttpSession session,@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
+    public String processAddSubmit(HttpSession session, @ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "volunteertime/add";
         UserDetails user = (UserDetails) session.getAttribute("user");
@@ -77,7 +77,7 @@ public class VolunteerTimeController {
         if (bindingResult.hasErrors())
             return "volunteertime/update";
         volunteerTimeDao.updateVolunteerTime(volunteertime);
-        return "redirect:../volunteer/scheduleList?nuevo="+volunteertime.getIdVolunteerTime();
+        return "redirect:../volunteer/scheduleList?nuevo=" + volunteertime.getIdVolunteerTime();
     }
 
     @RequestMapping(value = "/delete/{idVolunteerTime}")
@@ -85,24 +85,26 @@ public class VolunteerTimeController {
         volunteerTimeDao.deleteVolunteerTime(idVolunteerTime);
         return "redirect:/volunteer/scheduleList";
     }
+
     @RequestMapping(value = "/addTime")
-    public String addVolunteerTimeVolunteer(HttpSession session,Model model) {
+    public String addVolunteerTimeVolunteer(HttpSession session, Model model) {
         model.addAttribute("meses", meses);
         UserDetails user = (UserDetails) session.getAttribute("user");
 
         model.addAttribute("volunteertime", new VolunteerTime());
-        model.addAttribute("dniVolunteer",user.getDni());
+        model.addAttribute("dniVolunteer", user.getDni());
         return "volunteertime/addTime";
     }
+
     @RequestMapping(value = "/addTime", method = RequestMethod.POST)
-    public String processAddSubmitVolunteer(HttpSession session,@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
+    public String processAddSubmitVolunteer(HttpSession session, @ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "volunteertime/addTime";
         UserDetails user = (UserDetails) session.getAttribute("user");
         volunteertime.setDniElderly(null);
         volunteertime.setDniVolunteer(user.getDni());
         volunteerTimeDao.addVolunteerTime(volunteertime);
-        if (user.getTipo().equals("Volunteer")){
+        if (user.getTipo().equals("Volunteer")) {
             return "volunteer/scheduleList";
         }
         return "redirect:/";
@@ -112,18 +114,18 @@ public class VolunteerTimeController {
     public String getScheduleList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("scheduleList", volunteerTimeDao.getScheduleList(user.getDni()));
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("usuario",u);
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("usuario", u);
         return "volunteer/scheduleList";
     }
 
     @RequestMapping(value = "/solicitar/{idVolunteerTime}")
-    public String solicitar(HttpSession session,@PathVariable Integer idVolunteerTime) {
+    public String solicitar(HttpSession session, @PathVariable Integer idVolunteerTime) {
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        volunteerTimeDao.solicitar(idVolunteerTime,user.getDni());
-        VolunteerTime vTime= volunteerTimeDao.getVolunteerTime(idVolunteerTime);
-        return "redirect:../../volunteer/listVolunteer?nuevo="+vTime.getDniVolunteer();
+        volunteerTimeDao.solicitar(idVolunteerTime, user.getDni());
+        VolunteerTime vTime = volunteerTimeDao.getVolunteerTime(idVolunteerTime);
+        return "redirect:../../volunteer/listVolunteer?nuevo=" + vTime.getDniVolunteer();
     }
 
 }

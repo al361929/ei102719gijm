@@ -2,6 +2,7 @@ package majorsacasa.dao;
 
 import majorsacasa.model.Elderly;
 import org.springframework.jdbc.core.RowMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;

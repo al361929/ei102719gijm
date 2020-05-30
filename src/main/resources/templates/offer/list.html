@@ -6,32 +6,33 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
-<div class="table-responsive">
-    <h1>Offers</h1>
+    <div class="table-responsive">
+        <h1>Offers</h1>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Número de servicio</th>
-            <th>Nif</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="offer: ${offers}"
-            th:class="${#strings.equals(nuevo,offer.nif)}?'bg-info-nuevo'">
-            <td th:text="${offer.getIdService()}"></td>
-            <td th:text="${offer.getNif()}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <a href="addService" class="btn btn btn-success" role="button" aria-pressed="true">Solicitar  Servicio</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Número de servicio</th>
+                <th>Nif</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="offer: ${offers}"
+                th:class="${#strings.equals(nuevo,offer.nif)}?'bg-info-nuevo'">
+                <td th:text="${offer.getIdService()}"></td>
+                <td th:text="${offer.getNif()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="addService" class="btn btn btn-success" role="button" aria-pressed="true">Solicitar Servicio</a>
 
-    <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-</div>
+        <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
+    </div>
 </div>
 
 </body>

@@ -7,69 +7,72 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
-<div class="table-responsive">
-    <h1>Personas Mayores</h1>
+    <div class="table-responsive">
+        <h1>Personas Mayores</h1>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Dirección</th>
-            <th>Alergias</th>
-            <th>Telefono</th>
-            <th>Cumpleaños</th>
-            <th>Trabajador Social</th>
-            <th>Email</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="elderly: ${#lists.sort(elderlys)}"
-            th:class="${#strings.equals(nuevo,elderly.dni)}?'bg-info-nuevo'">
-            <!--<td th:text="${elderly.dni}"></td>-->
-            <td th:text="${elderly.nombre}"></td>
-            <td th:text="${elderly.apellidos}"></td>
-            <td th:text="${elderly.direccion}"></td>
-            <td th:text="${elderly.alergias}"></td>
-            <td th:text="${elderly.telefono}"></td>
-            <td th:text="${#temporals.format(elderly.birthday,'dd/MM/yyyy')}"></td>
-            <td th:text="${usuario.get(elderly.socialWorker)}"></td>
-            <td th:text="${elderly.email}"></td>
-            <td>
-                <div th:if="${elderly.socialWorker!=null}">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Dirección</th>
+                <th>Alergias</th>
+                <th>Telefono</th>
+                <th>Cumpleaños</th>
+                <th>Trabajador Social</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="elderly: ${#lists.sort(elderlys)}"
+                th:class="${#strings.equals(nuevo,elderly.dni)}?'bg-info-nuevo'">
+                <!--<td th:text="${elderly.dni}"></td>-->
+                <td th:text="${elderly.nombre}"></td>
+                <td th:text="${elderly.apellidos}"></td>
+                <td th:text="${elderly.direccion}"></td>
+                <td th:text="${elderly.alergias}"></td>
+                <td th:text="${elderly.telefono}"></td>
+                <td th:text="${#temporals.format(elderly.birthday,'dd/MM/yyyy')}"></td>
+                <td th:text="${usuario.get(elderly.socialWorker)}"></td>
+                <td th:text="${elderly.email}"></td>
+                <td>
+                    <div th:if="${elderly.socialWorker!=null}">
 
-                <a th:href="@{/request/list/{dni}(dni=${elderly.dni})}" class="btn btn btn-info" role="button"
-                   aria-pressed="true">Solicitudes</a>
-                </div>
-                <div th:if="${elderly.socialWorker==null}">
-                    <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni})}" class="btn btn btn-warning" role="button"
-                       aria-pressed="true">Añdadir SocialWorker</a>
-                </div>
-            </td>
-            <td>
-                <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni})}" class="btn btn btn-secondary" role="button"
-                   aria-pressed="true">Editar</a>
-            </td>
-            <td>
-                <a th:href="@{/elderly/delete/{dni}(dni=${elderly.dni})}" class="btn btn btn-danger" role="button"
-                   aria-pressed="true">Borrar</a>
+                        <a th:href="@{/request/list/{dni}(dni=${elderly.dni})}" class="btn btn btn-info" role="button"
+                           aria-pressed="true">Solicitudes</a>
+                    </div>
+                    <div th:if="${elderly.socialWorker==null}">
+                        <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni})}" class="btn btn btn-warning"
+                           role="button"
+                           aria-pressed="true">Añdadir SocialWorker</a>
+                    </div>
+                </td>
+                <td>
+                    <a th:href="@{/elderly/update/{dni}(dni=${elderly.dni})}" class="btn btn btn-secondary"
+                       role="button"
+                       aria-pressed="true">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{/elderly/delete/{dni}(dni=${elderly.dni})}" class="btn btn btn-danger" role="button"
+                       aria-pressed="true">Borrar</a>
 
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a href="addRegister" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Persona Mayor</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="addRegister" class="btn btn btn-success" role="button" aria-pressed="true">Añadir Persona Mayor</a>
 
-    <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
+        <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
 
-</div>
+    </div>
 </div>
 
 </body>

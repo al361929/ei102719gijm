@@ -13,8 +13,9 @@
     <form action="#" th:object="${valoracionService}" th:action="@{/valoraciones/addValorationService}"
           method="post">
 
-        <table> <div class="error" th:if="${#fields.hasErrors('idService')}"
-                     th:errors="*{idService}"></div>
+        <table>
+            <div class="error" th:if="${#fields.hasErrors('idService')}"
+                 th:errors="*{idService}"></div>
             </td>
             <tr class="oculto">
                 <td><label>Servicio</label></td>

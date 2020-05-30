@@ -15,7 +15,7 @@ import java.util.List;
 
 @Repository
 
-public class ElderlyDao extends GeneralDao{
+public class ElderlyDao extends GeneralDao {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -23,6 +23,7 @@ public class ElderlyDao extends GeneralDao{
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
     public List<Elderly> getElderlys() {
         try {
             return jdbcTemplate.query(
@@ -49,16 +50,19 @@ public class ElderlyDao extends GeneralDao{
                 elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(),
                 elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria(), elderly.getSocialWorker(), elderly.getEmail(), elderly.getDni());
     }
+
     public void updateElderlySINpw(Elderly elderly) {
         jdbcTemplate.update("UPDATE ElderlyPeople SET name=?, surname=?, address=?, allergies=?, phonenumber=?, user_name=?,  releasedate=?, datedown=?, birthday=?, bankaccount=?, dnisocialWorker=?, email=? WHERE dni=?",
                 elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(),
                 elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria(), elderly.getSocialWorker(), elderly.getEmail(), elderly.getDni());
     }
+
     public void updateElderlySinSocialWorker(Elderly elderly) {
         jdbcTemplate.update("UPDATE ElderlyPeople SET name=?, surname=?, address=?, allergies=?, phonenumber=?, user_name=?, password=?, releasedate=?, datedown=?, birthday=?, bankaccount=?,  email=? WHERE dni=?",
                 elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(),
                 elderly.getReleaseDate(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria(), elderly.getEmail(), elderly.getDni());
     }
+
     public void deleteElderly(String elderly) {
         jdbcTemplate.update("DELETE FROM ElderlyPeople WHERE dni=?", elderly);
     }
@@ -68,31 +72,31 @@ public class ElderlyDao extends GeneralDao{
         return elderlys.contains(dni);
     }
 
-    public Boolean checkDNI(String dni){
-        List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where dni=?", String.class,dni);
+    public Boolean checkDNI(String dni) {
+        List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where dni=?", String.class, dni);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT dnivolunteer FROM volunteer where dnivolunteer=?", String.class,dni);
+        dnis = jdbcTemplate.queryForList("SELECT dnivolunteer FROM volunteer where dnivolunteer=?", String.class, dni);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT dnisocialworker FROM socialworker where dnisocialworker=?", String.class,dni);
+        dnis = jdbcTemplate.queryForList("SELECT dnisocialworker FROM socialworker where dnisocialworker=?", String.class, dni);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT nif FROM company where nif=?", String.class,dni);
-        if (!dnis.isEmpty()) return false;
-        return true;
+        dnis = jdbcTemplate.queryForList("SELECT nif FROM company where nif=?", String.class, dni);
+        return dnis.isEmpty();
 
     }
-    public Boolean checkUser(String user){
-        List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where user_name=?", String.class,user);
+
+    public Boolean checkUser(String user) {
+        List<String> dnis = jdbcTemplate.queryForList("SELECT dni FROM ElderlyPeople where user_name=?", String.class, user);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT dnivolunteer FROM volunteer where user_name=?", String.class,user);
+        dnis = jdbcTemplate.queryForList("SELECT dnivolunteer FROM volunteer where user_name=?", String.class, user);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT dnisocialworker FROM socialworker where user_name=?", String.class,user);
+        dnis = jdbcTemplate.queryForList("SELECT dnisocialworker FROM socialworker where user_name=?", String.class, user);
         if (!dnis.isEmpty()) return false;
-        dnis = jdbcTemplate.queryForList("SELECT nif FROM company where user_name=?", String.class,user);
-        if (!dnis.isEmpty()) return false;
-        return true;
+        dnis = jdbcTemplate.queryForList("SELECT nif FROM company where user_name=?", String.class, user);
+        return dnis.isEmpty();
 
     }
-    public HashMap<String,String> getUsersInfo(){
+
+    public HashMap<String, String> getUsersInfo() {
 
         List<UserDetails> usuarios = jdbcTemplate.query("SELECT user_name, password,name, dnivolunteer FROM Volunteer", new UserRowMapper());
 
@@ -102,20 +106,15 @@ public class ElderlyDao extends GeneralDao{
 
         usuarios.addAll(jdbcTemplate.query("SELECT user_name, password, nif,name FROM Company", new UserRowMapper()));
 
-        HashMap <String,String> info=new HashMap<>();
-        for (UserDetails u: usuarios){
-            info.put(u.getDni(),u.getName());
+        HashMap<String, String> info = new HashMap<>();
+        for (UserDetails u : usuarios) {
+            info.put(u.getDni(), u.getName());
         }
 
-        info.put("0"," ");
+        info.put("0", " ");
 
-        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer","select avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
-        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer, avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
-
-        return  info;
+        return info;
     }
-
-
 
 
 }

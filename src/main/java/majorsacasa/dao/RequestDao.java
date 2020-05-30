@@ -50,6 +50,7 @@ public class RequestDao {
     public void deleteRequest(int idRequest) {
         jdbcTemplate.update("DELETE FROM Request WHERE idRequest=?", idRequest);
     }
+
     public List<Request> getRequestsElderly(String dni) {
         try {
             return jdbcTemplate.query(
@@ -66,22 +67,22 @@ public class RequestDao {
 
     public Boolean checkService(String servicio, String dni) {
         List<String> servicios = jdbcTemplate.queryForList("SELECT servicetype FROM Service JOIN request USING(idservice) WHERE dni=? AND NOT state='Cancelada' AND NOT state='Rechazada'", String.class, dni);
-        //System.out.println(dni);
-       // System.out.println(servicios.toString());
         return servicios.contains(servicio);
     }
-    public HashMap<Integer,String> getMapServiceElderly(){
+
+    public HashMap<Integer, String> getMapServiceElderly() {
         List<String> key = jdbcTemplate.queryForList("SELECT request.idService FROM service JOIN request  USING(idservice);", String.class);
         List<String> value = jdbcTemplate.queryForList("SELECT service.description FROM service JOIN request USING(idservice);", String.class);
-        HashMap <Integer,String> servicio=new HashMap<>();
+        HashMap<Integer, String> servicio = new HashMap<>();
 
-        for (int i=0; i<key.size();i++){
-            servicio.put(Integer.parseInt(key.get(i)),value.get(i));
+        for (int i = 0; i < key.size(); i++) {
+            servicio.put(Integer.parseInt(key.get(i)), value.get(i));
         }
         return servicio;
 
     }
-    public int ultimoIdRequest(){
+
+    public int ultimoIdRequest() {
         List<String> ids = jdbcTemplate.queryForList("Select MAX(idrequest) from Request;", String.class);
         int id = Integer.parseInt(ids.get(0));
         return id;

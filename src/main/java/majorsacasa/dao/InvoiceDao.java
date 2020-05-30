@@ -31,7 +31,7 @@ public class InvoiceDao {
     }
 
     public void addInvoice(Invoice invoice) {
-        jdbcTemplate.update("INSERT INTO Invoice VALUES(DEFAULT,?,?,?,?)", invoice.getDniElderly(), invoice.getDateInvoice(), invoice.getTotalPrice(),invoice.getInvoicePDF());
+        jdbcTemplate.update("INSERT INTO Invoice VALUES(DEFAULT,?,?,?,?)", invoice.getDniElderly(), invoice.getDateInvoice(), invoice.getTotalPrice(), invoice.getInvoicePDF());
     }
 
     public Invoice getInvoice(Integer idInvoice) {
@@ -57,24 +57,25 @@ public class InvoiceDao {
             return new ArrayList<Invoice>();
         }
     }
+
     public int getUltimoInvoice() {
         List<String> ids = jdbcTemplate.queryForList("select MAX(idinvoice) from Invoice;", String.class);
         int id = Integer.parseInt(ids.get(0));
         return id;
     }
 
-    public HashMap<Integer,String> getDescriptionInvoice(){
+    public HashMap<Integer, String> getDescriptionInvoice() {
         List<String> key = jdbcTemplate.queryForList("select produce.idinvoice from produce JOIN request USING(idRequest)  JOIN service USING(idservice);", String.class);
         List<String> value = jdbcTemplate.queryForList("select service.description from produce JOIN request USING(idRequest)  JOIN service USING(idservice);", String.class);
 
-        HashMap <Integer,String> info=new HashMap<>();
-        for (int i =0; i<key.size();i++){
+        HashMap<Integer, String> info = new HashMap<>();
+        for (int i = 0; i < key.size(); i++) {
 
 
-            info.put(Integer.parseInt(key.get(i)),value.get(i));
+            info.put(Integer.parseInt(key.get(i)), value.get(i));
         }
 
 
-        return  info;
+        return info;
     }
 }

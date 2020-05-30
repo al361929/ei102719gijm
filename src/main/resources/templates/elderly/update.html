@@ -6,118 +6,118 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
     <div class="container">
-<h1>Modificar persona mayor</h1>
-<h2 th:text="${elderly.nombre}"></h2>
-<form action="#" th:action="@{/elderly/update}"
-      th:object="${elderly}" method="post">
-    <table>
-        <tr>
-            <td><label>DNI</label></td>
-            <td><input type="text" class="form-control" th:field="*{dni}" readonly
-                       style="background-color: rgb(170, 170, 170)"/></td>
-        </tr>
-        <tr>
-            <td><label>Nombre</label></td>
-            <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Apellidos</label></td>
-            <td><input type="text" class="form-control" th:field="*{apellidos}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Direccion</label></td>
-            <td><input type="text" class="form-control" th:field="*{direccion}" required/>
-        </tr>
-        <tr>
-
-            <td><label>Alergias</label></td>
-            <td><input type="text" class="form-control" th:field="*{alergias}" readonly></td>
-
-                <!-- th:checked="${elderly.tieneAlergia(allergie)}" th:field="*{alergias}"/>
-
-                   <td><input type="text" class="form-control" th:field="*{alergias}"/></td>-->
-            <td>
-        <b>Añadir Alergias: </b>            </td>
-
-            <td><select th:field="*{nuevasAlergias}" class="select-css" multiple>
-                <option value="" selected disabled>--- Selecciona las Alergias ---</option>
-                <option th:each="allergie : ${allergies}" th:value="${allergie}"
-                        th:utext="${allergie}"></option>
-            </select>
-            </td>
-
-
-
-
-        </tr>
-        <tr>
-            <td><label>Telefono</label></td>
-            <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="9" required/></td>
-        </tr>
-        <tr>
-            <td><label>Usuario</label></td>
-            <td><input type="text" class="form-control" th:field="*{usuario}" readonly/></td>
-        </tr>
-        <div class="loggeduser" th:object="${session}">
-
-            <div th:if="*{user.code == 3}">
-
+        <h1>Modificar persona mayor</h1>
+        <h2 th:text="${elderly.nombre}"></h2>
+        <form action="#" th:action="@{/elderly/update}"
+              th:object="${elderly}" method="post">
+            <table>
                 <tr>
-                    <td><label>Contraseña</label></td>
-                    <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
+                    <td><label>DNI</label></td>
+                    <td><input type="text" class="form-control" th:field="*{dni}" readonly
+                               style="background-color: rgb(170, 170, 170)"/></td>
                 </tr>
-            </div>
-        </div>
-        <tr>
-            <td><label>Email</label></td>
-            <td><input type="text" class="form-control" th:field="*{email}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de alta</label></td>
-            <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de baja</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
-        </tr>
-        <tr><td><label>Trabajador Social: </label></td>
-                   <td><select class="select-css" th:field="*{socialWorker}">
-                   <option value="" selected disabled>-&#45;&#45; Selecciona Trabajador Social -&#45;&#45;</option>
-                   <option th:each="Social : ${SocialWorkers}" th:value="${Social.dni}"
-                           th:utext="${Social.nombre}"></option>
-               </select></td>
+                <tr>
+                    <td><label>Nombre</label></td>
+                    <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Apellidos</label></td>
+                    <td><input type="text" class="form-control" th:field="*{apellidos}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Direccion</label></td>
+                    <td><input type="text" class="form-control" th:field="*{direccion}" required/>
+                </tr>
+                <tr>
 
-            <td colspan="2"><a href="../../socialWorker/add" class="btn btn btn-primary" role="button"
-                               aria-pressed="true">Añadir Trabajador Social</a></td>
-       <tr>
-           <td><label>Cumpleaños</label></td>
-        <td><input type="date" class="form-control" th:field="*{birthday}" required/></td>
-       </tr>
-       <tr>
-           <td><label>Cuenta Bancaria</label></td>
-           <td><input type="text" class="form-control" th:field="*{cuentaBancaria}"
-                      placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="35"
-                      required/>
-           </td>
-       </tr>
-       <tr>
-           <td colspan="2"><input type="submit" value="Modifica persona mayor" class="btn btn btn-warning"
-                                  role="button"
-                                  aria-pressed="true"/></td>
-       </tr>
-       <tr>
-           <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-           </td>
+                    <td><label>Alergias</label></td>
+                    <td><input type="text" class="form-control" th:field="*{alergias}" readonly></td>
 
-       </tr>
-   </table>
-</form>
-   </div>
+                    <!-- th:checked="${elderly.tieneAlergia(allergie)}" th:field="*{alergias}"/>
+
+                       <td><input type="text" class="form-control" th:field="*{alergias}"/></td>-->
+                    <td>
+                        <b>Añadir Alergias: </b></td>
+
+                    <td><select th:field="*{nuevasAlergias}" class="select-css" multiple>
+                        <option value="" selected disabled>--- Selecciona las Alergias ---</option>
+                        <option th:each="allergie : ${allergies}" th:value="${allergie}"
+                                th:utext="${allergie}"></option>
+                    </select>
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td><label>Telefono</label></td>
+                    <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="9" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Usuario</label></td>
+                    <td><input type="text" class="form-control" th:field="*{usuario}" readonly/></td>
+                </tr>
+                <div class="loggeduser" th:object="${session}">
+
+                    <div th:if="*{user.code == 3}">
+
+                        <tr>
+                            <td><label>Contraseña</label></td>
+                            <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
+                        </tr>
+                    </div>
+                </div>
+                <tr>
+                    <td><label>Email</label></td>
+                    <td><input type="text" class="form-control" th:field="*{email}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de alta</label></td>
+                    <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de baja</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Trabajador Social: </label></td>
+                    <td><select class="select-css" th:field="*{socialWorker}">
+                        <option value="" selected disabled>-&#45;&#45; Selecciona Trabajador Social -&#45;&#45;</option>
+                        <option th:each="Social : ${SocialWorkers}" th:value="${Social.dni}"
+                                th:utext="${Social.nombre}"></option>
+                    </select></td>
+
+                    <td colspan="2"><a href="../../socialWorker/add" class="btn btn btn-primary" role="button"
+                                       aria-pressed="true">Añadir Trabajador Social</a></td>
+                <tr>
+                    <td><label>Cumpleaños</label></td>
+                    <td><input type="date" class="form-control" th:field="*{birthday}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Cuenta Bancaria</label></td>
+                    <td><input type="text" class="form-control" th:field="*{cuentaBancaria}"
+                               placeholder="ESXX-XXXX-XXXX-XXXX-XXXX-XXXX" size="35"
+                               required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Modifica persona mayor" class="btn btn btn-warning"
+                                           role="button"
+                                           aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
+                    </td>
+
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 </body>
 </html>

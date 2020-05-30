@@ -6,47 +6,49 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
     <div class="container">
-<h1>Modificar Servicio</h1>
-<h2 th:text="${service.idService}"></h2>
-<form action="#" th:action="@{/service/update}"
-      th:object="${service}" method="post">
-    <table>
-        <tr>
-            <td><label>Número de servicio</label></td>
-            <td><input type="text" class="form-control" th:field="*{idService}" readonly/></td>
-        </tr>
-        <tr>
-            <td><label>Tipo de servicio</label></td>
-            <td><select class="select-css" th:field="*{serviceType}" required>
-                <option value="" selected disabled>-&#45;&#45; Selecciona Typo de Servicio -&#45;&#45;</option>
-                <option th:each="type : ${typosServicios}" th:value="${type.serviceType}"
-                        th:utext="${type.serviceType}"></option>
-            </select></td>
-        </tr>
-        <tr>
-            <td><label>Precio</label></td>
-            <td><input type="number" class="form-control" th:field="*{price}" min="0" required/></td>
-        </tr>
-        <tr>
-            <td><label>Descripción</label></td>
-            <td><input type="text" class="form-control" th:field="*{description}"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Modifica Servicio" class="btn btn btn-warning" role="button"
-                                   aria-pressed="true"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-            </td>
+        <h1>Modificar Servicio</h1>
+        <h2 th:text="${service.idService}"></h2>
+        <form action="#" th:action="@{/service/update}"
+              th:object="${service}" method="post">
+            <table>
+                <tr>
+                    <td><label>Número de servicio</label></td>
+                    <td><input type="text" class="form-control" th:field="*{idService}" readonly/></td>
+                </tr>
+                <tr>
+                    <td><label>Tipo de servicio</label></td>
+                    <td><select class="select-css" th:field="*{serviceType}" required>
+                        <option value="" selected disabled>-&#45;&#45; Selecciona Typo de Servicio -&#45;&#45;</option>
+                        <option th:each="type : ${typosServicios}" th:value="${type.serviceType}"
+                                th:utext="${type.serviceType}"></option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label>Precio</label></td>
+                    <td><input type="number" class="form-control" th:field="*{price}" min="0" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Descripción</label></td>
+                    <td><input type="text" class="form-control" th:field="*{description}"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Modifica Servicio" class="btn btn btn-warning"
+                                           role="button"
+                                           aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
+                    </td>
 
-        </tr>
-    </table>
-</form>
+                </tr>
+            </table>
+        </form>
     </div>
 </div>
 </body>

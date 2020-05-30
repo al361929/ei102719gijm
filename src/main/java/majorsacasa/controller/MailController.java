@@ -2,8 +2,8 @@ package majorsacasa.controller;
 
 public class MailController {
 
-    private String from = "cas@gva.es";
-    private String to;
+    private final String from = "cas@gva.es";
+    private final String to;
     private String subject;
     private String message;
 

@@ -29,19 +29,19 @@ public class RequestController extends ManageAccessController {
     private ServiceDao serviceDao;
     private CompanyDao companyDao;
     private ElderlyDao elderlyDao;
-    private List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada", "Cancelada");
+    private final List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada", "Cancelada");
 
     @Autowired
-    public void setRequestDao(ProduceDao produceDao, InvoiceDao invoiceDao,ValoracionDao valoracionDao,RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao,ContractDao contractDao,OffersDao offersDao) {
+    public void setRequestDao(ProduceDao produceDao, InvoiceDao invoiceDao, ValoracionDao valoracionDao, RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao, ContractDao contractDao, OffersDao offersDao) {
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
         this.companyDao = companyDao;
         this.elderlyDao = elderlyDao;
         this.contractDao = contractDao;
-        this.offersDao= offersDao;
-        this.valoracionDao =valoracionDao;
+        this.offersDao = offersDao;
+        this.valoracionDao = valoracionDao;
         this.invoiceDao = invoiceDao;
-        this.produceDao =produceDao;
+        this.produceDao = produceDao;
     }
 
     @RequestMapping("/list")
@@ -75,17 +75,19 @@ public class RequestController extends ManageAccessController {
         requestDao.addRequest(request);
         return "redirect:list?nuevo=" + request.getIdRequest();
     }
+
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
     public String infoRequest(Model model, @PathVariable int id) {
         Request request = requestDao.getRequest(id);
         model.addAttribute("request", request);
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("usuario",u);
-        HashMap <Integer,String> servicios = requestDao.getMapServiceElderly();
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("usuario", u);
+        HashMap<Integer, String> servicios = requestDao.getMapServiceElderly();
         model.addAttribute("servicios", servicios);
         return "request/info";
 
     }
+
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String editRequest(Model model, @PathVariable int id) {
         Request request = requestDao.getRequest(id);
@@ -99,7 +101,7 @@ public class RequestController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("request") Request request,Model model,
+    public String processUpdateSubmit(@ModelAttribute("request") Request request, Model model,
                                       BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -121,15 +123,15 @@ public class RequestController extends ManageAccessController {
             p.setIdRequest(request.getIdRequest());
             produceDao.addProduce(p);
 
-        }else{
-            if(request.getState().equals("Rechazada")) request.setDateReject(LocalDate.now());
+        } else {
+            if (request.getState().equals("Rechazada")) request.setDateReject(LocalDate.now());
 
         }
         List<Company> company = companyDao.getCompanies();
         model.addAttribute("companyies", company);
 
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("usuario",u);
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("usuario", u);
 
         requestDao.updateRequest(request);
         //return "redirect:list?nuevo=" + request.getIdRequest();
@@ -138,13 +140,13 @@ public class RequestController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/list/{dni}")
-    public String listRequestsPersonalizado(@PathVariable String dni,Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+    public String listRequestsPersonalizado(@PathVariable String dni, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         model.addAttribute("requests", requestDao.getRequestsElderly(dni));
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("usuario",u);
-        HashMap <Integer,String> servicios = requestDao.getMapServiceElderly();
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("usuario", u);
+        HashMap<Integer, String> servicios = requestDao.getMapServiceElderly();
         model.addAttribute("servicios", servicios);
         return "request/list";
     }
@@ -154,20 +156,22 @@ public class RequestController extends ManageAccessController {
         requestDao.deleteRequest(id);
         return "redirect:../list";
     }
+
     @RequestMapping("/listElderly")
-    public String listRequestsElderly(HttpSession session,Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+    public String listRequestsElderly(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         UserDetails user = (UserDetails) session.getAttribute("user");
 
         model.addAttribute("requests", requestDao.getRequestsElderly(user.getDni()));
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("usuario",u);
-        HashMap <Integer,String> servicios = requestDao.getMapServiceElderly();
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("usuario", u);
+        HashMap<Integer, String> servicios = requestDao.getMapServiceElderly();
         model.addAttribute("servicios", servicios);
-        return gestionarAcceso(session,model,"ElderlyPeople","request/listRequestElderly");
+        return gestionarAcceso(session, model, "ElderlyPeople", "request/listRequestElderly");
 
     }
+
     @RequestMapping(value = "/addRequestElderly")
     public String addRequestElderly(Model model) {
         model.addAttribute("request", new Request());
@@ -181,7 +185,7 @@ public class RequestController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addRequestElderly", method = RequestMethod.POST)
-    public String processAddSubmitRequestElderly(HttpSession session,@ModelAttribute("request") Request request,Model model, BindingResult bindingResult) {
+    public String processAddSubmitRequestElderly(HttpSession session, @ModelAttribute("request") Request request, Model model, BindingResult bindingResult) {
         Service servicio = serviceDao.getService(request.getIdService());
         UserDetails user = (UserDetails) session.getAttribute("user");
         request.setNif("0");
@@ -194,14 +198,6 @@ public class RequestController extends ManageAccessController {
 
             return "request/addRequestElderly";
         }
-        /*if (!request.getNif().equals("0") && offersDao.checkService(request.getNif(),request.getIdService())){
-            bindingResult.rejectValue("nif", "badOffer", " Esta empresa no ofrece ese servicio.");
-            List<Service> servicios = serviceDao.getServices();
-            model.addAttribute("servicios", servicios);
-            List<Company> company = companyDao.getCompanies();
-            model.addAttribute("companyies", company);
-            return "request/addRequestElderly";
-        }*/
 
         if (bindingResult.hasErrors()) {
             System.out.println("error");
@@ -213,16 +209,17 @@ public class RequestController extends ManageAccessController {
 
         int id = requestDao.ultimoIdRequest();
 
-        System.out.println("Dias: "+request.getDias());
+        System.out.println("Dias: " + request.getDias());
 
         return "redirect:/request/listElderly?nuevo=" + id;
-      //  return "redirect:listElderly?nuevo="+id;
+        //  return "redirect:listElderly?nuevo="+id;
 
     }
+
     @RequestMapping(value = "/cancelarRequest/{id}")
     public String processUpdateEstadp(@PathVariable int id) {
-        requestDao.updateEstado(id,"Cancelada");
-        return "redirect:../listElderly?nuevo="+id;
+        requestDao.updateEstado(id, "Cancelada");
+        return "redirect:../listElderly?nuevo=" + id;
     }
 
 }

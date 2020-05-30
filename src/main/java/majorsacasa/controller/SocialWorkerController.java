@@ -38,7 +38,7 @@ public class SocialWorkerController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(HttpSession session,@ModelAttribute("socialWorker") SocialWorker socialWorker, BindingResult bindingResult) {
+    public String processAddSubmit(HttpSession session, @ModelAttribute("socialWorker") SocialWorker socialWorker, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "socialWorker/add";
         Boolean check = socialWorkerDao.checkDNI(socialWorker.getDni());
@@ -52,13 +52,13 @@ public class SocialWorkerController extends ManageAccessController {
         }
         if (!checkUser) {
 
-            bindingResult.rejectValue("usuario", "usuario", socialWorker.getUsuario()+" ya esta se esta utilizando");
+            bindingResult.rejectValue("usuario", "usuario", socialWorker.getUsuario() + " ya esta se esta utilizando");
 
             return "socialworker/add";
         }
         socialWorkerDao.addSocialWorker(socialWorker);
         UserDetails user = (UserDetails) session.getAttribute("user");
-        if (user.getCode()==7) {
+        if (user.getCode() == 7) {
             return "redirect:../elderly/list";
 
         }
@@ -87,38 +87,33 @@ public class SocialWorkerController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/elderlyList")
-    public String getElderlyList(HttpSession session,Model model) {
+    public String getElderlyList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("elderlyList", socialWorkerDao.getElderlyList(user.getDni()));
-        return gestionarAcceso(session,model,"SocialWorker","socialWorker/elderlyListSW");
-
-        //return "socialWorker/elderlyListSW";
+        return gestionarAcceso(session, model, "SocialWorker", "socialWorker/elderlyListSW");
     }
 
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public String editSocialWorkerPerfil(HttpSession session,Model model) {
-        String destino= sesionAbierta(session,model,"elderly/perfil");
-        if (destino!=null) return destino;
+    public String editSocialWorkerPerfil(HttpSession session, Model model) {
+        String destino = sesionAbierta(session, model, "elderly/perfil");
+        if (destino != null) return destino;
         UserDetails user = (UserDetails) session.getAttribute("user");
-        if (user.getTipo()!="SocialWorker") return "error/sinPermiso";
+        if (user.getTipo() != "SocialWorker") return "error/sinPermiso";
 
 
         model.addAttribute("socialWorker", socialWorkerDao.getSocialWorker(user.getDni()));
-        //return "socialWorker/update";
-        return gestionarAcceso(session,model,"SocialWorker","socialWorker/perfil");
+        return gestionarAcceso(session, model, "SocialWorker", "socialWorker/perfil");
 
     }
 
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
     public String processUpdateSubmitPerfil(@ModelAttribute("socialWorker") SocialWorker socialWorker,
-                                      BindingResult bindingResult) {
+                                            BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "socialWorker/perfil";
         socialWorkerDao.updateSocialWorker(socialWorker);
         return "redirect:/socialWorker/elderlyList";
     }
-
-
 
 
 }

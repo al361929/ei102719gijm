@@ -45,8 +45,8 @@ public class ValoracionController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addValorationService/{id}")
-    public String addValoracionService(@PathVariable int id ,Model model,HttpSession session) {
-        ValoracionService v= new ValoracionService();
+    public String addValoracionService(@PathVariable int id, Model model, HttpSession session) {
+        ValoracionService v = new ValoracionService();
         v.setIdService(id);
         model.addAttribute("valoracionService", v);
 
@@ -54,15 +54,15 @@ public class ValoracionController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addValorationService", method = RequestMethod.POST)
-    public String processAddSubmitValoracionService(HttpSession session,Model model,@ModelAttribute("valoracionService") ValoracionService valoracion, BindingResult bindingResult) {
-       // if (bindingResult.hasErrors())
-         //   return "valoraciones/addValoracionService";
+    public String processAddSubmitValoracionService(HttpSession session, Model model, @ModelAttribute("valoracionService") ValoracionService valoracion, BindingResult bindingResult) {
+        // if (bindingResult.hasErrors())
+        //   return "valoraciones/addValoracionService";
 
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracion.setDni(user.getDni());
 
 
-        Boolean checkValoracion = valoracionServiceDao.checkValoracion (user.getDni(),valoracion.getIdService());
+        Boolean checkValoracion = valoracionServiceDao.checkValoracion(user.getDni(), valoracion.getIdService());
 
         if (!checkValoracion) {
 
@@ -75,6 +75,7 @@ public class ValoracionController extends ManageAccessController {
         int id = valoracion.getIdService();
         return "redirect:serviceValoration?nuevo=" + id;
     }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("valoracion") Valoracion valoracion, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
@@ -84,15 +85,15 @@ public class ValoracionController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/updateService/{idService}", method = RequestMethod.GET)
-    public String editValoracionService(HttpSession session,Model model, @PathVariable int idService) {
+    public String editValoracionService(HttpSession session, Model model, @PathVariable int idService) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("valoracionService", valoracionServiceDao.getValoracion(idService, user.getDni()));
         return "valoraciones/updateService";
     }
 
     @RequestMapping(value = "/updateService", method = RequestMethod.POST)
-    public String processUpdateSubmitService(HttpSession session,@ModelAttribute("valoracionService") ValoracionService valoracion,
-                                      BindingResult bindingResult) {
+    public String processUpdateSubmitService(HttpSession session, @ModelAttribute("valoracionService") ValoracionService valoracion,
+                                             BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "valoraciones/updateService";
         UserDetails user = (UserDetails) session.getAttribute("user");
@@ -101,15 +102,16 @@ public class ValoracionController extends ManageAccessController {
         int id = valoracion.getIdService();
         return "redirect:serviceValoration?nuevo=" + id;
     }
+
     @RequestMapping(value = "/update/{dniVolunteer}", method = RequestMethod.GET)
-    public String editValoracion(HttpSession session,Model model, @PathVariable String dniVolunteer) {
+    public String editValoracion(HttpSession session, Model model, @PathVariable String dniVolunteer) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("valoracion", valoracionDao.getValoracion(dniVolunteer, user.getDni()));
         return "valoraciones/update";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(HttpSession session,@ModelAttribute("valoracion") Valoracion valoracion,
+    public String processUpdateSubmit(HttpSession session, @ModelAttribute("valoracion") Valoracion valoracion,
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "valoraciones/update";
@@ -120,15 +122,15 @@ public class ValoracionController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/delete/{dniVolunteer}")
-    public String processDelete(HttpSession session,@PathVariable String dniVolunteer) {
+    public String processDelete(HttpSession session, @PathVariable String dniVolunteer) {
         UserDetails user = (UserDetails) session.getAttribute("user");
-        System.out.println("V: "+dniVolunteer+" E: "+user.getDni());
+        System.out.println("V: " + dniVolunteer + " E: " + user.getDni());
         valoracionDao.deleteValoracion(dniVolunteer, user.getDni());
         return "redirect:../elderlyList";
     }
 
     @RequestMapping(value = "/deleteService/{idService}")
-    public String processDelete(HttpSession session,@PathVariable int idService) {
+    public String processDelete(HttpSession session, @PathVariable int idService) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracionServiceDao.deleteValoracion(idService, user.getDni());
         return "redirect:../serviceValoration";
@@ -140,27 +142,29 @@ public class ValoracionController extends ManageAccessController {
         model.addAttribute("listMisValoraciones", valoracionDao.getMisValoraciones(user.getDni()));//getVolunteerAsigned()
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-        HashMap<String ,Float> v=valoracionDao.getPromedio();
-        Float promedio=v.get(user.getDni());
-        model.addAttribute("puntuacion",promedio);
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("users",u);
+        HashMap<String, Float> v = valoracionDao.getPromedio();
+        Float promedio = v.get(user.getDni());
+        model.addAttribute("puntuacion", promedio);
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("users", u);
 
         return gestionarAcceso(session, model, "Volunteer", "valoraciones/listMisValoraciones");
     }
+
     @RequestMapping(value = "/elderlyList")
     public String ListMisValoracionesElderly(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("listMisValoraciones", valoracionDao.getMisValoracionesElderly(user.getDni()));//getVolunteerAsigned()
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("usuario",u);
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("usuario", u);
         return gestionarAcceso(session, model, "ElderlyPeople", "valoraciones/elderlyList");
     }
+
     @RequestMapping(value = "/addValoracion/{dniVolunteer}")
-    public String addValoracion2(@PathVariable String dniVolunteer,Model model,HttpSession session) {
-        Valoracion v= new Valoracion();
+    public String addValoracion2(@PathVariable String dniVolunteer, Model model, HttpSession session) {
+        Valoracion v = new Valoracion();
         v.setDniVolunteer(dniVolunteer);
         model.addAttribute("valoracion", v);
 
@@ -168,33 +172,33 @@ public class ValoracionController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/listMisValoraciones/{dniVolunteer}")
-    public String ListMisValoraciones2(HttpSession session, Model model,@PathVariable String dniVolunteer) {
+    public String ListMisValoraciones2(HttpSession session, Model model, @PathVariable String dniVolunteer) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("listMisValoraciones", valoracionDao.getMisValoraciones(dniVolunteer));//getVolunteerAsigned()
-        model.addAttribute("datos",valoracionDao.getUsersInfo());
-        HashMap<String ,Float> v=valoracionDao.getPromedio();
-        Float promedio=v.get(dniVolunteer);
-        if(promedio==null){
-            model.addAttribute("puntuacion","No disponible");
+        model.addAttribute("datos", valoracionDao.getUsersInfo());
+        HashMap<String, Float> v = valoracionDao.getPromedio();
+        Float promedio = v.get(dniVolunteer);
+        if (promedio == null) {
+            model.addAttribute("puntuacion", "No disponible");
 
-        }else{
-            model.addAttribute("puntuacion",promedio);
+        } else {
+            model.addAttribute("puntuacion", promedio);
 
         }
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("users",u);
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("users", u);
         return gestionarAcceso(session, model, "ElderlyPeople", "valoraciones/listMisValoraciones");
     }
 
 
     @RequestMapping(value = "/addValoracion", method = RequestMethod.POST)
-    public String processAddSubmitValoracion(HttpSession session,Model model,@ModelAttribute("valoracion") Valoracion valoracion, BindingResult bindingResult) {
+    public String processAddSubmitValoracion(HttpSession session, Model model, @ModelAttribute("valoracion") Valoracion valoracion, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "valoraciones/addValoracion";
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracion.setDni(user.getDni());
-        Boolean checkValoracion = valoracionDao.checkValoracion(user.getDni(),valoracion.getDniVolunteer());
-        System.out.println("estado: "+checkValoracion+ "INFO:"+valoracion.toString());
+        Boolean checkValoracion = valoracionDao.checkValoracion(user.getDni(), valoracion.getDniVolunteer());
+        System.out.println("estado: " + checkValoracion + "INFO:" + valoracion.toString());
         if (!checkValoracion) {
 
             bindingResult.rejectValue("dniVolunteer", "dniVolunteer", "Ya ha valorado ha este voluntario");

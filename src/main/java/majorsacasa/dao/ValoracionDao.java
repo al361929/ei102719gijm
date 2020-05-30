@@ -15,7 +15,7 @@ import java.util.List;
 
 @Repository
 
-public class ValoracionDao extends GeneralDao{
+public class ValoracionDao extends GeneralDao {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -61,6 +61,7 @@ public class ValoracionDao extends GeneralDao{
             return new ArrayList<Valoracion>();
         }
     }
+
     public List<Valoracion> getMisValoracionesElderly(String dni) {
         try {
             return jdbcTemplate.query("SELECT * FROM volunteerValoration WHERE dni=?", new ValoracionRowMapper(), dni);
@@ -68,25 +69,26 @@ public class ValoracionDao extends GeneralDao{
             return new ArrayList<Valoracion>();
         }
     }
-    public boolean checkValoracion(String dniElderly,String dniVolunter){
-        List<String> valoracion = jdbcTemplate.queryForList(" select dni from volunteerValoration where dni=? and dnivolunteer=?", String.class,dniElderly,dniVolunter);
+
+    public boolean checkValoracion(String dniElderly, String dniVolunter) {
+        List<String> valoracion = jdbcTemplate.queryForList(" select dni from volunteerValoration where dni=? and dnivolunteer=?", String.class, dniElderly, dniVolunter);
 
         return valoracion.isEmpty();
     }
-    public HashMap<String,Float> getPromedio(){
+
+    public HashMap<String, Float> getPromedio() {
         List<String> key = jdbcTemplate.queryForList("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer", String.class);
         List<String> value = jdbcTemplate.queryForList("select avg(valoration) from volunteerValoration GROUP BY dniVolunteer", String.class);
-        HashMap <String,Float> promedio=new HashMap<>();
-        for (int i=0; i<key.size();i++){
-            promedio.put(key.get(i),Float.parseFloat(value.get(i)));
+        HashMap<String, Float> promedio = new HashMap<>();
+        for (int i = 0; i < key.size(); i++) {
+            promedio.put(key.get(i), Float.parseFloat(value.get(i)));
 
         }
-       //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer","select avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
-        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer, avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
 
-        return  promedio;
+        return promedio;
     }
-    public HashMap<String,String> getUsersInfo(){
+
+    public HashMap<String, String> getUsersInfo() {
 
         List<UserDetails> usuarios = jdbcTemplate.query("SELECT user_name, password,name, dnivolunteer FROM Volunteer", new UserRowMapper());
 
@@ -96,16 +98,13 @@ public class ValoracionDao extends GeneralDao{
 
         usuarios.addAll(jdbcTemplate.query("SELECT user_name, password, nif,name FROM Company", new UserRowMapper()));
 
-        HashMap <String,String> info=new HashMap<>();
-        for (UserDetails u: usuarios){
-            info.put(u.getDni(),u.getName());
+        HashMap<String, String> info = new HashMap<>();
+        for (UserDetails u : usuarios) {
+            info.put(u.getDni(), u.getName());
         }
 
-        info.put("0"," ");
+        info.put("0", " ");
 
-        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer from volunteerValoration GROUP BY dniVolunteer","select avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
-        //HashMap<String, Object> promedio = (HashMap<String, Object>) jdbcTemplate.queryForMap("select dniVolunteer, avg(valoration) from volunteerValoration GROUP BY dniVolunteer");
-
-        return  info;
+        return info;
     }
 }

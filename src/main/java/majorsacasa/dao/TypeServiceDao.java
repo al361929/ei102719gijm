@@ -19,6 +19,7 @@ public class TypeServiceDao {
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
     public List<TypeService> getTypeServices() {
         try {
             return jdbcTemplate.query(
@@ -28,6 +29,7 @@ public class TypeServiceDao {
             return new ArrayList<TypeService>();
         }
     }
+
     public void addService(TypeService service) {
         jdbcTemplate.update("INSERT INTO ServiceType VALUES(DEFAULT,?)", service.getServiceType());
     }

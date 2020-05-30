@@ -5,10 +5,9 @@ public class MajorsaCasaException extends RuntimeException {
     String message;    // Missatge per mostrar a la vista
     String errorName;     // Identificador de l’error
 
-    public MajorsaCasaException(String message, String errorName)
-    {
-        this.message=message;
-        this.errorName=errorName;
+    public MajorsaCasaException(String message, String errorName) {
+        this.message = message;
+        this.errorName = errorName;
     }
 
     public String getMessage() {

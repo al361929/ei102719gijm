@@ -75,22 +75,24 @@ public class VolunteerController extends ManageAccessController {
         }
         if (!checkUser) {
 
-            bindingResult.rejectValue("usuario", "usuario", volunteer.getUsuario()+" ya esta se esta utilizando");
+            bindingResult.rejectValue("usuario", "usuario", volunteer.getUsuario() + " ya esta se esta utilizando");
 
             return "volunteer/addRegister";
         }
         volunteerDao.addVolunteer(volunteer);
         return "redirect:../login";
     }
+
     @RequestMapping(value = "/updateAcepted/{dni}")
     public String editVolunteerEstado(Model model, @PathVariable String dni) {
-        Volunteer v= volunteerDao.getVolunteer(dni);
+        Volunteer v = volunteerDao.getVolunteer(dni);
         v.setEstado("Aceptado");
-        volunteerDao.updateVolunteerEstado(v.getDni(),v.getEstado());
+        volunteerDao.updateVolunteerEstado(v.getDni(), v.getEstado());
 
-        return "redirect:../list?nuevo=" +dni;
+        return "redirect:../list?nuevo=" + dni;
 
     }
+
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
     public String editVolunteer(Model model, @PathVariable String dni) {
         model.addAttribute("volunteer", volunteerDao.getVolunteer(dni));
@@ -117,29 +119,28 @@ public class VolunteerController extends ManageAccessController {
     public String getScheduleList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("scheduleList", volunteerDao.getScheduleList(user.getDni()));
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("usuario",u);
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("usuario", u);
         return "volunteer/scheduleList";
     }
 
 
-
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public String editVolunteerPerfil(HttpSession session,Model model) {
-        String destino= sesionAbierta(session,model,"volunteer/perfil");
-        if (destino!=null) return destino;
+    public String editVolunteerPerfil(HttpSession session, Model model) {
+        String destino = sesionAbierta(session, model, "volunteer/perfil");
+        if (destino != null) return destino;
         UserDetails user = (UserDetails) session.getAttribute("user");
-        if (user.getTipo()!="Volunteer") return "error/sinPermiso";
+        if (user.getTipo() != "Volunteer") return "error/sinPermiso";
 
         model.addAttribute("volunteer", volunteerDao.getVolunteer(user.getDni()));
         //return "volunteer/update";
-        return gestionarAcceso(session,model,"Volunteer","volunteer/perfil");
+        return gestionarAcceso(session, model, "Volunteer", "volunteer/perfil");
 
     }
 
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
     public String processUpdateSubmitPerfil(@ModelAttribute("volunteer") Volunteer volunteer,
-                                      BindingResult bindingResult) {
+                                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.toString());
             System.out.println(volunteer.toString());
@@ -151,12 +152,12 @@ public class VolunteerController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/elderlyList")
-    public String getElderlyList(HttpSession session,Model model) {
+    public String getElderlyList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("elderlyList", volunteerDao.getElderlyList(user.getDni()));
-        HashMap<String ,String> u=valoracionDao.getUsersInfo();
-        model.addAttribute("usuario",u);
-        return gestionarAcceso(session,model,"Volunteer","volunteer/elderlyListV");
+        HashMap<String, String> u = valoracionDao.getUsersInfo();
+        model.addAttribute("usuario", u);
+        return gestionarAcceso(session, model, "Volunteer", "volunteer/elderlyListV");
 
         //return "socialWorker/elderlyListSW";
     }
@@ -171,11 +172,12 @@ public class VolunteerController extends ManageAccessController {
 
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listVolunteer");
     }
+
     @RequestMapping("/misHorariosElderly/{dni}")
-    public String listVolunteersElderly2(HttpSession session, Model model,@PathVariable String dni) {
+    public String listVolunteersElderly2(HttpSession session, Model model, @PathVariable String dni) {
         //model.addAttribute("volunteers", volunteerDao.getVolunteers());
         UserDetails user = (UserDetails) session.getAttribute("user");
-        model.addAttribute("horarios", volunteerDao.getMisHorariosElderly(dni,user.getDni()));
+        model.addAttribute("horarios", volunteerDao.getMisHorariosElderly(dni, user.getDni()));
         model.addAttribute("promedio", valoracionDao.getPromedio());
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listVolunteerElderly");
     }
@@ -188,18 +190,9 @@ public class VolunteerController extends ManageAccessController {
         model.addAttribute("misVoluntarios", volunteerDao.getVolunteerAsigned(user.getDni()));//getVolunteerAsigned()
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-        model.addAttribute("promedio",valoracionDao.getPromedio());
+        model.addAttribute("promedio", valoracionDao.getPromedio());
 
         return gestionarAcceso(session, model, "ElderlyPeople", "volunteer/listMisVolunteer");
     }
-/*
-    @RequestMapping(value = "/tiempoDelVoluntario/{dni}")
-    public String getScheduleList9(@PathVariable String dni,HttpSession session, Model model) {
-        UserDetails user = (UserDetails) session.getAttribute("user");
-        Volunteer v = volunteerDao.getVolunteer(dni);
-        model.addAttribute("name","Horarios de "+v.getNombre());
-        model.addAttribute("scheduleList", volunteerDao.getScheduleListDisponibles(dni));
-        return "volunteer/tiempoDelVoluntario";
-    }*/
 
 }

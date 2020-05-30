@@ -59,8 +59,6 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String checkLogin(@ModelAttribute("user") UserDetails user,
                              BindingResult bindingResult, HttpSession session) {
-        //UserValidator userValidator = new UserValidator();
-        //userValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             return "login";
         }
@@ -81,23 +79,23 @@ public class LoginController {
             return "redirect:/" + url;
         if (user.getTipo().equals("Volunteer")) {
             return "redirect:/volunteer/scheduleList";
-        }else{
+        } else {
             if (user.getTipo().equals("ElderlyPeople")) {
                 return "redirect:/request/listElderly";
-            }else{
+            } else {
                 if (user.getTipo().equals("Company")) {
                     return "redirect:/company/contractList";
-                }else{
+                } else {
                     if (user.getTipo().equals("SocialWorker")) {
                         return "redirect:/socialWorker/elderlyList";
-                    }else{
-                        if (user.getCode()==6) {
+                    } else {
+                        if (user.getCode() == 6) {
                             return "redirect:/company/list";
                         }
-                        if (user.getCode()==7) {
+                        if (user.getCode() == 7) {
                             return "redirect:/elderly/list";
                         }
-                        if (user.getCode()==8) {
+                        if (user.getCode() == 8) {
                             return "redirect:/volunteer/list";
                         }
                         if (user.getTipo().equals("Admin")) {

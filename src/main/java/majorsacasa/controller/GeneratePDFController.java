@@ -51,16 +51,12 @@ public class GeneratePDFController {
      */
     public void createPDF(File pdfNewFile, Invoice invoice, Elderly elderly, Request request, Service service) {
         // Aquí introduciremos el código para crear el PDF.
-        // We create the document and set the file name.
 
         // Creamos el documento e indicamos el nombre del fichero.
         try {
             Document document = new Document();
-            //PdfDocument pdfDocument = null;
             PdfWriter writer = null;
             try {
-                //PdfWriter pdfWriter = new PdfWriter(pdfNewFile);
-                //pdfDocument = new PdfDocument(pdfWriter);
                 writer = com.itextpdf.text.pdf.PdfWriter.getInstance(document, new FileOutputStream(pdfNewFile));
             } catch (FileNotFoundException fileNotFoundException) {
                 System.out.println("No such file was found to generate the PDF "
@@ -75,7 +71,6 @@ public class GeneratePDFController {
             //pdfDocument.addEventHandler(PdfDocumentEvent.END_PAGE, evento);
             // Establecemos los margenes
 
-            // We add metadata to PDF
             // Añadimos los metadatos del PDF
             document.addTitle("Factura-" + invoice.getInvoiceNumber());
             document.addSubject("Usando iText");
@@ -85,7 +80,6 @@ public class GeneratePDFController {
 
             document.setMargins(70, 50, 35, 35);
 
-            // First page
             // Primera página
             // AÑADIMOS LA FRANJA GRANATE DE ARRIBA
             Chapter chapter = new Chapter(0);
@@ -106,7 +100,6 @@ public class GeneratePDFController {
                 image = Image.getInstance(logo);
                 image.setWidthPercentage(100F);
                 image.setAbsolutePosition(70, 700);
-                //image.setAlignment(Element.ALIGN_LEFT);
                 chapter.add(image);
             } catch (BadElementException ex) {
                 System.out.println("Image BadElementException" + ex);
@@ -226,7 +219,6 @@ public class GeneratePDFController {
             observaciones.add(request.getComments());
             chapter.add(observaciones);
 
-            //System.out.println(chapter.toString());
 
             // AÑADIMOS LA FRANJA GRANATE ABAJO IGUAL QUE ARRIBA
             try {

@@ -37,6 +37,7 @@ public class OffersDao {
     public Offer getOffer(String idService, String nif) {
         return jdbcTemplate.queryForObject("SELECT * FROM Offers WHERE idService=? AND nif=?", new OffersRowMapper(), idService, nif);
     }
+
     public Offer getType(String idService) {
         return jdbcTemplate.queryForObject("SELECT servicetype FROM Offers WHERE idService=?", new OffersRowMapper(), idService);
     }
@@ -46,8 +47,7 @@ public class OffersDao {
     }
 
     public Boolean checkService(String nif) {
-        List<String> servicios = jdbcTemplate.queryForList("select idservice from offers where nif=?", String.class,nif);
-      // System.out.println(servicios.contains(id)+" id-"+id);
+        List<String> servicios = jdbcTemplate.queryForList("select idservice from offers where nif=?", String.class, nif);
         return servicios.isEmpty();
     }
 }

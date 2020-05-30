@@ -6,57 +6,59 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
     <div class="container">
-<h1>Modificar Contrato</h1>
-<h2 th:text="${contract.idContract}"></h2>
-<form action="#" th:action="@{/contract/update}"
-      th:object="${contract}" method="post">
-    <table>
-        <tr>
-            <td><label>Num Contrato</label></td>
-            <td><input type="number" class="form-control" th:field="*{idContract}" readonly/></td>
-        </tr>
-        <tr>
-            <td><label>CIF Empresa</label></td>
-            <td><input type="text" class="form-control" th:field="*{nifcompany}" required/></td>
-        </tr>
+        <h1>Modificar Contrato</h1>
+        <h2 th:text="${contract.idContract}"></h2>
+        <form action="#" th:action="@{/contract/update}"
+              th:object="${contract}" method="post">
+            <table>
+                <tr>
+                    <td><label>Num Contrato</label></td>
+                    <td><input type="number" class="form-control" th:field="*{idContract}" readonly/></td>
+                </tr>
+                <tr>
+                    <td><label>CIF Empresa</label></td>
+                    <td><input type="text" class="form-control" th:field="*{nifcompany}" required/></td>
+                </tr>
 
-        <tr>
-            <td><label>Fecha de alta</label></td>
-            <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de baja</label></td>
-            <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
-        </tr>
-        <tr>
-            <td><label>Cantidad</label></td>
-            <td><input type="number" class="form-control" th:field="*{cantidad}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Descripción</label></td>
-            <td><input type="text" class="form-control" th:field="*{descripcion}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Firma</label></td>
-            <td><input type="text" class="form-control" th:field="*{firma}" required/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Modificar contrato" class="btn btn btn-warning" role="button"
-                                   aria-pressed="true"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-            </td>
+                <tr>
+                    <td><label>Fecha de alta</label></td>
+                    <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de baja</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Cantidad</label></td>
+                    <td><input type="number" class="form-control" th:field="*{cantidad}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Descripción</label></td>
+                    <td><input type="text" class="form-control" th:field="*{descripcion}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Firma</label></td>
+                    <td><input type="text" class="form-control" th:field="*{firma}" required/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Modificar contrato" class="btn btn btn-warning"
+                                           role="button"
+                                           aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
+                    </td>
 
-        </tr>
-    </table>
-</form>
-</div>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 </body>
 </html>

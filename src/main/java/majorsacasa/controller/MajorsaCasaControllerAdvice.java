@@ -1,4 +1,5 @@
 package majorsacasa.controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @ControllerAdvice
 public class MajorsaCasaControllerAdvice {
     @ExceptionHandler(value = MajorsaCasaException.class)
-    public ModelAndView handleClubException(MajorsaCasaException ex){
+    public ModelAndView handleClubException(MajorsaCasaException ex) {
 
         ModelAndView mav = new ModelAndView("error/exceptionError");
         mav.addObject("message", ex.getMessage());
