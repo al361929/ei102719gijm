@@ -6,80 +6,82 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
     <div class="container">
-<h1>Modificar Voluntario</h1>
-<h2 th:text="${volunteer.nombre}"></h2>
-<form action="#" th:action="@{/volunteer/update}"
-      th:object="${volunteer}" method="post">
-    <table>
-        <tr>
-            <td><label>DNI</label></td>
-            <td><input type="text" class="form-control" th:field="*{dni}" readonly
-                       style="background-color: rgb(170, 170, 170)"/></td>
-        </tr>
-        <tr>
-            <td><label>Nombre</label></td>
-            <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Apellidos</label></td>
-            <td><input type="text" class="form-control" th:field="*{apellidos}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Direccion</label></td>
-            <td><input type="text" class="form-control" th:field="*{direccion}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Telefono</label></td>
-            <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="9" required/></td>
-        </tr>
-        <tr>
-            <td><label>Usuario</label></td>
-            <td><input type="text" class="form-control" th:field="*{usuario}" readonly/></td>
-        </tr>
-        <div class="loggeduser" th:object="${session}">
+        <h1>Modificar Voluntario</h1>
+        <h2 th:text="${volunteer.nombre}"></h2>
+        <form action="#" th:action="@{/volunteer/update}"
+              th:object="${volunteer}" method="post">
+            <table>
+                <tr>
+                    <td><label>DNI</label></td>
+                    <td><input type="text" class="form-control" th:field="*{dni}" readonly
+                               style="background-color: rgb(170, 170, 170)"/></td>
+                </tr>
+                <tr>
+                    <td><label>Nombre</label></td>
+                    <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Apellidos</label></td>
+                    <td><input type="text" class="form-control" th:field="*{apellidos}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Direccion</label></td>
+                    <td><input type="text" class="form-control" th:field="*{direccion}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Telefono</label></td>
+                    <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="9" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Usuario</label></td>
+                    <td><input type="text" class="form-control" th:field="*{usuario}" readonly/></td>
+                </tr>
+                <div class="loggeduser" th:object="${session}">
 
-            <div th:if="*{user.code == 1}">
+                    <div th:if="*{user.code == 1}">
 
-        <tr>
-            <td><label>Contraseña</label></td>
-            <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
-        </tr>
-        </div>
-        </div>
+                        <tr>
+                            <td><label>Contraseña</label></td>
+                            <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
+                        </tr>
+                    </div>
+                </div>
 
-        <tr>
-            <td><label>Fecha de alta</label></td>
-            <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Fecha de baja</label></td>
-            <td><input type="date" class="form-control" th:field="*{dataDown}"/></td>
-        </tr>
-        <tr>
-            <td><label>Email</label></td>
-            <td><input type="text" class="form-control" th:field="*{email}" required/></td>
-        </tr>
-        <tr>
-            <td><label>Cumpleaños</label></td>
-            <td><input type="date" class="form-control" th:field="*{birthday}" required/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Modifica voluntario" class="btn btn btn-warning" role="button"
-                                   aria-pressed="true"/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-            </td>
+                <tr>
+                    <td><label>Fecha de alta</label></td>
+                    <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de baja</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dataDown}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Email</label></td>
+                    <td><input type="text" class="form-control" th:field="*{email}" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Cumpleaños</label></td>
+                    <td><input type="date" class="form-control" th:field="*{birthday}" required/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Modifica voluntario" class="btn btn btn-warning"
+                                           role="button"
+                                           aria-pressed="true"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
+                    </td>
 
-        </tr>
-    </table>
-</form>
-</div>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 </body>
 </html>

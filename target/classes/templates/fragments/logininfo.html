@@ -6,7 +6,7 @@
                          th:href="@{/login}">Entrar</a>
     </div>
     <div th:unless="*{user == null}">
-    <!--<p th:replace="fragments/nav"></p>-->
+        <!--<p th:replace="fragments/nav"></p>-->
         <div th:if="*{user.code == 2}">
             <br>
             <a id="estilo2" href="/logout" th:href="@{/logout}" class="btn btn btn-exit" role="button"> Salir</a>

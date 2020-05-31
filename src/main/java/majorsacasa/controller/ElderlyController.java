@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.Collections.reverse;
+
 @Controller
 @RequestMapping("/elderly")
 public class ElderlyController extends ManageAccessController {
@@ -114,6 +116,7 @@ public class ElderlyController extends ManageAccessController {
         model.addAttribute("allergies", alergias);
         model.addAttribute("elderly", elderlyDao.getElderly(dni));
         List<SocialWorker> social = socialWorkerDao.getSocialWorkers();
+        reverse(social);
         model.addAttribute("SocialWorkers", social);
         return gestionarAcceso(session, model, "SocialWorker", "elderly/update");
     }

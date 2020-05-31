@@ -6,7 +6,8 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
@@ -43,7 +44,7 @@
                 </tr>
                 <tr>
                     <td><label>Fecha de alta</label></td>
-                    <td><input type="date" class="form-control" th:field="*{fechaAlta}"readonly /></td>
+                    <td><input type="date" class="form-control" th:field="*{fechaAlta}" readonly/></td>
                 </tr>
                 <tr>
                     <td><label>Email</label></td>
@@ -60,7 +61,7 @@
                     <td><input type="password" class="form-control" th:field="*{password}" required/></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="Modifica datos"
+                    <td colspan="2"><input type="submit" value="Modificar perfil"
                                            class="btn btn btn-secondary"
                                            role="button"
                                            aria-pressed="true"/></td>

@@ -1,40 +1,38 @@
 <nav xmlns:th="http://www.w3.org/1999/xhtml">
 
-<div class="loggeduser" th:object="${session}">
-    <div th:if="*{user.code == 5}">
-        <div th:replace="fragments/navAdmin"></div>
+    <div class="loggeduser" th:object="${session}">
+        <div th:if="*{user.code == 5}">
+            <div th:replace="fragments/navAdmin"></div>
+        </div>
+
+        <div th:if="*{user.code == 4}">
+            <div th:replace="fragments/navCompany"></div>
+        </div>
+
+        <div th:if="*{user.code == 3}">
+            <div th:replace="fragments/navSocialWorker"></div>
+        </div>
+
+        <div th:if="*{user.code == 2}">
+            <div th:replace="fragments/navElderly"></div>
+        </div>
+
+        <div th:if="*{user.code == 1}">
+            <div th:replace="fragments/navVolunteer"></div>
+        </div>
+        <!-- Gestió del CAS-->
+        <div th:if="*{user.code == 6}">
+            <div th:replace="fragments/nav6"></div>
+        </div>
+
+        <div th:if="*{user.code == 7}">
+            <div th:replace="fragments/nav7"></div>
+        </div>
+
+        <div th:if="*{user.code == 8}">
+            <div th:replace="fragments/nav8"></div>
+        </div>
+
+
     </div>
-
-    <div th:if="*{user.code == 4}">
-        <div th:replace="fragments/navCompany"></div>
-    </div>
-
-    <div th:if="*{user.code == 3}">
-        <div th:replace="fragments/navSocialWorker"></div>
-    </div>
-
-    <div th:if="*{user.code == 2}">
-        <div th:replace="fragments/navElderly"></div>
-    </div>
-
-    <div th:if="*{user.code == 1}">
-        <div th:replace="fragments/navVolunteer"></div>
-    </div>
-<!-- Gestió del CAS-->
-    <div th:if="*{user.code == 6}">
-        <div th:replace="fragments/nav6"></div>
-    </div>
-
-    <div th:if="*{user.code == 7}">
-        <div th:replace="fragments/nav7"></div>
-    </div>
-
-    <div th:if="*{user.code == 8}">
-        <div th:replace="fragments/nav8"></div>
-    </div>
-
-
-
-
-</div>
 </nav>

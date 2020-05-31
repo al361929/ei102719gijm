@@ -15,7 +15,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/socialWorker")
 public class SocialWorkerController extends ManageAccessController {
-
+    static String codElderly;
     private SocialWorkerDao socialWorkerDao;
 
     @Autowired
@@ -36,7 +36,12 @@ public class SocialWorkerController extends ManageAccessController {
         model.addAttribute("socialWorker", new SocialWorker());
         return "socialWorker/add";
     }
-
+    @RequestMapping(value = "/addElderly/{dni}")
+    public String addSocialWorkerCas(Model model, @PathVariable String dni) {
+        codElderly=dni;
+        model.addAttribute("socialWorker", new SocialWorker());
+        return "socialWorker/add";
+    }
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(HttpSession session, @ModelAttribute("socialWorker") SocialWorker socialWorker, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
@@ -59,7 +64,9 @@ public class SocialWorkerController extends ManageAccessController {
         socialWorkerDao.addSocialWorker(socialWorker);
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (user.getCode() == 7) {
-            return "redirect:../elderly/list";
+            //return "redirect:../elderly/list";
+            String url="redirect:../elderly/update/"+codElderly;
+            return url;
 
         }
         return "redirect:list?nuevo=" + socialWorker.getDni();

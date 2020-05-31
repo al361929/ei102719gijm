@@ -92,7 +92,7 @@
                                 th:utext="${Social.nombre}"></option>
                     </select></td>
 
-                    <td colspan="2"><a href="../../socialWorker/add" class="btn btn btn-primary" role="button"
+                    <td colspan="2"><a  th:href="@{../../socialWorker/addElderly/{dni}(dni=${elderly.dni})}" class="btn btn btn-primary" role="button"
                                        aria-pressed="true">Añadir Trabajador Social</a></td>
                 <tr>
                     <td><label>Cumpleaños</label></td>

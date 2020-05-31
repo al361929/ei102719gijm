@@ -3,42 +3,43 @@
       layout:decorate="~{fragments/base}">
 <head>
     <title>Voluntarios</title>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/></head>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
 <body>
 <div layout:fragment="content">
 
-<div class="table-responsive">
-    <h1>Horarios</h1>
+    <div class="table-responsive">
+        <h1>Horarios</h1>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Dia</th>
-            <th>Mes</th>
-            <th>Hora inicio</th>
-            <th>Hora fin</th>
-            <th>Puntuación</th>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Dia</th>
+                <th>Mes</th>
+                <th>Hora inicio</th>
+                <th>Hora fin</th>
+                <th>Puntuación</th>
 
-            <th></th>
-            <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="horario: ${horarios}">
-        <td th:text="${horario.dia}"></td>
-        <td th:text="${horario.mes}"></td>
-        <td th:text="${horario.startTime}"></td>
-        <td th:text="${horario.endTime}"></td>
-        <td th:text="${promedio.get(horario.dniVolunteer)}"></td>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="horario: ${horarios}">
+                <td th:text="${horario.dia}"></td>
+                <td th:text="${horario.mes}"></td>
+                <td th:text="${horario.startTime}"></td>
+                <td th:text="${horario.endTime}"></td>
+                <td th:text="${promedio.get(horario.dniVolunteer)}"></td>
 
-    </tr>
-    </tbody>
-</table>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a></td>
-</div>
 </div>
 
 </body>

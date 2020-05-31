@@ -13,57 +13,58 @@
     <div class="container">
 
         <h4>Información de la solicitud</h4>
-<br>
-            <table>
-                <tr>
+        <br>
+        <table>
+            <tr>
 
-                    <td><b>Servicio: </b></td>
-                    <td th:text="${servicios.get(request.idService)}"></td>
+                <td><b>Servicio: </b></td>
+                <td th:text="${servicios.get(request.idService)}"></td>
 
-                </tr>
-                <tr>
+            </tr>
+            <tr>
 
-                    <td><b>Solicitante: </b></td>
-                    <td th:text="${usuario.get(request.dni)}"></td>
-                </tr>
+                <td><b>Solicitante: </b></td>
+                <td th:text="${usuario.get(request.dni)}"></td>
+            </tr>
 
-                <tr>
-                    <td><b>Empresa: </b></td>
-                    <td th:text="${usuario.get(request.nif)}"></td>
+            <tr>
+                <td><b>Empresa: </b></td>
+                <td th:text="${usuario.get(request.nif)}"></td>
 
-                </tr>
-                <tr>
-                    <td><b>Fecha de solicitud: </b></td>
-                    <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
-                </tr>
-                <tr>
-                    <td><b>Estado: </b></td>
-                    <td th:text="${request.state}"></td>
-                </tr>
-                 <tr>
-                       <td><b>Fecha de aceptación: </b></td>
-                     <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
-                   </tr>
-                   <tr>
-                       <td><b>Fecha de rechazo: </b></td>
-                       <td th:text="${#temporals.format(request.dateReject,'dd/MM/yyyy')}"></td>
-                   </tr>
-                <tr>
-                    <td><b>Comentarios: </b></td>
-                    <td th:text="${request.comments}"></td>
-                </tr>
-                <tr>
-                    <td><b>Dias: </b></td>
-                    <td th:text="${request.dias}"></td>
-                </tr>
+            </tr>
+            <tr>
+                <td><b>Fecha de solicitud: </b></td>
+                <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
+            </tr>
+            <tr>
+                <td><b>Estado: </b></td>
+                <td th:text="${request.state}"></td>
+            </tr>
+            <tr>
+                <td><b>Fecha de aceptación: </b></td>
+                <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
+            </tr>
+            <tr>
+                <td><b>Fecha de rechazo: </b></td>
+                <td th:text="${#temporals.format(request.dateReject,'dd/MM/yyyy')}"></td>
+            </tr>
+            <tr>
+                <td><b>Comentarios: </b></td>
+                <td th:text="${request.comments}"></td>
+            </tr>
+            <tr>
+                <td><b>Dias: </b></td>
+                <td th:text="${request.dias}"></td>
+            </tr>
 
 
-                <tr>
-                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
-                    </td>
+            <tr>
+                <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit"
+                                   role="button">Atrás</a>
+                </td>
 
-                </tr>
-            </table>
+            </tr>
+        </table>
     </div>
 </div>
 </body>
