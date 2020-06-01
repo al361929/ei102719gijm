@@ -33,12 +33,12 @@ public class CompanyController extends ManageAccessController {
     }
 
     @RequestMapping("/list")
-    public String listCompanies(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+    public String listCompanies(Model model, @RequestParam("nuevo") Optional<String> nuevo, HttpSession session) {
         model.addAttribute("companies", companyDao.getCompanies());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
         model.addAttribute("mapa", serviceDao.getMapServiceCompany());
-        return "company/list";
+        return gestionarAcceso(session, model, "Admin", "company/list");
     }
 
     @RequestMapping(value = "/add")
@@ -124,9 +124,9 @@ public class CompanyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/update/{nif}", method = RequestMethod.GET)
-    public String editCompany(Model model, @PathVariable String nif) {
+    public String editCompany(Model model, @PathVariable String nif, HttpSession session) {
         model.addAttribute("company", companyDao.getCompany(nif));
-        return "company/update";
+        return gestionarAcceso(session, model, "Admin", "company/update");
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -159,8 +159,6 @@ public class CompanyController extends ManageAccessController {
 
         model.addAttribute("company", companyDao.getCompany(user.getDni()));
         return gestionarAcceso(session, model, "Company", "company/perfil");
-
-        //return "socialWorker/elderlyListSW";
     }
 
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
@@ -184,9 +182,7 @@ public class CompanyController extends ManageAccessController {
     @RequestMapping(value = "/contractListCompany/{nif}")
     public String getContractListP(HttpSession session, Model model, @PathVariable String nif) {
         model.addAttribute("contracts", companyDao.getContractsList(nif));
-        //HashMap<String ,String> u=valoracionDao.getUsersInfo();
         model.addAttribute("usuario", valoracionDao.getUsersInfo());
-        //return gestionarAcceso(session, model, "admin", "../contract/list");
         return "company/contractList";
     }
 

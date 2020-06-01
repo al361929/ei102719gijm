@@ -41,11 +41,11 @@ public class ValoracionController extends ManageAccessController {
         model.addAttribute("service", valoracionServiceDao.getServices());
         String newValoration = nuevo.orElse("None");
         model.addAttribute("nuevo", newValoration);
-        return "valoraciones/serviceValoration";
+        return gestionarAcceso(session, model, "ElderlyPeople", "valoraciones/serviceValoration");
     }
 
     @RequestMapping(value = "/addValorationService/{id}")
-    public String addValoracionService(@PathVariable int id, Model model, HttpSession session) {
+    public String addValoracionService(@PathVariable int id, Model model) {
         ValoracionService v = new ValoracionService();
         v.setIdService(id);
         model.addAttribute("valoracionService", v);
@@ -55,25 +55,18 @@ public class ValoracionController extends ManageAccessController {
 
     @RequestMapping(value = "/addValorationService", method = RequestMethod.POST)
     public String processAddSubmitValoracionService(HttpSession session, Model model, @ModelAttribute("valoracionService") ValoracionService valoracion, BindingResult bindingResult) {
-        // if (bindingResult.hasErrors())
-        //   return "valoraciones/addValoracionService";
-
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracion.setDni(user.getDni());
-
-
         Boolean checkValoracion = valoracionServiceDao.checkValoracion(user.getDni(), valoracion.getIdService());
 
         if (!checkValoracion) {
-
             bindingResult.rejectValue("idService", "idService", "Ya ha valorado  este servicio");
-
             return "valoraciones/addValorationService";
         }
 
         valoracionServiceDao.addValoracion(valoracion);
         int id = valoracion.getIdService();
-        return "redirect:serviceValoration?nuevo=" + id;
+        return gestionarAcceso(session, model, "ElderlyPeople", "redirect:serviceValoration?nuevo=" + id);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -167,8 +160,7 @@ public class ValoracionController extends ManageAccessController {
         Valoracion v = new Valoracion();
         v.setDniVolunteer(dniVolunteer);
         model.addAttribute("valoracion", v);
-
-        return "valoraciones/addValoracion";
+        return gestionarAcceso(session, model, "ElderlyPeople", "valoraciones/addValoracion");
     }
 
     @RequestMapping(value = "/listMisValoraciones/{dniVolunteer}")

@@ -77,15 +77,14 @@ public class RequestController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public String infoRequest(Model model, @PathVariable int id) {
+    public String infoRequest(Model model, @PathVariable int id, HttpSession session) {
         Request request = requestDao.getRequest(id);
         model.addAttribute("request", request);
         HashMap<String, String> u = valoracionDao.getUsersInfo();
         model.addAttribute("usuario", u);
         HashMap<Integer, String> servicios = requestDao.getMapServiceElderly();
         model.addAttribute("servicios", servicios);
-        return "request/info";
-
+        return gestionarAcceso(session, model, "ElderlyPeople", "request/info");
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
@@ -94,7 +93,6 @@ public class RequestController extends ManageAccessController {
         model.addAttribute("estados", estados);
         model.addAttribute("request", request);
         List<Company> companies = companyDao.getCompanyServiceOffer(request.getIdService());
-        System.out.println(companies.toString());
         model.addAttribute("companyies", companies);
         return "request/update";
 
@@ -134,13 +132,12 @@ public class RequestController extends ManageAccessController {
         model.addAttribute("usuario", u);
 
         requestDao.updateRequest(request);
-        //return "redirect:list?nuevo=" + request.getIdRequest();
         return "redirect:../request/list/" + request.getDni() + "?nuevo=" + request.getIdRequest();
 
     }
 
     @RequestMapping(value = "/list/{dni}")
-    public String listRequestsPersonalizado(@PathVariable String dni, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+    public String listRequestsPersonalizado(@PathVariable String dni, Model model, @RequestParam("nuevo") Optional<String> nuevo, HttpSession session) {
         model.addAttribute("requests", requestDao.getRequestsElderly(dni));
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
@@ -148,7 +145,7 @@ public class RequestController extends ManageAccessController {
         model.addAttribute("usuario", u);
         HashMap<Integer, String> servicios = requestDao.getMapServiceElderly();
         model.addAttribute("servicios", servicios);
-        return "request/list";
+        return gestionarAcceso(session, model, "SocialWorker", "request/list");
     }
 
     @RequestMapping(value = "/delete/{id}")

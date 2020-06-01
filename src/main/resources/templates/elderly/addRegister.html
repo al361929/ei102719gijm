@@ -65,27 +65,10 @@
                     <td><label>Contraseña</label></td>
                     <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
                 </tr>
-                <!--                <tr>-->
-                <!--                    <td><label>Fecha de alta</label></td>-->
-                <!--                    <td><input type="date" class="form-control" th:field="*{releaseDate}"/></td>-->
-                <!--                </tr>-->
-                <!--                <tr>-->
-                <!--                    <td><label>Fecha de baja</label></td>-->
-                <!--                    <td><input type="date" class="form-control" th:field="*{dateDown}"/></td>-->
-                <!--                </tr>-->
                 <tr>
                     <td><label>Email</label></td>
                     <td><input type="text" class="form-control" th:field="*{email}" required/></td>
                 </tr>
-                <!--  <tr><td><label>Trabajador Social: </label></td>
-                      <td><select class="select-css" th:field="*{socialWorker}">
-                      <option value="" selected disabled>-&#45;&#45; Selecciona Trabajador Social -&#45;&#45;</option>
-                      <option th:each="Social : ${SocialWorkers}" th:value="${Social.dni}"
-                              th:utext="${Social.nombre}"></option>
-                  </select></td>-->
-
-                <!-- <td><label>Trabajador Social</label></td>
-                 <td><input type="text" class="form-control" th:field="*{socialWorker}"/></td>-->
                 </tr>
                 <tr>
                     <td><label>Cumpleaños</label></td>
@@ -106,12 +89,10 @@
                 <tr>
                     <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
                     </td>
-
                 </tr>
             </table>
         </form>
     </div>
 </div>
-
 </body>
 </html>

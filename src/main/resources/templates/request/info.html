@@ -11,17 +11,17 @@
 
 <div layout:fragment="content">
     <div class="container">
+        <div class="centered">
+            <h4>Información de la solicitud</h4>
+            <br>
+            <table>
+                <tr>
 
-        <h4>Información de la solicitud</h4>
-        <br>
-        <table>
-            <tr>
+                    <td><b>Servicio: </b></td>
+                    <td th:text="${servicios.get(request.idService)}"></td>
 
-                <td><b>Servicio: </b></td>
-                <td th:text="${servicios.get(request.idService)}"></td>
-
-            </tr>
-            <tr>
+                </tr>
+                <tr>
 
                 <td><b>Solicitante: </b></td>
                 <td th:text="${usuario.get(request.dni)}"></td>
@@ -52,19 +52,17 @@
                 <td><b>Comentarios: </b></td>
                 <td th:text="${request.comments}"></td>
             </tr>
-            <tr>
-                <td><b>Dias: </b></td>
-                <td th:text="${request.dias}"></td>
-            </tr>
-
-
-            <tr>
-                <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit"
-                                   role="button">Atrás</a>
-                </td>
-
-            </tr>
-        </table>
+                <tr>
+                    <td><b>Dias: </b></td>
+                    <td th:text="${request.dias}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit"
+                                       role="button">Atrás</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 </body>

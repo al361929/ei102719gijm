@@ -45,16 +45,16 @@ public class ContractController extends ManageAccessController {
 
 
     @RequestMapping("/list")
-    public String listContracts(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+    public String listContracts(Model model, @RequestParam("nuevo") Optional<String> nuevo, HttpSession session) {
         model.addAttribute("contracts", contractDao.getContracts());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("usuarios", valoracionDao.getUsersInfo());
         model.addAttribute("nuevo", newVolunteerTime);
-        return "contract/list";
+        return gestionarAcceso(session, model, "Admin", "contract/list");
     }
 
     @RequestMapping(value = "/add")
-    public String addContract(Model model) {
+    public String addContract(Model model, HttpSession session) {
 
         model.addAttribute("contract", new Contract());
 
@@ -65,8 +65,7 @@ public class ContractController extends ManageAccessController {
         reverse(company);
         model.addAttribute("companyies", company);
 
-
-        return "contract/add";
+        return gestionarAcceso(session, model, "Admin", "contract/add");
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -78,9 +77,9 @@ public class ContractController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/update/{idContract}", method = RequestMethod.GET)
-    public String editContract(Model model, @PathVariable Integer idContract) {
+    public String editContract(Model model, @PathVariable Integer idContract, HttpSession session) {
         model.addAttribute("contract", contractDao.getContract(idContract));
-        return "contract/update";
+        return gestionarAcceso(session, model, "Admin", "contract/update");
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -120,10 +119,10 @@ public class ContractController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/verPDF/{idContract}", method = RequestMethod.GET)
-    public String seePDF(Model model, @PathVariable Integer idContract) {
+    public String seePDF(Model model, @PathVariable Integer idContract, HttpSession session) {
         String ruta = "/pdfs/contract/" + idContract + ".pdf";
         model.addAttribute("filename", ruta);
-        return "verPDF";
+        return gestionarAcceso(session, model, "Company", "verPDF");
     }
 
     @RequestMapping(value = "/delete/{idContract}")

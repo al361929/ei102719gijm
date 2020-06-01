@@ -28,11 +28,11 @@ public class ServiceController extends ManageAccessController {
     }
 
     @RequestMapping("/list")
-    public String listService(Model model, @RequestParam("nuevo") Optional<String> nuevo) {
+    public String listService(Model model, @RequestParam("nuevo") Optional<String> nuevo, HttpSession session) {
         model.addAttribute("services", serviceDao.getServices());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-        return "service/list";
+        return gestionarAcceso(session, model, "Admin", "service/list");
     }
 
     @RequestMapping(value = "/add")
@@ -56,11 +56,10 @@ public class ServiceController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/update/{idService}", method = RequestMethod.GET)
-    public String editService(Model model, @PathVariable Integer idService) {
+    public String editService(Model model, @PathVariable Integer idService, HttpSession session) {
         model.addAttribute("service", serviceDao.getService(idService));
         model.addAttribute("typosServicios", typeserviceDao.getTypeServices());
-
-        return "service/update";
+        return gestionarAcceso(session, model, "Admin", "service/update");
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

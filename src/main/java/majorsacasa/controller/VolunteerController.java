@@ -121,7 +121,7 @@ public class VolunteerController extends ManageAccessController {
         model.addAttribute("scheduleList", volunteerDao.getScheduleList(user.getDni()));
         HashMap<String, String> u = valoracionDao.getUsersInfo();
         model.addAttribute("usuario", u);
-        return "volunteer/scheduleList";
+        return gestionarAcceso(session, model, "Volunteer", "volunteer/scheduleList");
     }
 
 
@@ -133,7 +133,6 @@ public class VolunteerController extends ManageAccessController {
         if (user.getTipo() != "Volunteer") return "error/sinPermiso";
 
         model.addAttribute("volunteer", volunteerDao.getVolunteer(user.getDni()));
-        //return "volunteer/update";
         return gestionarAcceso(session, model, "Volunteer", "volunteer/perfil");
 
     }
@@ -158,8 +157,6 @@ public class VolunteerController extends ManageAccessController {
         HashMap<String, String> u = valoracionDao.getUsersInfo();
         model.addAttribute("usuario", u);
         return gestionarAcceso(session, model, "Volunteer", "volunteer/elderlyListV");
-
-        //return "socialWorker/elderlyListSW";
     }
 
     @RequestMapping("/listVolunteer")

@@ -128,11 +128,11 @@ public class InvoiceController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/verPDF/{idInvoice}", method = RequestMethod.GET)
-    public String seePDF(Model model, @PathVariable Integer idInvoice) {
+    public String seePDF(Model model, @PathVariable Integer idInvoice, HttpSession session) {
         String ruta = "/pdfs/invoice/" + idInvoice + ".pdf";
 
         model.addAttribute("filename", ruta);
-        return "verPDF";
+        return gestionarAcceso(session, model, "ElderlyPeople", "verPDF");
     }
 
     @RequestMapping(value = "/delete/{invoiceNumber}")

@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @Repository
 @RequestMapping("/volunteertime")
-public class VolunteerTimeController {
+public class VolunteerTimeController extends ManageAccessController {
     private ValoracionDao valoracionDao;
 
     private VolunteerTimeDao volunteerTimeDao;
@@ -65,10 +65,10 @@ public class VolunteerTimeController {
     }
 
     @RequestMapping(value = "/update/{idVolunteerTime}", method = RequestMethod.GET)
-    public String editVolunteerTime(Model model, @PathVariable Integer idVolunteerTime) {
+    public String editVolunteerTime(Model model, @PathVariable Integer idVolunteerTime, HttpSession session) {
         model.addAttribute("meses", meses);
         model.addAttribute("volunteertime", volunteerTimeDao.getVolunteerTime(idVolunteerTime));
-        return "volunteertime/update";
+        return gestionarAcceso(session, model, "Volunteer", "volunteertime/update");
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
