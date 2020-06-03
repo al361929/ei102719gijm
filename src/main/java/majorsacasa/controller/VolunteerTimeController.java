@@ -2,6 +2,7 @@ package majorsacasa.controller;
 
 
 import majorsacasa.dao.ValoracionDao;
+import majorsacasa.dao.VolunteerDao;
 import majorsacasa.dao.VolunteerTimeDao;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.VolunteerTime;
@@ -21,15 +22,18 @@ import java.util.Optional;
 @RequestMapping("/volunteertime")
 public class VolunteerTimeController extends ManageAccessController {
     private ValoracionDao valoracionDao;
+    private MailController mailController;
+    private VolunteerDao volunteerDao;
 
     private VolunteerTimeDao volunteerTimeDao;
     private final List<String> meses = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
 
     @Autowired
-    public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao, ValoracionDao valoracionDao) {
+    public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao, ValoracionDao valoracionDao, VolunteerDao volunteerDao) {
         this.valoracionDao = valoracionDao;
         this.volunteerTimeDao = volunteerTimeDao;
+        this.volunteerDao = volunteerDao;
     }
 
     @RequestMapping("/list")
@@ -59,6 +63,9 @@ public class VolunteerTimeController extends ManageAccessController {
         volunteerTimeDao.addVolunteerTime(volunteertime);
         int id = volunteerTimeDao.ultimoIdService();
 
+        mailController = new MailController(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
+        mailController.addMail("Se ha añadido un nuevo horario a su cuenta correctamente");
+
         return "redirect:../volunteer/scheduleList?nuevo=" + id;
 
 
@@ -77,11 +84,19 @@ public class VolunteerTimeController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "volunteertime/update";
         volunteerTimeDao.updateVolunteerTime(volunteertime);
+
+        mailController = new MailController(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
+        mailController.addMail("Se ha actualizado su horario del dia " + volunteertime.getDia() + " del " + volunteertime.getMes() + " de " + volunteertime.getStartTime() + " a " + volunteertime.getEndTime());
+
         return "redirect:../volunteer/scheduleList?nuevo=" + volunteertime.getIdVolunteerTime();
     }
 
     @RequestMapping(value = "/delete/{idVolunteerTime}")
     public String processDelete(@PathVariable Integer idVolunteerTime) {
+        VolunteerTime volunteerTime = volunteerTimeDao.getVolunteerTime(idVolunteerTime);
+        mailController = new MailController(volunteerDao.getVolunteer(volunteerTime.getDniVolunteer()).getEmail());
+        mailController.addMail("Se ha eliminado su horario del dia " + volunteerTime.getDia() + " del " + volunteerTime.getMes() + " de " + volunteerTime.getStartTime() + " a " + volunteerTime.getEndTime());
+
         volunteerTimeDao.deleteVolunteerTime(idVolunteerTime);
         return "redirect:/volunteer/scheduleList";
     }
@@ -107,6 +122,10 @@ public class VolunteerTimeController extends ManageAccessController {
         if (user.getTipo().equals("Volunteer")) {
             return "volunteer/scheduleList";
         }
+
+        mailController = new MailController(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
+        mailController.addMail("Se ha añadido un nuevo horario a su cuenta correctamente");
+
         return "redirect:/";
     }
 

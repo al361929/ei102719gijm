@@ -31,6 +31,8 @@ public class ContractController extends ManageAccessController {
     private CompanyDao companyDao;
     private ElderlyDao elderlyDao;
     private ValoracionDao valoracionDao;
+    private MailController mailController;
+
 
     @Value("${upload.file.directory}")
     private String uploadDirectory;
@@ -73,6 +75,9 @@ public class ContractController extends ManageAccessController {
         contractDao.addContract(contract);
         int id = contractDao.getUltimoContrato();
 
+        mailController = new MailController(companyDao.getCompany(contract.getNifcompany()).getEmail());
+        mailController.updateMail("El CAS ha añadido su contrato correctamente y lo puede ver en su perfil");
+
         return "redirect:list?nuevo=" + id;
     }
 
@@ -88,6 +93,10 @@ public class ContractController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "contract/update";
         contractDao.updateContract(contract);
+
+        mailController = new MailController(companyDao.getCompany(contract.getNifcompany()).getEmail());
+        mailController.addMail("Se han actualizado los datos de su contrato correctamente");
+
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
 
@@ -115,6 +124,10 @@ public class ContractController extends ManageAccessController {
         if (user.getTipo().equals("Company")) {
             return "redirect:../company/contractList?nuevo=" + contract.getIdContract();
         }
+
+        mailController = new MailController(companyDao.getCompany(contract.getNifcompany()).getEmail());
+        mailController.addMail("Se ha añadido su contrato en versión PDF. Lo puede ver en la lista de contratos de su cuenta");
+
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
 
@@ -127,6 +140,8 @@ public class ContractController extends ManageAccessController {
 
     @RequestMapping(value = "/delete/{idContract}")
     public String processDelete(@PathVariable Integer idContract) {
+        mailController = new MailController(companyDao.getCompany(contractDao.getContract(idContract).getNifcompany()).getEmail());
+        mailController.deleteMail("Se ha eliminado su cuenta permanentemente");
         contractDao.deleteContract(idContract);
         return "redirect:../list";
     }

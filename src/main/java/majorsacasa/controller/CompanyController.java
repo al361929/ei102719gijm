@@ -85,7 +85,7 @@ public class CompanyController extends ManageAccessController {
         companyDao.addCompany(company);
 
         mailController = new MailController(company.getEmail());
-        mailController.addMail("Se ha registrado su cuenta correctamente");
+        mailController.addMail("El CAS ha registrado su cuenta correctamente");
 
         return "redirect:../login";
     }
@@ -118,7 +118,7 @@ public class CompanyController extends ManageAccessController {
         companyDao.addCompany(company);
 
         mailController = new MailController(company.getEmail());
-        mailController.updateMail("El CAS ha añadido su contrato correctamente y lo puede ver en su perfil");
+        mailController.addMail("El CAS ha registrado su cuenta correctamente");
 
         return "redirect:../contract/add";
     }
@@ -144,7 +144,8 @@ public class CompanyController extends ManageAccessController {
 
     @RequestMapping(value = "/delete/{nif}")
     public String processDelete(@PathVariable String nif) {
-
+        mailController = new MailController(companyDao.getCompany(nif).getEmail());
+        mailController.deleteMail("Se ha eliminado su cuenta permanentemente");
         companyDao.deleteCompany(nif);
         return "redirect:../list";
     }
@@ -167,6 +168,10 @@ public class CompanyController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "company/perfil";
         companyDao.updateCompany(company);
+
+        mailController = new MailController(company.getEmail());
+        mailController.addMail("Se han actualizado los datos de su cuenta correctamente");
+
         return "redirect:/company/contractList";
     }
 

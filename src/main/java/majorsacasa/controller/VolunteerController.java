@@ -23,6 +23,7 @@ public class VolunteerController extends ManageAccessController {
     private VolunteerDao volunteerDao;
     private VolunteerTimeDao volunteerTimeDao;
     private ValoracionDao valoracionDao;
+    private MailController mailController;
 
     @Autowired
     public void setVolunteerDao(VolunteerDao volunteerDao, ValoracionDao valoracionDao, VolunteerTimeDao volunteerTimeDao) {
@@ -51,6 +52,10 @@ public class VolunteerController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
+
+        mailController = new MailController(volunteer.getEmail());
+        mailController.addMail("Se ha creado de su cuenta correctamente");
+
         return "redirect:list?nuevo=" + volunteer.getDni();
     }
 
@@ -80,6 +85,10 @@ public class VolunteerController extends ManageAccessController {
             return "volunteer/addRegister";
         }
         volunteerDao.addVolunteer(volunteer);
+
+        mailController = new MailController(volunteer.getEmail());
+        mailController.addMail("Se ha creado de su cuenta correctamente");
+
         return "redirect:../login";
     }
 
@@ -106,11 +115,19 @@ public class VolunteerController extends ManageAccessController {
             return "volunteer/update";
         }
         volunteerDao.updateVolunteerSINpw(volunteer);
+
+        mailController = new MailController(volunteer.getEmail());
+        mailController.addMail("Se han actualizado los datos de su cuenta correctamente");
+
         return "redirect:list?nuevo=" + volunteer.getDni();
     }
 
     @RequestMapping(value = "/delete/{dni}")
     public String processDelete(@PathVariable String dni) {
+
+        mailController = new MailController(volunteerDao.getVolunteer(dni).getEmail());
+        mailController.addMail("Se ha eliminado su cuenta correctamente");
+
         volunteerDao.deleteVolunteer(dni);
         return "redirect:../list";
     }
@@ -145,8 +162,12 @@ public class VolunteerController extends ManageAccessController {
             System.out.println(volunteer.toString());
             return "volunteer/perfil";
         }
-        System.out.println(volunteer.toString());
+        //System.out.println(volunteer.toString());
         volunteerDao.updateVolunteer(volunteer);
+
+        mailController = new MailController(volunteer.getEmail());
+        mailController.addMail("Se han actualizado los datos de su cuenta correctamente");
+
         return "redirect:/volunteer/scheduleList";
     }
 

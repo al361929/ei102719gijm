@@ -21,9 +21,8 @@ public class RequestController extends ManageAccessController {
     private ContractDao contractDao;
     private ValoracionDao valoracionDao;
     private InvoiceDao invoiceDao;
-
     private ProduceDao produceDao;
-
+    private MailController mailController;
     private RequestDao requestDao;
     private OffersDao offersDao;
     private ServiceDao serviceDao;
@@ -73,6 +72,10 @@ public class RequestController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "request/add";
         requestDao.addRequest(request);
+
+        mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
+        mailController.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
+
         return "redirect:list?nuevo=" + request.getIdRequest();
     }
 
@@ -132,6 +135,10 @@ public class RequestController extends ManageAccessController {
         model.addAttribute("usuario", u);
 
         requestDao.updateRequest(request);
+
+        mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
+        mailController.addMail("Se ha actualizado su petición del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " y lo puede ver en su lista de solicitudes");
+
         return "redirect:../request/list/" + request.getDni() + "?nuevo=" + request.getIdRequest();
 
     }
@@ -139,18 +146,22 @@ public class RequestController extends ManageAccessController {
     @RequestMapping(value = "/list/{dni}")
     public String listRequestsPersonalizado(@PathVariable String dni, Model model, @RequestParam("nuevo") Optional<String> nuevo, HttpSession session) {
         model.addAttribute("requests", requestDao.getRequestsElderly(dni));
-        String newVolunteerTime = nuevo.orElse("None");
-        model.addAttribute("nuevo", newVolunteerTime);
         HashMap<String, String> u = valoracionDao.getUsersInfo();
         model.addAttribute("usuario", u);
         HashMap<Integer, String> servicios = requestDao.getMapServiceElderly();
         model.addAttribute("servicios", servicios);
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return gestionarAcceso(session, model, "SocialWorker", "request/list");
     }
 
-    @RequestMapping(value = "/delete/{id}")
-    public String processDelete(@PathVariable int id) {
-        requestDao.deleteRequest(id);
+    @RequestMapping(value = "/delete/{idRequest}")
+    public String processDelete(@PathVariable int idRequest) {
+
+        mailController = new MailController(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
+        mailController.addMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
+
+        requestDao.deleteRequest(idRequest);
         return "redirect:../list";
     }
 
@@ -201,22 +212,25 @@ public class RequestController extends ManageAccessController {
             return "request/addRequestElderly";
         }
         request.setDni(user.getDni());
-
         requestDao.addRequest(request);
-
         int id = requestDao.ultimoIdRequest();
+        //System.out.println("Dias: " + request.getDias());
 
-        System.out.println("Dias: " + request.getDias());
+        mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
+        mailController.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
 
         return "redirect:/request/listElderly?nuevo=" + id;
-        //  return "redirect:listElderly?nuevo="+id;
 
     }
 
-    @RequestMapping(value = "/cancelarRequest/{id}")
-    public String processUpdateEstadp(@PathVariable int id) {
-        requestDao.updateEstado(id, "Cancelada");
-        return "redirect:../listElderly?nuevo=" + id;
+    @RequestMapping(value = "/cancelarRequest/{idRequest}")
+    public String processUpdateEstadp(@PathVariable int idRequest) {
+
+        mailController = new MailController(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
+        mailController.addMail("Se ha cancelado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
+
+        requestDao.updateEstado(idRequest, "Cancelada");
+        return "redirect:../listElderly?nuevo=" + idRequest;
     }
 
 }

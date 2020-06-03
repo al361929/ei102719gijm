@@ -17,6 +17,7 @@ import java.util.Optional;
 public class SocialWorkerController extends ManageAccessController {
     static String codElderly;
     private SocialWorkerDao socialWorkerDao;
+    private MailController mailController;
 
     @Autowired
     public void setSocialWorkerDao(SocialWorkerDao socialWorkerDao) {
@@ -62,10 +63,14 @@ public class SocialWorkerController extends ManageAccessController {
             return "socialworker/add";
         }
         socialWorkerDao.addSocialWorker(socialWorker);
+
+        mailController = new MailController(socialWorker.getEmail());
+        mailController.addMail("Se ha creado su cuenta correctamente");
+
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (user.getCode() == 7) {
             //return "redirect:../elderly/list";
-            String url="redirect:../elderly/update/"+codElderly;
+            String url = "redirect:../elderly/update/" + codElderly;
             return url;
 
         }
@@ -84,11 +89,19 @@ public class SocialWorkerController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "socialWorker/update";
         socialWorkerDao.updateSocialWorker(socialWorker);
+
+        mailController = new MailController(socialWorker.getEmail());
+        mailController.addMail("Se han actualizado los datos de su cuenta correctamente");
+
         return "redirect:list?nuevo=" + socialWorker.getDni();
     }
 
     @RequestMapping(value = "/delete/{dni}")
     public String processDelete(@PathVariable String dni) {
+
+        mailController = new MailController(socialWorkerDao.getSocialWorker(dni).getEmail());
+        mailController.addMail("Se ha eliminado su cuenta permanentemente");
+
         socialWorkerDao.deleteSocialWorker(dni);
         return "redirect:../list";
     }
@@ -119,6 +132,10 @@ public class SocialWorkerController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "socialWorker/perfil";
         socialWorkerDao.updateSocialWorker(socialWorker);
+
+        mailController = new MailController(socialWorker.getEmail());
+        mailController.addMail("Se han actualizado los datos de su cuenta correctamente");
+
         return "redirect:/socialWorker/elderlyList";
     }
 
