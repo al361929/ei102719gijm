@@ -163,7 +163,7 @@ public class GeneratePDFController {
             //LISTA DE LA CABECERA DE LA TABLA
             List<String> listaHeader = new ArrayList<>();
             listaHeader.add("Descripción\n");
-            listaHeader.add("Unidades\t");
+            listaHeader.add("Unidades/Semana\t");
             listaHeader.add("Precio Unitario\t");
             listaHeader.add("Precio Total\n");
 
