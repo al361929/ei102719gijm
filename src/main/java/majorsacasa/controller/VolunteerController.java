@@ -54,7 +54,10 @@ public class VolunteerController extends ManageAccessController {
         volunteerDao.addVolunteer(volunteer);
 
         mailController = new MailController(volunteer.getEmail());
-        mailController.addMail("Se ha creado de su cuenta correctamente");
+        mailController.addMail("Se ha creado su cuenta correctamente.\n" +
+                "El usuario y contraseña con el que puede acceder son:\n" +
+                "Usuario: " + volunteer.getUsuario() +
+                "\nContraseña: " + volunteer.getContraseña());
 
         return "redirect:list?nuevo=" + volunteer.getDni();
     }
@@ -87,7 +90,10 @@ public class VolunteerController extends ManageAccessController {
         volunteerDao.addVolunteer(volunteer);
 
         mailController = new MailController(volunteer.getEmail());
-        mailController.addMail("Se ha creado de su cuenta correctamente");
+        mailController.addMail("Se ha creado su cuenta correctamente.\n" +
+                "El usuario y contraseña con el que puede acceder son:\n" +
+                "Usuario: " + volunteer.getUsuario() +
+                "\nContraseña: " + volunteer.getContraseña());
 
         return "redirect:../login";
     }
@@ -117,7 +123,7 @@ public class VolunteerController extends ManageAccessController {
         volunteerDao.updateVolunteerSINpw(volunteer);
 
         mailController = new MailController(volunteer.getEmail());
-        mailController.addMail("Se han actualizado los datos de su cuenta correctamente");
+        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:list?nuevo=" + volunteer.getDni();
     }
@@ -126,7 +132,7 @@ public class VolunteerController extends ManageAccessController {
     public String processDelete(@PathVariable String dni) {
 
         mailController = new MailController(volunteerDao.getVolunteer(dni).getEmail());
-        mailController.addMail("Se ha eliminado su cuenta correctamente");
+        mailController.deleteMail("Se ha eliminado su cuenta correctamente");
 
         volunteerDao.deleteVolunteer(dni);
         return "redirect:../list";
@@ -166,7 +172,7 @@ public class VolunteerController extends ManageAccessController {
         volunteerDao.updateVolunteer(volunteer);
 
         mailController = new MailController(volunteer.getEmail());
-        mailController.addMail("Se han actualizado los datos de su cuenta correctamente");
+        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:/volunteer/scheduleList";
     }

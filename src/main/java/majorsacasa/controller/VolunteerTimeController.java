@@ -64,7 +64,7 @@ public class VolunteerTimeController extends ManageAccessController {
         int id = volunteerTimeDao.ultimoIdService();
 
         mailController = new MailController(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
-        mailController.addMail("Se ha añadido un nuevo horario a su cuenta correctamente");
+        mailController.addMail("Se ha añadido un nuevo horario a su cuenta correctamente.");
 
         return "redirect:../volunteer/scheduleList?nuevo=" + id;
 
@@ -86,7 +86,7 @@ public class VolunteerTimeController extends ManageAccessController {
         volunteerTimeDao.updateVolunteerTime(volunteertime);
 
         mailController = new MailController(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
-        mailController.addMail("Se ha actualizado su horario del dia " + volunteertime.getDia() + " del " + volunteertime.getMes() + " de " + volunteertime.getStartTime() + " a " + volunteertime.getEndTime());
+        mailController.updateMail("Se ha actualizado su horario del dia " + volunteertime.getDia() + " del " + volunteertime.getMes() + " de " + volunteertime.getStartTime() + " a " + volunteertime.getEndTime() + ".");
 
         return "redirect:../volunteer/scheduleList?nuevo=" + volunteertime.getIdVolunteerTime();
     }
@@ -95,7 +95,7 @@ public class VolunteerTimeController extends ManageAccessController {
     public String processDelete(@PathVariable Integer idVolunteerTime) {
         VolunteerTime volunteerTime = volunteerTimeDao.getVolunteerTime(idVolunteerTime);
         mailController = new MailController(volunteerDao.getVolunteer(volunteerTime.getDniVolunteer()).getEmail());
-        mailController.addMail("Se ha eliminado su horario del dia " + volunteerTime.getDia() + " del " + volunteerTime.getMes() + " de " + volunteerTime.getStartTime() + " a " + volunteerTime.getEndTime());
+        mailController.deleteMail("Se ha eliminado su horario del dia " + volunteerTime.getDia() + " del " + volunteerTime.getMes() + " de " + volunteerTime.getStartTime() + " a " + volunteerTime.getEndTime() + ".");
 
         volunteerTimeDao.deleteVolunteerTime(idVolunteerTime);
         return "redirect:/volunteer/scheduleList";
@@ -124,7 +124,7 @@ public class VolunteerTimeController extends ManageAccessController {
         }
 
         mailController = new MailController(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
-        mailController.addMail("Se ha añadido un nuevo horario a su cuenta correctamente");
+        mailController.addMail("Se ha añadido un nuevo horario a su cuenta correctamente.");
 
         return "redirect:/";
     }

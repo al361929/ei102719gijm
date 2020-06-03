@@ -33,7 +33,7 @@ public class SocialWorkerDao extends GeneralDao {
 
     public void addSocialWorker(SocialWorker socialWorker) {
         jdbcTemplate.update("INSERT INTO SocialWorker VALUES(?,?,?,?,?,?,?)", socialWorker.getDni(), socialWorker.getNombre(), socialWorker.getApellidos(),
-                socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContrasena(), socialWorker.getEmail());
+                socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContraseña(), socialWorker.getEmail());
 
     }
 
@@ -43,7 +43,7 @@ public class SocialWorkerDao extends GeneralDao {
 
     public void updateSocialWorker(SocialWorker socialWorker) {
         jdbcTemplate.update("UPDATE SocialWorker SET name=?, surname=?, phonenumber=?, user_name=?, password=?, email=? WHERE dnisocialworker=?",
-                socialWorker.getNombre(), socialWorker.getApellidos(), socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContrasena(), socialWorker.getEmail(), socialWorker.getDni());
+                socialWorker.getNombre(), socialWorker.getApellidos(), socialWorker.getTelefono(), socialWorker.getUsuario(), socialWorker.getContraseña(), socialWorker.getEmail(), socialWorker.getDni());
     }
 
     public void deleteSocialWorker(String dniSocialWorker) {

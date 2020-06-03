@@ -8,7 +8,7 @@ public class SocialWorker {
     String email;
     String telefono;
     String usuario;
-    String contrasena;
+    String contraseña;
 
     public SocialWorker() {
 
@@ -62,11 +62,11 @@ public class SocialWorker {
         this.usuario = usuario;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 }

@@ -76,7 +76,7 @@ public class ContractController extends ManageAccessController {
         int id = contractDao.getUltimoContrato();
 
         mailController = new MailController(companyDao.getCompany(contract.getNifcompany()).getEmail());
-        mailController.updateMail("El CAS ha añadido su contrato correctamente y lo puede ver en su perfil");
+        mailController.updateMail("El CAS ha añadido su contrato correctamente y lo puede ver en su perfil.");
 
         return "redirect:list?nuevo=" + id;
     }
@@ -95,7 +95,7 @@ public class ContractController extends ManageAccessController {
         contractDao.updateContract(contract);
 
         mailController = new MailController(companyDao.getCompany(contract.getNifcompany()).getEmail());
-        mailController.addMail("Se han actualizado los datos de su contrato correctamente");
+        mailController.addMail("Se han actualizado los datos de su contrato correctamente.");
 
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
@@ -126,7 +126,7 @@ public class ContractController extends ManageAccessController {
         }
 
         mailController = new MailController(companyDao.getCompany(contract.getNifcompany()).getEmail());
-        mailController.addMail("Se ha añadido su contrato en versión PDF. Lo puede ver en la lista de contratos de su cuenta");
+        mailController.addMail("Se ha añadido su contrato en versión PDF. Lo puede ver en la lista de contratos de su cuenta.");
 
         return "redirect:list?nuevo=" + contract.getIdContract();
     }

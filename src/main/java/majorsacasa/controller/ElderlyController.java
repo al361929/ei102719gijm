@@ -59,7 +59,10 @@ public class ElderlyController extends ManageAccessController {
         if (elderly.getAlergias() == null) elderly.setAlergias("");
         elderlyDao.addElderly(elderly);
         mailController = new MailController(elderly.getEmail());
-        mailController.addMail("El CAS ha registrado su cuenta correctamente");
+        mailController.addMail("El CAS ha registrado su cuenta correctamente.\n" +
+                "El usuario y contraseña con el que puede acceder son:\n" +
+                "Usuario: " + elderly.getUsuario() +
+                "\nContraseña: " + elderly.getContraseña());
         return "redirect:list?nuevo=" + elderly.getDni();
     }
 
@@ -100,7 +103,10 @@ public class ElderlyController extends ManageAccessController {
         UserDetails user = (UserDetails) session.getAttribute("user");
 
         mailController = new MailController(elderly.getEmail());
-        mailController.addMail("Se ha creado su cuenta correctamente");
+        mailController.addMail("Se ha creado su cuenta correctamente.\n" +
+                "El usuario y contraseña con el que puede acceder son:\n" +
+                "Usuario: " + elderly.getUsuario() +
+                "\nContraseña: " + elderly.getContraseña());
 
         if (user.getTipo().equals("Admin"))
             return "redirect:../elderly/list?nuevo=" + elderly.getDni();
@@ -130,8 +136,10 @@ public class ElderlyController extends ManageAccessController {
             return "elderly/update";
         elderly.actualizarAlergias();
         elderlyDao.updateElderlySINpw(elderly);
+
         mailController = new MailController(elderly.getEmail());
-        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente");
+        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+
         return "redirect:list?nuevo=" + elderly.getDni();
     }
 
@@ -141,8 +149,10 @@ public class ElderlyController extends ManageAccessController {
         if (!user.getTipo().equals("SocialWorker") && !user.getTipo().equals("Admin")) {
             return "error/sinPermiso";
         }
+
         mailController = new MailController(elderlyDao.getElderly(dni).getEmail());
-        mailController.deleteMail("Se ha eliminado su cuenta permanentemente");
+        mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
+
         elderlyDao.deleteElderly(dni);
         return "redirect:../list";
     }
@@ -172,7 +182,7 @@ public class ElderlyController extends ManageAccessController {
         elderlyDao.updateElderlySinSocialWorker(elderly);
 
         mailController = new MailController(elderly.getEmail());
-        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente");
+        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:/request/listElderly";
     }

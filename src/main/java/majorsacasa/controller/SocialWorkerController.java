@@ -65,7 +65,10 @@ public class SocialWorkerController extends ManageAccessController {
         socialWorkerDao.addSocialWorker(socialWorker);
 
         mailController = new MailController(socialWorker.getEmail());
-        mailController.addMail("Se ha creado su cuenta correctamente");
+        mailController.addMail("Se ha creado su cuenta correctamente.\n" +
+                "El usuario y contraseña con el que puede acceder son:\n" +
+                "Usuario: " + socialWorker.getUsuario() +
+                "\nContraseña: " + socialWorker.getContraseña());
 
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (user.getCode() == 7) {
@@ -91,7 +94,7 @@ public class SocialWorkerController extends ManageAccessController {
         socialWorkerDao.updateSocialWorker(socialWorker);
 
         mailController = new MailController(socialWorker.getEmail());
-        mailController.addMail("Se han actualizado los datos de su cuenta correctamente");
+        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:list?nuevo=" + socialWorker.getDni();
     }
@@ -100,7 +103,7 @@ public class SocialWorkerController extends ManageAccessController {
     public String processDelete(@PathVariable String dni) {
 
         mailController = new MailController(socialWorkerDao.getSocialWorker(dni).getEmail());
-        mailController.addMail("Se ha eliminado su cuenta permanentemente");
+        mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
 
         socialWorkerDao.deleteSocialWorker(dni);
         return "redirect:../list";
@@ -134,7 +137,7 @@ public class SocialWorkerController extends ManageAccessController {
         socialWorkerDao.updateSocialWorker(socialWorker);
 
         mailController = new MailController(socialWorker.getEmail());
-        mailController.addMail("Se han actualizado los datos de su cuenta correctamente");
+        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:/socialWorker/elderlyList";
     }

@@ -74,7 +74,7 @@ public class RequestController extends ManageAccessController {
         requestDao.addRequest(request);
 
         mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
-        mailController.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
+        mailController.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
 
         return "redirect:list?nuevo=" + request.getIdRequest();
     }
@@ -124,8 +124,14 @@ public class RequestController extends ManageAccessController {
             p.setIdRequest(request.getIdRequest());
             produceDao.addProduce(p);
 
+            mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
+            mailController.updateMail("Su solicitud del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " ha sido " + request.getState() + " y lo puede ver en su lista de solicitudes. Por favor, no olvide valorar el servicio.");
+
         } else {
             if (request.getState().equals("Rechazada")) request.setDateReject(LocalDate.now());
+
+            mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
+            mailController.updateMail("Su solicitud del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " ha sido " + request.getState() + " y lo puede ver en su lista de solicitudes.");
 
         }
         List<Company> company = companyDao.getCompanies();
@@ -135,10 +141,6 @@ public class RequestController extends ManageAccessController {
         model.addAttribute("usuario", u);
 
         requestDao.updateRequest(request);
-
-        mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
-        mailController.addMail("Se ha actualizado su petición del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " y lo puede ver en su lista de solicitudes");
-
         return "redirect:../request/list/" + request.getDni() + "?nuevo=" + request.getIdRequest();
 
     }
@@ -159,7 +161,7 @@ public class RequestController extends ManageAccessController {
     public String processDelete(@PathVariable int idRequest) {
 
         mailController = new MailController(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
-        mailController.addMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
+        mailController.deleteMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
 
         requestDao.deleteRequest(idRequest);
         return "redirect:../list";
@@ -217,7 +219,7 @@ public class RequestController extends ManageAccessController {
         //System.out.println("Dias: " + request.getDias());
 
         mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
-        mailController.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
+        mailController.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
 
         return "redirect:/request/listElderly?nuevo=" + id;
 
@@ -227,7 +229,7 @@ public class RequestController extends ManageAccessController {
     public String processUpdateEstadp(@PathVariable int idRequest) {
 
         mailController = new MailController(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
-        mailController.addMail("Se ha cancelado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
+        mailController.deleteMail("Se ha cancelado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
 
         requestDao.updateEstado(idRequest, "Cancelada");
         return "redirect:../listElderly?nuevo=" + idRequest;
