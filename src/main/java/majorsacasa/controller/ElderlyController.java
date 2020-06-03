@@ -108,10 +108,14 @@ public class ElderlyController extends ManageAccessController {
                 "Usuario: " + elderly.getUsuario() +
                 "\nContraseña: " + elderly.getContraseña());
 
+        if (user==null){
+            return "redirect:../login";
+
+        }
         if (user.getTipo().equals("Admin"))
             return "redirect:../elderly/list?nuevo=" + elderly.getDni();
 
-        return "redirect:/login";
+        return "redirect:../login";
     }
 
     @RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)

@@ -105,7 +105,8 @@ public class VolunteerDao extends GeneralDao {
 
     public List<VolunteerTime> getScheduleListDisponibles() {
         try {
-            return jdbcTemplate.query("Select * From volunteertime Where  dni IS NULL AND availability = 'True'", new VolunteerTimeRowMapper());
+            return jdbcTemplate.query("select Volunteertime.* from VolunteerTime Join Volunteer USING(dnivolunteer) Where dni IS NULL AND availability= 'True' and state='Aceptado';", new VolunteerTimeRowMapper());
+
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<VolunteerTime>();
         }
