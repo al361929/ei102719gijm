@@ -116,7 +116,8 @@ public class RequestController extends ManageAccessController {
             factura.setInvoicePDF(false);
             Service service = serviceDao.getService(request.getIdService());
             factura.setDniElderly(request.getDni());
-            Integer precioTotal = service.getPrice() * requestDao.getRequest(request.getIdRequest()).getNumDias();
+            int numSemanasMes = (LocalDate.now().lengthOfMonth() / 7);
+            Integer precioTotal = service.getPrice() * requestDao.getRequest(request.getIdRequest()).getNumDias() * numSemanasMes;
             factura.setTotalPrice(precioTotal);
             invoiceDao.addInvoice(factura);
             Produce p = new Produce();
@@ -178,6 +179,7 @@ public class RequestController extends ManageAccessController {
         model.addAttribute("usuario", u);
         HashMap<Integer, String> servicios = requestDao.getMapServiceElderly();
         model.addAttribute("servicios", servicios);
+
         return gestionarAcceso(session, model, "ElderlyPeople", "request/listRequestElderly");
 
     }
