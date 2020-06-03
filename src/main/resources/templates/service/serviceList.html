@@ -23,7 +23,7 @@
             </thead>
             <tbody>
             <tr th:each="service: ${serviceCompanyList}"
-                th:class="${#strings.equals(nuevo,service.getIdService())}?'bg-info-nuevo'">
+                th:class="${#strings.equals(nuevo,service.getIdService())}?'bg-info text-white'">
                 <td th:text="${service.getDescription()}"></td>
                 <td th:text="${service.getPrice()}"></td>
                 <td th:text="${service.getServiceType()}"></td>
