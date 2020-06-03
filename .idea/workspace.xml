@@ -5,7 +5,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="unidades POR semana">
+    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="Lo de resaltar en la lista">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/estilo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/estilo.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/company/contractList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/company/contractList.html" afterDir="false" />
@@ -203,13 +203,6 @@
       <workItem from="1591012102787" duration="7124000" />
       <workItem from="1591136265593" duration="6300000" />
       <workItem from="1591178622004" duration="3624000" />
-    </task>
-    <task id="LOCAL-00012" summary="Puestas las dependencias, cuidado con el pom.xml">
-      <created>1585939788902</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1585939788902</updated>
     </task>
     <task id="LOCAL-00013" summary="Falta aclarar las fechas">
       <created>1586187460399</created>
@@ -547,7 +540,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591201345388</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Lo de resaltar en la lista">
+      <created>1591214317620</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1591214317620</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -584,7 +584,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Creado Valoraciones." />
     <MESSAGE value="Puesto boton actualizar PDF" />
     <MESSAGE value="Css retocados" />
     <MESSAGE value="Formulario añadir empresa empezado, falta acabarlo" />
@@ -609,7 +608,8 @@
     <MESSAGE value="Retoques" />
     <MESSAGE value="Todo el MailController implementado a falta de algunas cositas" />
     <MESSAGE value="unidades POR semana" />
-    <option name="LAST_COMMIT_MESSAGE" value="unidades POR semana" />
+    <MESSAGE value="Lo de resaltar en la lista" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lo de resaltar en la lista" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -821,11 +821,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="512" y="96" key="VCS.ChangeListViewerDialog/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587053818649" />
-    <state x="1624" y="137" key="Vcs.Push.Dialog.v2" timestamp="1591201359980">
+    <state x="1624" y="137" key="Vcs.Push.Dialog.v2" timestamp="1591215606512">
       <screen x="1366" y="0" width="1280" height="994" />
     </state>
     <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@0.0.1366.738" timestamp="1587237816405" />
-    <state x="1624" y="137" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1591201359980" />
+    <state x="1624" y="137" key="Vcs.Push.Dialog.v2/0.0.1366.738/1366.0.1280.994@1366.0.1280.994" timestamp="1591215606512" />
     <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1583333437947" />
     <state x="310" y="114" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1280.355.1280.680@0.0.1536.824" timestamp="1586878349347" />
     <state x="387" y="144" key="Vcs.Push.Dialog.v2/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591018575387" />
