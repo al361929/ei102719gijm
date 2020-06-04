@@ -5,7 +5,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="Lo de resaltar en la lista">
+    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="Todo ordenado y las personas mayores que no tienen correo se les envia por correo postal los datos a su dirección indicada">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/CompanyController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ElderlyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/majorsacasa/controller/ElderlyController.java" afterDir="false" />
@@ -600,7 +600,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Puesto boton actualizar PDF" />
     <MESSAGE value="Css retocados" />
     <MESSAGE value="Formulario añadir empresa empezado, falta acabarlo" />
     <MESSAGE value="Falta el boton" />
@@ -625,7 +624,8 @@
     <MESSAGE value="Todo el MailController implementado a falta de algunas cositas" />
     <MESSAGE value="unidades POR semana" />
     <MESSAGE value="Lo de resaltar en la lista" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lo de resaltar en la lista" />
+    <MESSAGE value="Todo ordenado y las personas mayores que no tienen correo se les envia por correo postal los datos a su dirección indicada" />
+    <option name="LAST_COMMIT_MESSAGE" value="Todo ordenado y las personas mayores que no tienen correo se les envia por correo postal los datos a su dirección indicada" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
