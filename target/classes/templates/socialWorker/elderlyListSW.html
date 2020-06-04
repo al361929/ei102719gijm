@@ -28,8 +28,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="socialWorker: ${elderlyList}"
-                th:class="${#strings.equals(nuevo,socialWorker.dni)}?'bg-info-nuevo'">
+            <tr th:each="socialWorker: ${#lists.sort(elderlyList)}"
+                th:class="${#strings.equals(nuevo,socialWorker.dni)}?'bg-info text-white'">
                 <td th:text="${socialWorker.nombre}"></td>
                 <td th:text="${socialWorker.apellidos}"></td>
                 <td th:text="${socialWorker.direccion}"></td>

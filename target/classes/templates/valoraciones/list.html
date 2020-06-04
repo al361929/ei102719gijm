@@ -23,7 +23,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="valoracion: ${valoraciones}">
+            <tr th:each="valoracion: ${#lists.sort(valoraciones)}">
                 <td th:text="${valoracion.dniVolunteer}"></td>
                 <td th:text="${valoracion.dni}"></td>
                 <td th:text="${valoracion.valoration}"></td>

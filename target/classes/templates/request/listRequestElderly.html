@@ -26,8 +26,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="request: ${requests}"
-                th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info-nuevo'">
+            <tr th:each="request: ${#lists.sort(requests)}"
+                th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info text-white'">
                 <td th:text="${servicios.get(request.idService)}"></td>
                 <td th:text="${request.state}"></td>
                 <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>

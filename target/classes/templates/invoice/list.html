@@ -26,8 +26,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="invoice: ${invoices}"
-                th:class="${#strings.equals(nuevo,invoice.invoiceNumber)}?'bg-info-nuevo'">
+            <tr th:each="invoice: ${#lists.sort(invoices)}"
+                th:class="${#strings.equals(nuevo,invoice.invoiceNumber)}?'bg-info text-white'">
                 <td th:text="${#temporals.format(invoice.dateInvoice,'dd/MM/yyyy')}"></td>
                 <td th:text="${invoice.totalPrice}"></td>
                 <td th:text="${invoice.dniElderly}"></td>

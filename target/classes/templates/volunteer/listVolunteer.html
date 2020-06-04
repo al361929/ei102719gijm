@@ -28,8 +28,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="horario: ${horarios}"
-                th:class="${#strings.equals(nuevo,horario.idVolunteerTime)}?'bg-info-nuevo'">
+            <tr th:each="horario: ${#lists.sort(horarios)}"
+                th:class="${#strings.equals(nuevo,horario.idVolunteerTime)}?'bg-info text-white'">
                 <td th:text="${horario.dia}"></td>
                 <td th:text="${horario.mes}"></td>
                 <td th:text="${horario.startTime}"></td>

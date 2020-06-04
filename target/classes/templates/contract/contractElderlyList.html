@@ -28,8 +28,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="contrato: ${elderlyListC}"
-                th:class="${#strings.equals(nuevo,contrato.idContract)}?'bg-info-nuevo'">
+            <tr th:each="contrato: ${#lists.sort(elderlyListC)}"
+                th:class="${#strings.equals(nuevo,contrato.idContract)}?'bg-info text-white'">
                 <td th:text="${contrato.idContract}"></td>
                 <td th:text="${contrato.nifcompany}"></td>
                 <td th:text="${contrato.firma}"></td>
