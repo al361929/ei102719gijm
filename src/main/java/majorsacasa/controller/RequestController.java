@@ -166,9 +166,9 @@ public class RequestController extends ManageAccessController {
         String dni = requestDao.getRequest(idRequest).getDni();
         try {
             mailController = new MailController(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
+            requestDao.deleteRequest(idRequest);
             mailController.deleteMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
 
-            requestDao.deleteRequest(idRequest);
         } catch (Exception e) {
             mensajeError = "No puedes borrar una persona mayor que tenga servicios";
         }
