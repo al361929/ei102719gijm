@@ -172,17 +172,18 @@ public class ElderlyController extends ManageAccessController {
         if (!user.getTipo().equals("SocialWorker") && !user.getTipo().equals("Admin")) {
             return "error/sinPermiso";
         }
-        if (!elderlyDao.getElderly(dni).getEmail().isEmpty()) {
-            mailController = new MailController(elderlyDao.getElderly(dni).getEmail());
+        Elderly elderly = elderlyDao.getElderly(dni);
+        if (!elderly.getEmail().isEmpty()) {
+            mailController = new MailController(elderly.getEmail());
         } else {
-            mailController = new MailController(elderlyDao.getElderly(dni).getDireccion());
+            mailController = new MailController(elderly.getDireccion());
         }
         try {
             elderlyDao.deleteElderly(dni);
 
             mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
-        }catch (Exception e){
-            mensajeError="No puedes borrar una persona mayor que tenga servicios";
+        } catch (Exception e) {
+            mensajeError = "No puedes borrar una persona mayor que tenga servicios";
         }
         return "redirect:../list";
     }

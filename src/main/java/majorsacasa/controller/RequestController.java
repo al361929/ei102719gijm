@@ -29,6 +29,7 @@ public class RequestController extends ManageAccessController {
     private CompanyDao companyDao;
     private ElderlyDao elderlyDao;
     private final List estados = Arrays.asList("Pendiente", "Aceptada", "Rechazada", "Cancelada");
+    static String mensajeError = "";
 
     @Autowired
     public void setRequestDao(ProduceDao produceDao, InvoiceDao invoiceDao, ValoracionDao valoracionDao, RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao, ContractDao contractDao, OffersDao offersDao) {
@@ -48,6 +49,8 @@ public class RequestController extends ManageAccessController {
         model.addAttribute("requests", requestDao.getRequests());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        model.addAttribute("mensaje", mensajeError);
+        mensajeError = "";
         return "request/list";
     }
 
@@ -160,12 +163,16 @@ public class RequestController extends ManageAccessController {
 
     @RequestMapping(value = "/delete/{idRequest}")
     public String processDelete(@PathVariable int idRequest) {
+        String dni = requestDao.getRequest(idRequest).getDni();
+        try {
+            mailController = new MailController(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
+            mailController.deleteMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
 
-        mailController = new MailController(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
-        mailController.deleteMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
-
-        requestDao.deleteRequest(idRequest);
-        return "redirect:../list";
+            requestDao.deleteRequest(idRequest);
+        } catch (Exception e) {
+            mensajeError = "No puedes borrar una persona mayor que tenga servicios";
+        }
+        return "redirect:../list/" + dni;
     }
 
     @RequestMapping("/listElderly")
