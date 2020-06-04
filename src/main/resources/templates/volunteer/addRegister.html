@@ -18,7 +18,7 @@
             <table>
                 <tr>
                     <td><label>DNI</label></td>
-                    <td><input type="text" class="form-control" th:field="*{dni}" required/></td>
+                    <td><input type="text" class="form-control" th:field="*{dni}" maxlength="10" required/></td>
                     <td>
                         <div class="error" th:if="${#fields.hasErrors('dni')}"
                              th:errors="*{dni}"></div>
@@ -26,15 +26,15 @@
                 </tr>
                 <tr>
                     <td><label>Nombre</label></td>
-                    <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
+                    <td><input type="text" class="form-control" th:field="*{nombre}" maxlength="50" required/></td>
                 </tr>
                 <tr>
                     <td><label>Apellidos</label></td>
-                    <td><input type="text" class="form-control" th:field="*{apellidos}" required/></td>
+                    <td><input type="text" class="form-control" th:field="*{apellidos}" maxlength="50" required/></td>
                 </tr>
                 <tr>
                     <td><label>Direccion</label></td>
-                    <td><input type="text" class="form-control" th:field="*{direccion}" required/></td>
+                    <td><input type="text" class="form-control" th:field="*{direccion}" maxlength="50" required/></td>
                 </tr>
                 <tr>
                     <td><label>Telefono</label></td>
@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                     <td><label>Usuario</label></td>
-                    <td><input type="text" class="form-control" th:field="*{usuario}" required/></td>
+                    <td><input type="text" class="form-control" th:field="*{usuario}" maxlength="30" required/></td>
                     <td>
                         <div class="error" th:if="${#fields.hasErrors('usuario')}"
                              th:errors="*{usuario}"></div>
@@ -50,7 +50,7 @@
                 </tr>
                 <tr>
                     <td><label>Contraseña</label></td>
-                    <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
+                    <td><input type="password" class="form-control" th:field="*{contraseña}"  maxlength="30" required/></td>
                 </tr>
                 <!--                <tr>-->
                 <!--                    <td><label>Fecha de alta</label></td>-->
@@ -58,7 +58,7 @@
                 <!--                </tr>-->
                 <tr>
                     <td><label>E-mail</label></td>
-                    <td><input type="text" class="form-control" th:field="*{email}" required/></td>
+                    <td><input type="text" class="form-control" th:field="*{email}" maxlength="50" required/></td>
                 </tr>
                 <tr>
                     <td><label>Cumpleaños</label></td>
