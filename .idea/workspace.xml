@@ -5,18 +5,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="Todo ordenado y las personas mayores que no tienen correo se les envia por correo postal los datos a su dirección indicada">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/elderly/addRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/elderly/addRegister.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/listVolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/listVolunteer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/volunteer/scheduleList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/volunteer/scheduleList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/elderly/addRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/elderly/addRegister.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/elderly/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/elderly/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/socialWorker/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/socialWorker/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/socialWorker/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/socialWorker/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/listVolunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/listVolunteer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/volunteer/scheduleList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/volunteer/scheduleList.html" afterDir="false" />
+    <list default="true" id="58c66094-f792-4ed5-bcde-bb84ad3cf661" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/request/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/request/add.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +97,7 @@
       <recent name="D:\UJI\Diseño e implementacion de sistemas de informacion\ei102719gijm\src\main\resources\templates\pdfs" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.MajorsACasaApplication">
+  <component name="RunManager" selected="Application.MajorsACasaApplication">
     <configuration name="MajorsACasaApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <envs>
         <env name="USER" value="ei102719gijm" />
@@ -141,7 +131,6 @@
     </configuration>
     <list>
       <item itemvalue="Application.MajorsACasaApplication" />
-      <item itemvalue="Spring Boot.MajorsACasaApplication" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -558,12 +547,12 @@
                   </entry>
                 </map>
               </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
