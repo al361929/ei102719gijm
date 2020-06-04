@@ -37,6 +37,8 @@ public class CompanyController extends ManageAccessController {
         model.addAttribute("companies", companyDao.getCompanies());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        model.addAttribute("mensaje", "");
+
         model.addAttribute("mapa", serviceDao.getMapServiceCompany());
         return gestionarAcceso(session, model, "Admin", "company/list");
     }
@@ -154,12 +156,20 @@ public class CompanyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/delete/{nif}")
-    public String processDelete(@PathVariable String nif) {
+    public String processDelete(@PathVariable String nif,Model model) {
+        try {
+            companyDao.deleteCompany(nif);
+            mailController = new MailController(companyDao.getCompany(nif).getEmail());
+            mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
+        }catch (Exception e){
+            String cadena= "No puedes borrar una empresa si tiene contratos";
+            model.addAttribute("mensaje", cadena);
 
-        mailController = new MailController(companyDao.getCompany(nif).getEmail());
-        mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
+            model.addAttribute("companies", companyDao.getCompanies());
 
-        companyDao.deleteCompany(nif);
+            model.addAttribute("mapa", serviceDao.getMapServiceCompany());
+            return "company/list";
+        }
         return "redirect:../list";
     }
 
