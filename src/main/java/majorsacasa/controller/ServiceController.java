@@ -75,8 +75,16 @@ public class ServiceController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/delete/{idService}")
-    public String processDelete(@PathVariable Integer idService) {
-        serviceDao.deleteService(idService);
+    public String processDelete(@PathVariable Integer idService, Model model) {
+        try {
+            serviceDao.deleteService(idService);
+        }catch (Exception e){
+            model.addAttribute("services", serviceDao.getServices());
+
+            String cadena= "No puedes borrar un servicio, si esta asignado a una empresa";
+            model.addAttribute("mensaje", cadena);
+            return "service/list";
+        }
         return "redirect:../list";
     }
 
