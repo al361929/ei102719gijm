@@ -1,6 +1,6 @@
 package majorsacasa.model;
 
-public class SocialWorker {
+public class SocialWorker implements Comparable<SocialWorker> {
 
     String dni;
     String nombre;
@@ -69,4 +69,11 @@ public class SocialWorker {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+
+    @Override
+    public int compareTo(SocialWorker otro) {
+        return this.getNombre().compareTo(otro.getNombre());
+    }
+
 }
+

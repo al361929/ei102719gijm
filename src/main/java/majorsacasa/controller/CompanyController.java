@@ -95,7 +95,7 @@ public class CompanyController extends ManageAccessController {
                 "Usuario: " + company.getNombreUsuario() +
                 "\nContraseña: " + company.getPassword());
 
-        return "redirect:../login";
+        return "redirect:list?nuevo=" + company.getNif();
     }
 
     @RequestMapping(value = "/addContract")

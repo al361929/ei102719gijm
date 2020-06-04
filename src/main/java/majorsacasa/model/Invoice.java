@@ -4,7 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class Invoice {
+public class Invoice implements Comparable<Invoice> {
 
     Integer invoiceNumber;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -65,5 +65,14 @@ public class Invoice {
                 ", dniElderly='" + dniElderly + '\'' +
                 ", invoicePDF=" + invoicePDF +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Invoice otro) {
+        Boolean after = this.getDateInvoice().isBefore(otro.getDateInvoice());
+        if (after) {
+            return 1;
+        }
+        return -1;
     }
 }

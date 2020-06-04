@@ -4,7 +4,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class Contract {
+public class Contract implements Comparable<Contract> {
+
     Integer idContract;
     String firma;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -105,5 +106,14 @@ public class Contract {
                 ", dnielderly='" + dnielderly + '\'' +
                 ", contractPDF=" + contractPDF +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Contract otro) {
+        Boolean after = this.getReleaseDate().isBefore(otro.getReleaseDate());
+        if (after) {
+            return 1;
+        }
+        return -1;
     }
 }

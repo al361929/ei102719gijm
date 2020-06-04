@@ -1,6 +1,7 @@
 package majorsacasa.model;
 
-public class Service {
+public class Service implements Comparable<Service> {
+
     Integer idService;
     String serviceType;
     Integer price;
@@ -54,5 +55,10 @@ public class Service {
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Service otro) {
+        return this.getDescription().compareTo(otro.getDescription());
     }
 }

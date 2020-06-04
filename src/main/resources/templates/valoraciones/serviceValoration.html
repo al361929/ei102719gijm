@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="valoracion: ${listMisValoraciones}"
+            <tr th:each="valoracion: ${#lists.sort(listMisValoraciones)}"
                 th:class="${#strings.equals(nuevo,valoracion.idService)}?'bg-info text-white'">
                 <td th:text="${service.get(valoracion.idService)}"></td>
                 <td th:text="${valoracion.valoration}"></td>

@@ -4,7 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class Request {
+public class Request implements Comparable<Request> {
 
     Integer idRequest;
     Integer idService;
@@ -129,5 +129,14 @@ public class Request {
                 ", dias=" + dias +
 
                 '}';
+    }
+
+    @Override
+    public int compareTo(Request otro) {
+        Boolean after = this.getDateRequest().isBefore(otro.getDateRequest());
+        if (after) {
+            return 1;
+        }
+        return -1;
     }
 }

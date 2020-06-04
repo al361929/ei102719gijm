@@ -28,7 +28,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="horario: ${horarios}">
+            <tr th:each="horario: ${#lists.sort(horarios)}">
                 <td th:text="${horario.dia}"></td>
                 <td th:text="${horario.mes}"></td>
                 <td th:text="${horario.startTime}"></td>

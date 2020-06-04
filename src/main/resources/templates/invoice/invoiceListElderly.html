@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="invoice: ${invoices}"
+            <tr th:each="invoice: ${#lists.sort(invoices)}"
                 th:class="${#strings.equals(nuevo,invoice.invoiceNumber)}?'bg-info text-white'">
                 <td th:text="${info.get(invoice.invoiceNumber)}"></td>
 

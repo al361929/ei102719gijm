@@ -30,7 +30,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="voluntario: ${volunteers}"
+            <tr th:each="voluntario: ${#lists.sort(volunteers)}"
                 th:class="${#strings.equals(nuevo,voluntario.dni)}?'bg-info text-white'">
                 <td th:text="${voluntario.dni}"></td>
                 <td th:text="${voluntario.nombre}"></td>

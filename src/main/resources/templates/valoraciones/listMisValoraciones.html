@@ -23,8 +23,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="valoracion: ${listMisValoraciones}">
-                <!--                 <td th:text="${datos.get(valoracion.dniVolunteer)}"></td>-->
+            <tr th:each="valoracion: ${#lists.sort(listMisValoraciones)}">
+                <!--<td th:text="${datos.get(valoracion.dniVolunteer)}"></td>-->
                 <td th:text="${users.get(valoracion.dniVolunteer)}"></td>
                 <td th:text="${users.get(valoracion.dni)}"></td>
                 <td th:text="${valoracion.valoration}"></td>

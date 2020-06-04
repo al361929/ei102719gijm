@@ -4,7 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class Company {
+public class Company implements Comparable<Company> {
 
     String nombre;
     String nombreResponsable;
@@ -115,6 +115,11 @@ public class Company {
                 ", cuentaBancaria='" + cuentaBancaria + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Company otro) {
+        return this.getNombre().compareTo(otro.getNombre());
     }
 }
 

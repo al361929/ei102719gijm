@@ -3,7 +3,8 @@ package majorsacasa.model;
 import java.time.LocalDate;
 
 
-public class Valoracion {
+public class Valoracion implements Comparable<Valoracion> {
+
     String dniVolunteer;
     String dni;
     String comments;
@@ -59,5 +60,14 @@ public class Valoracion {
                 ", valoration=" + valoration +
                 ", dateValoration=" + dateValoration +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Valoracion otro) {
+        Boolean after = this.getDateValoration().isBefore(otro.getDateValoration());
+        if (after) {
+            return 1;
+        }
+        return -1;
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 
-public class Volunteer {
+public class Volunteer implements Comparable<Volunteer> {
 
     String nombre;
     String apellidos;
@@ -143,5 +143,10 @@ public class Volunteer {
                 ", email='" + email + '\'' +
                 ", estado='" + estado + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Volunteer otro) {
+        return this.getNombre().compareTo(otro.getNombre());
     }
 }
