@@ -27,6 +27,7 @@ public class ElderlyController extends ManageAccessController {
     private SocialWorkerDao socialWorkerDao;
     private final List<String> alergias = Arrays.asList("Ninguna", "Polen", "Frutos secos", "Gluten", "Pepinillo");
     private MailController mailController;
+    static String mensajeError ="";
 
     @Autowired
     public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao) {
@@ -41,6 +42,8 @@ public class ElderlyController extends ManageAccessController {
         model.addAttribute("nuevo", newVolunteerTime);
         HashMap<String, String> u = elderlyDao.getUsersInfo();
         model.addAttribute("usuario", u);
+        model.addAttribute("mensaje", mensajeError);
+        mensajeError="";
         return gestionarAcceso(session, model, "SocialWorker", "elderly/list");
     }
 
@@ -174,9 +177,13 @@ public class ElderlyController extends ManageAccessController {
         } else {
             mailController = new MailController(elderlyDao.getElderly(dni).getDireccion());
         }
-        mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
+        try {
+            elderlyDao.deleteElderly(dni);
 
-        elderlyDao.deleteElderly(dni);
+            mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
+        }catch (Exception e){
+            mensajeError="No puedes borrar una persona mayor que tenga servicios";
+        }
         return "redirect:../list";
     }
 

@@ -23,7 +23,7 @@ public class CompanyController extends ManageAccessController {
     private ValoracionDao valoracionDao;
     private ServiceDao serviceDao;
     private MailController mailController;
-
+    static String mensajeError ="";
     @Autowired
     public void setCompanyDao(ValoracionDao valoracionDao, CompanyDao companyDao, ServiceDao serviceDao) {
 
@@ -37,8 +37,8 @@ public class CompanyController extends ManageAccessController {
         model.addAttribute("companies", companyDao.getCompanies());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
-        model.addAttribute("mensaje", "");
-
+        model.addAttribute("mensaje", mensajeError);
+        mensajeError="";
         model.addAttribute("mapa", serviceDao.getMapServiceCompany());
         return gestionarAcceso(session, model, "Admin", "company/list");
     }
@@ -162,13 +162,8 @@ public class CompanyController extends ManageAccessController {
             mailController = new MailController(companyDao.getCompany(nif).getEmail());
             mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
         }catch (Exception e){
-            String cadena= "No puedes borrar una empresa si tiene contratos";
-            model.addAttribute("mensaje", cadena);
+            mensajeError= "No puedes borrar una empresa si tiene contratos";
 
-            model.addAttribute("companies", companyDao.getCompanies());
-
-            model.addAttribute("mapa", serviceDao.getMapServiceCompany());
-            return "company/list";
         }
         return "redirect:../list";
     }

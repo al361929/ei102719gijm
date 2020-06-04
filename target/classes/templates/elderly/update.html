@@ -24,15 +24,15 @@
                 </tr>
                 <tr>
                     <td><label>Nombre</label></td>
-                    <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
+                    <td><input type="text" class="form-control" th:field="*{nombre}" maxlength="50" required/></td>
                 </tr>
                 <tr>
                     <td><label>Apellidos</label></td>
-                    <td><input type="text" class="form-control" th:field="*{apellidos}" required/></td>
+                    <td><input type="text" class="form-control" th:field="*{apellidos}" maxlength="50" required/></td>
                 </tr>
                 <tr>
                     <td><label>Direccion</label></td>
-                    <td><input type="text" class="form-control" th:field="*{direccion}" required/>
+                    <td><input type="text" class="form-control" th:field="*{direccion}" maxlength="50" required/>
                 </tr>
                 <tr>
 
@@ -56,7 +56,7 @@
                 </tr>
                 <tr>
                     <td><label>Telefono</label></td>
-                    <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="9" required/></td>
+                    <td><input type="tel" class="form-control" th:field="*{telefono}" maxlength="10" required/></td>
                 </tr>
                 <tr>
                     <td><label>Usuario</label></td>
@@ -68,13 +68,14 @@
 
                         <tr>
                             <td><label>Contraseña</label></td>
-                            <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
+                            <td><input type="password" class="form-control" th:field="*{contraseña}" maxlength="30"
+                                       required/></td>
                         </tr>
                     </div>
                 </div>
                 <tr>
                     <td><label>Email</label></td>
-                    <td><input type="text" class="form-control" th:field="*{email}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{email}" maxlength="50"/></td>
                 </tr>
                 <tr>
                     <td><label>Fecha de alta</label></td>

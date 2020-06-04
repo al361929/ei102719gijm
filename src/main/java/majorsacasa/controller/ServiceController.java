@@ -16,6 +16,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/service")
 public class ServiceController extends ManageAccessController {
+    static String mensajeError ="";
 
     private ServiceDao serviceDao;
     private TypeServiceDao typeserviceDao;
@@ -32,6 +33,9 @@ public class ServiceController extends ManageAccessController {
         model.addAttribute("services", serviceDao.getServices());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        model.addAttribute("mensaje", mensajeError);
+        mensajeError="";
+
         return gestionarAcceso(session, model, "Admin", "service/list");
     }
 
@@ -79,11 +83,9 @@ public class ServiceController extends ManageAccessController {
         try {
             serviceDao.deleteService(idService);
         }catch (Exception e){
-            model.addAttribute("services", serviceDao.getServices());
 
-            String cadena= "No puedes borrar un servicio, si esta asignado a una empresa";
-            model.addAttribute("mensaje", cadena);
-            return "service/list";
+            mensajeError= "No puedes borrar un servicio, si esta asignado a una empresa";
+
         }
         return "redirect:../list";
     }

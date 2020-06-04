@@ -19,6 +19,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/volunteer")
 public class VolunteerController extends ManageAccessController {
+    static String mensajeError ="";
 
     private VolunteerDao volunteerDao;
     private VolunteerTimeDao volunteerTimeDao;
@@ -38,6 +39,9 @@ public class VolunteerController extends ManageAccessController {
         model.addAttribute("volunteers", volunteerDao.getVolunteersAll());
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        model.addAttribute("mensaje", mensajeError);
+        mensajeError=" ";
+
         return gestionarAcceso(session, model, "SocialWorker", "volunteer/list");
     }
 
@@ -129,12 +133,18 @@ public class VolunteerController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/delete/{dni}")
-    public String processDelete(@PathVariable String dni) {
+    public String processDelete(@PathVariable String dni, Model model) {
 
-        mailController = new MailController(volunteerDao.getVolunteer(dni).getEmail());
-        mailController.deleteMail("Se ha eliminado su cuenta correctamente");
+        try {
 
-        volunteerDao.deleteVolunteer(dni);
+            volunteerDao.deleteVolunteer(dni);
+            mailController = new MailController(volunteerDao.getVolunteer(dni).getEmail());
+            mailController.deleteMail("Se ha eliminado su cuenta correctamente");
+
+        }catch (Exception e){
+            mensajeError= "No puedes borrar un Voluntario, si tiene horarios";
+    }
+
         return "redirect:../list";
     }
 

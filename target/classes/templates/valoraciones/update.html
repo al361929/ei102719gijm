@@ -16,7 +16,7 @@
         <table>
             <tr class="oculto">
                 <td><label>DNI Voluntario</label></td>
-                <td><input type="text" class="form-control " th:field="*{dniVolunteer}" required/></td>
+                <td><input type="text" class="form-control " th:field="*{dniVolunteer}" maxlength="10" required/></td>
                 <td>
                     <div class="error" th:if="${#fields.hasErrors('dniVolunteer')}"
                          th:errors="*{dniVolunteer}"></div>
@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td><label>Comentario</label></td>
-                <td><input type="text" class="form-control" th:field="*{comments}" required/></td>
+                <td><input type="text" class="form-control" th:field="*{comments}" maxlength="50" required/></td>
             </tr>
             <tr>
                 <td><label>Puntuación</label></td>
