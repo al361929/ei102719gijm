@@ -48,7 +48,6 @@ public class OffersController extends ManageAccessController {
         offer.setNif(nif);
         model.addAttribute("offer", offer);
 
-        System.out.println(nif);
         return "offer/addService";
     }
 

@@ -83,7 +83,7 @@ public class InvoiceController extends ManageAccessController {
     public String processUpdateSubmit(@ModelAttribute("invoice") Invoice invoice,
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println(invoice.toString());
+            //System.out.println(invoice.toString());
             return "invoice/update";
         }
         invoiceDao.updateInvoice(invoice);

@@ -219,7 +219,7 @@ public class RequestController extends ManageAccessController {
         }
 
         if (bindingResult.hasErrors()) {
-            System.out.println("error");
+            //System.out.println("error");
             return "request/addRequestElderly";
         }
         request.setDni(user.getDni());

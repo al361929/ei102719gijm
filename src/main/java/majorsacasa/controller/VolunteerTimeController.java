@@ -59,7 +59,7 @@ public class VolunteerTimeController extends ManageAccessController {
 
         volunteertime.setDniElderly(null);
         volunteertime.setDniVolunteer(user.getDni());
-        System.out.println(volunteertime.toString());
+        //System.out.println(volunteertime.toString());
         volunteerTimeDao.addVolunteerTime(volunteertime);
         int id = volunteerTimeDao.ultimoIdService();
 

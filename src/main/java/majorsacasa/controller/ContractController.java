@@ -96,7 +96,7 @@ public class ContractController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "contract/update";
         contractDao.updateContract(contract);
-        System.out.println(contract.getDateDown());
+        //System.out.println(contract.getDateDown());
         mailController = new MailController(companyDao.getCompany(contract.getNifcompany()).getEmail());
         mailController.addMail("Se han actualizado los datos de su contrato correctamente.");
 

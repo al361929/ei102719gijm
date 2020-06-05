@@ -35,7 +35,7 @@ public class ElderlyDao extends GeneralDao {
     }
 
     public void addElderly(Elderly elderly) {
-        System.out.println(elderly.toString());
+        //System.out.println(elderly.toString());
         jdbcTemplate.update("INSERT INTO ElderlyPeople VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)", elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getDni(),
                 elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(), LocalDate.now(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria(), elderly.getSocialWorker(), elderly.getEmail());
 

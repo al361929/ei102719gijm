@@ -117,7 +117,7 @@ public class ValoracionController extends ManageAccessController {
     @RequestMapping(value = "/delete/{dniVolunteer}")
     public String processDelete(HttpSession session, @PathVariable String dniVolunteer) {
         UserDetails user = (UserDetails) session.getAttribute("user");
-        System.out.println("V: " + dniVolunteer + " E: " + user.getDni());
+        //System.out.println("V: " + dniVolunteer + " E: " + user.getDni());
         valoracionDao.deleteValoracion(dniVolunteer, user.getDni());
         return "redirect:../elderlyList";
     }
@@ -190,7 +190,7 @@ public class ValoracionController extends ManageAccessController {
         UserDetails user = (UserDetails) session.getAttribute("user");
         valoracion.setDni(user.getDni());
         Boolean checkValoracion = valoracionDao.checkValoracion(user.getDni(), valoracion.getDniVolunteer());
-        System.out.println("estado: " + checkValoracion + "INFO:" + valoracion.toString());
+        //System.out.println("estado: " + checkValoracion + "INFO:" + valoracion.toString());
         if (!checkValoracion) {
 
             bindingResult.rejectValue("dniVolunteer", "dniVolunteer", "Ya ha valorado ha este voluntario");

@@ -174,8 +174,6 @@ public class VolunteerController extends ManageAccessController {
     public String processUpdateSubmitPerfil(@ModelAttribute("volunteer") Volunteer volunteer,
                                             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.toString());
-            System.out.println(volunteer.toString());
             return "volunteer/perfil";
         }
         //System.out.println(volunteer.toString());
