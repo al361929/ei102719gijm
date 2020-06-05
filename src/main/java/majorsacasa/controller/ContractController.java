@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +33,7 @@ public class ContractController extends ManageAccessController {
     private ElderlyDao elderlyDao;
     private ValoracionDao valoracionDao;
     private MailController mailController;
-
+    static String mensajeError = "";
 
     @Value("${upload.file.directory}")
     private String uploadDirectory;
@@ -52,6 +53,8 @@ public class ContractController extends ManageAccessController {
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("usuarios", valoracionDao.getUsersInfo());
         model.addAttribute("nuevo", newVolunteerTime);
+        model.addAttribute("mensaje", mensajeError);
+        mensajeError = "";
         return gestionarAcceso(session, model, "Admin", "contract/list");
     }
 
@@ -93,7 +96,7 @@ public class ContractController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "contract/update";
         contractDao.updateContract(contract);
-
+        System.out.println(contract.getDateDown());
         mailController = new MailController(companyDao.getCompany(contract.getNifcompany()).getEmail());
         mailController.addMail("Se han actualizado los datos de su contrato correctamente.");
 
@@ -140,9 +143,18 @@ public class ContractController extends ManageAccessController {
 
     @RequestMapping(value = "/delete/{idContract}")
     public String processDelete(@PathVariable Integer idContract) {
-        mailController = new MailController(companyDao.getCompany(contractDao.getContract(idContract).getNifcompany()).getEmail());
-        mailController.deleteMail("Se ha eliminado su cuenta permanentemente");
-        contractDao.deleteContract(idContract);
+        Contract contrato = contractDao.getContract(idContract);
+        System.out.println(contrato.getDateDown().toString());
+        LocalDate hoy = LocalDate.now();
+        LocalDate date = contrato.getDateDown();
+
+        if (date == null || date.isAfter(hoy)) {
+            mensajeError = "No puedes borrar un contrato activo";
+        } else {
+            mailController = new MailController(companyDao.getCompany(contractDao.getContract(idContract).getNifcompany()).getEmail());
+            mailController.deleteMail("Se ha eliminado su contrato permanentemente");
+            contractDao.deleteContract(idContract);
+        }
         return "redirect:../list";
     }
 

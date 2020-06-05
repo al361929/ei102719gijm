@@ -4,6 +4,7 @@ import majorsacasa.dao.CompanyDao;
 import majorsacasa.dao.ServiceDao;
 import majorsacasa.dao.ValoracionDao;
 import majorsacasa.model.Company;
+import majorsacasa.model.Contract;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,6 +26,7 @@ public class CompanyController extends ManageAccessController {
     private ServiceDao serviceDao;
     private MailController mailController;
     static String mensajeError ="";
+
     @Autowired
     public void setCompanyDao(ValoracionDao valoracionDao, CompanyDao companyDao, ServiceDao serviceDao) {
 
@@ -156,14 +159,14 @@ public class CompanyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/delete/{nif}")
-    public String processDelete(@PathVariable String nif,Model model) {
-        try {
-            companyDao.deleteCompany(nif);
+    public String processDelete(@PathVariable String nif, Model model) throws Exception {
+        List<Contract> contratos = companyDao.getContractsList(nif);
+        if (contratos.isEmpty()) {
             mailController = new MailController(companyDao.getCompany(nif).getEmail());
+            companyDao.deleteCompany(nif);
             mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
-        }catch (Exception e){
-            mensajeError= "No puedes borrar una empresa si tiene contratos";
-
+        } else {
+            mensajeError = "No puedes borrar una empresa si tiene contratos";
         }
         return "redirect:../list";
     }

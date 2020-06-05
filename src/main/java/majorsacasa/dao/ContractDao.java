@@ -58,4 +58,12 @@ public class ContractDao {
         int id = Integer.parseInt(ids.get(0));
         return id;
     }
+
+    public List<Contract> getContractCompanyActive(String nif) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM contract WHERE nif=? AND datedown IS NOT NULL", new ContractRowMapper(), nif);
+        } catch (EnumConstantNotPresentException e) {
+            return new ArrayList<Contract>();
+        }
+    }
 }

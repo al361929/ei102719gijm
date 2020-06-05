@@ -11,68 +11,73 @@
 <body>
 <div layout:fragment="content">
 
-    <div class="table-responsive">
-        <h1>Contratos</h1>
-
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Empresa</th>
-                <th>Firma</th>
-                <th>Cantidad</th>
-                <th>Descripción</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="contrato: ${#lists.sort(contracts)}"
-                th:class="${#strings.equals(nuevo,contrato.idContract)}?'bg-info text-white'">
-                <td th:text="${usuarios.get(contrato.nifcompany)}"></td>
-                <td th:text="${contrato.firma}"></td>
-                <td th:text="${contrato.cantidad}"></td>
-                <td th:text="${contrato.descripcion}"></td>
-                <td>
-                    <div th:if="${!contrato.contractPDF}">
-                        <a th:href="@{/contract/upload/{ncontract}(ncontract=${contrato.idContract})}"
-                           class="btn btn btn-primary"
-                           role="button"
-                           aria-pressed="true">Añadir PDF</a>
-                    </div>
-                    <div th:if="${contrato.contractPDF}">
-                        <a th:href="@{/contract/verPDF/{ncontract}(ncontract=${contrato.idContract})}"
-                           class="btn btn btn-default"
-                           role="button"
-                           aria-pressed="true">Ver PDF</a>
-                    </div>
-                </td>
-                <td>
-                    <div th:if="${contrato.contractPDF}">
-                        <a th:href="@{/contract/upload/{ncontract}(ncontract=${contrato.idContract})}"
-                           class="btn btn btn-warning"
-                           role="button"
-                           aria-pressed="true">Actualizar PDF</a>
-                    </div>
-                </td>
-                <td>
-                    <a th:href="@{/contract/update/{ncontract}(ncontract=${contrato.idContract})}"
-                       class="btn btn btn-secondary"
+    <h1>Contratos</h1>
+    <h5 th:text="${mensaje}"></h5>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Empresa</th>
+            <th>Firma</th>
+            <th>Cantidad</th>
+            <th>Descripción</th>
+            <th>Fecha inicio</th>
+            <th>Fecha fin</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="contrato: ${#lists.sort(contracts)}"
+            th:class="${#strings.equals(nuevo,contrato.idContract)}?'bg-info text-white'">
+            <td th:text="${usuarios.get(contrato.nifcompany)}"></td>
+            <td th:text="${contrato.firma}"></td>
+            <td th:text="${contrato.cantidad}"></td>
+            <td th:text="${contrato.descripcion}"></td>
+            <td th:text="${#temporals.format(contrato.releaseDate,'dd/MM/yyyy')}"></td>
+            <td>
+                <div th:if="${contrato.dateDown == NULL}"></div>
+                <div th:unless="${contrato.dateDown == NULL}" th:text="${#temporals.format(contrato.dateDown,'dd/MM/yyyy')}"></div>
+            </td>
+            <td>
+                <div th:if="${!contrato.contractPDF}">
+                    <a th:href="@{/contract/upload/{ncontract}(ncontract=${contrato.idContract})}"
+                       class="btn btn btn-primary"
                        role="button"
-                       aria-pressed="true">Editar</a>
-                </td>
-                <td>
-                    <a th:href="@{/contract/delete/{ncontract}(ncontract=${contrato.idContract})}"
-                       class="btn btn btn-danger"
+                       aria-pressed="true">Añadir PDF</a>
+                </div>
+                <div th:if="${contrato.contractPDF}">
+                    <a th:href="@{/contract/verPDF/{ncontract}(ncontract=${contrato.idContract})}"
+                       class="btn btn btn-default"
                        role="button"
-                       aria-pressed="true">Borrar</a>
+                       aria-pressed="true">Ver PDF</a>
+                </div>
+            </td>
+            <td>
+                <div th:if="${contrato.contractPDF}">
+                    <a th:href="@{/contract/upload/{ncontract}(ncontract=${contrato.idContract})}"
+                       class="btn btn btn-warning"
+                       role="button"
+                       aria-pressed="true">Actualizar PDF</a>
+                </div>
+            </td>
+            <td>
+                <a th:href="@{/contract/update/{ncontract}(ncontract=${contrato.idContract})}"
+                   class="btn btn btn-secondary"
+                   role="button"
+                   aria-pressed="true">Editar</a>
+            </td>
+            <td>
+                <a th:href="@{/contract/delete/{ncontract}(ncontract=${contrato.idContract})}"
+                   class="btn btn btn-danger"
+                   role="button"
+                   aria-pressed="true">Borrar</a>
 
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
     <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
 </div>
 
