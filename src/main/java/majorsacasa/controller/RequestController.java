@@ -158,21 +158,22 @@ public class RequestController extends ManageAccessController {
         model.addAttribute("servicios", servicios);
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
+        model.addAttribute("mensaje", mensajeError);
+        mensajeError = "";
         return gestionarAcceso(session, model, "SocialWorker", "request/list");
     }
 
     @RequestMapping(value = "/delete/{idRequest}")
     public String processDelete(@PathVariable int idRequest) {
-        String dni = requestDao.getRequest(idRequest).getDni();
-        try {
+        Request request = requestDao.getRequest(idRequest);
+        if (request.getState().equals("Rechazada") || request.getState().equals("Cancelada")) {
             mailController = new MailController(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
-            requestDao.deleteRequest(idRequest);
             mailController.deleteMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
-
-        } catch (Exception e) {
-            mensajeError = "No puedes borrar una persona mayor que tenga servicios";
+            requestDao.deleteRequest(idRequest);
+        } else {
+            mensajeError = "No puedes borrar una petición aceptada o pendiente";
         }
-        return "redirect:../list/" + dni;
+        return "redirect:../list/" + request.getDni();
     }
 
     @RequestMapping("/listElderly")

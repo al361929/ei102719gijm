@@ -52,8 +52,10 @@
                                th:href="@{/request/update/{id}(id=${request.idRequest})}"
                                class="btn btn btn-secondary" role="button">Editar</a>
                         </td>
-                        <td>
-                            <a th:href="@{/request/delete/{id}(id=${request.idRequest})}"
+                        <td th:switch="${request.state}">
+                            <a th:case="'Cancelada'" th:href="@{/request/delete/{id}(id=${request.idRequest})}"
+                               class="btn btn btn-danger" role="button">Borrar</a>
+                            <a th:case="'Rechazada'" th:href="@{/request/delete/{id}(id=${request.idRequest})}"
                                class="btn btn btn-danger" role="button">Borrar</a>
                         </td>
                     </div>
