@@ -66,7 +66,7 @@ public class ContractController extends ManageAccessController {
         List<Elderly> elderly = elderlyDao.getElderlys();
         model.addAttribute("elderlys", elderly);
 
-        List<Company> company = companyDao.getCompanies();
+        List<Company> company = companyDao.getCompaniesService();
         reverse(company);
         model.addAttribute("companyies", company);
 

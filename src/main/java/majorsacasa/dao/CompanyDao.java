@@ -24,7 +24,15 @@ public class CompanyDao extends GeneralDao {
 
     public List<Company> getCompanies() {
         try {
-            return jdbcTemplate.query("Select * From Company Where not nif='0'", new CompanyRowMapper());
+            return jdbcTemplate.query("SELECT * From Company WHERE not nif='0'", new CompanyRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Company>();
+        }
+    }
+
+    public List<Company> getCompaniesService() {
+        try {
+            return jdbcTemplate.query("SELECT c.* FROM company AS c JOIN offers AS o USING(nif)", new CompanyRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Company>();
         }
