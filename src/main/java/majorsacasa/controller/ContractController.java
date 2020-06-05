@@ -144,7 +144,7 @@ public class ContractController extends ManageAccessController {
     @RequestMapping(value = "/delete/{idContract}")
     public String processDelete(@PathVariable Integer idContract) {
         Contract contrato = contractDao.getContract(idContract);
-        System.out.println(contrato.getDateDown().toString());
+        System.out.println(contrato.getDateDown());
         LocalDate hoy = LocalDate.now();
         LocalDate date = contrato.getDateDown();
 
