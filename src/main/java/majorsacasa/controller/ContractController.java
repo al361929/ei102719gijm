@@ -144,11 +144,8 @@ public class ContractController extends ManageAccessController {
     @RequestMapping(value = "/delete/{idContract}")
     public String processDelete(@PathVariable Integer idContract) {
         Contract contrato = contractDao.getContract(idContract);
-        System.out.println(contrato.getDateDown());
         LocalDate hoy = LocalDate.now();
-        LocalDate date = contrato.getDateDown();
-
-        if (date == null || date.isAfter(hoy)) {
+        if (contrato.getDateDown() == null || contrato.getDateDown().isAfter(hoy)) {
             mensajeError = "No puedes borrar un contrato activo";
         } else {
             mailController = new MailController(companyDao.getCompany(contractDao.getContract(idContract).getNifcompany()).getEmail());

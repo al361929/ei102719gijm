@@ -37,7 +37,7 @@
             <td th:text="${contrato.descripcion}"></td>
             <td th:text="${#temporals.format(contrato.releaseDate,'dd/MM/yyyy')}"></td>
             <td>
-                <div th:if="${contrato.dateDown == NULL}"></div>
+                <div th:if="${contrato.dateDown == NULL}">Indefinido</div>
                 <div th:unless="${contrato.dateDown == NULL}"
                      th:text="${#temporals.format(contrato.dateDown,'dd/MM/yyyy')}"></div>
             </td>
