@@ -24,7 +24,6 @@ public class VolunteerTimeController extends ManageAccessController {
     private ValoracionDao valoracionDao;
     private MailController mailController;
     private VolunteerDao volunteerDao;
-
     private VolunteerTimeDao volunteerTimeDao;
     private final List<String> meses = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 

@@ -16,7 +16,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <!--                <th>Voluntario</th>-->
                 <th>Persona Mayor</th>
                 <th>Dia</th>
                 <th>Mes</th>
@@ -28,25 +27,23 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="voluntario: ${scheduleList}"
-                th:class="${#strings.equals(nuevo,voluntario.getId())}?'bg-info text-white'">
-
-                <!--                <td th:text="${usuario.get(voluntario.dniVolunteer)}"></td>-->
-                <td th:text="${usuario.get(voluntario.dniElderly)}"></td>
-                <td th:text="${voluntario.dia}"></td>
-                <td th:text="${voluntario.mes}"></td>
-                <td th:text="${voluntario.startTime}"></td>
-                <td th:text="${voluntario.endTime}"></td>
-                <td th:text="${voluntario.availability}"></td>
+            <tr th:each="horario: ${scheduleList}"
+                th:class="${#strings.equals(nuevo,horario.getId())}?'bg-info text-white'">
+                <td th:text="${usuario.get(horario.dniElderly)}"></td>
+                <td th:text="${horario.dia}"></td>
+                <td th:text="${horario.mes}"></td>
+                <td th:text="${horario.startTime}"></td>
+                <td th:text="${horario.endTime}"></td>
+                <td th:text="${horario.availability}"></td>
                 <td>
-                    <a th:href="@{/volunteertime/update/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
+                    <a th:href="@{/volunteertime/update/{idVolunteerTime}(idVolunteerTime=${horario.idVolunteerTime})}"
                        class="btn btn btn-secondary"
                        role="button"
                        aria-pressed="true">Editar</a>
                 </td>
                 <td>
-                    <a th:if="${usuario.get(voluntario.dniElderly) == null}"
-                       th:href="@{/volunteertime/delete/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
+                    <a th:if="${usuario.get(horario.dniElderly) == null}"
+                       th:href="@{/volunteertime/delete/{idVolunteerTime}(idVolunteerTime=${horario.idVolunteerTime})}"
                        class="btn btn btn-danger"
                        role="button"
                        aria-pressed="true">Borrar</a>
@@ -55,7 +52,8 @@
             </tbody>
         </table>
     </div>
-    <a href="../volunteertime/add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir horario</a>
+    <a th:if="${voluntario.estado == 'Aceptado'}" href="../volunteertime/add" class="btn btn btn-success" role="button"
+       aria-pressed="true">Añadir horario</a>
     <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a></td>
 </div>
 

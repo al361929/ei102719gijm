@@ -154,6 +154,7 @@ public class VolunteerController extends ManageAccessController {
         model.addAttribute("scheduleList", volunteerDao.getScheduleList(user.getDni()));
         HashMap<String, String> u = valoracionDao.getUsersInfo();
         model.addAttribute("usuario", u);
+        model.addAttribute("voluntario", volunteerDao.getVolunteer(user.getDni()));
         return gestionarAcceso(session, model, "Volunteer", "volunteer/scheduleList");
     }
 
