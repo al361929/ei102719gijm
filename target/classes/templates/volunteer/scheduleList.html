@@ -13,10 +13,10 @@
 
     <div class="table-responsive">
         <h1>Mis horarios</h1>
+        <h5 th:if="${voluntario.estado != 'Aceptado'}">No puedes añadir horarios, hasta que te accepten el usuario.</h5>
         <table class="table table-striped">
             <thead>
             <tr>
-                <!--                <th>Voluntario</th>-->
                 <th>Persona Mayor</th>
                 <th>Dia</th>
                 <th>Mes</th>
@@ -30,8 +30,6 @@
             <tbody>
             <tr th:each="horario: ${scheduleList}"
                 th:class="${#strings.equals(nuevo,horario.getId())}?'bg-info text-white'">
-
-                <!--                <td th:text="${usuario.get(voluntario.dniVolunteer)}"></td>-->
                 <td th:text="${usuario.get(horario.dniElderly)}"></td>
                 <td th:text="${horario.dia}"></td>
                 <td th:text="${horario.mes}"></td>
@@ -55,7 +53,8 @@
             </tbody>
         </table>
     </div>
-    <a th:if="${voluntario.estado == 'Aceptado'}" href="../volunteertime/add" class="btn btn btn-success" role="button" aria-pressed="true">Añadir horario</a>
+    <a th:if="${voluntario.estado == 'Aceptado'}" href="../volunteertime/add" class="btn btn btn-success" role="button"
+       aria-pressed="true">Añadir horario</a>
     <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a></td>
 </div>
 

@@ -13,6 +13,7 @@
 
     <div class="table-responsive">
         <h1>Mis horarios</h1>
+        <h5 th:if="${voluntario.estado != 'Aceptado'}">No puedes añadir horarios, hasta que te accepten el usuario.</h5>
         <table class="table table-striped">
             <thead>
             <tr>
