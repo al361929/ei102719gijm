@@ -12,8 +12,8 @@
 
 <div layout:fragment="content">
     <div class="container">
-
-        <h2>Solicitar solicitud</h2>
+        <h2>Añadir servicio a la empresa</h2>
+        <h4 th:text="${company}"></h4>
         <form action="#" th:action="@{/offer/addService}"
               th:object="${offer}" method="post">
             <table>
@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
 
-                    <td colspan="2"><input type="submit" value="Solicitar" class="btn btn btn-success"
+                    <td colspan="2"><input type="submit" value="Añadir" class="btn btn btn-success"
                                            role="button"
                                            aria-pressed="true"/></td>
 

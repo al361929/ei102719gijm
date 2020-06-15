@@ -43,7 +43,6 @@ public class ServiceController extends ManageAccessController {
     public String addService(Model model) {
         model.addAttribute("service", new Service());
         model.addAttribute("typosServicios", typeserviceDao.getTypeServices());
-
         return "service/add";
     }
 

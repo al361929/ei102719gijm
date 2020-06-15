@@ -1,6 +1,6 @@
 package majorsacasa.controller;
 
-import majorsacasa.dao.ContractDao;
+import majorsacasa.dao.CompanyDao;
 import majorsacasa.dao.OffersDao;
 import majorsacasa.dao.ServiceDao;
 import majorsacasa.model.Offer;
@@ -20,13 +20,13 @@ import java.util.Optional;
 public class OffersController extends ManageAccessController {
     private OffersDao offersDao;
     private ServiceDao serviceDao;
-    private ContractDao contractDao;
+    private CompanyDao companyDao;
 
 
     @Autowired
-    public void setOffersDao(OffersDao offersDao, ServiceDao serviceDao, ContractDao contractDao) {
+    public void setOffersDao(OffersDao offersDao, ServiceDao serviceDao, CompanyDao companyDao) {
         this.serviceDao = serviceDao;
-        this.contractDao = contractDao;
+        this.companyDao = companyDao;
         this.offersDao = offersDao;
     }
 
@@ -40,14 +40,15 @@ public class OffersController extends ManageAccessController {
 
     @RequestMapping(value = "/addService/{nif}")
     public String addOffer(Model model, @PathVariable String nif) {
-        model.addAttribute("offer", new Offer());
-        List<Service> servicios = serviceDao.getServices();
 
+        List<Service> servicios = serviceDao.getServices();
         model.addAttribute("servicios", servicios);
+
         Offer offer = new Offer();
         offer.setNif(nif);
         model.addAttribute("offer", offer);
 
+        model.addAttribute("company", companyDao.getCompany(nif).getNombre());
         return "offer/addService";
     }
 
@@ -71,7 +72,7 @@ public class OffersController extends ManageAccessController {
 
         offersDao.addOffers(offer);
 
-        return gestionarAcceso(session, model, "Admin", "redirect:../company/list");
+        return gestionarAcceso(session, model, "Admin", "redirect:../contract/add");
 
     }
 

@@ -110,7 +110,7 @@ public class CompanyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addContract", method = RequestMethod.POST)
-    public String processAddSubmitContract(@ModelAttribute("company") Company company, BindingResult bindingResult) {
+    public String processAddSubmitContract(@ModelAttribute("company") Company company, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors())
             return "company/addContract";
         Boolean check = companyDao.checkDNI(company.getNif());
@@ -136,7 +136,7 @@ public class CompanyController extends ManageAccessController {
                 "Usuario: " + company.getNombreUsuario() +
                 "\nContraseña: " + company.getPassword());
 
-        return "redirect:../contract/add";
+        return "redirect:../offer/addService/" + company.getNif();
     }
 
     @RequestMapping(value = "/update/{nif}", method = RequestMethod.GET)
