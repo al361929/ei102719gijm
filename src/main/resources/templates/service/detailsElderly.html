@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Servicios de una empresa</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="table-responsive">
+        <h3>Personas mayores del servicio:</h3>
+        <h4 th:text="${servicio.getDescription()}" style="text-align: center"></h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Dirección</th>
+                <th>Alergias</th>
+                <th>Telefono</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="elderly: ${#lists.sort(personas)}">
+                <td th:text="${elderly.nombre}"></td>
+                <td th:text="${elderly.apellidos}"></td>
+                <td th:text="${elderly.direccion}"></td>
+                <td th:text="${elderly.alergias}"></td>
+                <td th:text="${elderly.telefono}"></td>
+                <td th:text="${elderly.email}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
+    </div>
+</div>
+</body>
+</html>

@@ -87,4 +87,14 @@ public class RequestDao {
         int id = Integer.parseInt(ids.get(0));
         return id;
     }
+
+    public List<Request> getRequestsCompany(String nif, Integer idService) {
+        try {
+            return jdbcTemplate.query(
+                    "SELECT * FROM Request where nif=? AND idService=?",
+                    new RequestRowMapper(), nif, idService);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
 }

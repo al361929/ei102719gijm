@@ -1,11 +1,7 @@
 package majorsacasa.controller;
 
-import majorsacasa.dao.CompanyDao;
-import majorsacasa.dao.ServiceDao;
-import majorsacasa.dao.ValoracionDao;
-import majorsacasa.model.Company;
-import majorsacasa.model.Contract;
-import majorsacasa.model.UserDetails;
+import majorsacasa.dao.*;
+import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -25,14 +22,17 @@ public class CompanyController extends ManageAccessController {
     private ValoracionDao valoracionDao;
     private ServiceDao serviceDao;
     private MailController mailController;
-    static String mensajeError ="";
+    static String mensajeError = "";
+    private RequestDao requestdao;
+    private ElderlyDao elderlyDao;
 
     @Autowired
-    public void setCompanyDao(ValoracionDao valoracionDao, CompanyDao companyDao, ServiceDao serviceDao) {
-
+    public void setCompanyDao(ValoracionDao valoracionDao, CompanyDao companyDao, ServiceDao serviceDao, RequestDao requestDao, ElderlyDao elderlyDao) {
         this.companyDao = companyDao;
         this.valoracionDao = valoracionDao;
         this.serviceDao = serviceDao;
+        this.requestdao = requestDao;
+        this.elderlyDao = elderlyDao;
     }
 
     @RequestMapping("/list")
@@ -212,4 +212,16 @@ public class CompanyController extends ManageAccessController {
         return "company/contractList";
     }
 
+    @RequestMapping(value = "/serviceElderly/{idService}")
+    public String serviceElderly(Model model, HttpSession httpSession, @PathVariable Integer idService) {
+        UserDetails user = (UserDetails) httpSession.getAttribute("user");
+        List<Request> peticiones = requestdao.getRequestsCompany(user.getDni(), idService);
+        List<Elderly> personas = new ArrayList<>();
+        for (Request req : peticiones) {
+            personas.add(elderlyDao.getElderly(req.getDni()));
+        }
+        model.addAttribute("personas", personas);
+        model.addAttribute("servicio", serviceDao.getService(idService));
+        return gestionarAcceso(httpSession, model, "Company", "service/detailsElderly");
+    }
 }
