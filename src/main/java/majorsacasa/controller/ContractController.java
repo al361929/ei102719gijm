@@ -155,6 +155,12 @@ public class ContractController extends ManageAccessController {
         return "redirect:../list";
     }
 
+    @RequestMapping(value = "/detailsElderly/{idContract}")
+    public String detailsElderly(Model model, @PathVariable Integer idContract, HttpSession httpSession) {
+
+        return gestionarAcceso(httpSession, model, "Company", "contract/detailsElderly");
+    }
+
     @RequestMapping(value = "/contractElderlyList")
     public String getElderlyContractList(HttpSession session, Model model) {
         UserDetails user = (UserDetails) session.getAttribute("user");

@@ -11,10 +11,10 @@
 
 <div layout:fragment="content">
     <div class="container">
-        <div class="centered">
+        <div class="table-responsive">
             <h4>Información de la solicitud</h4>
             <br>
-            <table>
+            <table class="table table-striped" style="width: 50%">
                 <tr>
 
                     <td><b>Servicio: </b></td>
@@ -23,8 +23,8 @@
                 </tr>
                 <tr>
 
-                <td><b>Solicitante: </b></td>
-                <td th:text="${usuario.get(request.dni)}"></td>
+                    <td><b>Solicitante: </b></td>
+                    <td th:text="${usuario.get(request.dni)}"></td>
             </tr>
 
             <tr>

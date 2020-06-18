@@ -35,7 +35,8 @@
                 <td th:text="${horario.mes}"></td>
                 <td th:text="${horario.startTime}"></td>
                 <td th:text="${horario.endTime}"></td>
-                <td th:text="${horario.availability}"></td>
+                <td th:if="${#bools.isTrue(horario.availability)}">Disponible</td>
+                <td th:if="${#bools.isFalse(horario.availability)}">No Disponible</td>
                 <td>
                     <a th:href="@{/volunteertime/update/{idVolunteerTime}(idVolunteerTime=${horario.idVolunteerTime})}"
                        class="btn btn btn-secondary"

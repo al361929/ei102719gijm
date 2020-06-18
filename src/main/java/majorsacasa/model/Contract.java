@@ -15,7 +15,6 @@ public class Contract implements Comparable<Contract> {
     Integer cantidad;
     String descripcion;
     String nifcompany;
-    String dnielderly;
     Boolean contractPDF;
 
     public Contract() {
@@ -77,14 +76,6 @@ public class Contract implements Comparable<Contract> {
         this.nifcompany = nifcompany;
     }
 
-    public String getDnielderly() {
-        return dnielderly;
-    }
-
-    public void setDnielderly(String dnielderly) {
-        this.dnielderly = dnielderly;
-    }
-
     public Boolean getContractPDF() {
         return contractPDF;
     }
@@ -103,7 +94,6 @@ public class Contract implements Comparable<Contract> {
                 ", cantidad=" + cantidad +
                 ", descripcion='" + descripcion + '\'' +
                 ", nifcompany='" + nifcompany + '\'' +
-                ", dnielderly='" + dnielderly + '\'' +
                 ", contractPDF=" + contractPDF +
                 '}';
     }
