@@ -9,10 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/company")
@@ -217,9 +214,12 @@ public class CompanyController extends ManageAccessController {
         UserDetails user = (UserDetails) httpSession.getAttribute("user");
         List<Request> peticiones = requestdao.getRequestsCompany(user.getDni(), idService);
         List<Elderly> personas = new ArrayList<>();
+        Map<String, String> mapRequestDias = new HashMap<>();
         for (Request req : peticiones) {
             personas.add(elderlyDao.getElderly(req.getDni()));
+            mapRequestDias.put(req.getDni(), req.getDias());
         }
+        model.addAttribute("mapRequestDias", mapRequestDias);
         model.addAttribute("personas", personas);
         model.addAttribute("servicio", serviceDao.getService(idService));
         return gestionarAcceso(httpSession, model, "Company", "service/detailsElderly");

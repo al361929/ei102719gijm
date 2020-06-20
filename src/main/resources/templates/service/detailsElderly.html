@@ -22,16 +22,20 @@
                 <th>Alergias</th>
                 <th>Telefono</th>
                 <th>Email</th>
+                <th>Días</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="elderly: ${#lists.sort(personas)}">
-                <td th:text="${elderly.nombre}"></td>
-                <td th:text="${elderly.apellidos}"></td>
-                <td th:text="${elderly.direccion}"></td>
-                <td th:text="${elderly.alergias}"></td>
-                <td th:text="${elderly.telefono}"></td>
-                <td th:text="${elderly.email}"></td>
+            <tr th:each="elderly : ${#lists.sort(personas)}">
+                <td th:text="${elderly.getNombre()}"></td>
+                <td th:text="${elderly.getApellidos()}"></td>
+                <td th:text="${elderly.getDireccion()}"></td>
+                <td th:text="${elderly.getAlergias()}"></td>
+                <td th:text="${elderly.getTelefono()}"></td>
+                <td th:text="${elderly.getEmail()}"></td>
+                <td th:text="${mapRequestDias.get(elderly.getDni())}"></td>
+                <td></td>
+                <td></td>
             </tr>
             </tbody>
         </table>

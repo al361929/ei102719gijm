@@ -91,7 +91,7 @@ public class RequestDao {
     public List<Request> getRequestsCompany(String nif, Integer idService) {
         try {
             return jdbcTemplate.query(
-                    "SELECT * FROM Request where nif=? AND idService=?",
+                    "SELECT * FROM Request where nif=? AND idService=? AND state='Aceptada'",
                     new RequestRowMapper(), nif, idService);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
