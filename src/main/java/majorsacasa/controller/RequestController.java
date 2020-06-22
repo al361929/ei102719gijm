@@ -127,10 +127,17 @@ public class RequestController extends ManageAccessController {
             p.setIdInvoice(invoiceDao.getUltimoInvoice());
             p.setIdRequest(request.getIdRequest());
             produceDao.addProduce(p);
+            Elderly elderly = elderlyDao.getElderly(request.getDni());
 
-            mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
+            mailController = new MailController(elderly.getEmail());
             mailController.updateMail("Su solicitud del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " ha sido " + request.getState() + " y lo puede ver en su lista de solicitudes. Por favor, no olvide valorar el servicio.");
 
+            HashMap<String, String> mapaServiciosCompany = serviceDao.getMapServiceCompany();
+            Company empresa = companyDao.getCompany(request.getNif());
+            mailController = new MailController(companyDao.getCompany(request.getNif()).getEmail());
+            mailController.updateMail("Se le ha asignado una persona mayor a su servicio de " + mapaServiciosCompany.get(empresa.getNif()) +
+                    ". Puede ver los detalles en el listado de personas mayores de su servicio.\n" +
+                    "La persona mayor se llama: " + elderly.getNombre() + " " + elderly.getApellidos() + " y su dirección es: " + elderly.getDireccion());
         } else {
             if (request.getState().equals("Rechazada")) request.setDateReject(LocalDate.now());
 
