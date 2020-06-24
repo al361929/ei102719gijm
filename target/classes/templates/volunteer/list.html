@@ -28,37 +28,43 @@
                 <th>Estado</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="voluntario: ${#lists.sort(volunteers)}"
-                th:class="${#strings.equals(nuevo,voluntario.dni)}?'bg-info text-white'">
-                <td th:text="${voluntario.dni}"></td>
-                <td th:text="${voluntario.nombre}"></td>
-                <td th:text="${voluntario.apellidos}"></td>
-                <td th:text="${voluntario.direccion}"></td>
-                <td th:text="${#temporals.format(voluntario.releaseDate,'dd/MM/yyyy')}"></td>
-                <td th:text="${#temporals.format(voluntario.dataDown,'dd/MM/yyyy')}"></td>
-                <td th:text="${#temporals.format(voluntario.birthday,'dd/MM/yyyy')}"></td>
-                <td th:text="${voluntario.estado}"></td>
-
+                th:class="${#strings.equals(nuevo,voluntario.getDni())}?'bg-info text-white'">
+                <td th:text="${voluntario.getDni()}"></td>
+                <td th:text="${voluntario.getNombre()}"></td>
+                <td th:text="${voluntario.getApellidos()}"></td>
+                <td th:text="${voluntario.getDireccion()}"></td>
+                <td th:text="${#temporals.format(voluntario.getReleaseDate(),'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(voluntario.getDataDown(),'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(voluntario.getBirthday(),'dd/MM/yyyy')}"></td>
+                <td th:text="${voluntario.getEstado()}"></td>
                 <td>
-                    <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.dni})}" class="btn btn btn-secondary"
+                    <a th:href="@{/volunteer/update/{dni}(dni=${voluntario.getDni()})}" class="btn btn btn-secondary"
                        role="button"
                        aria-pressed="true">Editar</a>
 
                 </td>
                 <td>
-                    <a th:href="@{/volunteer/delete/{dni}(dni=${voluntario.dni})}" class="btn btn btn-danger"
-                       role="button"
-                       aria-pressed="true">Borrar</a>
+                    <div th:if="${voluntario.getEstado() == 'Pendiente'}">
+                        <a th:href="@{/volunteer/accept/{dni}(dni=${voluntario.getDni()})}"
+                           class="btn btn btn-success" role="button"
+                           aria-pressed="true">Aceptar</a>
+                    </div>
                 </td>
                 <td>
-                    <div th:if="${!voluntario.getAceptado()}">
-
-                        <a th:href="@{/volunteer/updateAcepted/{dni}(dni=${voluntario.dni})}"
-                           class="btn btn btn-success" role="button"
-                           aria-pressed="true">Aceptar Voluntario</a>
+                    <div th:if="${voluntario.getEstado() == 'Pendiente'}">
+                        <a th:href="@{/volunteer/reject/{dni}(dni=${voluntario.getDni()})}" class="btn btn btn-warning"
+                           role="button"
+                           aria-pressed="true">Rechazar</a>
+                    </div>
+                    <div th:if="${voluntario.getEstado() == 'Rechazado'}">
+                        <a th:href="@{/volunteer/delete/{dni}(dni=${voluntario.getDni()})}" class="btn btn btn-danger"
+                           role="button"
+                           aria-pressed="true">Borrar</a>
                     </div>
                 </td>
             </tr>

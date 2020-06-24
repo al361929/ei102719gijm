@@ -31,14 +31,14 @@
             <tbody>
             <tr th:each="elderly: ${#lists.sort(elderlyList)}"
                 th:class="${#strings.equals(nuevo,elderly.dni)}?'bg-info text-white'">
-                <td th:text="${elderly.nombre}"></td>
-                <td th:text="${elderly.apellidos}"></td>
-                <td th:text="${elderly.direccion}"></td>
-                <td th:text="${elderly.alergias}"></td>
-                <td th:text="${elderly.telefono}"></td>
+                <td th:text="${elderly.getNombre()}"></td>
+                <td th:text="${elderly.getApellidos()}"></td>
+                <td th:text="${elderly.getDireccion()}"></td>
+                <td th:text="${elderly.getAlergias()}"></td>
+                <td th:text="${elderly.getTelefono()}"></td>
                 <td th:text="${#temporals.format(elderly.birthday,'dd/MM/yyyy')}"></td>
                 <td th:text="${usuario.get(elderly.socialWorker)}"></td>
-                <td th:text="${elderly.email}"></td>
+                <td th:text="${elderly.getEmail()}"></td>
                 <td>
                 </td>
             </tr>

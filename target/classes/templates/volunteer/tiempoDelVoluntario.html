@@ -28,14 +28,13 @@
             <tbody>
             <tr th:each="voluntario: ${scheduleList}"
                 th:class="${#strings.equals(nuevo,voluntario.getIdVolunteerTime())}?'bg-info text-white'">
-
-                <td th:text="${voluntario.dia}"></td>
-                <td th:text="${voluntario.mes}"></td>
-                <td th:text="${voluntario.startTime}"></td>
-                <td th:text="${voluntario.endTime}"></td>
+                <td th:text="${voluntario.getDia()}"></td>
+                <td th:text="${voluntario.getMes()}"></td>
+                <td th:text="${voluntario.getStartTime()}"></td>
+                <td th:text="${voluntario.getEndTime()}"></td>
 
                 <td>
-                    <a th:href="@{/volunteertime/solicitar/{idVolunteerTime}(idVolunteerTime=${voluntario.idVolunteerTime})}"
+                    <a th:href="@{/volunteertime/solicitar/{idVolunteerTime}(idVolunteerTime=${voluntario.getIdVolunteerTime()})}"
                        class="btn btn btn-secondary"
                        role="button"
                        aria-pressed="true">Solicitar</a>

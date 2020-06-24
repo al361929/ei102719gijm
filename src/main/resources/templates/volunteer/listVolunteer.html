@@ -30,20 +30,20 @@
             <tbody>
             <tr th:each="horario: ${horarios}"
                 th:class="${#strings.equals(nuevo,horario.idVolunteerTime)}?'bg-info text-white'">
-                <td th:text="${horario.dia}"></td>
-                <td th:text="${horario.mes}"></td>
-                <td th:text="${horario.startTime}"></td>
-                <td th:text="${horario.endTime}"></td>
+                <td th:text="${horario.dni}"></td>
+                <td th:text="${horario.getMes()}"></td>
+                <td th:text="${horario.getStartTime()}"></td>
+                <td th:text="${horario.getEndTime()}"></td>
                 <td th:text="${promedio.get(horario.dniVolunteer)}"></td>
                 <td>
-                    <div th:if="${promedio.get(horario.dniVolunteer)}">
+                    <div th:if="${promedio.get(horario.getDniVolunteer())}">
 
-                        <a th:href="@{/valoraciones/listMisValoraciones/{dni}(dni=${horario.dniVolunteer})}"
+                        <a th:href="@{/valoraciones/listMisValoraciones/{dni}(dni=${horario.getDniVolunteer()})}"
                            class="btn btn btn-secondary" role="button"
                            aria-pressed="true">Ver reseñas</a>
                     </div>
                 <td>
-                    <a th:href="@{/volunteertime/solicitar/{idVolunteerTime}(idVolunteerTime=${horario.idVolunteerTime})}"
+                    <a th:href="@{/volunteertime/solicitar/{idVolunteerTime}(idVolunteerTime=${horario.getIdVolunteerTime()})}"
                        class="btn btn btn-default" role="button"
                        aria-pressed="true">Solicitar</a>
                 </td>

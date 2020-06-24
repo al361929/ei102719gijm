@@ -28,17 +28,17 @@
             <tbody>
             <tr th:each="voluntario: ${#lists.sort(misVoluntarios)}"
                 th:class="${#strings.equals(nuevo,voluntario.dni)}?'bg-info text-white'">
-                <td th:text="${voluntario.nombre}"></td>
-                <td th:text="${voluntario.apellidos}"></td>
-                <td th:text="${promedio.get(voluntario.dni)}"></td>
+                <td th:text="${voluntario.getNombre()}"></td>
+                <td th:text="${voluntario.getApellidos()}"></td>
+                <td th:text="${promedio.get(voluntario.getDni())}"></td>
                 <td>
-                    <a th:href="@{/valoraciones/addValoracion/{dni}(dni=${voluntario.dni})}"
+                    <a th:href="@{/valoraciones/addValoracion/{dni}(dni=${voluntario.getDni()})}"
                        class="btn btn btn-secondary"
                        role="button"
                        aria-pressed="true">Añadir reseña</a>
                 </td>
                 <td>
-                    <a th:href="@{/volunteer/misHorariosElderly/{dni}(dni=${voluntario.dni})}"
+                    <a th:href="@{/volunteer/misHorariosElderly/{dni}(dni=${voluntario.getDni()})}"
                        class="btn btn btn-default"
                        role="button"
                        aria-pressed="true">Horarios</a>
