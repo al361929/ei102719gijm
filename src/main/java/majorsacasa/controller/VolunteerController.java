@@ -143,15 +143,15 @@ public class VolunteerController extends ManageAccessController {
     public String confirmarDelete(@PathVariable String dni, HttpSession httpSession, Model model) {
         Volunteer volunteer = volunteerDao.getVolunteer(dni);
         model.addAttribute("volunteer", volunteer);
-
         return gestionarAcceso(httpSession, model, "Volunteer", "deletePerfil");
     }
 
     @RequestMapping(value = "/deletePerfil/{dni}")
-    public String deletePerfil(@PathVariable String dni, HttpSession session, Model model) {
+    public String deletePerfil(@PathVariable String dni) {
         try {
+            Volunteer volunteer = volunteerDao.getVolunteer(dni);
             volunteerDao.deleteVolunteer(dni);
-            mailController = new MailController(volunteerDao.getVolunteer(dni).getEmail());
+            mailController = new MailController(volunteer.getEmail());
             mailController.deleteMail("Se ha eliminado su cuenta correctamente");
             return "redirect:/logout";
         } catch (Exception e) {
@@ -164,10 +164,10 @@ public class VolunteerController extends ManageAccessController {
     @RequestMapping(value = "/delete/{dni}")
     public String processDelete(@PathVariable String dni) {
         try {
+            Volunteer volunteer = volunteerDao.getVolunteer(dni);
             volunteerDao.deleteVolunteer(dni);
-            mailController = new MailController(volunteerDao.getVolunteer(dni).getEmail());
+            mailController = new MailController(volunteer.getEmail());
             mailController.deleteMail("Se ha eliminado su cuenta correctamente");
-
         } catch (Exception e) {
             mensajeError = "No puedes eliminar un voluntario si tiene horarios";
         }
