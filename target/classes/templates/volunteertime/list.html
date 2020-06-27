@@ -32,7 +32,7 @@
             <tr th:each="voluntario: ${#lists.sort(volunteerstime)}"
                 th:class="${#strings.equals(nuevo,voluntario.idVolunteerTime)}?'bg-info text-white'">
                 <td th:text="${voluntario.idVolunteerTime}"></td>
-                <td th:text="${voluntario.dniVolunteer}"></td>
+                <td th:text="${voluntario.getDniVolunteer}"></td>
                 <td th:text="${voluntario.dniElderly}"></td>
                 <td th:text="${voluntario.dia}"></td>
                 <td th:text="${voluntario.mes}"></td>

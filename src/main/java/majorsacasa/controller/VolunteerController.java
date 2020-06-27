@@ -5,6 +5,7 @@ import majorsacasa.dao.VolunteerDao;
 import majorsacasa.dao.VolunteerTimeDao;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.Volunteer;
+import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,23 +13,27 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 
 @Controller
 @RequestMapping("/volunteer")
 public class VolunteerController extends ManageAccessController {
-    static String mensajeError ="";
 
+    static String mensajeError ="";
     private VolunteerDao volunteerDao;
     private ValoracionDao valoracionDao;
     private MailController mailController;
+    private VolunteerTimeDao volunteerTimeDao;
 
     @Autowired
     public void setVolunteerDao(VolunteerDao volunteerDao, ValoracionDao valoracionDao, VolunteerTimeDao volunteerTimeDao) {
         this.volunteerDao = volunteerDao;
         this.valoracionDao = valoracionDao;
+        this.volunteerTimeDao = volunteerTimeDao;
     }
 
 
@@ -142,45 +147,55 @@ public class VolunteerController extends ManageAccessController {
     @RequestMapping(value = "/confirmarDelete/{dni}")
     public String confirmarDelete(@PathVariable String dni, HttpSession httpSession, Model model) {
         Volunteer volunteer = volunteerDao.getVolunteer(dni);
-        model.addAttribute("volunteer", volunteer);
+        UserDetails usuario = (UserDetails) httpSession.getAttribute("user");
+        model.addAttribute("user", volunteer);
+        model.addAttribute("userType", usuario.getTipo().toLowerCase());
         return gestionarAcceso(httpSession, model, "Volunteer", "deletePerfil");
     }
 
-    @RequestMapping(value = "/deletePerfil/{dni}")
-    public String deletePerfil(@PathVariable String dni) {
-        try {
-            Volunteer volunteer = volunteerDao.getVolunteer(dni);
-            volunteerDao.deleteVolunteer(dni);
-            mailController = new MailController(volunteer.getEmail());
-            mailController.deleteMail("Se ha eliminado su cuenta correctamente");
-            return "redirect:/logout";
-        } catch (Exception e) {
-            mensajeError = "No puedes eliminar tu cuenta si tienes horarios activos";
-            System.out.println("Error");
-        }
-        return "redirect:../../volunteer/perfil";
-    }
 
     @RequestMapping(value = "/delete/{dni}")
-    public String processDelete(@PathVariable String dni) {
+    public String processDelete(@PathVariable String dni, HttpSession session) {
+        UserDetails usuario = (UserDetails) session.getAttribute("user");
         try {
             Volunteer volunteer = volunteerDao.getVolunteer(dni);
             volunteerDao.deleteVolunteer(dni);
             mailController = new MailController(volunteer.getEmail());
             mailController.deleteMail("Se ha eliminado su cuenta correctamente");
+            if (usuario.getTipo().equals("Volunteer")) {
+                return "redirect:/logout";
+            }
         } catch (Exception e) {
-            mensajeError = "No puedes eliminar un voluntario si tiene horarios";
+            if (usuario.getTipo().equals("Admin")) {
+                mensajeError = "No puedes eliminar un voluntario si tiene horarios";
+            } else if (usuario.getTipo().equals("Volunteer")) {
+                mensajeError = "No puedes eliminar tu cuenta si tienes horarios activos";
+                return "redirect:../../volunteer/perfil";
+            }
         }
         return "redirect:../list";
     }
 
     @RequestMapping(value = "/scheduleList")
-    public String getScheduleList(HttpSession session, Model model) {
+    public String getScheduleList(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         UserDetails user = (UserDetails) session.getAttribute("user");
+        List<VolunteerTime> horarios = volunteerDao.getScheduleList(user.getDni());
+        HashMap<Integer, Boolean> mapa = new HashMap<>();
+        for (VolunteerTime horario : horarios) {
+            LocalDate fecha = LocalDate.of(LocalDate.now().getYear(), horario.getMesInt(), horario.getDia());
+            if (fecha.isBefore(LocalDate.now())) {
+                mapa.put(horario.getIdVolunteerTime(), true);
+            } else {
+                mapa.put(horario.getIdVolunteerTime(), false);
+            }
+        }
+        model.addAttribute("mapaBorrar", mapa);
         model.addAttribute("scheduleList", volunteerDao.getScheduleList(user.getDni()));
         HashMap<String, String> u = valoracionDao.getUsersInfo();
         model.addAttribute("usuario", u);
         model.addAttribute("voluntario", volunteerDao.getVolunteer(user.getDni()));
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         return gestionarAcceso(session, model, "Volunteer", "volunteer/scheduleList");
     }
 
@@ -214,8 +229,10 @@ public class VolunteerController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/elderlyList")
-    public String getElderlyList(HttpSession session, Model model) {
+    public String getElderlyList(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         UserDetails user = (UserDetails) session.getAttribute("user");
+        String newVolunteerTime = nuevo.orElse("None");
+        model.addAttribute("nuevo", newVolunteerTime);
         model.addAttribute("elderlyList", volunteerDao.getElderlyList(user.getDni()));
         HashMap<String, String> u = valoracionDao.getUsersInfo();
         model.addAttribute("usuario", u);
@@ -235,7 +252,6 @@ public class VolunteerController extends ManageAccessController {
 
     @RequestMapping("/misHorariosElderly/{dni}")
     public String listVolunteersElderly2(HttpSession session, Model model, @PathVariable String dni) {
-        //model.addAttribute("volunteers", volunteerDao.getVolunteers());
         UserDetails user = (UserDetails) session.getAttribute("user");
         model.addAttribute("horarios", volunteerDao.getMisHorariosElderly(dni, user.getDni()));
         model.addAttribute("promedio", valoracionDao.getPromedio());
@@ -246,8 +262,8 @@ public class VolunteerController extends ManageAccessController {
     @RequestMapping("/listMisVolunteer")
     public String listVolunteersElderlyQ(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         UserDetails user = (UserDetails) session.getAttribute("user");
-
         model.addAttribute("misVoluntarios", volunteerDao.getVolunteerAsigned(user.getDni()));
+
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
         model.addAttribute("promedio", valoracionDao.getPromedio());

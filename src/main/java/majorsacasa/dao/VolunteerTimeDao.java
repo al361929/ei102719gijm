@@ -69,7 +69,7 @@ public class VolunteerTimeDao {
         jdbcTemplate.update("UPDATE VolunteerTime SET  dni=? WHERE idVolunteerTime=?", dni, id);
     }
 
-    public int ultimoIdService() {
+    public int ultimoIdVolunteerTime() {
         List<String> ids = jdbcTemplate.queryForList("select MAX(idVolunteerTime) from VolunteerTime;", String.class);
         int id = Integer.parseInt(ids.get(0));
         return id;

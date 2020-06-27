@@ -168,8 +168,8 @@ public class ElderlyController extends ManageAccessController {
 
     @RequestMapping(value = "/delete/{dni}")
     public String processDelete(HttpSession session, @PathVariable String dni) {
-        UserDetails user = (UserDetails) session.getAttribute("user");
-        if (!user.getTipo().equals("SocialWorker") && !user.getTipo().equals("Admin")) {
+        UserDetails usuario = (UserDetails) session.getAttribute("user");
+        if (!usuario.getTipo().equals("SocialWorker") && !usuario.getTipo().equals("Admin")) {
             return "error/sinPermiso";
         }
         Elderly elderly = elderlyDao.getElderly(dni);
@@ -180,14 +180,30 @@ public class ElderlyController extends ManageAccessController {
         }
         try {
             elderlyDao.deleteElderly(dni);
-
             mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
+            if (usuario.getTipo().equals("ElderlyPeople")) {
+                return "redirect:/logout";
+            }
         } catch (Exception e) {
-            mensajeError = "No puedes borrar una persona mayor que tenga servicios";
+            if (usuario.getTipo().equals("Admin")) {
+                mensajeError = "No puedes borrar una persona mayor que tenga servicios";
+            } else if (usuario.getTipo().equals("ElderlyPeople")) {
+                mensajeError = "No puedes eliminar tu cuenta si tienes servicios activos";
+                return "redirect:../../elderly/perfil";
+            }
         }
         return "redirect:../list";
     }
 
+    @RequestMapping(value = "/confirmarDelete/{dni}")
+    public String confirmarDelete(@PathVariable String dni, HttpSession httpSession, Model model) {
+        Elderly elderly = elderlyDao.getElderly(dni);
+        UserDetails usuario = (UserDetails) httpSession.getAttribute("user");
+        model.addAttribute("volunteer", elderly);
+        model.addAttribute("userType", usuario.getTipo().toLowerCase());
+
+        return gestionarAcceso(httpSession, model, "Volunteer", "deletePerfil");
+    }
 
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
     public String editElderlyPerfil(HttpSession session, Model model) {

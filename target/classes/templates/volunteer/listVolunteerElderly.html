@@ -29,7 +29,7 @@
             </thead>
             <tbody>
             <tr th:each="horario: ${#lists.sort(horarios)}">
-                <td th:text="${horario.getDni()}"></td>
+                <td th:text="${horario.getDia()}"></td>
                 <td th:text="${horario.getMes()}"></td>
                 <td th:text="${horario.getStartTime()}"></td>
                 <td th:text="${horario.getEndTime()}"></td>

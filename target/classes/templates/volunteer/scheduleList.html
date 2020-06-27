@@ -29,8 +29,8 @@
             </thead>
             <tbody>
             <tr th:each="horario: ${scheduleList}"
-                th:class="${#strings.equals(nuevo,horario.getId())}?'bg-info text-white'">
-                <td th:text="${usuario.get(horario.dniElderly)}"></td>
+                th:class="${#strings.equals(nuevo,horario.getIdVolunteerTime())}?'bg-info text-white'">
+                <td th:text="${usuario.get(horario.getDniElderly())}"></td>
                 <td th:text="${horario.getDia()}"></td>
                 <td th:text="${horario.getMes()}"></td>
                 <td th:text="${horario.getStartTime()}"></td>
@@ -38,13 +38,14 @@
                 <td th:if="${#bools.isTrue(horario.availability)}">Disponible</td>
                 <td th:if="${#bools.isFalse(horario.availability)}">No Disponible</td>
                 <td>
-                    <a th:href="@{/volunteertime/update/{idVolunteerTime}(idVolunteerTime=${horario.getIdVolunteerTime()})}"
+                    <a th:if="${horario.getDniElderly() == null}"
+                       th:href="@{/volunteertime/update/{idVolunteerTime}(idVolunteerTime=${horario.getIdVolunteerTime()})}"
                        class="btn btn btn-secondary"
                        role="button"
                        aria-pressed="true">Editar</a>
                 </td>
                 <td>
-                    <a th:if="${usuario.get(horario.getDniElderly()) == null}"
+                    <a th:if="${#bools.isTrue(mapaBorrar.get(horario.getIdVolunteerTime()))}"
                        th:href="@{/volunteertime/delete/{idVolunteerTime}(idVolunteerTime=${horario.getIdVolunteerTime()})}"
                        class="btn btn btn-danger"
                        role="button"

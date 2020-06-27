@@ -30,7 +30,7 @@
             <tbody>
             <tr th:each="horario: ${horarios}"
                 th:class="${#strings.equals(nuevo,horario.idVolunteerTime)}?'bg-info text-white'">
-                <td th:text="${horario.dni}"></td>
+                <td th:text="${horario.getDia()}"></td>
                 <td th:text="${horario.getMes()}"></td>
                 <td th:text="${horario.getStartTime()}"></td>
                 <td th:text="${horario.getEndTime()}"></td>
