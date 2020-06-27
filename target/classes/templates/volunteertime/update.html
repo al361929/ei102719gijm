@@ -13,14 +13,18 @@
 
     <div class="container">
         <h1>Modificar horario</h1>
-        <h2 th:text="${volunteertime.dniVolunteer}"></h2>
+        <h2 th:text="${volunteer.getUsuario()}"></h2>
         <form action="#" th:action="@{/volunteertime/update}"
               th:object="${volunteertime}" method="post">
             <table>
-                <tr>
+                <tr class="oculto">
                     <td><label>ID VolunteerTime</label></td>
                     <td><input type="text" class="form-control" th:field="*{idVolunteerTime}" readonly
                                style="background-color: rgb(170, 170, 170)"/></td>
+                </tr>
+                <tr>
+                    <td><label>Día</label></td>
+                    <td><input type="number" class="form-control" th:field="*{dia}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Mes</label></td>
@@ -30,10 +34,6 @@
                     </select></td>
                 </tr>
                 <tr>
-                    <td><label>Día</label></td>
-                    <td><input type="number" class="form-control" th:field="*{dia}" required/></td>
-                </tr>
-                <tr>
                     <td><label>Hora inicial</label></td>
                     <td><input type="time" class="form-control" th:field="*{startTime}" required/></td>
                 </tr>
@@ -41,17 +41,15 @@
                     <td><label>Hora final</label></td>
                     <td><input type="time" class="form-control" th:field="*{endTime}" required/></td>
                 </tr>
-                <tr>
+                <tr width="10%">
                     <td><label>Disponibilidad</label></td>
                     <td>
-                        <div><input type="radio" class="form-control" name="disponibilidad" value="True"
+                        <input type="radio" class="form-control" name="disponibilidad" value="True"
                                     th:field="*{availability}" required/>Disponible
-                        </div>
                     </td>
                     <td>
-                        <div><input type="radio" class="form-control" name="disponibilidad" value="False"
+                        <input type="radio" class="form-control" name="disponibilidad" value="False"
                                     th:field="*{availability}" required/>No Disponible
-                        </div>
                     </td>
                 </tr>
                 <tr class="oculto">
@@ -59,7 +57,7 @@
                     <td><input type="text" class="form-control" th:field="*{dniVolunteer}"/></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><input type="submit" value="Modifica voluntario"
+                    <td colspan="2"><input type="submit" value="Modificar horario"
                                            class="btn btn btn-warning" role="button"
                                            aria-pressed="true"/></td>
                 </tr>
