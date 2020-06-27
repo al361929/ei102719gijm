@@ -29,7 +29,7 @@
                 <td th:text="${service.get(valoracion.idService)}"></td>
                 <td th:text="${valoracion.valoration}"></td>
                 <td th:text="${valoracion.comments}"></td>
-                <td th:text="${valoracion.dateValoration}"></td>
+                <td th:text="${#temporals.format(valoracion.dateValoration,'dd/MM/yyyy')}"></td>
                 <td>
                     <a th:href="@{/valoraciones/updateService/{idService}(idService=${valoracion.idService})}"
                        class="btn btn btn-secondary"
