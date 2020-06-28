@@ -77,6 +77,7 @@ public class RequestController extends ManageAccessController {
         requestDao.addRequest(request);
 
         mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
+        mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
         mailController.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
 
         return "redirect:list?nuevo=" + request.getIdRequest();
@@ -225,15 +226,14 @@ public class RequestController extends ManageAccessController {
 
             return "request/addRequestElderly";
         }
-
         if (bindingResult.hasErrors()) {
-            //System.out.println("error");
             return "request/addRequestElderly";
         }
+        request.setDateRequest(LocalDate.now());
+        request.setState("Pendiente");
         request.setDni(user.getDni());
         requestDao.addRequest(request);
         int id = requestDao.ultimoIdRequest();
-        //System.out.println("Dias: " + request.getDias());
 
         mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
         mailController.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");

@@ -13,6 +13,10 @@ public class Request implements Comparable<Request> {
     String state;
     String comments;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate dateStart;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate dateEnd;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate dateRequest;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate dateAccept;
@@ -84,6 +88,22 @@ public class Request implements Comparable<Request> {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public LocalDate getDateStart() {
+        return dateStart;
+    }
+
+    public void setDateStart(LocalDate dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public LocalDate getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(LocalDate dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
     public LocalDate getDateAccept() {

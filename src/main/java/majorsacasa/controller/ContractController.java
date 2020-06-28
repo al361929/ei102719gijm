@@ -75,6 +75,9 @@ public class ContractController extends ManageAccessController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "contract/add";
+        }
         contractDao.addContract(contract);
         int id = contractDao.getUltimoContrato();
 

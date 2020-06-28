@@ -13,6 +13,8 @@ public final class RequestRowMapper implements RowMapper<Request> {
         Request request = new Request();
         request.setIdService(rs.getInt("idService"));
         request.setIdRequest(rs.getInt("idRequest"));
+        request.setDateStart(rs.getObject("datestart", LocalDate.class));
+        request.setDateEnd(rs.getObject("dateEnd", LocalDate.class));
         request.setDateRequest(rs.getObject("daterequest", LocalDate.class));
         request.setState(rs.getString("state"));
         request.setDateAccept(rs.getObject("dateaccept", LocalDate.class));
@@ -21,7 +23,6 @@ public final class RequestRowMapper implements RowMapper<Request> {
         request.setDni(rs.getString("dni"));
         request.setNif(rs.getString("nif"));
         request.setDias(rs.getString("days"));
-
         return request;
     }
 }

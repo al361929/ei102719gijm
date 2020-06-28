@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +32,7 @@ public class RequestDao {
     }
 
     public void addRequest(Request request) {
-        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?,?,?,?)", request.getIdService(), LocalDate.now(), "Pendiente",
+        jdbcTemplate.update("INSERT INTO Request VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?,?)", request.getIdService(), request.getDateStart(), request.getDateEnd(), request.getState(), request.getDateRequest(),
                 request.getDateAccept(), request.getDateReject(), request.getComments(), request.getDni(), request.getNif(), request.getDias());
 
     }
@@ -43,8 +42,8 @@ public class RequestDao {
     }
 
     public void updateRequest(Request request) {
-        jdbcTemplate.update("UPDATE Request SET idService=?, state=?, comments=?, dateRequest=?, dateAccept=?, dateReject=?, dni=?, nif=? WHERE idRequest=? ",
-                request.getIdService(), request.getState(), request.getComments(), request.getDateRequest(), request.getDateAccept(), request.getDateReject(), request.getDni(), request.getNif(), request.getIdRequest());
+        jdbcTemplate.update("UPDATE Request SET idService=?, state=?, comments=?, dateStart=?, dateEnd=?, dateRequest=?, dateAccept=?, dateReject=?, dni=?, nif=? WHERE idRequest=? ",
+                request.getIdService(), request.getState(), request.getComments(), request.getDateStart(), request.getDateEnd(), request.getDateRequest(), request.getDateAccept(), request.getDateReject(), request.getDni(), request.getNif(), request.getIdRequest());
     }
 
     public void deleteRequest(int idRequest) {
