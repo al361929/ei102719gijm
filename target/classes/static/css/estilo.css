@@ -251,6 +251,7 @@ button {
 
 .btn {
     padding: .84rem 0.84rem;
+    margin: 5px;
     font-size: .81rem;
     font-weight: bold;
     cursor: pointer;

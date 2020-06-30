@@ -35,13 +35,13 @@ public class LoginController {
                         if (user.getTipo().equals("SocialWorker")) {
                             return "redirect:/socialWorker/elderlyList";
                         } else {
-                            if (user.getCode() == 6) {
+                            if (user.getTipo().equals("Admin") && user.getUsername().equals("casManager") && user.getCode() == 6) {
                                 return "redirect:/company/list";
                             }
-                            if (user.getCode() == 7) {
+                            if (user.getTipo().equals("Admin") && user.getUsername().equals("casCommitee") && user.getCode() == 7) {
                                 return "redirect:/elderly/list";
                             }
-                            if (user.getCode() == 8) {
+                            if (user.getTipo().equals("Admin") && user.getUsername().equals("casVolunteer") && user.getCode() == 8) {
                                 return "redirect:/volunteer/list";
                             }
                             if (user.getTipo().equals("Admin")) {
@@ -89,13 +89,13 @@ public class LoginController {
                     if (user.getTipo().equals("SocialWorker")) {
                         return "redirect:/socialWorker/elderlyList";
                     } else {
-                        if (user.getCode() == 6) {
+                        if (user.getTipo().equals("Admin") && user.getUsername().equals("casManager") && user.getCode() == 6) {
                             return "redirect:/company/list";
                         }
-                        if (user.getCode() == 7) {
+                        if (user.getTipo().equals("Admin") && user.getUsername().equals("casCommitee") && user.getCode() == 7) {
                             return "redirect:/elderly/list";
                         }
-                        if (user.getCode() == 8) {
+                        if (user.getTipo().equals("Admin") && user.getUsername().equals("casVolunteer") && user.getCode() == 8) {
                             return "redirect:/volunteer/list";
                         }
                         if (user.getTipo().equals("Admin")) {

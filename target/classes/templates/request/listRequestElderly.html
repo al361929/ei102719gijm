@@ -18,7 +18,8 @@
             <tr>
                 <th>Servicio</th>
                 <th>Estado</th>
-                <th>Fecha de solicitud</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de finalización</th>
                 <th>Comentarios</th>
                 <th>Dias</th>
                 <th></th>
@@ -27,19 +28,20 @@
             </thead>
             <tbody>
             <tr th:each="request: ${#lists.sort(requests)}"
-                th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info text-white'">
-                <td th:text="${servicios.get(request.idService)}"></td>
-                <td th:text="${request.state}"></td>
-                <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
-                <td th:text="${request.comments}"></td>
-                <td th:text="${request.dias}"></td>
+                th:class="${#strings.equals(nuevo,request.getIdRequest())}?'bg-info text-white'">
+                <td th:text="${servicios.get(request.getIdService())}"></td>
+                <td th:text="${request.getState()}"></td>
+                <td th:text="${#temporals.format(request.getDateStart(),'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(request.getDateEnd(),'dd/MM/yyyy')}"></td>
+                <td th:text="${request.getComments()}"></td>
+                <td th:text="${request.getDias()}"></td>
                 <td>
-                    <a th:href="@{/request/info/{id}(id=${request.idRequest})}"
-                       class="btn btn btn-default" role="button">Más detalles</a>
+                    <a th:href="@{/request/info/{id}(id=${request.getIdRequest()})}"
+                       class="btn btn btn-default" role="button">Ver detalles</a>
                 </td>
                 <td>
                     <div th:if="${!request.isCancelada()}">
-                        <a th:href="@{/request/cancelarRequest/{id}(id=${request.idRequest})}"
+                        <a th:href="@{/request/cancelarRequest/{id}(id=${request.getIdRequest()})}"
                            class="btn btn btn-danger" role="button">Cancelar</a>
                     </div>
                 </td>

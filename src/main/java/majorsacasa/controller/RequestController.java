@@ -85,12 +85,16 @@ public class RequestController extends ManageAccessController {
 
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
     public String infoRequest(Model model, @PathVariable int id, HttpSession session) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
         Request request = requestDao.getRequest(id);
         model.addAttribute("request", request);
         HashMap<String, String> u = valoracionDao.getUsersInfo();
         model.addAttribute("usuario", u);
         HashMap<Integer, String> servicios = requestDao.getMapServiceElderly();
         model.addAttribute("servicios", servicios);
+        if (user.getUsername().equals("casCommitee")) {
+            return gestionarAcceso(session, model, "Admin", "request/info");
+        }
         return gestionarAcceso(session, model, "ElderlyPeople", "request/info");
     }
 
@@ -157,6 +161,7 @@ public class RequestController extends ManageAccessController {
 
     }
 
+    // LISTA DEL casCommitee
     @RequestMapping(value = "/list/{dni}")
     public String listRequestsPersonalizado(@PathVariable String dni, Model model, @RequestParam("nuevo") Optional<String> nuevo, HttpSession session) {
         model.addAttribute("requests", requestDao.getRequestsElderly(dni));
@@ -184,6 +189,7 @@ public class RequestController extends ManageAccessController {
         return "redirect:../list/" + request.getDni();
     }
 
+    // LISTA DEL ELDERLY PEOPLE
     @RequestMapping("/listElderly")
     public String listRequestsElderly(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         UserDetails user = (UserDetails) session.getAttribute("user");
@@ -209,6 +215,8 @@ public class RequestController extends ManageAccessController {
         List<Company> company = companyDao.getCompanies();
         model.addAttribute("companyies", company);
 
+        model.addAttribute("mensaje", mensajeError);
+        mensajeError = "";
         return "request/addRequestElderly";
     }
 
@@ -217,6 +225,13 @@ public class RequestController extends ManageAccessController {
         Service servicio = serviceDao.getService(request.getIdService());
         UserDetails user = (UserDetails) session.getAttribute("user");
         request.setNif("0");
+        if (bindingResult.hasErrors()) {
+            return "request/addRequestElderly";
+        }
+        if (request.getDateStart().isBefore(LocalDate.now()) || request.getDateEnd().isBefore(request.getDateStart())) {
+            mensajeError = "La fecha de inicio no puede ser anterior a hoy y la fecha de finalización anterior a la de inicio";
+            return "redirect:/request/addRequestElderly";
+        }
         if (requestDao.checkService(servicio.getServiceType(), user.getDni())) {
             bindingResult.rejectValue("idService", "badserv", " Ya has solicitado este servicio");
             List<Service> servicios = serviceDao.getServices();
@@ -224,9 +239,6 @@ public class RequestController extends ManageAccessController {
             List<Company> company = companyDao.getCompanies();
             model.addAttribute("companyies", company);
 
-            return "request/addRequestElderly";
-        }
-        if (bindingResult.hasErrors()) {
             return "request/addRequestElderly";
         }
         request.setDateRequest(LocalDate.now());

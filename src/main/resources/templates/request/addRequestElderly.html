@@ -12,15 +12,14 @@
 
 <div layout:fragment="content">
     <div class="container">
-
         <h2>Añadir solicitud</h2>
+        <h5 th:text="${mensaje}"></h5>
         <form action="#" th:action="@{/request/addRequestElderly}"
               th:object="${request}" method="post">
             <table>
-
                 <tr>
                     <td>
-                        <h5 class="error" th:if="${#fields.hasErrors('idService')}"
+                        <h5 th:if="${#fields.hasErrors('idService')}"
                             th:errors="*{idService}"></h5>
                     </td>
                 </tr>
@@ -34,19 +33,30 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Dias de la Semana:</label></td>
-                    <td><select th:field="*{dias}" class="select-css" multiple required>
-                        <option value="Lunes">Lunes</option>
-                        <option value="Martes">Martes</option>
-                        <option value="Miercoles">Miercoles</option>
-                        <option value="Jueves">Jueves</option>
-                        <option value="Viernes">Viernes</option>
-
-                    </select></td>
+                    <td><label>Fecha de inicio: </label></td>
+                    <td><input type="date" style="margin-bottom: 20px" class="form-control" th:field="*{dateStart}"/>
+                    </td>
                 </tr>
                 <tr>
-                    <td><label>Comentarios</label></td>
-                    <td><input type="text" class="form-control" th:field="*{comments}" maxlength="60" required/></td>
+                    <td><label>Fecha de finalización: </label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateEnd}"/></td>
+                </tr>
+                <tr>
+                    <td><label>Dias de la Semana: </label></td>
+                    <td>
+                        <select th:field="*{dias}" class="select-css" multiple required style="height: 90px">
+                            <option value="Lunes">Lunes</option>
+                            <option value="Martes">Martes</option>
+                            <option value="Miercoles">Miercoles</option>
+                            <option value="Jueves">Jueves</option>
+                            <option value="Viernes">Viernes</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Comentarios: </label></td>
+                    <td><input type="text" style="margin-bottom: 20px" class="form-control" th:field="*{comments}"
+                               maxlength="60" required/></td>
                 </tr>
                 <tr>
                     <td colspan="2"><input type="submit" value="Añadir solicitud" class="btn btn btn-success"
@@ -56,7 +66,6 @@
                 <tr>
                     <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>
                     </td>
-
                 </tr>
             </table>
 

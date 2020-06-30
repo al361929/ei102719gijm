@@ -11,12 +11,10 @@
 
 <div layout:fragment="content">
     <div class="container">
-
         <h2>Modificar solicitud</h2>
         <form action="#" th:action="@{/request/update}"
               th:object="${request}" method="post">
             <table>
-
                 <tr class="oculto">
                     <td><label>ID Request</label></td>
                     <td><input type="text" class="form-control" th:field="*{idRequest}" readonly/></td>
@@ -26,6 +24,7 @@
 
                     <td><label>DNI</label></td>
                     <td><input type="text" class="form-control" th:field="*{dni}" required/></td>
+
                 </tr>
                 <tr>
                     <td><label>Empresa: </label></td>
@@ -40,17 +39,27 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Fecha de solicitud</label></td>
+                    <td><label>Fecha de solicitud: </label></td>
                     <td><input type="date" class="form-control" th:field="*{dateRequest}"/></td>
                 </tr>
                 <tr>
-                    <td><label>Estado</label></td>
+                    <td><label>Fecha de inicio</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateStart}" readonly
+                               style="background-color: rgb(170, 170, 170); margin-top: 20px"/></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de finalización</label></td>
+                    <td><input type="date" class="form-control" th:field="*{dateEnd}" readonly
+                               style="background-color: rgb(170, 170, 170); margin-top: 20px"/></td>
+                </tr>
+                <tr>
+                    <td><label>Estado: </label></td>
                     <td><select class="select-css" th:field="*{state}" required>
                         <option th:each="estado : ${estados}" th:value="${estado}" th:selected="${request.state}"
                                 th:utext="${estado}"></option>
                     </select></td>
                 </tr>
-                <!--   <tr>
+                <!--<tr>
                        <td><label>Fecha de aceptación</label></td>
                        <td><input type="date" class="form-control" th:field="*{dateAccept}"/></td>
                    </tr>
@@ -59,7 +68,7 @@
                        <td><input type="date" class="form-control" th:field="*{dateReject}"/></td>
                    </tr>-->
                 <tr>
-                    <td><label>Comentarios</label></td>
+                    <td><label>Comentarios: </label></td>
                     <td><input type="text" class="form-control" th:field="*{comments}" required/></td>
                 </tr>
                 <tr>

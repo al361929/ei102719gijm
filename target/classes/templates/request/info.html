@@ -16,53 +16,61 @@
             <br>
             <table class="table table-striped" style="width: 50%">
                 <tr>
-
                     <td><b>Servicio: </b></td>
-                    <td th:text="${servicios.get(request.idService)}"></td>
-
+                    <td th:text="${servicios.get(request.getIdService())}"></td>
                 </tr>
                 <tr>
-
                     <td><b>Solicitante: </b></td>
-                    <td th:text="${usuario.get(request.dni)}"></td>
-            </tr>
-
-            <tr>
-                <td><b>Empresa: </b></td>
-                <td th:text="${usuario.get(request.nif)}"></td>
-
-            </tr>
-            <tr>
-                <td><b>Fecha de solicitud: </b></td>
-                <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
-            </tr>
-            <tr>
-                <td><b>Estado: </b></td>
-                <td th:text="${request.state}"></td>
-            </tr>
-            <tr>
-                <td><b>Fecha de aceptación: </b></td>
-                <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
-            </tr>
-            <tr>
-                <td><b>Fecha de rechazo: </b></td>
-                <td th:text="${#temporals.format(request.dateReject,'dd/MM/yyyy')}"></td>
-            </tr>
-            <tr>
-                <td><b>Comentarios: </b></td>
-                <td th:text="${request.comments}"></td>
-            </tr>
+                    <td th:text="${usuario.get(request.getDni())}"></td>
+                </tr>
+                <tr>
+                    <td><b>Empresa: </b></td>
+                    <td th:text="${usuario.get(request.getNif())}"></td>
+                </tr>
+                <tr>
+                    <td><b>Fecha de inicio: </b></td>
+                    <td th:text="${#temporals.format(request.getDateStart(),'dd/MM/yyyy')}"></td>
+                </tr>
+                <tr>
+                    <td><b>Fecha de finalización: </b></td>
+                    <td th:text="${#temporals.format(request.getDateEnd(),'dd/MM/yyyy')}"></td>
+                </tr>
+                <tr>
+                    <td><b>Fecha de solicitud: </b></td>
+                    <td th:text="${#temporals.format(request.getDateRequest(),'dd/MM/yyyy')}"></td>
+                </tr>
+                <tr>
+                    <td><b>Estado: </b></td>
+                    <td th:text="${request.getState()}"></td>
+                </tr>
+                <tr>
+                    <td><b>Fecha de aceptación: </b></td>
+                    <td th:text="${#temporals.format(request.getDateAccept(),'dd/MM/yyyy')}"></td>
+                </tr>
+                <tr>
+                    <td><b>Fecha de rechazo: </b></td>
+                    <td th:text="${#temporals.format(request.getDateReject(),'dd/MM/yyyy')}"></td>
+                </tr>
+                <tr>
+                    <td><b>Comentarios: </b></td>
+                    <td th:text="${request.getComments()}"></td>
+                </tr>
                 <tr>
                     <td><b>Dias: </b></td>
-                    <td th:text="${request.dias}"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit"
-                                       role="button">Atrás</a>
-                    </td>
+                    <td th:text="${request.getDias()}"></td>
                 </tr>
             </table>
+            <tr>
         </div>
+        <div th:object="${session}">
+            <div th:if="*{user.getUsername() == 'casCommitee' && user.getTipo() == 'Admin'}">
+                <a th:if="${request.getState() == 'Pendiente'}"
+                   th:href="@{/request/update/{id}(id=${request.getIdRequest()})}"
+                   class="btn btn btn-secondary" role="button">Editar</a>
+            </div>
+        </div>
+        <a id="estilo2" onclick="history.back()" class="btn btn btn-exit"
+           role="button">Atrás</a>
     </div>
 </div>
 </body>

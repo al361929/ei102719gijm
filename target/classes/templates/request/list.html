@@ -21,11 +21,9 @@
                 <th>Persona Mayor</th>
                 <th>Empresa</th>
                 <th>Estado</th>
-                <th>Fecha de solicitud</th>
-                <th>Fecha de aceptación</th>
-                <th>Fecha de rechazo</th>
-                <th>Comentarios</th>
-                <th>Dias</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de finalización</th>
+                <th></th>
                 <th></th>
                 <th></th>
 
@@ -33,29 +31,29 @@
             </thead>
             <tbody>
             <tr th:each="request: ${#lists.sort(requests)}"
-                th:class="${#strings.equals(nuevo,request.idRequest)}?'bg-info text-white'">
-                <td th:text="${servicios.get(request.idService)}"></td>
-                <td th:text="${usuario.get(request.dni)}"></td>
-                <td th:text="${usuario.get(request.nif)}"></td>
-                <td th:text="${request.state}"></td>
-                <td th:text="${#temporals.format(request.dateRequest,'dd/MM/yyyy')}"></td>
-                <td th:text="${#temporals.format(request.dateAccept,'dd/MM/yyyy')}"></td>
-                <td th:text="${#temporals.format(request.dateReject,'dd/MM/yyyy')}"></td>
-                <td th:text="${request.comments}"></td>
-                <td th:text="${request.dias}"></td>
+                th:class="${#strings.equals(nuevo,request.getIdRequest())}?'bg-info text-white'">
+                <td th:text="${servicios.get(request.getIdService())}"></td>
+                <td th:text="${usuario.get(request.getDni())}"></td>
+                <td th:text="${usuario.get(request.getNif())}"></td>
+                <td th:text="${request.getState()}"></td>
+                <td th:text="${#temporals.format(request.getDateStart(),'dd/MM/yyyy')}"></td>
+                <td th:text="${#temporals.format(request.getDateEnd(),'dd/MM/yyyy')}"></td>
+                <td>
+                    <a th:href="@{/request/info/{id}(id=${request.getIdRequest()})}"
+                       class="btn btn btn-default" role="button">Ver detalles</a>
+                </td>
+                <div th:object="${session}">
 
-                <div class="loggeduser" th:object="${session}">
-
-                    <div th:if="*{user.code == 7}">
+                    <div th:if="*{user.getUsername() == 'casCommitee' && user.getTipo() == 'Admin'}">
                         <td>
-                            <a th:unless="${request.state == 'Rechazada'}"
-                               th:href="@{/request/update/{id}(id=${request.idRequest})}"
+                            <a th:if="${request.getState() == 'Pendiente'}"
+                               th:href="@{/request/update/{id}(id=${request.getIdRequest()})}"
                                class="btn btn btn-secondary" role="button">Editar</a>
                         </td>
-                        <td th:switch="${request.state}">
-                            <a th:case="'Cancelada'" th:href="@{/request/delete/{id}(id=${request.idRequest})}"
+                        <td th:switch="${request.getState()}">
+                            <a th:case="'Cancelada'" th:href="@{/request/delete/{id}(id=${request.getIdRequest()})}"
                                class="btn btn btn-danger" role="button">Borrar</a>
-                            <a th:case="'Rechazada'" th:href="@{/request/delete/{id}(id=${request.idRequest})}"
+                            <a th:case="'Rechazada'" th:href="@{/request/delete/{id}(id=${request.getIdRequest()})}"
                                class="btn btn btn-danger" role="button">Borrar</a>
                         </td>
                     </div>
