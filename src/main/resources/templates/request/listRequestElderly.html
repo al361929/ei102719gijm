@@ -39,11 +39,11 @@
                     <a th:href="@{/request/info/{id}(id=${request.getIdRequest()})}"
                        class="btn btn btn-default" role="button">Ver detalles</a>
                 </td>
-                <td>
-                    <div th:if="${!request.isCancelada()}">
-                        <a th:href="@{/request/cancelarRequest/{id}(id=${request.getIdRequest()})}"
-                           class="btn btn btn-danger" role="button">Cancelar</a>
-                    </div>
+                <td th:switch="${request.getState()}">
+                    <a th:case="'Pendiente'" th:href="@{/request/cancelarRequest/{id}(id=${request.getIdRequest()})}"
+                       class="btn btn btn-danger" role="button">Cancelar</a>
+                    <a th:case="'Aceptada'" th:href="@{/request/cancelarRequest/{id}(id=${request.getIdRequest()})}"
+                       class="btn btn btn-danger" role="button">Cancelar</a>
                 </td>
             </tr>
             </tbody>

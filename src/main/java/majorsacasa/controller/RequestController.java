@@ -107,7 +107,7 @@ public class RequestController extends ManageAccessController {
 
     }
 
-    public int calculateNumDias(LocalDate fechaIni, LocalDate fechaFin, ArrayList<String> diasRequest) {
+    private int calculateNumDias(LocalDate fechaIni, LocalDate fechaFin, ArrayList<String> diasRequest) {
         int total = 0;
         DayOfWeek diaSemana;
         LocalDate fecha = fechaIni;
@@ -178,10 +178,21 @@ public class RequestController extends ManageAccessController {
 
     }
 
+    // COMPROBAR FECHAS DE LAS PETICIONES
+    private void comprobarRequests(Request request) {
+        if (request.getDateEnd().isBefore(LocalDate.now())) {
+            requestDao.updateEstado(request.getIdRequest(), "Finalizada");
+        }
+    }
+
     // LISTA DEL casCommitee
     @RequestMapping(value = "/list/{dni}")
     public String listRequestsPersonalizado(@PathVariable String dni, Model model, @RequestParam("nuevo") Optional<String> nuevo, HttpSession session) {
-        model.addAttribute("requests", requestDao.getRequestsElderly(dni));
+        List<Request> peticiones = requestDao.getRequestsElderly(dni);
+        for (Request request : peticiones) {
+            comprobarRequests(request);
+        }
+        model.addAttribute("requests", peticiones);
         HashMap<String, String> u = valoracionDao.getUsersInfo();
         model.addAttribute("usuario", u);
         HashMap<Integer, String> servicios = requestDao.getMapServiceElderly();
@@ -196,7 +207,7 @@ public class RequestController extends ManageAccessController {
     @RequestMapping(value = "/delete/{idRequest}")
     public String processDelete(@PathVariable int idRequest) {
         Request request = requestDao.getRequest(idRequest);
-        if (request.getState().equals("Rechazada") || request.getState().equals("Cancelada")) {
+        if (!request.getState().equals("Pendiente") || !request.getState().equals("Aceptada")) {
             mailController = new MailController(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
             mailController.deleteMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
             requestDao.deleteRequest(idRequest);
@@ -211,7 +222,11 @@ public class RequestController extends ManageAccessController {
     public String listRequestsElderly(HttpSession session, Model model, @RequestParam("nuevo") Optional<String> nuevo) {
         UserDetails user = (UserDetails) session.getAttribute("user");
 
-        model.addAttribute("requests", requestDao.getRequestsElderly(user.getDni()));
+        List<Request> peticiones = requestDao.getRequestsElderly(user.getDni());
+        for (Request request : peticiones) {
+            comprobarRequests(request);
+        }
+        model.addAttribute("requests", peticiones);
         String newVolunteerTime = nuevo.orElse("None");
         model.addAttribute("nuevo", newVolunteerTime);
         HashMap<String, String> u = valoracionDao.getUsersInfo();

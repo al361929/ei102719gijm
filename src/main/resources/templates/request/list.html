@@ -55,6 +55,8 @@
                                class="btn btn btn-danger" role="button">Borrar</a>
                             <a th:case="'Rechazada'" th:href="@{/request/delete/{id}(id=${request.getIdRequest()})}"
                                class="btn btn btn-danger" role="button">Borrar</a>
+                            <a th:case="'Finalizada'" th:href="@{/request/delete/{id}(id=${request.getIdRequest()})}"
+                               class="btn btn btn-danger" role="button">Borrar</a>
                         </td>
                     </div>
                 </div>

@@ -221,8 +221,7 @@ public class ElderlyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
-    public String processUpdatePerfilSubmit(@ModelAttribute("elderly") Elderly elderly,
-                                            BindingResult bindingResult) {
+    public String processUpdatePerfilSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/updatePerfil";
         elderly.actualizarAlergias();
