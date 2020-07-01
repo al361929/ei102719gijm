@@ -150,6 +150,7 @@ public class VolunteerController extends ManageAccessController {
         UserDetails usuario = (UserDetails) httpSession.getAttribute("user");
         model.addAttribute("user", volunteer);
         model.addAttribute("userType", usuario.getTipo().toLowerCase());
+
         return gestionarAcceso(httpSession, model, "Volunteer", "deletePerfil");
     }
 

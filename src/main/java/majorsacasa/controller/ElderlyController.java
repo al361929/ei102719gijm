@@ -169,7 +169,7 @@ public class ElderlyController extends ManageAccessController {
     @RequestMapping(value = "/delete/{dni}")
     public String processDelete(HttpSession session, @PathVariable String dni) {
         UserDetails usuario = (UserDetails) session.getAttribute("user");
-        if (!usuario.getTipo().equals("SocialWorker") && !usuario.getTipo().equals("Admin")) {
+        if (!usuario.getTipo().equals("ElderlyPeople") && !usuario.getTipo().equals("Admin")) {
             return "error/sinPermiso";
         }
         Elderly elderly = elderlyDao.getElderly(dni);
@@ -186,7 +186,7 @@ public class ElderlyController extends ManageAccessController {
             }
         } catch (Exception e) {
             if (usuario.getTipo().equals("Admin")) {
-                mensajeError = "No puedes borrar una persona mayor que tenga servicios";
+                mensajeError = "No puedes borrar una persona mayor que tenga servicios activos";
             } else if (usuario.getTipo().equals("ElderlyPeople")) {
                 mensajeError = "No puedes eliminar tu cuenta si tienes servicios activos";
                 return "redirect:../../elderly/perfil";
@@ -199,10 +199,10 @@ public class ElderlyController extends ManageAccessController {
     public String confirmarDelete(@PathVariable String dni, HttpSession httpSession, Model model) {
         Elderly elderly = elderlyDao.getElderly(dni);
         UserDetails usuario = (UserDetails) httpSession.getAttribute("user");
-        model.addAttribute("volunteer", elderly);
-        model.addAttribute("userType", usuario.getTipo().toLowerCase());
+        model.addAttribute("user", elderly);
+        model.addAttribute("userType", "elderly");
 
-        return gestionarAcceso(httpSession, model, "Volunteer", "deletePerfil");
+        return gestionarAcceso(httpSession, model, "ElderlyPeople", "deletePerfil");
     }
 
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
@@ -215,6 +215,9 @@ public class ElderlyController extends ManageAccessController {
         UserDetails user = (UserDetails) session.getAttribute("user");
 
         if (user.getTipo() != "ElderlyPeople") return "error/sinPermiso";
+
+        model.addAttribute("mensaje", mensajeError);
+        mensajeError = " ";
 
         model.addAttribute("elderly", elderlyDao.getElderly(user.getDni()));
         return gestionarAcceso(session, model, "ElderlyPeople", "elderly/perfil");
