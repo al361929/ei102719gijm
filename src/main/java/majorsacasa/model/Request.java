@@ -3,6 +3,7 @@ package majorsacasa.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Request implements Comparable<Request> {
 
@@ -32,6 +33,30 @@ public class Request implements Comparable<Request> {
         String dias = getDias();
         String[] vDias = dias.split(",");
         return vDias.length;
+    }
+
+    public ArrayList<String> getDiasIngles() {
+        String[] dias = getDias().split(",");
+        ArrayList<String> diasIngles = new ArrayList<>();
+        for (String dia : dias) {
+            switch (dia) {
+                case "Lunes":
+                    diasIngles.add("MONDAY");
+                    break;
+                case "Martes":
+                    diasIngles.add("TUESDAY");
+                    break;
+                case "Miercoles":
+                    diasIngles.add("WEDNESDAY");
+                    break;
+                case "Jueves":
+                    diasIngles.add("THURSDAY");
+                    break;
+                case "Viernes":
+                    diasIngles.add("FRIDAY");
+            }
+        }
+        return diasIngles;
     }
 
     public String getDias() {

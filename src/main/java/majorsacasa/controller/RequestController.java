@@ -9,11 +9,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 @RequestMapping("/request")
@@ -109,23 +107,40 @@ public class RequestController extends ManageAccessController {
 
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("request") Request request, Model model,
-                                      BindingResult bindingResult) {
+    public int calculateNumDias(LocalDate fechaIni, LocalDate fechaFin, ArrayList<String> diasRequest) {
+        int total = 0;
+        DayOfWeek diaSemana;
+        LocalDate fecha = fechaIni;
 
+        while (fecha.isBefore(fechaFin)) {
+            diaSemana = fecha.getDayOfWeek();
+            System.out.println(diaSemana.toString());
+            if (diasRequest.contains(diaSemana.toString())) {
+                total += 1;
+            }
+            fecha = fecha.plusDays(1);
+        }
+        return total;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(@ModelAttribute("request") Request request, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "request/update";
         }
 
         if (request.getState().equals("Aceptada")) {
+            // FECHA EN LA QUE SE ACEPTA
             request.setDateAccept(LocalDate.now());
+            Service service = serviceDao.getService(request.getIdService());
+
+            //SE CREA LA FACTURA Y SE ASIGNAN/CALCULAN TODOS LOS DATOS
             Invoice factura = new Invoice();
             factura.setDateInvoice(LocalDate.now());
             factura.setInvoicePDF(false);
-            Service service = serviceDao.getService(request.getIdService());
             factura.setDniElderly(request.getDni());
-            int numSemanasMes = (LocalDate.now().lengthOfMonth() / 7);
-            Integer precioTotal = service.getPrice() * requestDao.getRequest(request.getIdRequest()).getNumDias() * numSemanasMes;
+            int numDias = calculateNumDias(request.getDateStart(), request.getDateEnd(), request.getDiasIngles());
+            Integer precioTotal = service.getPrice() * numDias;
             factura.setTotalPrice(precioTotal);
             invoiceDao.addInvoice(factura);
             Produce p = new Produce();
@@ -137,6 +152,7 @@ public class RequestController extends ManageAccessController {
             mailController = new MailController(elderly.getEmail());
             mailController.updateMail("Su solicitud del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " ha sido " + request.getState() + " y lo puede ver en su lista de solicitudes. Por favor, no olvide valorar el servicio.");
 
+            //SE LE COMUNICA A LA EMPRESA QUE SE LE HA ASIGNADO UNA PERSONA MAYOR
             HashMap<String, String> mapaServiciosCompany = serviceDao.getMapServiceCompany();
             Company empresa = companyDao.getCompany(request.getNif());
             mailController = new MailController(companyDao.getCompany(request.getNif()).getEmail());
@@ -173,7 +189,7 @@ public class RequestController extends ManageAccessController {
         model.addAttribute("nuevo", newVolunteerTime);
         model.addAttribute("mensaje", mensajeError);
         mensajeError = "";
-        return gestionarAcceso(session, model, "SocialWorker", "request/list");
+        return gestionarAcceso(session, model, "Admin", "request/list");
     }
 
     @RequestMapping(value = "/delete/{idRequest}")
@@ -207,7 +223,7 @@ public class RequestController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addRequestElderly")
-    public String addRequestElderly(Model model) {
+    public String addRequestElderly(Model model, HttpSession session) {
         model.addAttribute("request", new Request());
         List<Service> servicios = serviceDao.getServices();
         model.addAttribute("servicios", servicios);
@@ -217,7 +233,7 @@ public class RequestController extends ManageAccessController {
 
         model.addAttribute("mensaje", mensajeError);
         mensajeError = "";
-        return "request/addRequestElderly";
+        return gestionarAcceso(session, model, "ElderlyPeople", "request/addRequestElderly");
     }
 
     @RequestMapping(value = "/addRequestElderly", method = RequestMethod.POST)
@@ -249,6 +265,10 @@ public class RequestController extends ManageAccessController {
 
         mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
         mailController.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
+
+
+        calculateNumDias(request.getDateStart(), request.getDateEnd(), request.getDiasIngles());
+
 
         return "redirect:/request/listElderly?nuevo=" + id;
 
