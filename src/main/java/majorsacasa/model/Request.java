@@ -168,11 +168,12 @@ public class Request implements Comparable<Request> {
                 ", nif='" + nif + '\'' +
                 ", state='" + state + '\'' +
                 ", comments='" + comments + '\'' +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
                 ", dateRequest=" + dateRequest +
                 ", dateAccept=" + dateAccept +
                 ", dateReject=" + dateReject +
-                ", dias=" + dias +
-
+                ", dias='" + dias + '\'' +
                 '}';
     }
 

@@ -45,7 +45,6 @@
                 <td th:text="${elderly.email}"></td>
                 <td>
                     <div th:if="${elderly.socialWorker!=null}">
-
                         <a th:href="@{/request/list/{dni}(dni=${elderly.dni})}" class="btn btn btn-info" role="button"
                            aria-pressed="true">Solicitudes</a>
                     </div>

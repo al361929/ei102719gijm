@@ -114,7 +114,6 @@ public class RequestController extends ManageAccessController {
 
         while (fecha.isBefore(fechaFin)) {
             diaSemana = fecha.getDayOfWeek();
-            System.out.println(diaSemana.toString());
             if (diasRequest.contains(diaSemana.toString())) {
                 total += 1;
             }
@@ -130,8 +129,9 @@ public class RequestController extends ManageAccessController {
         }
 
         if (request.getState().equals("Aceptada")) {
-            // FECHA EN LA QUE SE ACEPTA
+            // MODIFICAMOS LA REQUEST
             request.setDateAccept(LocalDate.now());
+            request.setDias(requestDao.getRequest(request.getIdRequest()).getDias());
             Service service = serviceDao.getService(request.getIdService());
 
             //SE CREA LA FACTURA Y SE ASIGNAN/CALCULAN TODOS LOS DATOS
@@ -147,12 +147,13 @@ public class RequestController extends ManageAccessController {
             p.setIdInvoice(invoiceDao.getUltimoInvoice());
             p.setIdRequest(request.getIdRequest());
             produceDao.addProduce(p);
-            Elderly elderly = elderlyDao.getElderly(request.getDni());
 
+            // SE LE COMUNICA A LA PERSONA MAYOR DE SU SOLICITUD
+            Elderly elderly = elderlyDao.getElderly(request.getDni());
             mailController = new MailController(elderly.getEmail());
             mailController.updateMail("Su solicitud del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " ha sido " + request.getState() + " y lo puede ver en su lista de solicitudes. Por favor, no olvide valorar el servicio.");
 
-            //SE LE COMUNICA A LA EMPRESA QUE SE LE HA ASIGNADO UNA PERSONA MAYOR
+            // SE LE COMUNICA A LA EMPRESA QUE SE LE HA ASIGNADO UNA PERSONA MAYOR
             HashMap<String, String> mapaServiciosCompany = serviceDao.getMapServiceCompany();
             Company empresa = companyDao.getCompany(request.getNif());
             mailController = new MailController(companyDao.getCompany(request.getNif()).getEmail());
@@ -173,7 +174,7 @@ public class RequestController extends ManageAccessController {
         model.addAttribute("usuario", u);
 
         requestDao.updateRequest(request);
-        return "redirect:../request/list/" + request.getDni() + "?nuevo=" + request.getIdRequest();
+        return "redirect:../request/list/" + request.getDni();
 
     }
 
@@ -265,9 +266,6 @@ public class RequestController extends ManageAccessController {
 
         mailController = new MailController(elderlyDao.getElderly(request.getDni()).getEmail());
         mailController.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
-
-
-        calculateNumDias(request.getDateStart(), request.getDateEnd(), request.getDiasIngles());
 
 
         return "redirect:/request/listElderly?nuevo=" + id;
