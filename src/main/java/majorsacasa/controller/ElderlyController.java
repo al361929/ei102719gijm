@@ -3,6 +3,7 @@ package majorsacasa.controller;
 import majorsacasa.dao.ElderlyDao;
 import majorsacasa.dao.SocialWorkerDao;
 import majorsacasa.model.Elderly;
+import majorsacasa.model.Request;
 import majorsacasa.model.SocialWorker;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -166,6 +167,18 @@ public class ElderlyController extends ManageAccessController {
         return "redirect:list?nuevo=" + elderly.getDni();
     }
 
+    private Boolean requestsToDelete(String dni) {
+        List<Request> requests = elderlyDao.getRequestsElderly(dni);
+        System.out.println(requests.size());
+        for (Request peticion : requests) {
+            System.out.println(peticion.getState());
+            if (peticion.getState().equals("Pendiente") || peticion.getState().equals("Aceptada")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @RequestMapping(value = "/delete/{dni}")
     public String processDelete(HttpSession session, @PathVariable String dni) {
         UserDetails usuario = (UserDetails) session.getAttribute("user");
@@ -178,13 +191,13 @@ public class ElderlyController extends ManageAccessController {
         } else {
             mailController = new MailController(elderly.getDireccion());
         }
-        try {
+        if (requestsToDelete(dni)) {
             elderlyDao.deleteElderly(dni);
             mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
             if (usuario.getTipo().equals("ElderlyPeople")) {
                 return "redirect:/logout";
             }
-        } catch (Exception e) {
+        } else {
             if (usuario.getTipo().equals("Admin")) {
                 mensajeError = "No puedes borrar una persona mayor que tenga servicios activos";
             } else if (usuario.getTipo().equals("ElderlyPeople")) {

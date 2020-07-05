@@ -1,6 +1,7 @@
 package majorsacasa.dao;
 
 import majorsacasa.model.Elderly;
+import majorsacasa.model.Request;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -35,7 +36,6 @@ public class ElderlyDao extends GeneralDao {
     }
 
     public void addElderly(Elderly elderly) {
-        //System.out.println(elderly.toString());
         jdbcTemplate.update("INSERT INTO ElderlyPeople VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)", elderly.getNombre(), elderly.getApellidos(), elderly.getDireccion(), elderly.getDni(),
                 elderly.getAlergias(), elderly.getTelefono(), elderly.getUsuario(), elderly.getContraseña(), LocalDate.now(), elderly.getDateDown(), elderly.getBirthday(), elderly.getCuentaBancaria(), elderly.getSocialWorker(), elderly.getEmail());
 
@@ -65,6 +65,16 @@ public class ElderlyDao extends GeneralDao {
 
     public void deleteElderly(String elderly) {
         jdbcTemplate.update("DELETE FROM ElderlyPeople WHERE dni=?", elderly);
+    }
+
+    public List<Request> getRequestsElderly(String dni) {
+        try {
+            return jdbcTemplate.query(
+                    "SELECT * FROM Request where dni=?",
+                    new RequestRowMapper(), dni);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
     }
 
     public Boolean checkElderly(String dni) {

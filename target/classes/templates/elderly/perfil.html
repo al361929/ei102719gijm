@@ -13,6 +13,7 @@
 
     <div class="container">
         <h1>Datos del usuario</h1>
+        <h5 th:text="${mensaje}"></h5>
         <h2 th:text="${elderly.nombre}"></h2>
         <form action="#" th:action="@{/elderly/updatePerfil}"
               th:object="${elderly}" method="post">
@@ -62,8 +63,12 @@
                     <td><input type="text" class="form-control" th:field="*{usuario}" required/></td>
                 </tr>
                 <tr>
+                    <td><label>Contraseña</label></td>
+                    <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
+                </tr>
+                <tr>
                     <td><label>Email</label></td>
-                    <td><input type="text" class="form-control" th:field="*{email}"/></td>
+                    <td><input type="text" class="form-control" th:field="*{email}" required/></td>
                 </tr>
                 <tr>
                     <td><label>Fecha de alta</label></td>
@@ -82,18 +87,14 @@
                 </tr>
                 <tr>
                     <td><label>Cumpleaños</label></td>
-                    <td><input type="date" class="form-control" th:field="*{birthday}" readonly/></td>
+                    <td><input type="date" class="form-control" th:field="*{birthday}" required/></td>
                 </tr>
                 <tr>
-                    <td><label>Contraseña</label></td>
-                    <td><input type="password" class="form-control" th:field="*{contraseña}" required/></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit" value="Modificar perfil" class="btn btn btn-secondary"
-                                           role="button"
-                                           aria-pressed="true"/></td>
-                    <td colspan="1"><a th:href="@{/elderly/confirmarDelete/{dni}(dni=${elderly.getDni()})}"
-                                       class="btn btn-danger" role="button" aria-pressed="true">Eliminar cuenta</a>
+                    <td><input type="submit" value="Modificar perfil" class="btn btn btn-secondary"
+                               role="button"
+                               aria-pressed="true"/></td>
+                    <td><a th:href="@{/elderly/confirmarDelete/{dni}(dni=${elderly.getDni()})}"
+                           class="btn btn-danger" role="button" aria-pressed="true">Eliminar cuenta</a>
                     </td>
                 </tr>
                 <tr>
