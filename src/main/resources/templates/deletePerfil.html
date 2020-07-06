@@ -15,7 +15,8 @@
 
     <div class="container" align="center">
         <h4>¿Estas seguro que quieres eliminar tu cuenta?</h4>
-        <a th:href="@{/{usuario}/delete/{dni}(usuario=${userType},dni=${user.getDni()})}" class="btn btn-success"
+        <a th:href="@{/{usuario}/delete/{dni}(usuario=${user.getTipo().toLowerCase()},dni=${user.getDni()})}"
+           class="btn btn-success"
            role="button"
            aria-pressed="true">Confirmar</a>
         <a href="#" onclick="history.back()" class="btn btn-danger" role="button">Cancelar</a>

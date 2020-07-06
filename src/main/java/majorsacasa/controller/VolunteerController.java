@@ -144,12 +144,10 @@ public class VolunteerController extends ManageAccessController {
         return "redirect:list?nuevo=" + volunteer.getDni();
     }
 
-    @RequestMapping(value = "/confirmarDelete/{dni}")
-    public String confirmarDelete(@PathVariable String dni, HttpSession httpSession, Model model) {
-        Volunteer volunteer = volunteerDao.getVolunteer(dni);
+    @RequestMapping(value = "/confirmarDelete")
+    public String confirmarDelete(HttpSession httpSession, Model model) {
         UserDetails usuario = (UserDetails) httpSession.getAttribute("user");
-        model.addAttribute("user", volunteer);
-        model.addAttribute("userType", usuario.getTipo().toLowerCase());
+        model.addAttribute("user", usuario);
 
         return gestionarAcceso(httpSession, model, "Volunteer", "deletePerfil");
     }

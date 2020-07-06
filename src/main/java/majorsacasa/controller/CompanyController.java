@@ -155,13 +155,22 @@ public class CompanyController extends ManageAccessController {
         return "redirect:list?nuevo=" + company.getNif();
     }
 
+    @RequestMapping(value = "/confirmarDelete")
+    public String confirmarDelete(HttpSession httpSession, Model model) {
+        UserDetails usuario = (UserDetails) httpSession.getAttribute("user");
+        model.addAttribute("user", usuario);
+
+        return gestionarAcceso(httpSession, model, "Company", "deletePerfil");
+    }
+
     @RequestMapping(value = "/delete/{nif}")
-    public String processDelete(@PathVariable String nif, Model model) throws Exception {
+    public String processDelete(@PathVariable String nif, Model model) {
         List<Contract> contratos = companyDao.getContractsList(nif);
         if (contratos.isEmpty()) {
             mailController = new MailController(companyDao.getCompany(nif).getEmail());
             companyDao.deleteCompany(nif);
             mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
+            return "redirect:/logout";
         } else {
             mensajeError = "No puedes borrar una empresa si tiene contratos";
         }

@@ -211,7 +211,6 @@ public class ElderlyController extends ManageAccessController {
     @RequestMapping(value = "/confirmarDelete/{dni}")
     public String confirmarDelete(@PathVariable String dni, HttpSession httpSession, Model model) {
         Elderly elderly = elderlyDao.getElderly(dni);
-        UserDetails usuario = (UserDetails) httpSession.getAttribute("user");
         model.addAttribute("user", elderly);
         model.addAttribute("userType", "elderly");
 
