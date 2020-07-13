@@ -63,7 +63,6 @@ public class ValoracionController extends ManageAccessController {
             bindingResult.rejectValue("idService", "idService", "Ya ha valorado  este servicio");
             return "valoraciones/addValorationService";
         }
-
         valoracionServiceDao.addValoracion(valoracion);
         int id = valoracion.getIdService();
         return gestionarAcceso(session, model, "ElderlyPeople", "redirect:serviceValoration?nuevo=" + id);

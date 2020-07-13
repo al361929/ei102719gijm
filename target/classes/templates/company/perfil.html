@@ -11,9 +11,10 @@
 <body>
 <div layout:fragment="content">
 
-    <div class="table-responsive">
-        <h1>Datos del Perfil</h1>
-        <h2 th:text="${company.nombre}"></h2>
+    <div class="container">
+        <h1>Datos del usuario</h1>
+        <h5 th:text="${mensaje}"></h5>
+        <h2 th:text="${company.getNombre()}"></h2>
         <form action="#" th:action="@{/company/updatePerfil}"
               th:object="${company}" method="post">
             <table>
@@ -43,6 +44,10 @@
                     <td><input type="text" class="form-control" th:field="*{nombreUsuario}" required/></td>
                 </tr>
                 <tr>
+                    <td><label>Contraseña</label></td>
+                    <td><input type="password" class="form-control" th:field="*{password}" required/></td>
+                </tr>
+                <tr>
                     <td><label>Fecha de alta</label></td>
                     <td><input type="date" class="form-control" th:field="*{fechaAlta}" readonly/></td>
                 </tr>
@@ -57,14 +62,12 @@
                                required/>
                 </tr>
                 <tr>
-                    <td><label>Contraseña</label></td>
-                    <td><input type="password" class="form-control" th:field="*{password}" required/></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit" value="Modificar perfil"
-                                           class="btn btn btn-secondary"
-                                           role="button"
-                                           aria-pressed="true"/></td>
+                    <td><input type="submit" value="Modificar perfil"
+                               class="btn btn btn-secondary" role="button"
+                               aria-pressed="true"/></td>
+                    <td><a th:href="@{/company/confirmarDelete}"
+                           class="btn btn-danger" role="button" aria-pressed="true">Eliminar cuenta</a>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2"><a id="estilo2" onclick="history.back()" class="btn btn btn-exit" role="button">Atrás</a>

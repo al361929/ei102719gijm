@@ -38,7 +38,7 @@ public class ValoracionServiceDao {
 
     //añadir
     public void addValoracion(ValoracionService valoracionService) {
-        jdbcTemplate.update("INSERT INTO ServiceValoration VALUES(?,?,?,?,?)", valoracionService.getDni(), valoracionService.getIdService(), valoracionService.getComments(), valoracionService.getValoration(), LocalDate.now());
+        jdbcTemplate.update("INSERT INTO ServiceValoration VALUES(?,?,?,?,?)", valoracionService.getIdService(), valoracionService.getDni(), valoracionService.getComments(), valoracionService.getValoration(), LocalDate.now());
     }
 
     //eliminar

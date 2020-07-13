@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.*;
 
 @Controller
@@ -159,14 +160,24 @@ public class CompanyController extends ManageAccessController {
     public String confirmarDelete(HttpSession httpSession, Model model) {
         UserDetails usuario = (UserDetails) httpSession.getAttribute("user");
         model.addAttribute("user", usuario);
+        model.addAttribute("userType", usuario.getTipo().toLowerCase());
 
         return gestionarAcceso(httpSession, model, "Company", "deletePerfil");
     }
 
+    private Boolean comprobarContratos(String nif) {
+        List<Contract> contratos = companyDao.getContractsList(nif);
+        for (Contract contrato : contratos) {
+            if (contrato.getDateDown().isAfter(LocalDate.now())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @RequestMapping(value = "/delete/{nif}")
     public String processDelete(@PathVariable String nif, Model model) {
-        List<Contract> contratos = companyDao.getContractsList(nif);
-        if (contratos.isEmpty()) {
+        if (comprobarContratos(nif)) {
             mailController = new MailController(companyDao.getCompany(nif).getEmail());
             companyDao.deleteCompany(nif);
             mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
@@ -174,7 +185,7 @@ public class CompanyController extends ManageAccessController {
         } else {
             mensajeError = "No puedes borrar una empresa si tiene contratos";
         }
-        return "redirect:../list";
+        return "redirect:../perfil";
     }
 
     @RequestMapping(value = "/perfil")
@@ -184,8 +195,10 @@ public class CompanyController extends ManageAccessController {
 
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (user.getTipo() != "Company") return "error/sinPermiso";
-
         model.addAttribute("company", companyDao.getCompany(user.getDni()));
+
+        model.addAttribute("mensaje", mensajeError);
+        mensajeError = " ";
         return gestionarAcceso(session, model, "Company", "company/perfil");
     }
 

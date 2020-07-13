@@ -2,10 +2,8 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.ElderlyDao;
 import majorsacasa.dao.SocialWorkerDao;
-import majorsacasa.model.Elderly;
-import majorsacasa.model.Request;
-import majorsacasa.model.SocialWorker;
-import majorsacasa.model.UserDetails;
+import majorsacasa.dao.VolunteerTimeDao;
+import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,14 +24,16 @@ public class ElderlyController extends ManageAccessController {
 
     private ElderlyDao elderlyDao;
     private SocialWorkerDao socialWorkerDao;
+    private VolunteerTimeDao volunteerTimeDao;
     private final List<String> alergias = Arrays.asList("Ninguna", "Polen", "Frutos secos", "Gluten", "Pepinillo");
     private MailController mailController;
     static String mensajeError ="";
 
     @Autowired
-    public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao) {
+    public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao, VolunteerTimeDao volunteerTimeDao) {
         this.elderlyDao = elderlyDao;
         this.socialWorkerDao = socialWorkerDao;
+        this.volunteerTimeDao = volunteerTimeDao;
     }
 
     @RequestMapping("/list")
@@ -169,14 +169,20 @@ public class ElderlyController extends ManageAccessController {
 
     private Boolean requestsToDelete(String dni) {
         List<Request> requests = elderlyDao.getRequestsElderly(dni);
-        System.out.println(requests.size());
         for (Request peticion : requests) {
-            System.out.println(peticion.getState());
             if (peticion.getState().equals("Pendiente") || peticion.getState().equals("Aceptada")) {
                 return false;
             }
         }
         return true;
+    }
+
+    private void volunteertimeToDelete(String dni) {
+        List<VolunteerTime> volunteerTimes = elderlyDao.getVolunteerTimeElderly(dni);
+        for (VolunteerTime horario : volunteerTimes) {
+            horario.setDniElderly(null);
+            volunteerTimeDao.updateVolunteerTime(horario);
+        }
     }
 
     @RequestMapping(value = "/delete/{dni}")
@@ -192,6 +198,7 @@ public class ElderlyController extends ManageAccessController {
             mailController = new MailController(elderly.getDireccion());
         }
         if (requestsToDelete(dni)) {
+            volunteertimeToDelete(dni);
             elderlyDao.deleteElderly(dni);
             mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
             if (usuario.getTipo().equals("ElderlyPeople")) {

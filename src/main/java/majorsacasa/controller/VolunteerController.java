@@ -148,6 +148,7 @@ public class VolunteerController extends ManageAccessController {
     public String confirmarDelete(HttpSession httpSession, Model model) {
         UserDetails usuario = (UserDetails) httpSession.getAttribute("user");
         model.addAttribute("user", usuario);
+        model.addAttribute("userType", usuario.getTipo().toLowerCase());
 
         return gestionarAcceso(httpSession, model, "Volunteer", "deletePerfil");
     }

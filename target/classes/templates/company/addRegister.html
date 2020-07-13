@@ -28,10 +28,6 @@
                 <tr>
                     <td><label>Nombre de la empresa</label></td>
                     <td><input type="text" class="form-control" th:field="*{nombre}" required/></td>
-                    <td>
-                        <div class="error" th:if="${#fields.hasErrors('nombreUsuario')}"
-                             th:errors="*{nombreUsuario}"></div>
-                    </td>
                 </tr>
                 <tr>
                     <td><label>Persona de contacto</label></td>
@@ -48,6 +44,10 @@
                 <tr>
                     <td><label>Usuario</label></td>
                     <td><input type="text" class="form-control" th:field="*{nombreUsuario}" required/></td>
+                    <td>
+                        <div class="error" th:if="${#fields.hasErrors('nombreUsuario')}"
+                             th:errors="*{nombreUsuario}"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td><label>Contraseña</label></td>

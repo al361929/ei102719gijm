@@ -3,6 +3,7 @@ package majorsacasa.dao;
 import majorsacasa.model.Elderly;
 import majorsacasa.model.Request;
 import majorsacasa.model.UserDetails;
+import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -74,6 +75,16 @@ public class ElderlyDao extends GeneralDao {
                     new RequestRowMapper(), dni);
         } catch (EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
+        }
+    }
+
+    public List<VolunteerTime> getVolunteerTimeElderly(String dni) {
+        try {
+            return jdbcTemplate.query(
+                    "SELECT * FROM volunteertime where dni=?",
+                    new VolunteerTimeRowMapper(), dni);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<VolunteerTime>();
         }
     }
 
