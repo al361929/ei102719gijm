@@ -68,7 +68,7 @@ public class InvoiceController extends ManageAccessController {
         invoiceDao.addInvoice(invoice);
 
         mailController = new MailController(elderlyDao.getElderly(invoice.getDniElderly()).getEmail());
-        mailController.addMail("Se ha generado la factura correspondiente a la petición de servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduce(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su lista de facturas.");
+        mailController.addMail("Se ha generado la factura correspondiente a la petición de servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su lista de facturas.");
 
         return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
     }
@@ -100,13 +100,13 @@ public class InvoiceController extends ManageAccessController {
         String path = uploadDirectory + "/invoice/" + idInvoice + ".pdf";
         Invoice invoice = invoiceDao.getInvoice(idInvoice);
         Elderly elderly = elderlyDao.getElderly(invoiceDao.getInvoice(idInvoice).getDniElderly());
-        Request request = requestDao.getRequest(produceDao.getProduce(idInvoice).getIdRequest());
-        Service service = serviceDao.getService(requestDao.getRequest(produceDao.getProduce(idInvoice).getIdRequest()).getIdService());
+        Request request = requestDao.getRequest(produceDao.getProduceInvoice(idInvoice).getIdRequest());
+        Service service = serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(idInvoice).getIdRequest()).getIdService());
         generatePDF.createPDF(new File(path), invoice, elderly, request, service);
         invoiceDao.updloadInvoice(idInvoice, true);
 
         mailController = new MailController(elderlyDao.getElderly(invoice.getDniElderly()).getEmail());
-        mailController.updateMail("Se ha generado la factura en PDF correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduce(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su lista de facturas.");
+        mailController.updateMail("Se ha generado la factura en PDF correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su lista de facturas.");
 
         UserDetails user = (UserDetails) session.getAttribute("user");
         if (user.getTipo().equals("ElderlyPeople")) return "redirect:../invoiceListElderly?nuevo=" + idInvoice;
@@ -134,7 +134,7 @@ public class InvoiceController extends ManageAccessController {
             invoiceDao.updloadInvoice(invoice.getInvoiceNumber(), true);
 
             mailController = new MailController(elderlyDao.getElderly(invoice.getDniElderly()).getEmail());
-            mailController.updateMail("Se ha añadido la factura en PDF correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduce(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su lista de facturas.");
+            mailController.updateMail("Se ha añadido la factura en PDF correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su lista de facturas.");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -154,7 +154,7 @@ public class InvoiceController extends ManageAccessController {
     public String processDelete(@PathVariable Integer invoiceNumber) {
 
         mailController = new MailController(elderlyDao.getElderly(invoiceDao.getInvoice(invoiceNumber).getDniElderly()).getEmail());
-        mailController.deleteMail("Se ha eliminado la factura correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduce(invoiceNumber).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su perfil.");
+        mailController.deleteMail("Se ha eliminado la factura correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoiceNumber).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su perfil.");
 
         invoiceDao.deleteInvoice(invoiceNumber);
         return "redirect:../list";

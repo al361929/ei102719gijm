@@ -33,10 +33,13 @@ public class ProduceDao {
 
     }
 
-    public Produce getProduce(int idInvoice) {
+    public Produce getProduceInvoice(int idInvoice) {
         return jdbcTemplate.queryForObject("SELECT * FROM Produce WHERE idInvoice=? ", new ProduceRowMapper(), idInvoice);
     }
 
+    public Produce getProduceRequest(int idRequest) {
+        return jdbcTemplate.queryForObject("SELECT * FROM Produce WHERE idRequest=? ", new ProduceRowMapper(), idRequest);
+    }
 
     public void deleteProduce(int idInvoice, int idRequest) {
         jdbcTemplate.update("DELETE FROM Produce WHERE idInvoice=? AND idRequest=?", idInvoice, idRequest);
