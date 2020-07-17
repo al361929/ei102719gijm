@@ -3,6 +3,8 @@ package majorsacasa.controller;
 import majorsacasa.dao.ElderlyDao;
 import majorsacasa.dao.SocialWorkerDao;
 import majorsacasa.dao.VolunteerTimeDao;
+import majorsacasa.mail.MailBody;
+import majorsacasa.mail.MailService;
 import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,14 +28,16 @@ public class ElderlyController extends ManageAccessController {
     private SocialWorkerDao socialWorkerDao;
     private VolunteerTimeDao volunteerTimeDao;
     private final List<String> alergias = Arrays.asList("Ninguna", "Polen", "Frutos secos", "Gluten", "Pepinillo");
-    private MailController mailController;
-    static String mensajeError ="";
+    private MailBody mailBody;
+    private MailService mailService;
+    static String mensajeError = "";
 
     @Autowired
-    public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao, VolunteerTimeDao volunteerTimeDao) {
+    public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao, VolunteerTimeDao volunteerTimeDao, MailService mailService) {
         this.elderlyDao = elderlyDao;
         this.socialWorkerDao = socialWorkerDao;
         this.volunteerTimeDao = volunteerTimeDao;
+        this.mailService = mailService;
     }
 
     @RequestMapping("/list")
@@ -63,14 +67,14 @@ public class ElderlyController extends ManageAccessController {
         if (elderly.getAlergias() == null) elderly.setAlergias("");
         elderlyDao.addElderly(elderly);
         if (!elderly.getEmail().isEmpty()) {
-            mailController = new MailController(elderly.getEmail());
-            mailController.addMail("El CAS ha registrado su cuenta correctamente.\n" +
+            mailBody = new MailBody(elderly.getEmail());
+            mailBody.addMail("El CAS ha registrado su cuenta correctamente.\n" +
                     "El usuario y contraseña con el que puede acceder son:\n" +
                     "Usuario: " + elderly.getUsuario() +
                     "\nContraseña: " + elderly.getContraseña());
         } else {
-            mailController = new MailController(elderly.getDireccion());
-            mailController.addMail("Se eviaran todos los datos de la cuenta por correo postal a la dirección:" +
+            mailBody = new MailBody(elderly.getDireccion());
+            mailBody.addMail("Se eviaran todos los datos de la cuenta por correo postal a la dirección:" +
                     elderly.getDireccion() + "\nEl usuario y contraseña con el que puede acceder son:\n" +
                     "Usuario: " + elderly.getUsuario() +
                     "\nContraseña: " + elderly.getContraseña());
@@ -115,14 +119,15 @@ public class ElderlyController extends ManageAccessController {
         UserDetails user = (UserDetails) session.getAttribute("user");
 
         if (!elderly.getEmail().isEmpty()) {
-            mailController = new MailController(elderly.getEmail());
+            mailBody = new MailBody(elderly.getEmail());
         } else {
-            mailController = new MailController(elderly.getDireccion());
+            mailBody = new MailBody(elderly.getDireccion());
         }
-        mailController.addMail("Se ha creado su cuenta correctamente.\n" +
+        mailBody.setContent("Se ha creado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + elderly.getUsuario() +
                 "\nContraseña: " + elderly.getContraseña());
+
 
         if (user == null) {
             return "redirect:../login";
@@ -158,11 +163,11 @@ public class ElderlyController extends ManageAccessController {
         elderlyDao.updateElderlySINpw(elderly);
 
         if (!elderly.getEmail().isEmpty()) {
-            mailController = new MailController(elderly.getEmail());
+            mailBody = new MailBody(elderly.getEmail());
         } else {
-            mailController = new MailController(elderly.getDireccion());
+            mailBody = new MailBody(elderly.getDireccion());
         }
-        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:list?nuevo=" + elderly.getDni();
     }
@@ -193,14 +198,14 @@ public class ElderlyController extends ManageAccessController {
         }
         Elderly elderly = elderlyDao.getElderly(dni);
         if (!elderly.getEmail().isEmpty()) {
-            mailController = new MailController(elderly.getEmail());
+            mailBody = new MailBody(elderly.getEmail());
         } else {
-            mailController = new MailController(elderly.getDireccion());
+            mailBody = new MailBody(elderly.getDireccion());
         }
         if (requestsToDelete(dni)) {
             volunteertimeToDelete(dni);
             elderlyDao.deleteElderly(dni);
-            mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
+            mailBody.deleteMail("Se ha eliminado su cuenta permanentemente.");
             if (usuario.getTipo().equals("ElderlyPeople")) {
                 return "redirect:/logout";
             }
@@ -243,18 +248,21 @@ public class ElderlyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
-    public String processUpdatePerfilSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
+    public String processUpdatePerfilSubmit(@ModelAttribute("elderly") Elderly elderly, HttpSession session, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/updatePerfil";
         elderly.actualizarAlergias();
         elderlyDao.updateElderlySinSocialWorker(elderly);
 
         if (!elderly.getEmail().isEmpty()) {
-            mailController = new MailController(elderly.getEmail());
+            mailBody = new MailBody(elderly.getEmail());
         } else {
-            mailController = new MailController(elderly.getDireccion());
+            mailBody = new MailBody(elderly.getDireccion());
         }
-        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:/request/listElderly";
     }

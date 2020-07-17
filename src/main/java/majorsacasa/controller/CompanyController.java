@@ -1,6 +1,7 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.*;
+import majorsacasa.mail.MailBody;
 import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ public class CompanyController extends ManageAccessController {
     private CompanyDao companyDao;
     private ValoracionDao valoracionDao;
     private ServiceDao serviceDao;
-    private MailController mailController;
+    private MailBody mailBody;
     static String mensajeError = "";
     private RequestDao requestdao;
     private ElderlyDao elderlyDao;
@@ -56,8 +57,8 @@ public class CompanyController extends ManageAccessController {
             return "company/add";
         companyDao.addCompany(company);
 
-        mailController = new MailController(company.getEmail());
-        mailController.addMail("El CAS ha registrado su cuenta correctamente.\n" +
+        mailBody = new MailBody(company.getEmail());
+        mailBody.addMail("El CAS ha registrado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + company.getNombreUsuario() +
                 "\nContraseña: " + company.getPassword());
@@ -92,8 +93,8 @@ public class CompanyController extends ManageAccessController {
         }
         companyDao.addCompany(company);
 
-        mailController = new MailController(company.getEmail());
-        mailController.addMail("El CAS ha registrado su cuenta correctamente.\n" +
+        mailBody = new MailBody(company.getEmail());
+        mailBody.addMail("El CAS ha registrado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + company.getNombreUsuario() +
                 "\nContraseña: " + company.getPassword());
@@ -128,8 +129,8 @@ public class CompanyController extends ManageAccessController {
         }
         companyDao.addCompany(company);
 
-        mailController = new MailController(company.getEmail());
-        mailController.addMail("El CAS ha registrado su cuenta correctamente.\n" +
+        mailBody = new MailBody(company.getEmail());
+        mailBody.addMail("El CAS ha registrado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + company.getNombreUsuario() +
                 "\nContraseña: " + company.getPassword());
@@ -150,8 +151,8 @@ public class CompanyController extends ManageAccessController {
             return "company/update";
         companyDao.updateCompanySINpw(company);
 
-        mailController = new MailController(company.getEmail());
-        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailBody = new MailBody(company.getEmail());
+        mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:list?nuevo=" + company.getNif();
     }
@@ -178,9 +179,9 @@ public class CompanyController extends ManageAccessController {
     @RequestMapping(value = "/delete/{nif}")
     public String processDelete(@PathVariable String nif, Model model) {
         if (comprobarContratos(nif)) {
-            mailController = new MailController(companyDao.getCompany(nif).getEmail());
+            mailBody = new MailBody(companyDao.getCompany(nif).getEmail());
             companyDao.deleteCompany(nif);
-            mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
+            mailBody.deleteMail("Se ha eliminado su cuenta permanentemente.");
             return "redirect:/logout";
         } else {
             mensajeError = "No puedes borrar una empresa si tiene contratos";
@@ -209,8 +210,8 @@ public class CompanyController extends ManageAccessController {
             return "company/perfil";
         companyDao.updateCompany(company);
 
-        mailController = new MailController(company.getEmail());
-        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailBody = new MailBody(company.getEmail());
+        mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:/company/contractList";
     }

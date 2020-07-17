@@ -4,6 +4,7 @@ package majorsacasa.controller;
 import majorsacasa.dao.ValoracionDao;
 import majorsacasa.dao.VolunteerDao;
 import majorsacasa.dao.VolunteerTimeDao;
+import majorsacasa.mail.MailBody;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class VolunteerTimeController extends ManageAccessController {
 
     static String mensajeError = "";
     private ValoracionDao valoracionDao;
-    private MailController mailController;
+    private MailBody mailBody;
     private VolunteerDao volunteerDao;
     private VolunteerTimeDao volunteerTimeDao;
     private final List<String> meses = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
@@ -73,8 +74,8 @@ public class VolunteerTimeController extends ManageAccessController {
         volunteerTimeDao.addVolunteerTime(volunteertime);
         int id = volunteerTimeDao.ultimoIdVolunteerTime();
 
-        mailController = new MailController(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
-        mailController.addMail("Se ha añadido un nuevo horario a su cuenta correctamente.");
+        mailBody = new MailBody(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
+        mailBody.addMail("Se ha añadido un nuevo horario a su cuenta correctamente.");
 
         return "redirect:../volunteer/scheduleList?nuevo=" + id;
 
@@ -95,8 +96,8 @@ public class VolunteerTimeController extends ManageAccessController {
             return "volunteertime/update";
         volunteerTimeDao.updateVolunteerTime(volunteertime);
 
-        mailController = new MailController(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
-        mailController.updateMail("Se ha actualizado su horario del dia " + volunteertime.getDia() + " del " + volunteertime.getMes() + " de " + volunteertime.getStartTime() + " a " + volunteertime.getEndTime() + ".");
+        mailBody = new MailBody(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
+        mailBody.updateMail("Se ha actualizado su horario del dia " + volunteertime.getDia() + " del " + volunteertime.getMes() + " de " + volunteertime.getStartTime() + " a " + volunteertime.getEndTime() + ".");
 
         return "redirect:../volunteer/scheduleList?nuevo=" + volunteertime.getIdVolunteerTime();
     }
@@ -104,8 +105,8 @@ public class VolunteerTimeController extends ManageAccessController {
     @RequestMapping(value = "/delete/{idVolunteerTime}")
     public String processDelete(@PathVariable Integer idVolunteerTime) {
         VolunteerTime volunteerTime = volunteerTimeDao.getVolunteerTime(idVolunteerTime);
-        mailController = new MailController(volunteerDao.getVolunteer(volunteerTime.getDniVolunteer()).getEmail());
-        mailController.deleteMail("Se ha eliminado su horario del dia " + volunteerTime.getDia() + " del " + volunteerTime.getMes() + " de " + volunteerTime.getStartTime() + " a " + volunteerTime.getEndTime() + ".");
+        mailBody = new MailBody(volunteerDao.getVolunteer(volunteerTime.getDniVolunteer()).getEmail());
+        mailBody.deleteMail("Se ha eliminado su horario del dia " + volunteerTime.getDia() + " del " + volunteerTime.getMes() + " de " + volunteerTime.getStartTime() + " a " + volunteerTime.getEndTime() + ".");
 
         volunteerTimeDao.deleteVolunteerTime(idVolunteerTime);
         return "redirect:/volunteer/scheduleList";
@@ -133,8 +134,8 @@ public class VolunteerTimeController extends ManageAccessController {
             return "volunteer/scheduleList";
         }
 
-        mailController = new MailController(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
-        mailController.addMail("Se ha añadido un nuevo horario a su cuenta correctamente.");
+        mailBody = new MailBody(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
+        mailBody.addMail("Se ha añadido un nuevo horario a su cuenta correctamente.");
 
         return "redirect:/";
     }

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title th:text="${mailBody.getSubject()}"></title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <p>Buenas,</p>
+    <p th:text="${usuario.getName()}"></p>
+    <p th:text="${mailBody.getContent()}"></p>
+</div>
+</body>
+</html>

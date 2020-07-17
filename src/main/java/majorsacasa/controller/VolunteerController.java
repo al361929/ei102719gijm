@@ -3,6 +3,7 @@ package majorsacasa.controller;
 import majorsacasa.dao.ValoracionDao;
 import majorsacasa.dao.VolunteerDao;
 import majorsacasa.dao.VolunteerTimeDao;
+import majorsacasa.mail.MailBody;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.Volunteer;
 import majorsacasa.model.VolunteerTime;
@@ -26,7 +27,7 @@ public class VolunteerController extends ManageAccessController {
     static String mensajeError ="";
     private VolunteerDao volunteerDao;
     private ValoracionDao valoracionDao;
-    private MailController mailController;
+    private MailBody mailBody;
     private VolunteerTimeDao volunteerTimeDao;
 
     @Autowired
@@ -60,8 +61,8 @@ public class VolunteerController extends ManageAccessController {
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
 
-        mailController = new MailController(volunteer.getEmail());
-        mailController.addMail("Se ha creado su cuenta correctamente.\n" +
+        mailBody = new MailBody(volunteer.getEmail());
+        mailBody.addMail("Se ha creado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + volunteer.getUsuario() +
                 "\nContraseña: " + volunteer.getContraseña());
@@ -96,8 +97,8 @@ public class VolunteerController extends ManageAccessController {
         }
         volunteerDao.addVolunteer(volunteer);
 
-        mailController = new MailController(volunteer.getEmail());
-        mailController.addMail("Se ha creado su cuenta correctamente.\n" +
+        mailBody = new MailBody(volunteer.getEmail());
+        mailBody.addMail("Se ha creado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + volunteer.getUsuario() +
                 "\nContraseña: " + volunteer.getContraseña());
@@ -138,8 +139,8 @@ public class VolunteerController extends ManageAccessController {
         }
         volunteerDao.updateVolunteerSINpw(volunteer);
 
-        mailController = new MailController(volunteer.getEmail());
-        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailBody = new MailBody(volunteer.getEmail());
+        mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:list?nuevo=" + volunteer.getDni();
     }
@@ -160,8 +161,8 @@ public class VolunteerController extends ManageAccessController {
         try {
             Volunteer volunteer = volunteerDao.getVolunteer(dni);
             volunteerDao.deleteVolunteer(dni);
-            mailController = new MailController(volunteer.getEmail());
-            mailController.deleteMail("Se ha eliminado su cuenta correctamente");
+            mailBody = new MailBody(volunteer.getEmail());
+            mailBody.deleteMail("Se ha eliminado su cuenta correctamente");
             if (usuario.getTipo().equals("Volunteer")) {
                 return "redirect:/logout";
             }
@@ -222,8 +223,8 @@ public class VolunteerController extends ManageAccessController {
         }
         volunteerDao.updateVolunteer(volunteer);
 
-        mailController = new MailController(volunteer.getEmail());
-        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailBody = new MailBody(volunteer.getEmail());
+        mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:/volunteer/scheduleList";
     }

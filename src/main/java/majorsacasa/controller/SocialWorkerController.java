@@ -1,6 +1,7 @@
 package majorsacasa.controller;
 
 import majorsacasa.dao.SocialWorkerDao;
+import majorsacasa.mail.MailBody;
 import majorsacasa.model.SocialWorker;
 import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class SocialWorkerController extends ManageAccessController {
     static String codElderly;
     private SocialWorkerDao socialWorkerDao;
-    private MailController mailController;
+    private MailBody mailBody;
 
     @Autowired
     public void setSocialWorkerDao(SocialWorkerDao socialWorkerDao) {
@@ -64,8 +65,8 @@ public class SocialWorkerController extends ManageAccessController {
         }
         socialWorkerDao.addSocialWorker(socialWorker);
 
-        mailController = new MailController(socialWorker.getEmail());
-        mailController.addMail("Se ha creado su cuenta correctamente.\n" +
+        mailBody = new MailBody(socialWorker.getEmail());
+        mailBody.addMail("Se ha creado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + socialWorker.getUsuario() +
                 "\nContraseña: " + socialWorker.getContraseña());
@@ -93,8 +94,8 @@ public class SocialWorkerController extends ManageAccessController {
             return "socialWorker/update";
         socialWorkerDao.updateSocialWorker(socialWorker);
 
-        mailController = new MailController(socialWorker.getEmail());
-        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailBody = new MailBody(socialWorker.getEmail());
+        mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:list?nuevo=" + socialWorker.getDni();
     }
@@ -102,8 +103,8 @@ public class SocialWorkerController extends ManageAccessController {
     @RequestMapping(value = "/delete/{dni}")
     public String processDelete(@PathVariable String dni) {
 
-        mailController = new MailController(socialWorkerDao.getSocialWorker(dni).getEmail());
-        mailController.deleteMail("Se ha eliminado su cuenta permanentemente.");
+        mailBody = new MailBody(socialWorkerDao.getSocialWorker(dni).getEmail());
+        mailBody.deleteMail("Se ha eliminado su cuenta permanentemente.");
 
         socialWorkerDao.deleteSocialWorker(dni);
         return "redirect:../list";
@@ -136,8 +137,8 @@ public class SocialWorkerController extends ManageAccessController {
             return "socialWorker/perfil";
         socialWorkerDao.updateSocialWorker(socialWorker);
 
-        mailController = new MailController(socialWorker.getEmail());
-        mailController.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailBody = new MailBody(socialWorker.getEmail());
+        mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
 
         return "redirect:/socialWorker/elderlyList";
     }
