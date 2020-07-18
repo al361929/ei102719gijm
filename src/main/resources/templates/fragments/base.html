@@ -24,13 +24,12 @@
     <div th:replace="fragments/navInfo"></div>
 </header>
 <br><br><br>
+<div th:replace="fragments/logininfo"></div>
+
+<div layout:fragment="content"></div>
 <footer>
     <hr>
     <p class="text-muted">© Copyright 2020, Generalitat Valenciana</p>
 </footer>
-<div th:replace="fragments/logininfo"></div>
-
-<div layout:fragment="content"></div>
-
 </body>
 </html>
