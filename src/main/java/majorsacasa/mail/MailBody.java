@@ -75,4 +75,14 @@ public class MailBody {
                 ", Asunto: " + subject + '\'' +
                 ", Mensaje: " + message;*/
     }
+
+    @Override
+    public String toString() {
+        return "MailBody{" +
+                "from='" + from + '\'' +
+                ", email='" + email + '\'' +
+                ", subject='" + subject + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }
