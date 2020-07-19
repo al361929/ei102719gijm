@@ -1,10 +1,8 @@
 package majorsacasa.controller;
 
-import majorsacasa.dao.CompanyDao;
-import majorsacasa.dao.ContractDao;
-import majorsacasa.dao.ElderlyDao;
-import majorsacasa.dao.ValoracionDao;
+import majorsacasa.dao.*;
 import majorsacasa.mail.MailBody;
+import majorsacasa.mail.MailService;
 import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,16 +33,19 @@ public class ContractController extends ManageAccessController {
     private ValoracionDao valoracionDao;
     private MailBody mailBody;
     static String mensajeError = "";
+    private MailService mailService;
+    private UserDao userDao;
 
     @Value("${upload.file.directory}")
     private String uploadDirectory;
 
     @Autowired
-    public void setContractDao(ContractDao contractDao, CompanyDao companyDao, ElderlyDao elderlyDao, ValoracionDao valoracionDao) {
+    public void setContractDao(ContractDao contractDao, CompanyDao companyDao, ElderlyDao elderlyDao, ValoracionDao valoracionDao, MailService mailService) {
         this.contractDao = contractDao;
         this.companyDao = companyDao;
         this.elderlyDao = elderlyDao;
         this.valoracionDao = valoracionDao;
+        this.mailService = mailService;
     }
 
 
@@ -82,8 +83,12 @@ public class ContractController extends ManageAccessController {
         contractDao.addContract(contract);
         int id = contractDao.getUltimoContrato();
 
+        Company company = companyDao.getCompany(contract.getNifcompany());
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
+
         mailBody = new MailBody(companyDao.getCompany(contract.getNifcompany()).getEmail());
         mailBody.updateMail("El CAS ha añadido su contrato correctamente y lo puede ver en su perfil.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + id;
     }
@@ -100,9 +105,13 @@ public class ContractController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "contract/update";
         contractDao.updateContract(contract);
-        //System.out.println(contract.getDateDown());
-        mailBody = new MailBody(companyDao.getCompany(contract.getNifcompany()).getEmail());
+
+        Company company = companyDao.getCompany(contract.getNifcompany());
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
+
+        mailBody = new MailBody(company.getEmail());
         mailBody.addMail("Se han actualizado los datos de su contrato correctamente.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
@@ -114,7 +123,7 @@ public class ContractController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String singleFileUpload(HttpSession session, @RequestParam("file") MultipartFile file, @ModelAttribute("contrato") Contract contract) {
+    public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("contrato") Contract contract) {
         if (file.isEmpty()) {
             return "contract/upload";
         }
@@ -127,13 +136,17 @@ public class ContractController extends ManageAccessController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+
+        Company company = companyDao.getCompany(contract.getNifcompany());
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
+
         if (user.getTipo().equals("Company")) {
             return "redirect:../company/contractList?nuevo=" + contract.getIdContract();
         }
 
-        mailBody = new MailBody(companyDao.getCompany(contract.getNifcompany()).getEmail());
+        mailBody = new MailBody(company.getEmail());
         mailBody.addMail("Se ha añadido su contrato en versión PDF. Lo puede ver en la lista de contratos de su cuenta.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + contract.getIdContract();
     }
@@ -149,12 +162,17 @@ public class ContractController extends ManageAccessController {
     public String processDelete(@PathVariable Integer idContract) {
         Contract contrato = contractDao.getContract(idContract);
         LocalDate hoy = LocalDate.now();
+        Company company = companyDao.getCompany(contrato.getNifcompany());
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
+
         if (contrato.getDateDown() == null || contrato.getDateDown().isAfter(hoy)) {
             mensajeError = "No puedes borrar un contrato activo";
         } else {
-            mailBody = new MailBody(companyDao.getCompany(contractDao.getContract(idContract).getNifcompany()).getEmail());
-            mailBody.deleteMail("Se ha eliminado su contrato permanentemente");
             contractDao.deleteContract(idContract);
+
+            mailBody = new MailBody(company.getEmail());
+            mailBody.deleteMail("Se ha eliminado su contrato permanentemente");
+            mailService.sendEmail(mailBody, user);
         }
         return "redirect:../list";
     }

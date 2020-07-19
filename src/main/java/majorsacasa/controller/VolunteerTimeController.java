@@ -1,11 +1,14 @@
 package majorsacasa.controller;
 
 
+import majorsacasa.dao.UserDao;
 import majorsacasa.dao.ValoracionDao;
 import majorsacasa.dao.VolunteerDao;
 import majorsacasa.dao.VolunteerTimeDao;
 import majorsacasa.mail.MailBody;
+import majorsacasa.mail.MailService;
 import majorsacasa.model.UserDetails;
+import majorsacasa.model.Volunteer;
 import majorsacasa.model.VolunteerTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,16 +31,19 @@ public class VolunteerTimeController extends ManageAccessController {
     static String mensajeError = "";
     private ValoracionDao valoracionDao;
     private MailBody mailBody;
+    private MailService mailService;
+    private UserDao userDao;
     private VolunteerDao volunteerDao;
     private VolunteerTimeDao volunteerTimeDao;
     private final List<String> meses = Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
 
 
     @Autowired
-    public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao, ValoracionDao valoracionDao, VolunteerDao volunteerDao) {
+    public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao, ValoracionDao valoracionDao, VolunteerDao volunteerDao, MailService mailService) {
         this.valoracionDao = valoracionDao;
         this.volunteerTimeDao = volunteerTimeDao;
         this.volunteerDao = volunteerDao;
+        this.mailService = mailService;
     }
 
     @RequestMapping("/list")
@@ -58,7 +64,7 @@ public class VolunteerTimeController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(HttpSession session, @ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
+    public String processAddSubmit(@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
         LocalDateTime fechaInicio = LocalDateTime.of(LocalDate.now().getYear(), volunteertime.getMesInt(), volunteertime.getDia(), volunteertime.getStartTime().getHour(), volunteertime.getStartTime().getMinute());
         if (bindingResult.hasErrors() || fechaInicio.isBefore(LocalDateTime.now())) {
             mensajeError = "La fecha no puede ser anterior a hoy";
@@ -68,14 +74,16 @@ public class VolunteerTimeController extends ManageAccessController {
             mensajeError = "La hora inicial no puede ser posterior a la final";
             return "redirect:/volunteertime/add";
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        Volunteer volunteer = volunteerDao.getVolunteer(volunteertime.getDniVolunteer());
+        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
         volunteertime.setDniElderly(null);
         volunteertime.setDniVolunteer(user.getDni());
         volunteerTimeDao.addVolunteerTime(volunteertime);
         int id = volunteerTimeDao.ultimoIdVolunteerTime();
 
-        mailBody = new MailBody(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
+        mailBody = new MailBody(volunteer.getEmail());
         mailBody.addMail("Se ha añadido un nuevo horario a su cuenta correctamente.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:../volunteer/scheduleList?nuevo=" + id;
 
@@ -96,8 +104,12 @@ public class VolunteerTimeController extends ManageAccessController {
             return "volunteertime/update";
         volunteerTimeDao.updateVolunteerTime(volunteertime);
 
-        mailBody = new MailBody(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
+        Volunteer volunteer = volunteerDao.getVolunteer(volunteertime.getDniVolunteer());
+        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
+
+        mailBody = new MailBody(volunteer.getEmail());
         mailBody.updateMail("Se ha actualizado su horario del dia " + volunteertime.getDia() + " del " + volunteertime.getMes() + " de " + volunteertime.getStartTime() + " a " + volunteertime.getEndTime() + ".");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:../volunteer/scheduleList?nuevo=" + volunteertime.getIdVolunteerTime();
     }
@@ -105,8 +117,12 @@ public class VolunteerTimeController extends ManageAccessController {
     @RequestMapping(value = "/delete/{idVolunteerTime}")
     public String processDelete(@PathVariable Integer idVolunteerTime) {
         VolunteerTime volunteerTime = volunteerTimeDao.getVolunteerTime(idVolunteerTime);
-        mailBody = new MailBody(volunteerDao.getVolunteer(volunteerTime.getDniVolunteer()).getEmail());
+        Volunteer volunteer = volunteerDao.getVolunteer(volunteerTime.getDniVolunteer());
+        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
+
+        mailBody = new MailBody(volunteer.getEmail());
         mailBody.deleteMail("Se ha eliminado su horario del dia " + volunteerTime.getDia() + " del " + volunteerTime.getMes() + " de " + volunteerTime.getStartTime() + " a " + volunteerTime.getEndTime() + ".");
+        mailService.sendEmail(mailBody, user);
 
         volunteerTimeDao.deleteVolunteerTime(idVolunteerTime);
         return "redirect:/volunteer/scheduleList";
@@ -123,10 +139,11 @@ public class VolunteerTimeController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addTime", method = RequestMethod.POST)
-    public String processAddSubmitVolunteer(HttpSession session, @ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
+    public String processAddSubmitVolunteer(@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "volunteertime/addTime";
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        Volunteer volunteer = volunteerDao.getVolunteer(volunteertime.getDniVolunteer());
+        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
         volunteertime.setDniElderly(null);
         volunteertime.setDniVolunteer(user.getDni());
         volunteerTimeDao.addVolunteerTime(volunteertime);
@@ -134,8 +151,9 @@ public class VolunteerTimeController extends ManageAccessController {
             return "volunteer/scheduleList";
         }
 
-        mailBody = new MailBody(volunteerDao.getVolunteer(volunteertime.getDniVolunteer()).getEmail());
+        mailBody = new MailBody(volunteer.getEmail());
         mailBody.addMail("Se ha añadido un nuevo horario a su cuenta correctamente.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:/";
     }

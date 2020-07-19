@@ -2,6 +2,7 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.*;
 import majorsacasa.mail.MailBody;
+import majorsacasa.mail.MailService;
 import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ public class RequestController extends ManageAccessController {
     private InvoiceDao invoiceDao;
     private ProduceDao produceDao;
     private MailBody mailBody;
+    private MailService mailService;
+    private UserDao userDao;
     private RequestDao requestDao;
     private OffersDao offersDao;
     private ServiceDao serviceDao;
@@ -31,7 +34,7 @@ public class RequestController extends ManageAccessController {
     static String mensajeError = "";
 
     @Autowired
-    public void setRequestDao(ProduceDao produceDao, InvoiceDao invoiceDao, ValoracionDao valoracionDao, RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao, ContractDao contractDao, OffersDao offersDao) {
+    public void setRequestDao(ProduceDao produceDao, InvoiceDao invoiceDao, ValoracionDao valoracionDao, RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao, ContractDao contractDao, OffersDao offersDao, MailService mailService) {
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
         this.companyDao = companyDao;
@@ -41,6 +44,7 @@ public class RequestController extends ManageAccessController {
         this.valoracionDao = valoracionDao;
         this.invoiceDao = invoiceDao;
         this.produceDao = produceDao;
+        this.mailService = mailService;
     }
 
     @RequestMapping("/list")
@@ -75,9 +79,12 @@ public class RequestController extends ManageAccessController {
             return "request/add";
         requestDao.addRequest(request);
 
-        mailBody = new MailBody(elderlyDao.getElderly(request.getDni()).getEmail());
-        mailBody = new MailBody(elderlyDao.getElderly(request.getDni()).getEmail());
+        Elderly elderly = elderlyDao.getElderly(request.getDni());
+        UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
+
+        mailBody = new MailBody(elderly.getEmail());
         mailBody.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + request.getIdRequest();
     }
@@ -149,24 +156,33 @@ public class RequestController extends ManageAccessController {
             p.setIdRequest(request.getIdRequest());
             produceDao.addProduce(p);
 
+
             // SE LE COMUNICA A LA PERSONA MAYOR DE SU SOLICITUD
             Elderly elderly = elderlyDao.getElderly(request.getDni());
+            UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
             mailBody = new MailBody(elderly.getEmail());
             mailBody.updateMail("Su solicitud del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " ha sido " + request.getState() + " y lo puede ver en su lista de solicitudes. Por favor, no olvide valorar el servicio.");
+            mailService.sendEmail(mailBody, user);
 
             // SE LE COMUNICA A LA EMPRESA QUE SE LE HA ASIGNADO UNA PERSONA MAYOR
             HashMap<String, String> mapaServiciosCompany = serviceDao.getMapServiceCompany();
             Company empresa = companyDao.getCompany(request.getNif());
-            mailBody = new MailBody(companyDao.getCompany(request.getNif()).getEmail());
+            user = userDao.loadUserByUsername(empresa.getNombreUsuario(), empresa.getPassword());
+            mailBody = new MailBody(empresa.getEmail());
             mailBody.updateMail("Se le ha asignado una persona mayor a su servicio de " + mapaServiciosCompany.get(empresa.getNif()) +
                     ". Puede ver los detalles en el listado de personas mayores de su servicio.\n" +
                     "La persona mayor se llama: " + elderly.getNombre() + " " + elderly.getApellidos() + " y su dirección es: " + elderly.getDireccion());
+            mailService.sendEmail(mailBody, user);
         } else {
-            if (request.getState().equals("Rechazada")) request.setDateReject(LocalDate.now());
+            if (request.getState().equals("Rechazada")) {
+                request.setDateReject(LocalDate.now());
+            }
 
-            mailBody = new MailBody(elderlyDao.getElderly(request.getDni()).getEmail());
+            Elderly elderly = elderlyDao.getElderly(request.getDni());
+            UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
+            mailBody = new MailBody(elderly.getEmail());
             mailBody.updateMail("Su solicitud del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " ha sido " + request.getState() + " y lo puede ver en su lista de solicitudes.");
-
+            mailService.sendEmail(mailBody, user);
         }
         List<Company> company = companyDao.getCompanies();
         model.addAttribute("companyies", company);
@@ -208,10 +224,13 @@ public class RequestController extends ManageAccessController {
     @RequestMapping(value = "/delete/{idRequest}")
     public String processDelete(@PathVariable int idRequest) {
         Request request = requestDao.getRequest(idRequest);
+        Elderly elderly = elderlyDao.getElderly(request.getDni());
+        UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
         if (!request.getState().equals("Pendiente") || !request.getState().equals("Aceptada")) {
-            mailBody = new MailBody(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
-            mailBody.deleteMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
             requestDao.deleteRequest(idRequest);
+            mailBody = new MailBody(elderly.getEmail());
+            mailBody.deleteMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
+            mailService.sendEmail(mailBody, user);
         } else {
             mensajeError = "No puedes borrar una petición aceptada o pendiente";
         }
@@ -254,9 +273,10 @@ public class RequestController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addRequestElderly", method = RequestMethod.POST)
-    public String processAddSubmitRequestElderly(HttpSession session, @ModelAttribute("request") Request request, Model model, BindingResult bindingResult) {
+    public String processAddSubmitRequestElderly(@ModelAttribute("request") Request request, Model model, BindingResult bindingResult) {
         Service servicio = serviceDao.getService(request.getIdService());
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        Elderly elderly = elderlyDao.getElderly(request.getDni());
+        UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
         request.setNif("0");
         if (bindingResult.hasErrors()) {
             return "request/addRequestElderly";
@@ -280,9 +300,9 @@ public class RequestController extends ManageAccessController {
         requestDao.addRequest(request);
         int id = requestDao.ultimoIdRequest();
 
-        mailBody = new MailBody(elderlyDao.getElderly(request.getDni()).getEmail());
+        mailBody = new MailBody(elderly.getEmail());
         mailBody.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
-
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:/request/listElderly?nuevo=" + id;
 
@@ -290,9 +310,11 @@ public class RequestController extends ManageAccessController {
 
     @RequestMapping(value = "/cancelarRequest/{idRequest}")
     public String processUpdateEstadp(@PathVariable int idRequest) {
-
-        mailBody = new MailBody(elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni()).getEmail());
+        Elderly elderly = elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni());
+        UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
+        mailBody = new MailBody(elderly.getEmail());
         mailBody.deleteMail("Se ha cancelado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
+        mailService.sendEmail(mailBody, user);
 
         requestDao.updateEstado(idRequest, "Cancelada");
 

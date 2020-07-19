@@ -1,8 +1,6 @@
 package majorsacasa.controller;
 
-import majorsacasa.dao.ElderlyDao;
-import majorsacasa.dao.SocialWorkerDao;
-import majorsacasa.dao.VolunteerTimeDao;
+import majorsacasa.dao.*;
 import majorsacasa.mail.MailBody;
 import majorsacasa.mail.MailService;
 import majorsacasa.model.*;
@@ -31,6 +29,7 @@ public class ElderlyController extends ManageAccessController {
     private MailBody mailBody;
     private MailService mailService;
     static String mensajeError = "";
+    private UserDao userDao;
 
     @Autowired
     public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao, VolunteerTimeDao volunteerTimeDao, MailService mailService) {
@@ -79,6 +78,9 @@ public class ElderlyController extends ManageAccessController {
                     "Usuario: " + elderly.getUsuario() +
                     "\nContraseña: " + elderly.getContraseña());
         }
+        UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
+        mailService.sendEmail(mailBody, user);
+
         return "redirect:list?nuevo=" + elderly.getDni();
     }
 
@@ -94,7 +96,7 @@ public class ElderlyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addRegister", method = RequestMethod.POST)
-    public String processAddSubmitRegister(HttpSession session, @ModelAttribute("elderly") Elderly elderly, Model model, BindingResult bindingResult) {
+    public String processAddSubmitRegister(@ModelAttribute("elderly") Elderly elderly, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/addRegister";
         Boolean check = elderlyDao.checkDNI(elderly.getDni());
@@ -116,7 +118,7 @@ public class ElderlyController extends ManageAccessController {
             return "elderly/addRegister";
         }
         elderlyDao.addElderly(elderly);
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
 
         if (!elderly.getEmail().isEmpty()) {
             mailBody = new MailBody(elderly.getEmail());
@@ -127,6 +129,7 @@ public class ElderlyController extends ManageAccessController {
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + elderly.getUsuario() +
                 "\nContraseña: " + elderly.getContraseña());
+        mailService.sendEmail(mailBody, user);
 
 
         if (user == null) {
@@ -155,10 +158,10 @@ public class ElderlyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("elderly") Elderly elderly,
-                                      BindingResult bindingResult) {
+    public String processUpdateSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/update";
+        UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
         elderly.actualizarAlergias();
         elderlyDao.updateElderlySINpw(elderly);
 
@@ -168,6 +171,7 @@ public class ElderlyController extends ManageAccessController {
             mailBody = new MailBody(elderly.getDireccion());
         }
         mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + elderly.getDni();
     }
@@ -191,12 +195,12 @@ public class ElderlyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/delete/{dni}")
-    public String processDelete(HttpSession session, @PathVariable String dni) {
-        UserDetails usuario = (UserDetails) session.getAttribute("user");
+    public String processDelete(@PathVariable String dni) {
+        Elderly elderly = elderlyDao.getElderly(dni);
+        UserDetails usuario = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
         if (!usuario.getTipo().equals("ElderlyPeople") && !usuario.getTipo().equals("Admin")) {
             return "error/sinPermiso";
         }
-        Elderly elderly = elderlyDao.getElderly(dni);
         if (!elderly.getEmail().isEmpty()) {
             mailBody = new MailBody(elderly.getEmail());
         } else {
@@ -206,6 +210,8 @@ public class ElderlyController extends ManageAccessController {
             volunteertimeToDelete(dni);
             elderlyDao.deleteElderly(dni);
             mailBody.deleteMail("Se ha eliminado su cuenta permanentemente.");
+            mailService.sendEmail(mailBody, usuario);
+
             if (usuario.getTipo().equals("ElderlyPeople")) {
                 return "redirect:/logout";
             }
@@ -248,7 +254,7 @@ public class ElderlyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
-    public String processUpdatePerfilSubmit(@ModelAttribute("elderly") Elderly elderly, HttpSession session, BindingResult bindingResult) {
+    public String processUpdatePerfilSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/updatePerfil";
         elderly.actualizarAlergias();
@@ -259,7 +265,7 @@ public class ElderlyController extends ManageAccessController {
         } else {
             mailBody = new MailBody(elderly.getDireccion());
         }
-        UserDetails user = (UserDetails) session.getAttribute("user");
+        UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
 
         mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
         mailService.sendEmail(mailBody, user);

@@ -2,6 +2,7 @@ package majorsacasa.controller;
 
 import majorsacasa.dao.*;
 import majorsacasa.mail.MailBody;
+import majorsacasa.mail.MailService;
 import majorsacasa.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,14 +25,17 @@ public class CompanyController extends ManageAccessController {
     static String mensajeError = "";
     private RequestDao requestdao;
     private ElderlyDao elderlyDao;
+    private MailService mailService;
+    private UserDao userDao;
 
     @Autowired
-    public void setCompanyDao(ValoracionDao valoracionDao, CompanyDao companyDao, ServiceDao serviceDao, RequestDao requestDao, ElderlyDao elderlyDao) {
+    public void setCompanyDao(ValoracionDao valoracionDao, CompanyDao companyDao, ServiceDao serviceDao, RequestDao requestDao, ElderlyDao elderlyDao, MailService mailService) {
         this.companyDao = companyDao;
         this.valoracionDao = valoracionDao;
         this.serviceDao = serviceDao;
         this.requestdao = requestDao;
         this.elderlyDao = elderlyDao;
+        this.mailService = mailService;
     }
 
     @RequestMapping("/list")
@@ -62,6 +66,8 @@ public class CompanyController extends ManageAccessController {
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + company.getNombreUsuario() +
                 "\nContraseña: " + company.getPassword());
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + company.getNif();
     }
@@ -92,12 +98,15 @@ public class CompanyController extends ManageAccessController {
             return "company/addRegister";
         }
         companyDao.addCompany(company);
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
 
         mailBody = new MailBody(company.getEmail());
         mailBody.addMail("El CAS ha registrado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + company.getNombreUsuario() +
                 "\nContraseña: " + company.getPassword());
+
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + company.getNif();
     }
@@ -109,7 +118,7 @@ public class CompanyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addContract", method = RequestMethod.POST)
-    public String processAddSubmitContract(@ModelAttribute("company") Company company, BindingResult bindingResult, Model model) {
+    public String processAddSubmitContract(@ModelAttribute("company") Company company, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "company/addContract";
         Boolean check = companyDao.checkDNI(company.getNif());
@@ -127,6 +136,7 @@ public class CompanyController extends ManageAccessController {
 
             return "company/addContract";
         }
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
         companyDao.addCompany(company);
 
         mailBody = new MailBody(company.getEmail());
@@ -134,6 +144,7 @@ public class CompanyController extends ManageAccessController {
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + company.getNombreUsuario() +
                 "\nContraseña: " + company.getPassword());
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:../offer/addService/" + company.getNif();
     }
@@ -145,14 +156,15 @@ public class CompanyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("company") Company company,
-                                      BindingResult bindingResult) {
+    public String processUpdateSubmit(@ModelAttribute("company") Company company, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "company/update";
         companyDao.updateCompanySINpw(company);
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
 
         mailBody = new MailBody(company.getEmail());
         mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + company.getNif();
     }
@@ -177,11 +189,13 @@ public class CompanyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/delete/{nif}")
-    public String processDelete(@PathVariable String nif, Model model) {
+    public String processDelete(@PathVariable String nif) {
         if (comprobarContratos(nif)) {
             mailBody = new MailBody(companyDao.getCompany(nif).getEmail());
             companyDao.deleteCompany(nif);
             mailBody.deleteMail("Se ha eliminado su cuenta permanentemente.");
+            UserDetails user = userDao.loadUserByUsername(companyDao.getCompany(nif).getNombreUsuario(), companyDao.getCompany(nif).getPassword());
+            mailService.sendEmail(mailBody, user);
             return "redirect:/logout";
         } else {
             mensajeError = "No puedes borrar una empresa si tiene contratos";
@@ -204,15 +218,15 @@ public class CompanyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
-    public String processUpdatePerfilSubmit(@ModelAttribute("company") Company company,
-                                            BindingResult bindingResult) {
+    public String processUpdatePerfilSubmit(@ModelAttribute("company") Company company, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "company/perfil";
         companyDao.updateCompany(company);
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
 
         mailBody = new MailBody(company.getEmail());
         mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
-
+        mailService.sendEmail(mailBody, user);
         return "redirect:/company/contractList";
     }
 

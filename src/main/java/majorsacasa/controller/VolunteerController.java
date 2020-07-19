@@ -1,9 +1,11 @@
 package majorsacasa.controller;
 
+import majorsacasa.dao.UserDao;
 import majorsacasa.dao.ValoracionDao;
 import majorsacasa.dao.VolunteerDao;
 import majorsacasa.dao.VolunteerTimeDao;
 import majorsacasa.mail.MailBody;
+import majorsacasa.mail.MailService;
 import majorsacasa.model.UserDetails;
 import majorsacasa.model.Volunteer;
 import majorsacasa.model.VolunteerTime;
@@ -24,17 +26,20 @@ import java.util.Optional;
 @RequestMapping("/volunteer")
 public class VolunteerController extends ManageAccessController {
 
-    static String mensajeError ="";
+    static String mensajeError = "";
     private VolunteerDao volunteerDao;
     private ValoracionDao valoracionDao;
     private MailBody mailBody;
     private VolunteerTimeDao volunteerTimeDao;
+    private MailService mailService;
+    private UserDao userDao;
 
     @Autowired
-    public void setVolunteerDao(VolunteerDao volunteerDao, ValoracionDao valoracionDao, VolunteerTimeDao volunteerTimeDao) {
+    public void setVolunteerDao(VolunteerDao volunteerDao, ValoracionDao valoracionDao, VolunteerTimeDao volunteerTimeDao, MailService mailService) {
         this.volunteerDao = volunteerDao;
         this.valoracionDao = valoracionDao;
         this.volunteerTimeDao = volunteerTimeDao;
+        this.mailService = mailService;
     }
 
 
@@ -60,12 +65,14 @@ public class VolunteerController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "volunteer/add";
         volunteerDao.addVolunteer(volunteer);
+        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
 
         mailBody = new MailBody(volunteer.getEmail());
         mailBody.addMail("Se ha creado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + volunteer.getUsuario() +
                 "\nContraseña: " + volunteer.getContraseña());
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + volunteer.getDni();
     }
@@ -96,21 +103,31 @@ public class VolunteerController extends ManageAccessController {
             return "volunteer/addRegister";
         }
         volunteerDao.addVolunteer(volunteer);
+        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
 
         mailBody = new MailBody(volunteer.getEmail());
         mailBody.addMail("Se ha creado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + volunteer.getUsuario() +
                 "\nContraseña: " + volunteer.getContraseña());
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:../login";
     }
 
     @RequestMapping(value = "/accept/{dni}")
     public String acceptVolunteerEstado(@PathVariable String dni) {
-        Volunteer v = volunteerDao.getVolunteer(dni);
-        v.setEstado("Aceptado");
-        volunteerDao.updateVolunteerEstado(v.getDni(), v.getEstado());
+        Volunteer volunteer = volunteerDao.getVolunteer(dni);
+        volunteer.setEstado("Aceptado");
+        volunteerDao.updateVolunteerEstado(volunteer.getDni(), volunteer.getEstado());
+
+        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
+        mailBody = new MailBody(volunteer.getEmail());
+        mailBody.addMail("Se ha aceptado su cuenta.\n" +
+                "El usuario y contraseña con el que puede acceder son:\n" +
+                "Usuario: " + volunteer.getUsuario() +
+                "\nContraseña: " + volunteer.getContraseña());
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:../list?nuevo=" + dni;
     }
@@ -120,6 +137,13 @@ public class VolunteerController extends ManageAccessController {
         Volunteer volunteer = volunteerDao.getVolunteer(dni);
         volunteer.setEstado("Rechazado");
         volunteerDao.updateVolunteerEstado(volunteer.getDni(), volunteer.getEstado());
+
+        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
+        mailBody = new MailBody(volunteer.getEmail());
+        mailBody.addMail("Se ha rechazado su peticion de cuenta, por favor contacta la Conselleria para más información.\n" +
+                "Puede contactar a través de: majorsacasagva@gmail.com\n");
+
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:../list?nuevo=" + dni;
 
@@ -132,15 +156,16 @@ public class VolunteerController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer,
-                                      BindingResult bindingResult) {
+    public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "volunteer/update";
         }
         volunteerDao.updateVolunteerSINpw(volunteer);
+        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
 
         mailBody = new MailBody(volunteer.getEmail());
         mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + volunteer.getDni();
     }
@@ -156,13 +181,14 @@ public class VolunteerController extends ManageAccessController {
 
 
     @RequestMapping(value = "/delete/{dni}")
-    public String processDelete(@PathVariable String dni, HttpSession session) {
-        UserDetails usuario = (UserDetails) session.getAttribute("user");
+    public String processDelete(@PathVariable String dni) {
+        Volunteer volunteer = volunteerDao.getVolunteer(dni);
+        UserDetails usuario = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
         try {
-            Volunteer volunteer = volunteerDao.getVolunteer(dni);
             volunteerDao.deleteVolunteer(dni);
             mailBody = new MailBody(volunteer.getEmail());
             mailBody.deleteMail("Se ha eliminado su cuenta correctamente");
+            mailService.sendEmail(mailBody, usuario);
             if (usuario.getTipo().equals("Volunteer")) {
                 return "redirect:/logout";
             }
@@ -216,15 +242,16 @@ public class VolunteerController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/updatePerfil", method = RequestMethod.POST)
-    public String processUpdateSubmitPerfil(@ModelAttribute("volunteer") Volunteer volunteer,
-                                            BindingResult bindingResult) {
+    public String processUpdateSubmitPerfil(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "volunteer/perfil";
         }
         volunteerDao.updateVolunteer(volunteer);
+        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
 
         mailBody = new MailBody(volunteer.getEmail());
         mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
+        mailService.sendEmail(mailBody, user);
 
         return "redirect:/volunteer/scheduleList";
     }
