@@ -39,11 +39,12 @@ public class VolunteerTimeController extends ManageAccessController {
 
 
     @Autowired
-    public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao, ValoracionDao valoracionDao, VolunteerDao volunteerDao, MailService mailService) {
+    public void setVolunteerTimeDao(VolunteerTimeDao volunteerTimeDao, ValoracionDao valoracionDao, VolunteerDao volunteerDao, MailService mailService, UserDao userDao) {
         this.valoracionDao = valoracionDao;
         this.volunteerTimeDao = volunteerTimeDao;
         this.volunteerDao = volunteerDao;
         this.mailService = mailService;
+        this.userDao = userDao;
     }
 
     @RequestMapping("/list")

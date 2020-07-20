@@ -29,13 +29,14 @@ public class CompanyController extends ManageAccessController {
     private UserDao userDao;
 
     @Autowired
-    public void setCompanyDao(ValoracionDao valoracionDao, CompanyDao companyDao, ServiceDao serviceDao, RequestDao requestDao, ElderlyDao elderlyDao, MailService mailService) {
+    public void setCompanyDao(ValoracionDao valoracionDao, CompanyDao companyDao, ServiceDao serviceDao, RequestDao requestDao, ElderlyDao elderlyDao, MailService mailService, UserDao userDao) {
         this.companyDao = companyDao;
         this.valoracionDao = valoracionDao;
         this.serviceDao = serviceDao;
         this.requestdao = requestDao;
         this.elderlyDao = elderlyDao;
         this.mailService = mailService;
+        this.userDao = userDao;
     }
 
     @RequestMapping("/list")

@@ -32,11 +32,12 @@ public class ElderlyController extends ManageAccessController {
     private UserDao userDao;
 
     @Autowired
-    public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao, VolunteerTimeDao volunteerTimeDao, MailService mailService) {
+    public void setElderlyDao(ElderlyDao elderlyDao, SocialWorkerDao socialWorkerDao, VolunteerTimeDao volunteerTimeDao, MailService mailService, UserDao userDao) {
         this.elderlyDao = elderlyDao;
         this.socialWorkerDao = socialWorkerDao;
         this.volunteerTimeDao = volunteerTimeDao;
         this.mailService = mailService;
+        this.userDao = userDao;
     }
 
     @RequestMapping("/list")

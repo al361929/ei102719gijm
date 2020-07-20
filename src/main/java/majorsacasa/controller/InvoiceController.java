@@ -38,13 +38,14 @@ public class InvoiceController extends ManageAccessController {
     private String uploadDirectory;
 
     @Autowired
-    public void setInvoiceDao(InvoiceDao invoiceDao, ElderlyDao elderlyDao, ProduceDao produceDao, RequestDao requestDao, ServiceDao serviceDao, MailService mailService) {
+    public void setInvoiceDao(InvoiceDao invoiceDao, ElderlyDao elderlyDao, ProduceDao produceDao, RequestDao requestDao, ServiceDao serviceDao, MailService mailService, UserDao userDao) {
         this.invoiceDao = invoiceDao;
         this.elderlyDao = elderlyDao;
         this.produceDao = produceDao;
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
         this.mailService = mailService;
+        this.userDao = userDao;
 
     }
 

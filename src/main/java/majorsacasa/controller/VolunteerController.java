@@ -3,7 +3,6 @@ package majorsacasa.controller;
 import majorsacasa.dao.UserDao;
 import majorsacasa.dao.ValoracionDao;
 import majorsacasa.dao.VolunteerDao;
-import majorsacasa.dao.VolunteerTimeDao;
 import majorsacasa.mail.MailBody;
 import majorsacasa.mail.MailService;
 import majorsacasa.model.UserDetails;
@@ -30,16 +29,15 @@ public class VolunteerController extends ManageAccessController {
     private VolunteerDao volunteerDao;
     private ValoracionDao valoracionDao;
     private MailBody mailBody;
-    private VolunteerTimeDao volunteerTimeDao;
     private MailService mailService;
     private UserDao userDao;
 
     @Autowired
-    public void setVolunteerDao(VolunteerDao volunteerDao, ValoracionDao valoracionDao, VolunteerTimeDao volunteerTimeDao, MailService mailService) {
+    public void setVolunteerDao(VolunteerDao volunteerDao, ValoracionDao valoracionDao, MailService mailService, UserDao userDao) {
         this.volunteerDao = volunteerDao;
         this.valoracionDao = valoracionDao;
-        this.volunteerTimeDao = volunteerTimeDao;
         this.mailService = mailService;
+        this.userDao = userDao;
     }
 
 

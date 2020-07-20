@@ -26,7 +26,6 @@ public class RequestController extends ManageAccessController {
     private MailService mailService;
     private UserDao userDao;
     private RequestDao requestDao;
-    private OffersDao offersDao;
     private ServiceDao serviceDao;
     private CompanyDao companyDao;
     private ElderlyDao elderlyDao;
@@ -34,17 +33,17 @@ public class RequestController extends ManageAccessController {
     static String mensajeError = "";
 
     @Autowired
-    public void setRequestDao(ProduceDao produceDao, InvoiceDao invoiceDao, ValoracionDao valoracionDao, RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao, ContractDao contractDao, OffersDao offersDao, MailService mailService) {
+    public void setRequestDao(ProduceDao produceDao, InvoiceDao invoiceDao, ValoracionDao valoracionDao, RequestDao requestDao, ServiceDao serviceDao, CompanyDao companyDao, ElderlyDao elderlyDao, ContractDao contractDao, UserDao userDao, MailService mailService) {
         this.requestDao = requestDao;
         this.serviceDao = serviceDao;
         this.companyDao = companyDao;
         this.elderlyDao = elderlyDao;
         this.contractDao = contractDao;
-        this.offersDao = offersDao;
         this.valoracionDao = valoracionDao;
         this.invoiceDao = invoiceDao;
         this.produceDao = produceDao;
         this.mailService = mailService;
+        this.userDao = userDao;
     }
 
     @RequestMapping("/list")

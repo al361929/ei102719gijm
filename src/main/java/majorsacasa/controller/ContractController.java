@@ -3,7 +3,10 @@ package majorsacasa.controller;
 import majorsacasa.dao.*;
 import majorsacasa.mail.MailBody;
 import majorsacasa.mail.MailService;
-import majorsacasa.model.*;
+import majorsacasa.model.Company;
+import majorsacasa.model.Contract;
+import majorsacasa.model.Elderly;
+import majorsacasa.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -40,12 +43,13 @@ public class ContractController extends ManageAccessController {
     private String uploadDirectory;
 
     @Autowired
-    public void setContractDao(ContractDao contractDao, CompanyDao companyDao, ElderlyDao elderlyDao, ValoracionDao valoracionDao, MailService mailService) {
+    public void setContractDao(ContractDao contractDao, CompanyDao companyDao, ElderlyDao elderlyDao, ValoracionDao valoracionDao, MailService mailService, UserDao userDao) {
         this.contractDao = contractDao;
         this.companyDao = companyDao;
         this.elderlyDao = elderlyDao;
         this.valoracionDao = valoracionDao;
         this.mailService = mailService;
+        this.userDao = userDao;
     }
 
 

@@ -25,9 +25,10 @@ public class SocialWorkerController extends ManageAccessController {
     private UserDao userDao;
 
     @Autowired
-    public void setSocialWorkerDao(SocialWorkerDao socialWorkerDao, MailService mailService) {
+    public void setSocialWorkerDao(SocialWorkerDao socialWorkerDao, MailService mailService, UserDao userDao) {
         this.socialWorkerDao = socialWorkerDao;
         this.mailService = mailService;
+        this.userDao = userDao;
     }
 
     @RequestMapping("/list")
