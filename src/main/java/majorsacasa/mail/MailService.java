@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.thymeleaf.context.Context;
@@ -12,13 +14,12 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.File;
 
 @Configuration
 public class MailService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MailService.class);
-    private static final String linea = "src/main/resources/static/img/linea-roja.png";
-    private static final String logo = "src/main/resources/static/img/logo.png";
 
     @Autowired
     JavaMailSender sender;
@@ -30,12 +31,10 @@ public class MailService {
         LOGGER.info("Enviando correo...");
         boolean send = false;
         MimeMessage message = sender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
             Context context = new Context();
             context.setVariable("usuario", user);
-            context.setVariable("lineaRoja", linea);
-            context.setVariable("logo", logo);
             context.setVariable("mailBody", mailBody);
 
             final String htmlcontent = this.templateEngine.process("email.html", context);
@@ -43,6 +42,10 @@ public class MailService {
             helper.setTo(mailBody.getEmail());
             helper.setText(htmlcontent, true);
             helper.setSubject(mailBody.getSubject());
+
+            Resource navEmail = new FileSystemResource(new File(("src/main/resources/static/img/navEmail.png")));
+            helper.addInline("navEmail.png", navEmail);
+
 
             sender.send(message);
             send = true;

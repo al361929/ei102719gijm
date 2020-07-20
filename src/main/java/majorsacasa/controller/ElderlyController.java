@@ -126,7 +126,8 @@ public class ElderlyController extends ManageAccessController {
         } else {
             mailBody = new MailBody(elderly.getDireccion());
         }
-        mailBody.setContent("Se ha creado su cuenta correctamente.\n" +
+        mailBody.setContent("Muchas gracias por registrarse en nuestra aplicación" +
+                "Su cuenta se ha creado correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + elderly.getUsuario() +
                 "\nContraseña: " + elderly.getContraseña());

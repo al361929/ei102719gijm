@@ -76,7 +76,8 @@ public class InvoiceController extends ManageAccessController {
         UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
 
         mailBody = new MailBody(elderlyDao.getElderly(invoice.getDniElderly()).getEmail());
-        mailBody.addMail("Se ha generado la factura correspondiente a la petición de servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su lista de facturas.");
+        mailBody.addMail("Se ha generado la factura correspondiente a la petición de servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription()
+                + ". Lo puede consultar en su lista de facturas.");
         mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + invoice.getInvoiceNumber();
@@ -118,7 +119,8 @@ public class InvoiceController extends ManageAccessController {
 
         UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
         mailBody = new MailBody(elderlyDao.getElderly(invoice.getDniElderly()).getEmail());
-        mailBody.updateMail("Se ha generado la factura en PDF correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su lista de facturas.");
+        mailBody.updateMail("Se ha generado la factura en PDF correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription()
+                + ". Lo puede consultar en su lista de facturas.");
         mailService.sendEmail(mailBody, user);
 
         if (user.getTipo().equals("ElderlyPeople")) return "redirect:../invoiceListElderly?nuevo=" + idInvoice;
@@ -148,7 +150,8 @@ public class InvoiceController extends ManageAccessController {
             Elderly elderly = elderlyDao.getElderly(invoice.getDniElderly());
             UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
             mailBody = new MailBody(elderlyDao.getElderly(invoice.getDniElderly()).getEmail());
-            mailBody.updateMail("Se ha añadido el PDF de la factura correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su lista de facturas.");
+            mailBody.updateMail("Se ha añadido el PDF de la factura correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoice.getInvoiceNumber()).getIdRequest()).getIdService()).getDescription()
+                    + ". Lo puede consultar en su lista de facturas.");
             mailService.sendEmail(mailBody, user);
 
         } catch (IOException e) {
@@ -171,7 +174,8 @@ public class InvoiceController extends ManageAccessController {
         Elderly elderly = elderlyDao.getElderly(invoiceDao.getInvoice(invoiceNumber).getDniElderly());
         UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
         mailBody = new MailBody(elderly.getEmail());
-        mailBody.deleteMail("Se ha eliminado la factura correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoiceNumber).getIdRequest()).getIdService()).getDescription() + " y lo puede ver en su perfil.");
+        mailBody.deleteMail("Se ha eliminado la factura correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(produceDao.getProduceInvoice(invoiceNumber).getIdRequest()).getIdService()).getDescription()
+                + ". Puede consultarlo en su perfil.");
         mailService.sendEmail(mailBody, user);
 
         invoiceDao.deleteInvoice(invoiceNumber);

@@ -272,10 +272,9 @@ public class RequestController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/addRequestElderly", method = RequestMethod.POST)
-    public String processAddSubmitRequestElderly(@ModelAttribute("request") Request request, Model model, BindingResult bindingResult) {
+    public String processAddSubmitRequestElderly(HttpSession session, @ModelAttribute("request") Request request, Model model, BindingResult bindingResult) {
         Service servicio = serviceDao.getService(request.getIdService());
-        Elderly elderly = elderlyDao.getElderly(request.getDni());
-        UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
+        UserDetails user = (UserDetails) session.getAttribute("user");
         request.setNif("0");
         if (bindingResult.hasErrors()) {
             return "request/addRequestElderly";
@@ -299,6 +298,8 @@ public class RequestController extends ManageAccessController {
         requestDao.addRequest(request);
         int id = requestDao.ultimoIdRequest();
 
+        Elderly elderly = elderlyDao.getElderly(request.getDni());
+
         mailBody = new MailBody(elderly.getEmail());
         mailBody.addMail("La solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
         mailService.sendEmail(mailBody, user);
@@ -312,7 +313,7 @@ public class RequestController extends ManageAccessController {
         Elderly elderly = elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni());
         UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
         mailBody = new MailBody(elderly.getEmail());
-        mailBody.deleteMail("Se ha cancelado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación.");
+        mailBody.deleteMail("Se ha cancelado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " y está pendiente de aceptación.");
         mailService.sendEmail(mailBody, user);
 
         requestDao.updateEstado(idRequest, "Cancelada");
