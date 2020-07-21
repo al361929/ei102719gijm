@@ -13,7 +13,6 @@
 
     <div class="container">
         <h1>Modificar Contrato</h1>
-        <h2 th:text="${contract.idContract}"></h2>
         <form action="#" th:action="@{/contract/update}"
               th:object="${contract}" method="post">
             <table>
@@ -28,7 +27,7 @@
 
                 <tr>
                     <td><label>Fecha de alta</label></td>
-                    <td><input type="date" class="form-control" th:field="*{releaseDate}" required/></td>
+                    <td><input type="date" class="form-control" th:field="*{releaseDate}" readonly required/></td>
                 </tr>
                 <tr>
                     <td><label>Fecha de baja</label></td>

@@ -58,8 +58,9 @@ public class CompanyController extends ManageAccessController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("company") Company company, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors()) {
             return "company/add";
+        }
         companyDao.addCompany(company);
 
         mailBody = new MailBody(company.getEmail());
@@ -99,14 +100,13 @@ public class CompanyController extends ManageAccessController {
             return "company/addRegister";
         }
         companyDao.addCompany(company);
-        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
 
         mailBody = new MailBody(company.getEmail());
         mailBody.addMail("El CAS ha registrado su cuenta correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + company.getNombreUsuario() +
                 "\nContraseña: " + company.getPassword());
-
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
         mailService.sendEmail(mailBody, user);
 
         return "redirect:list?nuevo=" + company.getNif();
@@ -137,8 +137,8 @@ public class CompanyController extends ManageAccessController {
 
             return "company/addContract";
         }
-        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
         companyDao.addCompany(company);
+        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
 
         mailBody = new MailBody(company.getEmail());
         mailBody.addMail("El CAS ha registrado su cuenta correctamente.\n" +
@@ -161,13 +161,15 @@ public class CompanyController extends ManageAccessController {
         if (bindingResult.hasErrors())
             return "company/update";
         companyDao.updateCompanySINpw(company);
-        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
 
-        mailBody = new MailBody(company.getEmail());
+        Company empresa = companyDao.getCompany(company.getNif());
+        UserDetails user = userDao.loadUserByUsername(empresa.getNombreUsuario(), empresa.getPassword());
+
+        mailBody = new MailBody(empresa.getEmail());
         mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
         mailService.sendEmail(mailBody, user);
 
-        return "redirect:list?nuevo=" + company.getNif();
+        return "redirect:list?nuevo=" + empresa.getNif();
     }
 
     @RequestMapping(value = "/confirmarDelete")
@@ -190,23 +192,30 @@ public class CompanyController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/delete/{nif}")
-    public String processDelete(@PathVariable String nif) {
+    public String processDelete(@PathVariable String nif, HttpSession session) {
+        UserDetails user = (UserDetails) session.getAttribute("user");
         if (comprobarContratos(nif)) {
+            //UserDetails user = userDao.loadUserByUsername(companyDao.getCompany(nif).getNombreUsuario(), companyDao.getCompany(nif).getPassword());
             mailBody = new MailBody(companyDao.getCompany(nif).getEmail());
-            companyDao.deleteCompany(nif);
             mailBody.deleteMail("Se ha eliminado su cuenta permanentemente.");
-            UserDetails user = userDao.loadUserByUsername(companyDao.getCompany(nif).getNombreUsuario(), companyDao.getCompany(nif).getPassword());
             mailService.sendEmail(mailBody, user);
-            return "redirect:/logout";
+            companyDao.deleteCompany(nif);
+            if (user.getTipo().equals("Company")) {
+                return "redirect:/logout";
+            }
         } else {
-            mensajeError = "No puedes borrar una empresa si tiene contratos";
+            mensajeError = "No puedes borrar una empresa si tiene contratos activos";
+            if (user.getTipo().equals("Company")) {
+                return "redirect:../perfil";
+            }
         }
-        return "redirect:../perfil";
+        return "redirect:../list";
     }
 
     @RequestMapping(value = "/perfil")
     public String getPerfil(HttpSession session, Model model) {
         String destino = sesionAbierta(session, model, "company/perfil");
+
         if (destino != null) return destino;
 
         UserDetails user = (UserDetails) session.getAttribute("user");

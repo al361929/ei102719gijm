@@ -65,7 +65,7 @@ public class VolunteerTimeController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
+    public String processAddSubmit(HttpSession session, @ModelAttribute("volunteertime") VolunteerTime volunteertime, BindingResult bindingResult) {
         LocalDateTime fechaInicio = LocalDateTime.of(LocalDate.now().getYear(), volunteertime.getMesInt(), volunteertime.getDia(), volunteertime.getStartTime().getHour(), volunteertime.getStartTime().getMinute());
         if (bindingResult.hasErrors() || fechaInicio.isBefore(LocalDateTime.now())) {
             mensajeError = "La fecha no puede ser anterior a hoy";
@@ -75,13 +75,15 @@ public class VolunteerTimeController extends ManageAccessController {
             mensajeError = "La hora inicial no puede ser posterior a la final";
             return "redirect:/volunteertime/add";
         }
-        Volunteer volunteer = volunteerDao.getVolunteer(volunteertime.getDniVolunteer());
-        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
+        UserDetails user = (UserDetails) session.getAttribute("user");
+
         volunteertime.setDniElderly(null);
         volunteertime.setDniVolunteer(user.getDni());
         volunteerTimeDao.addVolunteerTime(volunteertime);
         int id = volunteerTimeDao.ultimoIdVolunteerTime();
 
+        VolunteerTime volunteerTime = volunteerTimeDao.getVolunteerTime(id);
+        Volunteer volunteer = volunteerDao.getVolunteer(volunteerTime.getDniVolunteer());
         mailBody = new MailBody(volunteer.getEmail());
         mailBody.addMail("Se ha añadido un nuevo horario a su cuenta correctamente.");
         mailService.sendEmail(mailBody, user);

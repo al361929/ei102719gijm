@@ -159,13 +159,14 @@ public class VolunteerController extends ManageAccessController {
             return "volunteer/update";
         }
         volunteerDao.updateVolunteerSINpw(volunteer);
-        UserDetails user = userDao.loadUserByUsername(volunteer.getUsuario(), volunteer.getContraseña());
+        Volunteer voluntario = volunteerDao.getVolunteer(volunteer.getDni());
+        UserDetails user = userDao.loadUserByUsername(voluntario.getUsuario(), voluntario.getContraseña());
 
-        mailBody = new MailBody(volunteer.getEmail());
+        mailBody = new MailBody(voluntario.getEmail());
         mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
         mailService.sendEmail(mailBody, user);
 
-        return "redirect:list?nuevo=" + volunteer.getDni();
+        return "redirect:list?nuevo=" + voluntario.getDni();
     }
 
     @RequestMapping(value = "/confirmarDelete")

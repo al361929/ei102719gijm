@@ -127,7 +127,7 @@ public class ContractController extends ManageAccessController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("contrato") Contract contract) {
+    public String singleFileUpload(@RequestParam("file") MultipartFile file, @ModelAttribute("contrato") Contract contract, HttpSession session) {
         if (file.isEmpty()) {
             return "contract/upload";
         }
@@ -142,12 +142,13 @@ public class ContractController extends ManageAccessController {
         }
 
         Company company = companyDao.getCompany(contract.getNifcompany());
-        UserDetails user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
+        UserDetails user = (UserDetails) session.getAttribute("user");
 
         if (user.getTipo().equals("Company")) {
             return "redirect:../company/contractList?nuevo=" + contract.getIdContract();
         }
 
+        user = userDao.loadUserByUsername(company.getNombreUsuario(), company.getPassword());
         mailBody = new MailBody(company.getEmail());
         mailBody.addMail("Se ha añadido su contrato en versión PDF. Lo puede ver en la lista de contratos de su cuenta.");
         mailService.sendEmail(mailBody, user);

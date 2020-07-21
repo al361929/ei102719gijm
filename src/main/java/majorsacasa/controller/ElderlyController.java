@@ -126,7 +126,7 @@ public class ElderlyController extends ManageAccessController {
         } else {
             mailBody = new MailBody(elderly.getDireccion());
         }
-        mailBody.setContent("Muchas gracias por registrarse en nuestra aplicación" +
+        mailBody.addMail("Muchas gracias por registrarse en nuestra aplicación.\n" +
                 "Su cuenta se ha creado correctamente.\n" +
                 "El usuario y contraseña con el que puede acceder son:\n" +
                 "Usuario: " + elderly.getUsuario() +
@@ -163,19 +163,21 @@ public class ElderlyController extends ManageAccessController {
     public String processUpdateSubmit(@ModelAttribute("elderly") Elderly elderly, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "elderly/update";
-        UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
         elderly.actualizarAlergias();
         elderlyDao.updateElderlySINpw(elderly);
 
-        if (!elderly.getEmail().isEmpty()) {
-            mailBody = new MailBody(elderly.getEmail());
+        Elderly mayor = elderlyDao.getElderly(elderly.getDni());
+        if (!mayor.getEmail().isEmpty()) {
+            mailBody = new MailBody(mayor.getEmail());
         } else {
-            mailBody = new MailBody(elderly.getDireccion());
+            mailBody = new MailBody(mayor.getDireccion());
         }
+        UserDetails user = userDao.loadUserByUsername(mayor.getUsuario(), mayor.getContraseña());
+
         mailBody.updateMail("Se han actualizado los datos de su cuenta correctamente.");
         mailService.sendEmail(mailBody, user);
 
-        return "redirect:list?nuevo=" + elderly.getDni();
+        return "redirect:list?nuevo=" + mayor.getDni();
     }
 
     private Boolean requestsToDelete(String dni) {

@@ -228,7 +228,7 @@ public class RequestController extends ManageAccessController {
         if (!request.getState().equals("Pendiente") || !request.getState().equals("Aceptada")) {
             requestDao.deleteRequest(idRequest);
             mailBody = new MailBody(elderly.getEmail());
-            mailBody.deleteMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
+            mailBody.deleteMail("Se ha eliminado la solicitud correspondiente al servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " se ha enviado correctamente y está pendiente de aceptación");
             mailService.sendEmail(mailBody, user);
         } else {
             mensajeError = "No puedes borrar una petición aceptada o pendiente";
@@ -320,13 +320,15 @@ public class RequestController extends ManageAccessController {
 
         // RECALCULAR EL PRECIO DE LA FACTURA HASTA EL DIA EN EL QUE SE HA CANCELADO
         Request request = requestDao.getRequest(idRequest);
-        Produce produce = produceDao.getProduceRequest(idRequest);
-        Invoice factura = invoiceDao.getInvoice(produce.getIdInvoice());
-        int numDias = calculateNumDias(request.getDateStart(), LocalDate.now(), request.getDiasIngles());
-        Integer precioTotal = serviceDao.getService(request.getIdService()).getPrice() * numDias;
-        factura.setTotalPrice(precioTotal);
-        factura.setInvoicePDF(false);
-        invoiceDao.updateInvoice(factura);
+        if (!request.getNif().equals("0")) {
+            Produce produce = produceDao.getProduceRequest(idRequest);
+            Invoice factura = invoiceDao.getInvoice(produce.getIdInvoice());
+            int numDias = calculateNumDias(request.getDateStart(), LocalDate.now(), request.getDiasIngles());
+            Integer precioTotal = serviceDao.getService(request.getIdService()).getPrice() * numDias;
+            factura.setTotalPrice(precioTotal);
+            factura.setInvoicePDF(false);
+            invoiceDao.updateInvoice(factura);
+        }
         return "redirect:../listElderly?nuevo=" + idRequest;
     }
 
