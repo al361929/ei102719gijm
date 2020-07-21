@@ -160,7 +160,8 @@ public class RequestController extends ManageAccessController {
             Elderly elderly = elderlyDao.getElderly(request.getDni());
             UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
             mailBody = new MailBody(elderly.getEmail());
-            mailBody.updateMail("Su solicitud del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " ha sido " + request.getState() + " y lo puede ver en su lista de solicitudes. Por favor, no olvide valorar el servicio.");
+            mailBody.updateMail("Su solicitud del servicio: " + serviceDao.getService(request.getIdService()).getDescription() + " ha sido " + request.getState()
+                    + ". Lo puede consultar en su lista de solicitudes. Por favor, no olvide valorar el servicio.");
             mailService.sendEmail(mailBody, user);
 
             // SE LE COMUNICA A LA EMPRESA QUE SE LE HA ASIGNADO UNA PERSONA MAYOR
