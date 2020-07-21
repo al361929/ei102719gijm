@@ -103,13 +103,35 @@ public class RequestController extends ManageAccessController {
         return gestionarAcceso(session, model, "ElderlyPeople", "request/info");
     }
 
+    private List<Company> filtrarCompanies(List<Company> empresas, Request request) {
+        Boolean delete = true;
+        List<Company> companies = new ArrayList<>(empresas);
+        for (Company company : companies) {
+            List<Contract> contratos = companyDao.getContractsList(company.getNif());
+            for (Contract contract : contratos) {
+                if (contract.getDateDown().isAfter(request.getDateEnd())) {
+                    delete = false;
+                }
+            }
+            if (delete) {
+                empresas.remove(company);
+            }
+        }
+        return empresas;
+    }
+
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String editRequest(Model model, @PathVariable int id) {
         Request request = requestDao.getRequest(id);
         model.addAttribute("estados", estados);
         model.addAttribute("request", request);
         List<Company> companies = companyDao.getCompanyServiceOffer(request.getIdService());
+        companies = filtrarCompanies(companies, request);
         model.addAttribute("companyies", companies);
+        if (companies.isEmpty()) {
+            mensajeError = "No hay contratos de empresa con la fecha de finalización superior a la petición";
+        }
+        model.addAttribute("mensaje", mensajeError);
         return "request/update";
 
     }
