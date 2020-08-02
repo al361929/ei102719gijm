@@ -336,7 +336,7 @@ public class RequestController extends ManageAccessController {
         Elderly elderly = elderlyDao.getElderly(requestDao.getRequest(idRequest).getDni());
         UserDetails user = userDao.loadUserByUsername(elderly.getUsuario(), elderly.getContraseña());
         mailBody = new MailBody(elderly.getEmail());
-        mailBody.deleteMail("Se ha cancelado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription() + " y está pendiente de aceptación.");
+        mailBody.deleteMail("Se ha cancelado la solicitud correspondiente al servicio: " + serviceDao.getService(requestDao.getRequest(idRequest).getIdService()).getDescription());
         mailService.sendEmail(mailBody, user);
 
         requestDao.updateEstado(idRequest, "Cancelada");

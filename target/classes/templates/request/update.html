@@ -12,6 +12,7 @@
 <div layout:fragment="content">
     <div class="container">
         <h2>Modificar solicitud</h2>
+        <h5 th:text="${mensaje}"></h5>
         <form action="#" th:action="@{/request/update}"
               th:object="${request}" method="post">
             <table>
